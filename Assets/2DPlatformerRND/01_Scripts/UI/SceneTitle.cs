@@ -11,6 +11,16 @@ public class SceneTitle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void OnClickStartGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+    }
+    
+    public void OnClickQuitGame()
+    {
+        Application.Quit();
     }
 }
