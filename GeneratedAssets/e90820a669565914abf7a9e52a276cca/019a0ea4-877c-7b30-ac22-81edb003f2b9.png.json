@@ -1,0 +1,20 @@
+{
+    "asset": "e90820a669565914abf7a9e52a276cca",
+    "fileName": "019a0ea4-877c-7b30-ac22-81edb003f2b9.png",
+    "prompt": "A background image for a title screen, visually appealing and suitable for a game UI.",
+    "negativePrompt": "",
+    "model": "94c4260f-b988-40e7-b3d3-435b9f449bd0",
+    "modelName": "Flux.1 Dev",
+    "customSeed": -1,
+    "w3CTraceId": "f05818583ef7a3ae929774ca6ec43cb1",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}
