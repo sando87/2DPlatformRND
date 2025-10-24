@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] Animator animator;
+
     [Header("Movement Settings")]
     public float moveSpeed = 7f;
     public float jumpForce = 14f;
@@ -53,6 +55,7 @@ public class Player : MonoBehaviour
         // rb.linearVelocity = new Vector2(smoothX, rb.linearVelocity.y);
 
         float moveX = moveInput.x * moveSpeed;
+        animator.SetBool("IsMoving", moveX != 0);
         rb.linearVelocity = new Vector2(moveX, rb.linearVelocity.y);
     }
 
@@ -83,6 +86,7 @@ public class Player : MonoBehaviour
 
         isDashing = true;
         dashTimeLeft = dashDuration;
+        animator.CrossFade("PlayerSkill", 0);
 
         float dashDir = facingRight ? 1f : -1f;
         rb.linearVelocity = new Vector2(dashDir * dashForce, 0f);
@@ -103,6 +107,7 @@ public class Player : MonoBehaviour
     private void CheckGround()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        animator.SetBool("IsGround", isGrounded);
     }
 
     private void FlipSprite()
