@@ -129,4 +129,13 @@ public class Player : MonoBehaviour
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
     }
+
+    public void OnColliderEnter(Collider2D col)
+    {
+        LOG.trace(col.name);
+    }
+    public void OnColliderLeave(Collider2D col)
+    {
+        LOG.trace(col.name);
+    }
 }
