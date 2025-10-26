@@ -20,7 +20,7 @@ public class EnemyBase : MonoBehaviour
         GetComponentInChildren<InteractableCollider>().enabled = false;
     }
 
-    public void OnColliderEnter(Collider2D col)
+    public void GetDamaged(float damage)
     {
         DoDeath();
     }

@@ -15,11 +15,11 @@ TagManager:
   - Terrain
   - Player
   - Enemy
-  - Interact
-  - 
-  - 
-  - 
-  - 
+  - Neutral
+  - PlatformPlayer
+  - PlayerObject
+  - PlatformEnemy
+  - Platform
   - 
   - 
   - 

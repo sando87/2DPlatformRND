@@ -7,8 +7,8 @@ public class InteractableCollider : MonoBehaviour
     [SerializeField] InteractMask _MyProperty = InteractMask.Everything;
     [SerializeField] InteractMask _InteractableWith = InteractMask.Everything;
 
-    [SerializeField] UnityEvent<Collider2D> OnInteractEnter;
-    [SerializeField] UnityEvent<Collider2D> OnInteractLeave;
+    public UnityEvent<Collider2D> OnInteractEnter;
+    public UnityEvent<Collider2D> OnInteractLeave;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -86,9 +86,11 @@ public class InteractableCollider : MonoBehaviour
 public enum InteractMask : uint
 {
     Nothing = 0,
-    Player = 1 << 0,
-    Enemy = 1 << 1,
+    Unit = 1 << 0,
+    Skill = 1 << 1,
     Terrain = 1 << 2,
-    Neutral = 1 << 3,
+    Projectile = 1 << 3,
+    Props = 1 << 4,
+    Item = 1 << 5,
     Everything = 0xffffffff
 }

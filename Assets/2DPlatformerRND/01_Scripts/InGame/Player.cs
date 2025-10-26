@@ -1,9 +1,12 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    [SerializeField] GameObject MeleePrefab;
+    [SerializeField] GameObject SkillPrefab;
 
     [Header("Movement Settings")]
     public float moveSpeed = 7f;
@@ -22,9 +25,10 @@ public class Player : MonoBehaviour
     private Vector2 moveInput;
     private bool isGrounded;
     private bool canDoubleJump;
-    private bool isDashing;
-    private float dashTimeLeft;
+    private bool isLock;
     private bool facingRight = true;
+
+    public float currentHP = 100;
 
     private void Awake()
     {
@@ -32,6 +36,8 @@ public class Player : MonoBehaviour
         inputActions = new PlayerInputActions();
 
         inputActions.Player.Jump.performed += ctx => OnJump();
+        inputActions.Player.Attack.performed += ctx => OnAttack();
+        inputActions.Player.Skill.performed += ctx => OnSkill();
         inputActions.Player.Dash.performed += ctx => OnDash();
     }
 
@@ -42,13 +48,12 @@ public class Player : MonoBehaviour
     {
         moveInput = inputActions.Player.Move.ReadValue<Vector2>();
         CheckGround();
-        HandleDashTimer();
         FlipSprite();
     }
 
     private void FixedUpdate()
     {
-        if (isDashing) return; // 대시 중에는 이동 입력 무시
+        if (isLock) return; // 대시 중에는 이동 입력 무시
 
         // float targetVelocityX = moveInput.x * moveSpeed;
         // float smoothX = Mathf.Lerp(rb.linearVelocity.x, targetVelocityX, 0.2f);
@@ -80,28 +85,79 @@ public class Player : MonoBehaviour
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
+    private void OnAttack()
+    {
+        if (isLock) return;
+
+        isLock = true;
+        this.ExDelayedCoroutine(0.8f, () => InstantiateMelee());
+        this.ExDelayedCoroutine(1.0f, () => isLock = false);
+
+        animator.CrossFade("PlayerMelee", 0);
+        rb.linearVelocity = new Vector2(0f, 0f);
+    }
+    void InstantiateMelee()
+    {
+        // 스킬 오브젝트 생성
+        Vector3 startPos = transform.position + new Vector3(facingRight ? 1f : -1f, 0, 0);
+        GameObject melee = Instantiate(MeleePrefab, startPos, Quaternion.identity);
+        Destroy(melee, 0.1f);
+        melee.GetComponentInChildren<InteractableCollider>().OnInteractEnter.AddListener((col) =>
+        {
+            EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
+            if (enemy != null)
+            {
+                enemy.GetDamaged(10);
+            }
+        });
+    }
+    private void OnSkill()
+    {
+        if (isLock) return;
+
+        isLock = true;
+
+        this.ExDelayedCoroutine(0.5f, () =>
+        {
+            InstantiateSkill();
+        });
+
+        this.ExDelayedCoroutine(1, () => isLock = false);
+
+
+        animator.CrossFade("PlayerSkill", 0);
+        rb.linearVelocity = new Vector2(0f, 0f);
+    }
+    
+    void InstantiateSkill()
+    {
+        // 스킬 오브젝트 생성
+        GameObject skill = Instantiate(SkillPrefab, transform.position, Quaternion.identity);
+        Vector3 destPos = transform.position + new Vector3(transform.localScale.x * 10, 0, 0);
+        skill.transform.DOMove(destPos, 0.5f).OnComplete(() => Destroy(skill));
+        skill.GetComponentInChildren<InteractableCollider>().OnInteractEnter.AddListener((col) =>
+        {
+            EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
+            if (enemy != null)
+            {
+                enemy.GetDamaged(20);
+                skill.transform.DOKill();
+                Destroy(skill);
+            }
+        });
+    }
+
     private void OnDash()
     {
-        if (isDashing) return;
+        if (isLock) return;
 
-        isDashing = true;
-        dashTimeLeft = dashDuration;
+        isLock = true;
+        this.ExDelayedCoroutine(dashDuration, () => isLock = false);
+
         animator.CrossFade("PlayerSkill", 0);
 
         float dashDir = facingRight ? 1f : -1f;
         rb.linearVelocity = new Vector2(dashDir * dashForce, 0f);
-    }
-
-    private void HandleDashTimer()
-    {
-        if (isDashing)
-        {
-            dashTimeLeft -= Time.deltaTime;
-            if (dashTimeLeft <= 0f)
-            {
-                isDashing = false;
-            }
-        }
     }
 
     private void CheckGround()
@@ -135,12 +191,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnColliderEnter(Collider2D col)
+    public void OnDamaged(Collider2D col)
     {
-        LOG.trace(col.name);
-    }
-    public void OnColliderLeave(Collider2D col)
-    {
-        LOG.trace(col.name);
+        currentHP -= 10f;
+        if (currentHP <= 0)
+        {
+            animator.CrossFade("PlayerDeath", 0);
+        }
+        else
+        {
+            animator.CrossFade("PlayerHurt", 0);
+        }
     }
 }
