@@ -176,7 +176,8 @@ public class BSPTree:MonoBehaviour
 			if (drawMeshTreeOnStart) { DrawTriangleSet(posNode.triangles, DebugDraw.RandomColor()); }
 		}
 
-		if (negativeTriangles.Count < triangles.Count && negativeTriangles.Count > 3) { RecursivePartition(negativeTriangles, depth + 1, negNode); }
+		if (negativeTriangles.Count < triangles.Count && negativeTriangles.Count > 3)
+		{ RecursivePartition(negativeTriangles, depth + 1, negNode); }
 		else {
 			negNode.triangles = negativeTriangles.ToArray();
 
@@ -208,14 +209,10 @@ public class BSPTree:MonoBehaviour
 	}
 
 	private bool PointAbovePlane(Vector3 planeOrigin, Vector3 planeNormal, Vector3 point)
-	{
-		return Vector3.Dot(point - planeOrigin, planeNormal) >= 0;
-	}
+	{ return Vector3.Dot(point - planeOrigin, planeNormal) >= 0; }
 
 	private float PointDistanceFromPlane(Vector3 planeOrigin, Vector3 planeNormal, Vector3 point)
-	{
-		return Mathf.Abs(Vector3.Dot((point - planeOrigin), planeNormal));
-	}
+	{ return Mathf.Abs(Vector3.Dot((point - planeOrigin), planeNormal)); }
 
 	/// <summary>
 	/// Determines the closest point between a point and a triangle.
@@ -330,8 +327,7 @@ public class BSPTree:MonoBehaviour
 
 	private void DrawTriangleSet(int[] triangles, Color color)
 	{
-		foreach (int triangle in triangles) {
-			DebugDraw.DrawTriangle(vertices[tris[triangle]], vertices[tris[triangle + 1]], vertices[tris[triangle + 2]], color, transform);
-		}
+		foreach (int triangle in triangles)
+		{ DebugDraw.DrawTriangle(vertices[tris[triangle]], vertices[tris[triangle + 1]], vertices[tris[triangle + 2]], color, transform); }
 	}
 }

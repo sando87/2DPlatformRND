@@ -1,7 +1,4 @@
-﻿/*
- * Example implementation of the SuperStateMachine and SuperCharacterController.
- */
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(SuperCharacterController))]
 [RequireComponent(typeof(PlayerInputController))]
@@ -63,19 +60,13 @@ public class PlayerMachine:SuperStateMachine
 	}
 
 	private bool AcquiringGround()
-	{
-		return controller.currentGround.IsGrounded(false, 0.01f);
-	}
+	{ return controller.currentGround.IsGrounded(false, 0.01f); }
 
 	private bool MaintainingGround()
-	{
-		return controller.currentGround.IsGrounded(true, 0.5f);
-	}
+	{ return controller.currentGround.IsGrounded(true, 0.5f); }
 
 	public void RotateGravity(Vector3 up)
-	{
-		lookDirection = Quaternion.FromToRotation(transform.up, up) * lookDirection;
-	}
+	{ lookDirection = Quaternion.FromToRotation(transform.up, up) * lookDirection; }
 
 	/// <summary>
 	/// Constructs a vector representing our movement local to our lookDirection, which is
@@ -95,13 +86,11 @@ public class PlayerMachine:SuperStateMachine
 
 	// Calculate the initial velocity of a jump based off gravity and desired maximum height attained.
 	private float CalculateJumpSpeed(float jumpHeight, float gravity)
-	{
-		return Mathf.Sqrt(2 * jumpHeight * gravity);
-	}
+	{ return Mathf.Sqrt(2 * jumpHeight * gravity); }
 
 	/*void Update () {
 	 * Update is normally run once on every frame update. We won't be using it
-     * in this case, since the SuperCharacterController component sends a callback Update 
+     * in this case, since the SuperCharacterController component sends a callback Update
      * called SuperUpdate. SuperUpdate is recieved by the SuperStateMachine, and then fires
      * further callbacks depending on the state.
 	}*/
@@ -152,7 +141,7 @@ public class PlayerMachine:SuperStateMachine
 		}
 		if (input.Current.MoveInput != Vector3.zero) {
 			moveDirection = Vector3.MoveTowards(moveDirection, LocalMovement() * WalkSpeed, WalkAcceleration * controller.deltaTime);
-		} 
+		}
 		else {
 			currentState = PlayerStates.Idle;
 			return;

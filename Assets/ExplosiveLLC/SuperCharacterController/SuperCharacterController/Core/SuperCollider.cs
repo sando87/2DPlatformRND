@@ -7,28 +7,31 @@ public static class SuperCollider
 		if (collider is BoxCollider) {
 			closestPointOnSurface = SuperCollider.ClosestPointOnSurface(( BoxCollider )collider, to);
 			return true;
-		} else if (collider is SphereCollider) {
+		}
+		else if (collider is SphereCollider) {
 			closestPointOnSurface = SuperCollider.ClosestPointOnSurface(( SphereCollider )collider, to);
 			return true;
-		} else if (collider is CapsuleCollider) {
+		}
+		else if (collider is CapsuleCollider) {
 			closestPointOnSurface = SuperCollider.ClosestPointOnSurface(( CapsuleCollider )collider, to);
 			return true;
-		} else if (collider is MeshCollider) {
+		}
+		else if (collider is TerrainCollider) {
+			closestPointOnSurface = SuperCollider.ClosestPointOnSurface(( TerrainCollider )collider, to, radius, false);
+			return true;
+		}
+		else if (collider is MeshCollider) {
+
 			BSPTree bspTree = collider.GetComponent<BSPTree>();
 
 			if (bspTree != null) {
 				closestPointOnSurface = bspTree.ClosestPointOn(to, radius);
 				return true;
 			}
-			BruteForceMesh bfm = collider.GetComponent<BruteForceMesh>();
 
-			if (bfm != null) {
-				closestPointOnSurface = bfm.ClosestPointOn(to);
-				return true;
-			}
-		} else if (collider is TerrainCollider) {
-			closestPointOnSurface = SuperCollider.ClosestPointOnSurface(( TerrainCollider )collider, to, radius, false);
-			return true;
+			Debug.LogError(string.Format("'{0}' is missing BSPTree script.", collider.gameObject.name));
+			closestPointOnSurface = Vector3.zero;
+			return false;
 		}
 
 		Debug.LogError(string.Format("{0} does not have an implementation for ClosestPointOnSurface; GameObject.Name='{1}'", collider.GetType(), collider.gameObject.name));
@@ -87,7 +90,6 @@ public static class SuperCollider
 		return ct.TransformPoint(localNorm);
 	}
 
-	// Courtesy of Moodie.
 	public static Vector3 ClosestPointOnSurface(CapsuleCollider collider, Vector3 to)
 	{
 		// Transform of the collider.
@@ -184,13 +186,11 @@ public static class SuperCollider
 			startPositionZ = 0;
 		}
 
-		if (startPositionX + numberOfXPixels + 1 > terrainData.heightmapResolution) {
-			numberOfXPixels = terrainData.heightmapResolution - startPositionX - 1;
-		}
+		if (startPositionX + numberOfXPixels + 1 > terrainData.heightmapResolution)
+		{ numberOfXPixels = terrainData.heightmapResolution - startPositionX - 1; }
 
-		if (startPositionZ + numberOfZPixels + 1 > terrainData.heightmapResolution) {
-			numberOfZPixels = terrainData.heightmapResolution - startPositionZ - 1;
-		}
+		if (startPositionZ + numberOfZPixels + 1 > terrainData.heightmapResolution)
+		{ numberOfZPixels = terrainData.heightmapResolution - startPositionZ - 1; }
 
 		// Retrieve the heights of the tile we are in and all overlapped tiles.
 		float[,] heights = terrainData.GetHeights(startPositionX, startPositionZ, numberOfXPixels + 1, numberOfZPixels + 1);
@@ -222,6 +222,7 @@ public static class SuperCollider
 					shortestDistance = distance;
 					shortestPoint = nearest;
 				}
+
 				BSPTree.ClosestPointOnTriangleToPoint(ref a, ref b, ref d, ref local, out nearest);
 
 				distance = (local - nearest).sqrMagnitude;
@@ -230,12 +231,14 @@ public static class SuperCollider
 					shortestDistance = distance;
 					shortestPoint = nearest;
 				}
+
 				if (debug) {
 					DebugDraw.DrawTriangle(a, d, c, Color.cyan);
 					DebugDraw.DrawTriangle(a, b, d, Color.red);
 				}
 			}
 		}
+
 		return collider.transform.TransformPoint(shortestPoint);
 	}
 }

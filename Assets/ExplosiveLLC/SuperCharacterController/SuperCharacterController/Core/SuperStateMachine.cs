@@ -68,9 +68,9 @@ public class SuperStateMachine:MonoBehaviour
 	/// <returns>The state specific method as a delegate or Default if it does not exist.</returns>
 	private T ConfigureDelegate<T>(string methodRoot, T Default) where T : class
 	{
-		if (!_cache.TryGetValue(state.currentState, out Dictionary<string, Delegate> lookup)) {
-			_cache[state.currentState] = lookup = new Dictionary<string, Delegate>();
-		}
+		if (!_cache.TryGetValue(state.currentState, out Dictionary<string, Delegate> lookup))
+		{ _cache[state.currentState] = lookup = new Dictionary<string, Delegate>(); }
+
 		if (!lookup.TryGetValue(methodRoot, out Delegate returnValue)) {
 			System.Reflection.MethodInfo mtd = GetType().GetMethod(state.currentState.ToString() + "_" + methodRoot, System.Reflection.BindingFlags.Instance
 				| System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.InvokeMethod);
@@ -82,7 +82,6 @@ public class SuperStateMachine:MonoBehaviour
 		}
 
 		return returnValue as T;
-
 	}
 
 	/// <summary>

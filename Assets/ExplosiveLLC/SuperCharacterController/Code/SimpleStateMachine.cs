@@ -102,14 +102,10 @@ public class SimpleStateMachine:MonoBehaviour
 	}
 
 	private void FixedUpdate()
-	{
-		state.DoFixedUpdate();
-	}
+	{ state.DoFixedUpdate(); }
 
 	private void LateUpdate()
-	{
-		state.DoLateUpdate();
-	}
+	{ state.DoLateUpdate(); }
 
 	protected virtual void EarlyGlobalSuperUpdate() { }
 

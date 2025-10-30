@@ -234,16 +234,12 @@ public class Math3d:MonoBehaviour
 
 	// Projects a vector onto a plane. The output is not normalized.
 	public static Vector3 ProjectVectorOnPlane(Vector3 planeNormal, Vector3 vector)
-	{
-		return vector - (Vector3.Dot(vector, planeNormal) * planeNormal);
-	}
+	{ return vector - (Vector3.Dot(vector, planeNormal) * planeNormal); }
 
 	// Get the shortest distance between a point and a plane. The output is signed so it holds information
 	// as to which side of the plane normal the point is.
 	public static float SignedDistancePlanePoint(Vector3 planeNormal, Vector3 planePoint, Vector3 point)
-	{
-		return Vector3.Dot(planeNormal, (point - planePoint));
-	}
+	{ return Vector3.Dot(planeNormal, (point - planePoint)); }
 
 	// This function calculates a signed (+ or - sign instead of being ambiguous) dot product. It is basically used
 	// to figure out whether a vector is positioned to the left or right of another vector. The way this is done is
@@ -347,27 +343,19 @@ public class Math3d:MonoBehaviour
 
 	// Returns the forward vector of a quaternion.
 	public static Vector3 GetForwardVector(Quaternion q)
-	{
-		return q * Vector3.forward;
-	}
+	{ return q * Vector3.forward; }
 
 	// Returns the up vector of a quaternion.
 	public static Vector3 GetUpVector(Quaternion q)
-	{
-		return q * Vector3.up;
-	}
+	{ return q * Vector3.up; }
 
 	// Returns the right vector of a quaternion.
 	public static Vector3 GetRightVector(Quaternion q)
-	{
-		return q * Vector3.right;
-	}
+	{ return q * Vector3.right; }
 
 	// Gets a quaternion from a matrix.
 	public static Quaternion QuaternionFromMatrix(Matrix4x4 m)
-	{
-		return Quaternion.LookRotation(m.GetColumn(2), m.GetColumn(1));
-	}
+	{ return Quaternion.LookRotation(m.GetColumn(2), m.GetColumn(1)); }
 
 	// Gets a position from a matrix.
 	public static Vector3 PositionFromMatrix(Matrix4x4 m)
@@ -475,6 +463,7 @@ public class Math3d:MonoBehaviour
 
 		// Point is on side of linePoint2, compared to linePoint1.
 		if (dot > 0) {
+
 			// Point is on the line segment.
 			if (pointVec.magnitude <= lineVec.magnitude) { return 0; }
 
