@@ -195,6 +195,168 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44323217}
   m_CullTransparentMesh: 1
+--- !u!1 &169048137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 169048138}
+  - component: {fileID: 169048141}
+  - component: {fileID: 169048140}
+  - component: {fileID: 169048139}
+  - component: {fileID: 169048144}
+  - component: {fileID: 169048143}
+  - component: {fileID: 169048142}
+  m_Layer: 7
+  m_Name: PlayerState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &169048138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169048137}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1020631640}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &169048139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169048137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c4b7ff4ecb1d5458a554b7783382ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateJump
+  _Priority: 0
+  EventEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  EventLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  moveSpeed: 7
+  jumpForce: 14
+--- !u!114 &169048140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169048137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4268d80ce64ce154c9b019d8e2aa66dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateWalk
+  _Priority: 0
+  EventEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  EventLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  moveSpeed: 7
+--- !u!114 &169048141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169048137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b17b80ebad4ede54ea7b50baf8ffcfe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateIdle
+  _Priority: 0
+  EventEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  EventLeave:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &169048142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169048137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931added3354cb24db541cd0f58262d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateSkill
+  _Priority: 1
+  EventEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  EventLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  _FireDelay: 0.4
+  SkillPrefab: {fileID: 8246397898442698589, guid: bd318899aff485a4b8bf10cc02a9b0ce,
+    type: 3}
+--- !u!114 &169048143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169048137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02366d625f0b49246a51599e32fde6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateAttack
+  _Priority: 1
+  EventEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  EventLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  _FireDelay: 0.4
+  MeleePrefab: {fileID: 2657672191331022283, guid: 20252fbc0d60a074382f77dd73d754f0,
+    type: 3}
+--- !u!114 &169048144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169048137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e315d90d9c858a84aa4b09c34366012b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateDash
+  _Priority: 1
+  EventEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  EventLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  _dashForce: 10
+  _dashDuration: 1.2
 --- !u!1 &189616451
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,37 +1108,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &886263913
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 886263914}
-  m_Layer: 7
-  m_Name: GroundChecker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &886263914
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 886263913}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.13, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1020631640}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1020631636
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,7 +1119,10 @@ GameObject:
   - component: {fileID: 1020631640}
   - component: {fileID: 1020631637}
   - component: {fileID: 1020631641}
-  - component: {fileID: 1020631642}
+  - component: {fileID: 1020631647}
+  - component: {fileID: 1020631646}
+  - component: {fileID: 1020631645}
+  - component: {fileID: 1020631644}
   - component: {fileID: 1020631643}
   m_Layer: 7
   m_Name: Player
@@ -1038,8 +1172,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1370786364}
-  - {fileID: 886263914}
   - {fileID: 1195903698}
+  - {fileID: 169048138}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &1020631641
@@ -1079,33 +1213,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 1.5}
   m_Size: {x: 1, y: 3}
   m_Direction: 0
---- !u!114 &1020631642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1020631636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbeb456541a084845be6c2fcd1ab8b49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
-  animator: {fileID: 6244194296871644125}
-  MeleePrefab: {fileID: 2657672191331022283, guid: 20252fbc0d60a074382f77dd73d754f0,
-    type: 3}
-  SkillPrefab: {fileID: 8246397898442698589, guid: bd318899aff485a4b8bf10cc02a9b0ce,
-    type: 3}
-  moveSpeed: 7
-  jumpForce: 14
-  dashForce: 20
-  dashDuration: 0.2
-  groundCheck: {fileID: 886263914}
-  groundCheckRadius: 0.2
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  currentHP: 100
 --- !u!114 &1020631643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1122,22 +1229,64 @@ MonoBehaviour:
   _InteractableWith: 27
   OnInteractEnter:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1020631642}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnDamaged
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnInteractLeave:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1020631644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020631636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23aa04c773918c246b499e5bddc236be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerUnitInput
+  EnterInput:
+    m_PersistentCalls:
+      m_Calls: []
+  LeaveInput:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1020631645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020631636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec41b5261bcb75428ffb42ebe12a026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateMachine
+--- !u!114 &1020631646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020631636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80936b104d51e5418955ba6bcc9d7af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerController
+--- !u!114 &1020631647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020631636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c53a21043262a47b1eb17dceeca98c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.BaseObject
 --- !u!1 &1098099984
 GameObject:
   m_ObjectHideFlags: 0
@@ -7032,12 +7181,6 @@ Transform:
 --- !u!1 &6244194296871644124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd,
-    type: 3}
-  m_PrefabInstance: {fileID: 6244194296871644121}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &6244194296871644125 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9500000, guid: e57e9b8cd5e115f4f8d7736473e5c7fd,
     type: 3}
   m_PrefabInstance: {fileID: 6244194296871644121}
   m_PrefabAsset: {fileID: 0}
