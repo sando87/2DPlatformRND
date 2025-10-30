@@ -34,4 +34,5 @@ public class AnimatorEvents : MonoBehaviour
     public void Shoot()
     {
     }
+    
 }

@@ -16,7 +16,7 @@ namespace WarriorAnimsFREE
 		[HideInInspector] public WarriorInputSystemController warriorInputSystemController;
 		[HideInInspector] public WarriorTiming warriorTiming;
 		[HideInInspector] public Animator animator;
-		[HideInInspector] public IKHands ikHands;
+		[HideInInspector] public RPGCharacterAnims.IKHands ikHands;
 
 		// Inputs.
 		[HideInInspector] public bool inputAttack;
@@ -62,14 +62,14 @@ namespace WarriorAnimsFREE
 			warriorTiming.warriorController = this;
 
 			// Add IKHands.
-			ikHands = GetComponentInChildren<IKHands>();
+			ikHands = GetComponentInChildren<RPGCharacterAnims.IKHands>();
 			if (ikHands != null) {
 				if (warrior == Warrior.TwoHanded
 					|| warrior == Warrior.Hammer
 					|| warrior == Warrior.Crossbow
 					|| warrior == Warrior.Spearman) {
 					ikHands.canBeUsed = true;
-					ikHands.BlendIK(true, 0, 0.25f);
+					// ikHands.BlendIK(true, 0, 0.25f);
 				}
 			}
 
@@ -181,9 +181,9 @@ namespace WarriorAnimsFREE
 		/// </summary>
 		public void Jump()
 		{
-			if (warrior == Warrior.Crossbow) {
-				ikHands.SetIKOff();
-			}
+			// if (warrior == Warrior.Crossbow) {
+			// 	ikHands.SetIKOff();
+			// }
 		}
 
 		/// <summary>
@@ -191,9 +191,9 @@ namespace WarriorAnimsFREE
 		/// </summary>
 		public void Land()
 		{
-			if (warrior == Warrior.Crossbow) {
-				ikHands.BlendIK(true, 0.5f, 0.25f);
-			}
+			// if (warrior == Warrior.Crossbow) {
+			// 	ikHands.BlendIK(true, 0.5f, 0.25f);
+			// }
 		}
 
 		/// <summary>
