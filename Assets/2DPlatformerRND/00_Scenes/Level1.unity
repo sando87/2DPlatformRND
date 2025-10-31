@@ -7196,6 +7196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5158d1adfec42d445b01e9c1a3100c20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimatorEvents
+  stateEvents: []
 --- !u!137 &7161606381734435148
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -9059,6 +9060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5158d1adfec42d445b01e9c1a3100c20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  stateEvents: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

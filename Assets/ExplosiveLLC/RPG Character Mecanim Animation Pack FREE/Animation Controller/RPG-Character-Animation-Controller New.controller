@@ -23012,7 +23012,7 @@ AnimatorStateMachine:
     m_Position: {x: 930, y: 50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2456413326628614488}
-    m_Position: {x: 402, y: 28.896484, z: 0}
+    m_Position: {x: 400, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -373646451246115131}
     m_Position: {x: 942, y: -221.10352, z: 0}
@@ -147779,7 +147779,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7211882718842285240}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 8927068959322235555}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -148092,6 +148093,18 @@ AnimatorTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 1
+--- !u!114 &8927068959322235555
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4000478ed41dfec49bc06f6f8611582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.AnimatorStateEvent
 --- !u!1109 &9105054370381000370
 AnimatorTransition:
   m_ObjectHideFlags: 1
