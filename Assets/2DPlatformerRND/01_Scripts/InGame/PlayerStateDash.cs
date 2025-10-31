@@ -20,7 +20,7 @@ namespace PahlBit
         {
             base.EnterState(param);
 
-            this.ExDelayedCoroutine(_dashDuration, () => Base.StateMachine.ChangeStateToIdle());
+            this.ExDelayedCoroutine(_dashDuration, () => ChangeStateToIdle());
             
             DoDash();
         }

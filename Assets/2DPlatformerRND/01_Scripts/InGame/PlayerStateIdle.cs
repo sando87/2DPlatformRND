@@ -11,7 +11,7 @@ namespace PahlBit
 
             Base.AnimHelper.AddEventEnter(AnimStateNameHash.Idle, () =>
             {
-                Base.StateMachine.ChangeStateToIdle();
+                ChangeStateToIdle();
             });
         }
 

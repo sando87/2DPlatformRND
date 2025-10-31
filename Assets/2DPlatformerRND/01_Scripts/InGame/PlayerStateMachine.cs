@@ -6,10 +6,7 @@ namespace PahlBit
 {
     public class PlayerStateMachine : MonoBehaviour
     {
-        private List<PlayerStateBase> mAllStates = new List<PlayerStateBase>();
-        public PlayerStateBase PreviousState { get; private set; } = null;
-        private PlayerStateBase mCurrentState = null;
-        private PlayerStateIdle mIdleState = null;
+        private Dictionary<int, StateMachineLayer> mLayers = new Dictionary<int, StateMachineLayer>();
 
         void Awake()
         {
@@ -22,49 +19,63 @@ namespace PahlBit
             foreach (var state in states)
             {
                 state.InitState();
-                mAllStates.Add(state);
 
-                if (state is PlayerStateIdle)
+                if (!mLayers.ContainsKey(state.Layer))
                 {
-                    mIdleState = state as PlayerStateIdle;
+                    mLayers[state.Layer] = new StateMachineLayer();
+                }
+
+                mLayers[state.Layer].AllStates.Add(state);
+
+                if (state is PlayerStateIdle || state is PlayerStateUpperIdle)
+                {
+                    mLayers[state.Layer].IdleState = state;
                 }
             }
         }
 
         void Start()
         {
-            mCurrentState = mIdleState;
-            mCurrentState.EnterState(null);
+            foreach (var layerSet in mLayers)
+            {
+                int layer = layerSet.Key;
+                mLayers[layer].CurrentState = mLayers[layer].IdleState;
+                mLayers[layer].CurrentState.EnterState(null);
+            }
         }
 
         public void ChangeState(PlayerStateBase newState, object param = null)
         {
-            if (newState.Priority < mCurrentState.Priority)
-            {
+            StateMachineLayer currentLayer = mLayers[newState.Layer];
+            if (newState.Priority < currentLayer.CurrentState.Priority)
                 return;
-            }
+            if (currentLayer.CurrentState == newState)
+                return;
 
             // 상태 전환 로직 구현
-            mCurrentState.LeaveState();
-            PreviousState = mCurrentState;
-            mCurrentState = newState;
-            mCurrentState.EnterState(param);
+            currentLayer.CurrentState.LeaveState();
+            currentLayer.PreviousState = currentLayer.CurrentState;
+            currentLayer.CurrentState = newState;
+            currentLayer.CurrentState.EnterState(param);
         }
-        
-        public void ChangeStateToIdle()
+
+        public void ChangeStateToIdle(int layerIndex)
         {
-            // 상태 전환 로직 구현
-            mCurrentState.LeaveState();
-            PreviousState = mCurrentState;
-            mCurrentState = mIdleState;
-            mCurrentState.EnterState(null);
+            StateMachineLayer currentLayer = mLayers[layerIndex];
+            if (currentLayer.CurrentState == currentLayer.IdleState)
+                return;
+
+            currentLayer.CurrentState.LeaveState();
+            currentLayer.PreviousState = currentLayer.CurrentState;
+            currentLayer.CurrentState = currentLayer.IdleState;
+            currentLayer.CurrentState.EnterState(null);
         }
 
         public void HandleAllStateInput()
         {
-            foreach (var state in mAllStates)
+            foreach (var layer in mLayers)
             {
-                if (state != mCurrentState)
+                foreach (var state in layer.Value.AllStates)
                 {
                     state.HandleInput();
                 }
@@ -72,11 +83,31 @@ namespace PahlBit
         }
         public void UpdateState()
         {
-            mCurrentState.UpdateState();
+            foreach (var layer in mLayers)
+            {
+                foreach (var state in layer.Value.AllStates)
+                {
+                    state.UpdateState();
+                }
+            }
         }
         public void FixedUpdateState()
         {
-            mCurrentState.FixedUpdateState();
+            foreach (var layer in mLayers)
+            {
+                foreach (var state in layer.Value.AllStates)
+                {
+                    state.FixedUpdateState();
+                }
+            }
         }
+    }
+
+    public class StateMachineLayer
+    {
+        public List<PlayerStateBase> AllStates = new List<PlayerStateBase>();
+        public PlayerStateBase PreviousState = null;
+        public PlayerStateBase CurrentState = null;
+        public PlayerStateBase IdleState = null;
     }
 }

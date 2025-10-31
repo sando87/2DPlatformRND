@@ -31,7 +31,7 @@ namespace PahlBit
 
             this.ExDelayedCoroutine(0.8f, () =>
             {
-                Base.StateMachine.ChangeStateToIdle();
+                ChangeStateToIdle();
             });
         }
 

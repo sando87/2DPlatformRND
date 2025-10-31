@@ -10,9 +10,9 @@ namespace PahlBit
 
         public override void HandleInput()
         {
-            if (Base.PlayerInput.JustPressed(PlayerUnitInputType.Attack) && Base.PlayerCTRL.IsGrounded)
+            if (Base.PlayerInput.JustPressed(PlayerUnitInputType.Attack))
             {
-                Base.StateMachine.ChangeState(this);
+                ChangeStateToThis();
             }
         }
 
@@ -20,18 +20,13 @@ namespace PahlBit
         {
             base.EnterState(param);
 
-            Base.AnimHelper.CrossFadeToState("PlayerMelee", 0);
-            Base.PlayerCTRL.Velocity = new Vector2(0f, 0f);
+            CrossFadeState("PlayerMelee");
+            // Base.PlayerCTRL.Velocity = new Vector2(0f, 0f);
 
             this.ExDelayedCoroutine(_FireDelay, () =>
             {
                 InstantiateMelee();
             });
-
-            // this.ExDelayedCoroutine(0.8f, () =>
-            // {
-            //     Base.StateMachine.ChangeStateToIdle();
-            // });
         }
 
         void InstantiateMelee()

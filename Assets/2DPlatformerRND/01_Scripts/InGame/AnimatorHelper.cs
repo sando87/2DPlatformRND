@@ -44,9 +44,9 @@ namespace PahlBit
         {
             mAnimator.SetTrigger(paramName);
         }
-        public void CrossFadeToState(string stateName, float transactionDuration = 0)
+        public void CrossFadeToState(string stateName, int layer = 0)
         {
-            mAnimator.CrossFade(stateName, transactionDuration);
+            mAnimator.CrossFade(stateName, 0, layer);
         }
 
 
