@@ -28,10 +28,10 @@ namespace PahlBit
                 InstantiateMelee();
             });
 
-            this.ExDelayedCoroutine(0.8f, () =>
-            {
-                Base.StateMachine.ChangeStateToIdle();
-            });
+            // this.ExDelayedCoroutine(0.8f, () =>
+            // {
+            //     Base.StateMachine.ChangeStateToIdle();
+            // });
         }
 
         void InstantiateMelee()

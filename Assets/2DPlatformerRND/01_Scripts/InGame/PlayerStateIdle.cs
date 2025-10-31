@@ -5,14 +5,24 @@ namespace PahlBit
 {
     public class PlayerStateIdle : PlayerStateBase
     {
-        public override void HandleInput()
+        public override void InitState()
         {
-            Vector3 moveInput = Base.PlayerInput.GetInputValue<Vector2>(PlayerUnitInputType.Move);
-            if (Mathf.Abs(moveInput.x) == 0 && Base.PlayerCTRL.IsGrounded)
+            base.InitState();
+
+            Base.AnimHelper.AddEventEnter(AnimStateNameHash.Idle, () =>
             {
-                Base.StateMachine.ChangeState(this);
-            }
+                Base.StateMachine.ChangeStateToIdle();
+            });
         }
+
+        // public override void HandleInput()
+        // {
+        //     Vector3 moveInput = Base.PlayerInput.GetInputValue<Vector2>(PlayerUnitInputType.Move);
+        //     if (Mathf.Abs(moveInput.x) == 0 && Base.PlayerCTRL.IsGrounded)
+        //     {
+        //         Base.StateMachine.ChangeState(this);
+        //     }
+        // }
 
         public override void EnterState(object param)
         {

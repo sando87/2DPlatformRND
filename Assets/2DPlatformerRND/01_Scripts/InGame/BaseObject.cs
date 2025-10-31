@@ -5,17 +5,13 @@ namespace PahlBit
 {
     public class BaseObject : MonoBehaviour
     {
-        public PlayerUnitInput PlayerInput { get; private set; }
-        public PlayerStateMachine StateMachine { get; private set; }
-        public PlayerController PlayerCTRL { get; private set; } 
-        public AnimatorHelper AnimHelper { get; private set; }
+        public PlayerUnitInput PlayerInput { get => GetComponentInChildren<PlayerUnitInput>(); }
+        public PlayerStateMachine StateMachine { get => GetComponentInChildren<PlayerStateMachine>(); }
+        public PlayerController PlayerCTRL { get => GetComponentInChildren<PlayerController>(); }
+        public AnimatorHelper AnimHelper { get => GetComponentInChildren<AnimatorHelper>(); }
         
         void Awake()
         {
-            PlayerInput = GetComponentInChildren<PlayerUnitInput>();
-            StateMachine = GetComponentInChildren<PlayerStateMachine>();
-            PlayerCTRL = GetComponentInChildren<PlayerController>();
-            AnimHelper = GetComponentInChildren<AnimatorHelper>();
         }
 
         void Start()
