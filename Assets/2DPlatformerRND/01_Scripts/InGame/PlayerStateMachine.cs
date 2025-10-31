@@ -71,6 +71,15 @@ namespace PahlBit
             currentLayer.CurrentState.EnterState(null);
         }
 
+        public PlayerStateBase GetCurrentState(int layerIndex)
+        {
+            if (mLayers.ContainsKey(layerIndex))
+            {
+                return mLayers[layerIndex].CurrentState;
+            }
+            return null;
+        }
+
         public void HandleAllStateInput()
         {
             foreach (var layer in mLayers)

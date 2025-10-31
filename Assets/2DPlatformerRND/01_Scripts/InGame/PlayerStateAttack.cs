@@ -5,7 +5,6 @@ namespace PahlBit
 {
     public class PlayerStateAttack : PlayerStateBase
     {
-        [SerializeField] float _FireDelay = 0.4f;
         [SerializeField] GameObject MeleePrefab;
 
         public override void HandleInput()
@@ -20,10 +19,7 @@ namespace PahlBit
         {
             base.EnterState(param);
 
-            CrossFadeState("PlayerMelee");
-            // Base.PlayerCTRL.Velocity = new Vector2(0f, 0f);
-
-            this.ExDelayedCoroutine(_FireDelay, () =>
+            PlayAnimWithFire(AnimStateNameHash.Melee, (idx) =>
             {
                 InstantiateMelee();
             });

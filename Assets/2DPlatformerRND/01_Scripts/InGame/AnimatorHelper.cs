@@ -48,6 +48,10 @@ namespace PahlBit
         {
             mAnimator.CrossFade(stateName, 0, layer);
         }
+        public void CrossFadeToState(int stateHashName, int layer = 0)
+        {
+            mAnimator.CrossFade(stateHashName, 0, layer);
+        }
 
 
 
