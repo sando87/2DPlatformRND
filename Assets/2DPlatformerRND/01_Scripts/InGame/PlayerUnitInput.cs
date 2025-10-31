@@ -15,12 +15,12 @@ namespace PahlBit
         private PlayerInputActions mInputActions;
         private Dictionary<PlayerUnitInputType, PlayerUnitInputState> mInputStates = new Dictionary<PlayerUnitInputType, PlayerUnitInputState>();
 
-        // public bool JustPressed(PlayerUnitInputType type) { return GetInputAction(type).triggered; }
-        // public bool IsPressing(PlayerUnitInputType type) { return GetInputAction(type).IsPressed(); }
+        public bool JustPressed(PlayerUnitInputType type) { return GetInputAction(type).triggered; }
+        public bool IsPressing(PlayerUnitInputType type) { return GetInputAction(type).IsPressed(); }
 
-        public bool JustPressed(PlayerUnitInputType type) { return mInputStates[type].justPressed; }
-        public bool IsPressing(PlayerUnitInputType type) { return mInputStates[type].isPressed; }
-        public float HeldTime(PlayerUnitInputType type) { return mInputStates[type].HeldTime; }
+        // public bool JustPressed(PlayerUnitInputType type) { return mInputStates[type].justPressed; }
+        // public bool IsPressing(PlayerUnitInputType type) { return mInputStates[type].isPressed; }
+        // public float HeldTime(PlayerUnitInputType type) { return mInputStates[type].HeldTime; }
 
         public TValue GetInputValue<TValue>(PlayerUnitInputType type) where TValue : struct
         {
