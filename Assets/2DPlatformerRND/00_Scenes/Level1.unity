@@ -931,7 +931,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: c30512a0f2491c941946c6f9fd70baa1, type: 2}
+  m_Material: {fileID: 6200000, guid: 6cd1df01a8ea3d84b8afaea27584bd39, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1736,7 +1736,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: c30512a0f2491c941946c6f9fd70baa1, type: 2}
+  m_Material: {fileID: 6200000, guid: 6cd1df01a8ea3d84b8afaea27584bd39, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5126,7 +5126,7 @@ CompositeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: c30512a0f2491c941946c6f9fd70baa1, type: 2}
+  m_Material: {fileID: 6200000, guid: 6cd1df01a8ea3d84b8afaea27584bd39, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5392,7 +5392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a0d941d011ecd48be21b52cf7c269c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
-  animator: {fileID: 5836629777126869920}
 --- !u!114 &2111099493
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -28,10 +28,10 @@ namespace PahlBit
             Base.AnimHelper.SetParamInt("ComboStep", 0);
             PlayAnim(AnimStateNameHash.MeleeA);
 
-            AddEventMiddle(AnimStateNameHash.MeleeA, (idx) => InstantiateMelee());
-            AddEventMiddle(AnimStateNameHash.MeleeB, (idx) => InstantiateMelee());
-            AddEventMiddle(AnimStateNameHash.MeleeC, (idx) => InstantiateMelee());
-            AddEventMiddle(AnimStateNameHash.MeleeD, (idx) => InstantiateMelee());
+            AddEventMiddle(AnimStateNameHash.MeleeA, (idx) => InstantiateMelee(1));
+            AddEventMiddle(AnimStateNameHash.MeleeB, (idx) => InstantiateMelee(1));
+            AddEventMiddle(AnimStateNameHash.MeleeC, (idx) => InstantiateMelee(1));
+            AddEventMiddle(AnimStateNameHash.MeleeD, (idx) => InstantiateMelee(2));
         }
 
         public override void UpdateState()
@@ -68,7 +68,7 @@ namespace PahlBit
             Base.AnimHelper.SetParamInt("ComboStep", 0);
         }
 
-        void InstantiateMelee()
+        void InstantiateMelee(int damage)
         {
             // 스킬 오브젝트 생성
             Vector3 startPos = transform.position + new Vector3(transform.right.x, 0, 0);
@@ -79,7 +79,7 @@ namespace PahlBit
                 EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
                 if (enemy != null)
                 {
-                    enemy.GetDamaged(10);
+                    enemy.GetDamaged(damage);
                 }
             });
         }
