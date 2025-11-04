@@ -53,6 +53,11 @@ namespace PahlBit
             mAnimator.CrossFade(stateHashName, 0, layer);
         }
 
+        public int GetCurrentStateNameHash(int layer)
+        {
+            return mAnimator.GetCurrentAnimatorStateInfo(layer).shortNameHash;
+        }
+
 
 
         public void Hit()

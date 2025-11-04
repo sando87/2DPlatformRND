@@ -70,6 +70,10 @@ namespace PahlBit
         {
             Base.AnimHelper.CrossFadeToState(stateName, Layer);
         }
+        protected void PlayAnim(AnimStateNameHash stateHashName)
+        {
+            Base.AnimHelper.CrossFadeToState(stateHashName, Layer);
+        }
         protected void PlayAnimWithFire(AnimStateNameHash stateHashName, UnityAction<int> onFired)
         {
             Base.AnimHelper.CrossFadeToState(stateHashName, Layer);

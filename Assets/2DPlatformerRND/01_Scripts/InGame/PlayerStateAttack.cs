@@ -7,6 +7,8 @@ namespace PahlBit
     {
         [SerializeField] GameObject MeleePrefab;
 
+        private bool mSkipFirstFrame = false;
+
         public override void HandleInput()
         {
             if (PlayerInput.JustPressed(PlayerUnitInputType.Attack))
@@ -19,10 +21,51 @@ namespace PahlBit
         {
             base.EnterState(param);
 
-            PlayAnimWithFire(AnimStateNameHash.Melee, (idx) =>
+            Base.Phy.Velocity = Vector2.zero;
+            Base.Phy.LockGravity = true;
+            mSkipFirstFrame = true;
+
+            Base.AnimHelper.SetParamInt("ComboStep", 0);
+            PlayAnim(AnimStateNameHash.MeleeA);
+
+            AddEventMiddle(AnimStateNameHash.MeleeA, (idx) => InstantiateMelee());
+            AddEventMiddle(AnimStateNameHash.MeleeB, (idx) => InstantiateMelee());
+            AddEventMiddle(AnimStateNameHash.MeleeC, (idx) => InstantiateMelee());
+            AddEventMiddle(AnimStateNameHash.MeleeD, (idx) => InstantiateMelee());
+        }
+
+        public override void UpdateState()
+        {
+            base.UpdateState();
+
+            if(mSkipFirstFrame)
             {
-                InstantiateMelee();
-            });
+                mSkipFirstFrame = false;
+                return;
+            }
+            
+            if (PlayerInput.JustPressed(PlayerUnitInputType.Attack))
+            {
+                if (Base.AnimHelper.GetCurrentStateNameHash(Layer) == AnimStateNameHash.MeleeA)
+                {
+                    Base.AnimHelper.SetParamInt("ComboStep", 1);
+                }
+                else if (Base.AnimHelper.GetCurrentStateNameHash(Layer) == AnimStateNameHash.MeleeB)
+                {
+                    Base.AnimHelper.SetParamInt("ComboStep", 2);
+                }
+                else if (Base.AnimHelper.GetCurrentStateNameHash(Layer) == AnimStateNameHash.MeleeC)
+                {
+                    Base.AnimHelper.SetParamInt("ComboStep", 3);
+                }
+            }
+        }
+
+        public override void LeaveState()
+        {
+            base.LeaveState();
+            Base.Phy.LockGravity = false;
+            Base.AnimHelper.SetParamInt("ComboStep", 0);
         }
 
         void InstantiateMelee()
@@ -40,5 +83,7 @@ namespace PahlBit
                 }
             });
         }
+
+
     }
 }

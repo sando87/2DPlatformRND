@@ -205,7 +205,6 @@ GameObject:
   m_Component:
   - component: {fileID: 51722609}
   - component: {fileID: 51722611}
-  - component: {fileID: 51722610}
   m_Layer: 7
   m_Name: PlayerState 1
   m_TagString: Untagged
@@ -228,28 +227,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2036103698}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &51722610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51722608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02366d625f0b49246a51599e32fde6ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateAttack
-  _Layer: 1
-  _Priority: 1
-  EventEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  EventLeave:
-    m_PersistentCalls:
-      m_Calls: []
-  MeleePrefab: {fileID: 2657672191331022283, guid: 20252fbc0d60a074382f77dd73d754f0,
-    type: 3}
 --- !u!114 &51722611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +260,7 @@ GameObject:
   - component: {fileID: 169048140}
   - component: {fileID: 169048139}
   - component: {fileID: 169048144}
+  - component: {fileID: 169048145}
   - component: {fileID: 169048142}
   m_Layer: 7
   m_Name: PlayerState 0
@@ -414,6 +392,28 @@ MonoBehaviour:
       m_Calls: []
   _dashForce: 10
   _dashDuration: 1.2
+--- !u!114 &169048145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169048137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02366d625f0b49246a51599e32fde6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateAttack
+  _Layer: 0
+  _Priority: 1
+  EventEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  EventLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  MeleePrefab: {fileID: 2657672191331022283, guid: 20252fbc0d60a074382f77dd73d754f0,
+    type: 3}
 --- !u!1 &189616451
 GameObject:
   m_ObjectHideFlags: 0

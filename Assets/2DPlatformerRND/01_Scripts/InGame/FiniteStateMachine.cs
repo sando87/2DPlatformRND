@@ -86,7 +86,8 @@ namespace PahlBit
             {
                 foreach (var state in layer.Value.AllStates)
                 {
-                    state.HandleInput();
+                    if (layer.Value.CurrentState != state)
+                        state.HandleInput();
                 }
             }
         }
@@ -94,9 +95,9 @@ namespace PahlBit
         {
             foreach (var layer in mLayers)
             {
-                foreach (var state in layer.Value.AllStates)
+                if (layer.Value.CurrentState != null)
                 {
-                    state.UpdateState();
+                    layer.Value.CurrentState.UpdateState();
                 }
             }
         }
@@ -104,14 +105,15 @@ namespace PahlBit
         {
             foreach (var layer in mLayers)
             {
-                foreach (var state in layer.Value.AllStates)
+                if (layer.Value.CurrentState != null)
                 {
-                    state.FixedUpdateState();
+                    layer.Value.CurrentState.FixedUpdateState();
                 }
             }
         }
     }
 
+    [System.Serializable]
     public class StateMachineLayer
     {
         public List<FiniteStateBase> AllStates = new List<FiniteStateBase>();
