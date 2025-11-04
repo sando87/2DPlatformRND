@@ -15,5 +15,7 @@ namespace PahlBit
         public static readonly int Dash = Animator.StringToHash("PlayerDash");
 
         public static readonly int UpperIdle = Animator.StringToHash("UpperIdle");
+
+        public static readonly int Hit = Animator.StringToHash("Hit");
     }
 }
