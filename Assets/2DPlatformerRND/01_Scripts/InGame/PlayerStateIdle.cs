@@ -28,7 +28,7 @@ namespace PahlBit
         {
             base.EnterState(param);
 
-            Base.PlayerCTRL.StopMoving();
+            PlayerMain.StopMoving();
         }
 
 

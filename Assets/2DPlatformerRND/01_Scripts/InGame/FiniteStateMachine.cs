@@ -4,7 +4,7 @@ using UnityEngine.XR;
 
 namespace PahlBit
 {
-    public class PlayerStateMachine : MonoBehaviour
+    public class FiniteStateMachine : MonoBehaviour
     {
         private Dictionary<int, StateMachineLayer> mLayers = new Dictionary<int, StateMachineLayer>();
 
@@ -15,7 +15,7 @@ namespace PahlBit
 
         public void Initialize()
         {
-            PlayerStateBase[] states = GetComponentsInChildren<PlayerStateBase>();
+            FiniteStateBase[] states = GetComponentsInChildren<FiniteStateBase>();
             foreach (var state in states)
             {
                 state.InitState();
@@ -44,7 +44,7 @@ namespace PahlBit
             }
         }
 
-        public void ChangeState(PlayerStateBase newState, object param = null)
+        public void ChangeState(FiniteStateBase newState, object param = null)
         {
             StateMachineLayer currentLayer = mLayers[newState.Layer];
             if (newState.Priority < currentLayer.CurrentState.Priority)
@@ -71,7 +71,7 @@ namespace PahlBit
             currentLayer.CurrentState.EnterState(null);
         }
 
-        public PlayerStateBase GetCurrentState(int layerIndex)
+        public FiniteStateBase GetCurrentState(int layerIndex)
         {
             if (mLayers.ContainsKey(layerIndex))
             {
@@ -114,9 +114,9 @@ namespace PahlBit
 
     public class StateMachineLayer
     {
-        public List<PlayerStateBase> AllStates = new List<PlayerStateBase>();
-        public PlayerStateBase PreviousState = null;
-        public PlayerStateBase CurrentState = null;
-        public PlayerStateBase IdleState = null;
+        public List<FiniteStateBase> AllStates = new List<FiniteStateBase>();
+        public FiniteStateBase PreviousState = null;
+        public FiniteStateBase CurrentState = null;
+        public FiniteStateBase IdleState = null;
     }
 }

@@ -10,7 +10,7 @@ namespace PahlBit
 
         public override void HandleInput()
         {
-            if (Base.PlayerInput.JustPressed(PlayerUnitInputType.Dash) && Base.PlayerCTRL.IsGrounded)
+            if (PlayerInput.JustPressed(PlayerUnitInputType.Dash) && PlayerMain.IsGrounded)
             {
                 Base.StateMachine.ChangeState(this);
             }
@@ -30,7 +30,7 @@ namespace PahlBit
         {
             Base.AnimHelper.CrossFadeToState("PlayerDash", 0);
 
-            Base.PlayerCTRL.Velocity = new Vector2(transform.right.x * _dashForce, 0f);
+            Base.Phy.Velocity = new Vector2(transform.right.x * _dashForce, 0f);
         }
 
     }

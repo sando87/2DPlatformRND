@@ -10,10 +10,11 @@ public class InteractableCollider : MonoBehaviour
     public UnityEvent<Collider2D> OnInteractEnter;
     public UnityEvent<Collider2D> OnInteractLeave;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Collider2D mCollider = null;
+
+    void Awake()
     {
-        
+        mCollider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -64,6 +65,10 @@ public class InteractableCollider : MonoBehaviour
     
     private bool IsInteractable(Collider2D other)
     {
+        // 콜라이더 이벤트는 콜라이더가 붙어있는 객체에게만 이벤트가 전달 되도록 하기 위함
+        if (gameObject != mCollider.gameObject)
+            return false;
+
         InteractableCollider opp = other.GetComponent<InteractableCollider>();
         if (opp == null)
             return false;

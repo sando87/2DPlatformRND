@@ -9,7 +9,7 @@ namespace PahlBit
 
         public override void HandleInput()
         {
-            if (Base.PlayerInput.JustPressed(PlayerUnitInputType.Attack))
+            if (PlayerInput.JustPressed(PlayerUnitInputType.Attack))
             {
                 ChangeStateToThis();
             }

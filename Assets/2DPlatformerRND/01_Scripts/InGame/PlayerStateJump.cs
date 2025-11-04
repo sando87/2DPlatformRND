@@ -10,7 +10,7 @@ namespace PahlBit
 
         public override void HandleInput()
         {
-            if (Base.PlayerInput.JustPressed(PlayerUnitInputType.Jump) && Base.PlayerCTRL.IsGrounded)
+            if (PlayerInput.JustPressed(PlayerUnitInputType.Jump) && PlayerMain.IsGrounded)
             {
                 Base.StateMachine.ChangeState(this);
             }
@@ -20,16 +20,16 @@ namespace PahlBit
         {
             base.EnterState(param);
 
-            Base.PlayerCTRL.DoJump(jumpForce);
+            PlayerMain.DoJump(jumpForce);
         }
 
         public override void UpdateState()
         {
             base.UpdateState();
 
-            Vector2 moveInput = Base.PlayerInput.GetInputValue<Vector2>(PlayerUnitInputType.Move);
+            Vector2 moveInput = PlayerInput.GetInputValue<Vector2>(PlayerUnitInputType.Move);
             float moveX = moveInput.x * moveSpeed;
-            Base.PlayerCTRL.MoveHorizontally(moveX);
+            PlayerMain.MoveHorizontally(moveX);
         }
 
     }

@@ -11,7 +11,7 @@ namespace PahlBit
 
         public override void HandleInput()
         {
-            if (Base.PlayerInput.JustPressed(PlayerUnitInputType.Skill) && Base.PlayerCTRL.IsGrounded)
+            if (PlayerInput.JustPressed(PlayerUnitInputType.Skill) && PlayerMain.IsGrounded)
             {
                 Base.StateMachine.ChangeState(this);
             }
@@ -22,7 +22,7 @@ namespace PahlBit
             base.EnterState(param);
 
             Base.AnimHelper.CrossFadeToState("PlayerSkill", 0);
-            Base.PlayerCTRL.Velocity = new Vector2(0f, 0f);
+            Base.Phy.Velocity = new Vector2(0f, 0f);
 
             this.ExDelayedCoroutine(_FireDelay, () =>
             {

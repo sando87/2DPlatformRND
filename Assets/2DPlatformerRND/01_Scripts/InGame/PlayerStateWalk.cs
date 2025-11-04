@@ -9,8 +9,8 @@ namespace PahlBit
 
         public override void HandleInput()
         {
-            Vector2 moveInput = Base.PlayerInput.GetInputValue<Vector2>(PlayerUnitInputType.Move);
-            if(Mathf.Abs(moveInput.x) > 0.01f && Base.PlayerCTRL.IsGrounded)
+            Vector2 moveInput = PlayerInput.GetInputValue<Vector2>(PlayerUnitInputType.Move);
+            if(Mathf.Abs(moveInput.x) > 0.01f && PlayerMain.IsGrounded)
             {
                 Base.StateMachine.ChangeState(this);
             }
@@ -24,9 +24,9 @@ namespace PahlBit
         {
             base.UpdateState();
             
-            Vector2 moveInput = Base.PlayerInput.GetInputValue<Vector2>(PlayerUnitInputType.Move);
+            Vector2 moveInput = PlayerInput.GetInputValue<Vector2>(PlayerUnitInputType.Move);
             float moveX = moveInput.x * moveSpeed;
-            Base.PlayerCTRL.MoveHorizontally(moveX);
+            PlayerMain.MoveHorizontally(moveX);
         }
 
     }
