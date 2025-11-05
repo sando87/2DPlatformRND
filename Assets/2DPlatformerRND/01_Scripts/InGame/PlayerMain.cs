@@ -7,6 +7,7 @@ namespace PahlBit
     {
         private bool mIsGround = false;
         public bool IsGrounded { get => mIsGround && mBaseObj.Phy.VelocityY <= 0.1f; }
+        public bool LockControl { get; set; } = false;
 
         BaseObject mBaseObj = null;
 
@@ -29,7 +30,6 @@ namespace PahlBit
         {
             Vector3 footPos = mBaseObj.Body.Foot;
             mIsGround = Physics2D.OverlapCircle(footPos, 0.1f, 1 << LayerMask.NameToLayer("Terrain"));
-            mBaseObj.AnimHelper.SetParamBool("IsGround", IsGrounded);
         }
 
         void UpdateStateMachine()
@@ -40,7 +40,6 @@ namespace PahlBit
 
         public void MoveHorizontally(float moveHoriVelocity)
         {
-            mBaseObj.AnimHelper.SetParamBool("IsMoving", moveHoriVelocity != 0);
             mBaseObj.Phy.VelocityX = moveHoriVelocity;
             FlipToDir(moveHoriVelocity);
         }
@@ -54,14 +53,12 @@ namespace PahlBit
 
         public void StopMoving()
         {
-            mBaseObj.AnimHelper.SetParamBool("IsMoving", false);
             mBaseObj.Phy.Velocity = Vector2.zero;
         }
 
         public void DoJump(float jumpForce)
         {
             // 수직 속도 초기화 후 점프력 적용
-            mBaseObj.AnimHelper.CrossFadeToState(AnimStateNameHash.Jump);
             mBaseObj.Phy.VelocityY = 0;
             mBaseObj.Phy.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }

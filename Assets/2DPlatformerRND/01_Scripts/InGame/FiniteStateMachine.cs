@@ -44,19 +44,32 @@ namespace PahlBit
             }
         }
 
-        public void ChangeState(FiniteStateBase newState, object param = null)
+        public void ChangeState(FiniteStateBase newState, object param = null, bool ignorePriority = false)
         {
             StateMachineLayer currentLayer = mLayers[newState.Layer];
-            if (newState.Priority < currentLayer.CurrentState.Priority)
-                return;
             if (currentLayer.CurrentState == newState)
                 return;
+
+            if(!ignorePriority)
+            {
+                if (newState.Priority < currentLayer.CurrentState.Priority)
+                    return;
+            }
 
             // 상태 전환 로직 구현
             currentLayer.CurrentState.LeaveState();
             currentLayer.PreviousState = currentLayer.CurrentState;
             currentLayer.CurrentState = newState;
             currentLayer.CurrentState.EnterState(param);
+        }
+
+        public void ChangeStateForce<T>(object param = null) where T : FiniteStateBase
+        {
+            FiniteStateBase state = FindState<T>();
+            if(state != null)
+            {
+                ChangeState(state, param, true);
+            }
         }
 
         public void ChangeStateToIdle(int layerIndex)
@@ -69,6 +82,11 @@ namespace PahlBit
             currentLayer.PreviousState = currentLayer.CurrentState;
             currentLayer.CurrentState = currentLayer.IdleState;
             currentLayer.CurrentState.EnterState(null);
+        }
+
+        public T FindState<T>() where T : FiniteStateBase
+        {
+            return GetComponentInChildren<T>();
         }
 
         public FiniteStateBase GetCurrentState(int layerIndex)

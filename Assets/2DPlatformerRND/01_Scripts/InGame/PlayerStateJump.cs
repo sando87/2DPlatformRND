@@ -10,7 +10,15 @@ namespace PahlBit
 
         public override void HandleInput()
         {
-            if (PlayerInput.JustPressed(PlayerUnitInputType.Jump) && PlayerMain.IsGrounded)
+            if (PlayerMain.LockControl)
+                return;
+
+            if (PlayerInput.JustPressed(PlayerUnitInputType.Jump))
+            {
+                PlayerMain.DoJump(jumpForce);
+                Base.StateMachine.ChangeState(this);
+            }
+            else if(!PlayerMain.IsGrounded)
             {
                 Base.StateMachine.ChangeState(this);
             }
@@ -20,7 +28,7 @@ namespace PahlBit
         {
             base.EnterState(param);
 
-            PlayerMain.DoJump(jumpForce);
+            PlayAnim(AnimStateNameHash.Jump);
         }
 
         public override void UpdateState()

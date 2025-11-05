@@ -247,6 +247,7 @@ MonoBehaviour:
   EventLeave:
     m_PersistentCalls:
       m_Calls: []
+  _LockControl: 0
 --- !u!1 &169048137
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,13 +298,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateJump
   _Layer: 0
-  _Priority: 1
+  _Priority: 0
   EventEnter:
     m_PersistentCalls:
       m_Calls: []
   EventLeave:
     m_PersistentCalls:
       m_Calls: []
+  _LockControl: 0
   moveSpeed: 7
   jumpForce: 14
 --- !u!114 &169048140
@@ -326,6 +328,7 @@ MonoBehaviour:
   EventLeave:
     m_PersistentCalls:
       m_Calls: []
+  _LockControl: 0
   moveSpeed: 7
 --- !u!114 &169048141
 MonoBehaviour:
@@ -347,6 +350,7 @@ MonoBehaviour:
   EventLeave:
     m_PersistentCalls:
       m_Calls: []
+  _LockControl: 0
 --- !u!114 &169048142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +371,7 @@ MonoBehaviour:
   EventLeave:
     m_PersistentCalls:
       m_Calls: []
+  _LockControl: 1
   _FireDelay: 0.4
   SkillPrefab: {fileID: 8246397898442698589, guid: bd318899aff485a4b8bf10cc02a9b0ce,
     type: 3}
@@ -390,6 +395,7 @@ MonoBehaviour:
   EventLeave:
     m_PersistentCalls:
       m_Calls: []
+  _LockControl: 1
   _dashForce: 10
   _dashDuration: 0.8
 --- !u!114 &169048145
@@ -412,6 +418,7 @@ MonoBehaviour:
   EventLeave:
     m_PersistentCalls:
       m_Calls: []
+  _LockControl: 1
   MeleePrefab: {fileID: 2657672191331022283, guid: 20252fbc0d60a074382f77dd73d754f0,
     type: 3}
 --- !u!1 &189616451

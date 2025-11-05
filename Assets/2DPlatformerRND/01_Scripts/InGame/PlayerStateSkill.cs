@@ -6,12 +6,11 @@ namespace PahlBit
 {
     public class PlayerStateSkill : PlayerStateBase
     {
-        [SerializeField] float _FireDelay = 0.4f;
         [SerializeField] GameObject SkillPrefab;
 
         public override void HandleInput()
         {
-            if (PlayerInput.JustPressed(PlayerUnitInputType.Skill) && PlayerMain.IsGrounded)
+            if (PlayerInput.JustPressed(PlayerUnitInputType.Skill))
             {
                 Base.StateMachine.ChangeState(this);
             }
@@ -20,26 +19,25 @@ namespace PahlBit
         public override void EnterState(object param)
         {
             base.EnterState(param);
+            Base.Phy.LockGravity = true;
 
-            Base.AnimHelper.CrossFadeToState(AnimStateNameHash.Skill, 0);
             Base.Phy.Velocity = new Vector2(0f, 0f);
+            PlayAnimWithFire(AnimStateNameHash.Skill, (idx) => InstantiateSkill());
 
-            this.ExDelayedCoroutine(_FireDelay, () =>
-            {
-                InstantiateSkill();
-            });
+            ExitStateOnEnd();
+        }
 
-            this.ExDelayedCoroutine(0.8f, () =>
-            {
-                ChangeStateToIdle();
-            });
+        public override void LeaveState()
+        {
+            base.LeaveState();
+            Base.Phy.LockGravity = false;
         }
 
         void InstantiateSkill()
         {
             // 스킬 오브젝트 생성
             GameObject skill = Instantiate(SkillPrefab, transform.position, Quaternion.identity);
-            Vector3 destPos = transform.position + new Vector3(transform.localScale.x * 10, 0, 0);
+            Vector3 destPos = transform.position + new Vector3(transform.right.x * 10, 0, 0);
             skill.transform.DOMove(destPos, 0.5f).OnComplete(() => Destroy(skill));
             skill.GetComponentInChildren<InteractableCollider>().OnInteractEnter.AddListener((col) =>
             {

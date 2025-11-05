@@ -6,11 +6,10 @@ namespace PahlBit
     public class PlayerStateDash : PlayerStateBase
     {
         [SerializeField] float _dashForce = 20f;
-        [SerializeField] float _dashDuration = 1.2f;
 
         public override void HandleInput()
         {
-            if (PlayerInput.JustPressed(PlayerUnitInputType.Dash) && PlayerMain.IsGrounded)
+            if (PlayerInput.JustPressed(PlayerUnitInputType.Dash))
             {
                 Base.StateMachine.ChangeState(this);
             }
@@ -19,11 +18,19 @@ namespace PahlBit
         public override void EnterState(object param)
         {
             base.EnterState(param);
+            Base.Phy.LockGravity = true;
 
-            this.ExDelayedCoroutine(_dashDuration, () => ChangeStateToIdle());
-            
             DoDash();
+            
+            ExitStateOnEnd();
         }
+
+        public override void LeaveState()
+        {
+            base.LeaveState();
+            Base.Phy.LockGravity = false;
+        }
+
 
 
         private void DoDash()

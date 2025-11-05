@@ -32,6 +32,8 @@ namespace PahlBit
             AddEventMiddle(AnimStateNameHash.MeleeB, (idx) => InstantiateMelee(1));
             AddEventMiddle(AnimStateNameHash.MeleeC, (idx) => InstantiateMelee(1));
             AddEventMiddle(AnimStateNameHash.MeleeD, (idx) => InstantiateMelee(2));
+
+            ExitStateOnEnd();
         }
 
         public override void UpdateState()
