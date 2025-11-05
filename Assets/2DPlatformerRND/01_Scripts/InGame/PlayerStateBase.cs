@@ -38,18 +38,18 @@ namespace PahlBit
         {
             if (!PlayerMain.IsGrounded)
             {
-                Base.StateMachine.ChangeStateForce<PlayerStateJump>();
+                Base.StateMachine.ChangeState<PlayerStateFloating>(null, true);
             }
             else
             {
                 Vector2 moveInput = PlayerInput.GetInputValue<Vector2>(PlayerUnitInputType.Move);
                 if (Mathf.Abs(moveInput.x) > 0.01f)
                 {
-                    Base.StateMachine.ChangeStateForce<PlayerStateWalk>();
+                    Base.StateMachine.ChangeState<PlayerStateWalk>(null, true);
                 }
                 else
                 {
-                    Base.StateMachine.ChangeStateForce<PlayerStateIdle>();
+                    Base.StateMachine.ChangeState<PlayerStateIdle>(null, true);
                 }
             }
         }

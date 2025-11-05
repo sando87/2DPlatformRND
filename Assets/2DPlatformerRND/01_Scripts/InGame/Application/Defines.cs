@@ -18,6 +18,7 @@ namespace PahlBit
         public static readonly int Skill = Animator.StringToHash("Skill");
         public static readonly int Dash = Animator.StringToHash("Dash");
         public static readonly int HitFlying = Animator.StringToHash("HitFlying");
+        public static readonly int HitStrong = Animator.StringToHash("HitStrong");
 
         public static readonly int MeleeA = Animator.StringToHash("MeleeA");
         public static readonly int MeleeB = Animator.StringToHash("MeleeB");

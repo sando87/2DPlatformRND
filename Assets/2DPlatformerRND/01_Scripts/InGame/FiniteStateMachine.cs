@@ -6,6 +6,8 @@ namespace PahlBit
 {
     public class FiniteStateMachine : MonoBehaviour
     {
+        public FiniteStateBase CurrentStateForDebug = null;
+
         private Dictionary<int, StateMachineLayer> mLayers = new Dictionary<int, StateMachineLayer>();
 
         void Awake()
@@ -41,6 +43,11 @@ namespace PahlBit
                 int layer = layerSet.Key;
                 mLayers[layer].CurrentState = mLayers[layer].IdleState;
                 mLayers[layer].CurrentState.EnterState(null);
+                
+                if (layer == 0)
+                {
+                    CurrentStateForDebug = mLayers[layer].CurrentState;
+                }
             }
         }
 
@@ -61,14 +68,19 @@ namespace PahlBit
             currentLayer.PreviousState = currentLayer.CurrentState;
             currentLayer.CurrentState = newState;
             currentLayer.CurrentState.EnterState(param);
+
+            if (newState.Layer == 0)
+            {
+                CurrentStateForDebug = newState;
+            }
         }
 
-        public void ChangeStateForce<T>(object param = null) where T : FiniteStateBase
+        public void ChangeState<T>(object param = null, bool ignorePriority = false) where T : FiniteStateBase
         {
             FiniteStateBase state = FindState<T>();
             if(state != null)
             {
-                ChangeState(state, param, true);
+                ChangeState(state, param, ignorePriority);
             }
         }
 
@@ -82,6 +94,11 @@ namespace PahlBit
             currentLayer.PreviousState = currentLayer.CurrentState;
             currentLayer.CurrentState = currentLayer.IdleState;
             currentLayer.CurrentState.EnterState(null);
+
+            if (layerIndex == 0)
+            {
+                CurrentStateForDebug = currentLayer.CurrentState;
+            }
         }
 
         public T FindState<T>() where T : FiniteStateBase

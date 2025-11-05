@@ -6,6 +6,7 @@ namespace PahlBit
 {
     public class PlayerStateSkill : PlayerStateBase
     {
+        [SerializeField] GameObject MeleePrefab;
         [SerializeField] GameObject SkillPrefab;
 
         public override void HandleInput()
@@ -22,7 +23,10 @@ namespace PahlBit
             Base.Phy.LockGravity = true;
 
             Base.Phy.Velocity = new Vector2(0f, 0f);
-            PlayAnimWithFire(AnimStateNameHash.Skill, (idx) => InstantiateSkill());
+            PlayAnimWithFire(AnimStateNameHash.Skill, (idx) =>
+            {
+                InstantiateMelee(3);
+            });
 
             ExitStateOnEnd();
         }
@@ -31,6 +35,7 @@ namespace PahlBit
         {
             base.LeaveState();
             Base.Phy.LockGravity = false;
+            Time.timeScale = 1;
         }
 
         void InstantiateSkill()
@@ -50,5 +55,27 @@ namespace PahlBit
                 }
             });
         }
+        void InstantiateMelee(int damage)
+        {
+            // 스킬 오브젝트 생성
+            Vector3 startPos = transform.position + new Vector3(transform.right.x, 0, 0);
+            GameObject melee = Instantiate(MeleePrefab, startPos, Quaternion.identity);
+            Destroy(melee, 0.1f);
+            melee.GetComponentInChildren<InteractableCollider>().OnInteractEnter.AddListener((col) =>
+            {
+                EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
+                if (enemy != null)
+                {
+                    enemy.GetDamaged(damage);
+                    SlowEffect(0.1f, 0.1f);
+                }
+            });
+        }
+        void SlowEffect(float slowTimeScale, float duration)
+        {
+            Time.timeScale = slowTimeScale;
+            this.ExDelayedCoroutine(duration, () => Time.timeScale = 1);
+        }
     }
+    
 }

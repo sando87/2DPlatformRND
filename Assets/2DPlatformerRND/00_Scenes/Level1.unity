@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 169048141}
   - component: {fileID: 169048140}
   - component: {fileID: 169048139}
+  - component: {fileID: 169048146}
   - component: {fileID: 169048144}
   - component: {fileID: 169048145}
   - component: {fileID: 169048142}
@@ -307,7 +308,6 @@ MonoBehaviour:
       m_Calls: []
   _LockControl: 0
   moveSpeed: 7
-  jumpForce: 14
 --- !u!114 &169048140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateSkill
   _Layer: 0
-  _Priority: 1
+  _Priority: 2
   EventEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -372,7 +372,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _LockControl: 1
-  _FireDelay: 0.4
+  MeleePrefab: {fileID: 2657672191331022283, guid: 20252fbc0d60a074382f77dd73d754f0,
+    type: 3}
   SkillPrefab: {fileID: 8246397898442698589, guid: bd318899aff485a4b8bf10cc02a9b0ce,
     type: 3}
 --- !u!114 &169048144
@@ -396,8 +397,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _LockControl: 1
-  _dashForce: 10
-  _dashDuration: 0.8
+  _dashForce: 15
 --- !u!114 &169048145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,6 +421,28 @@ MonoBehaviour:
   _LockControl: 1
   MeleePrefab: {fileID: 2657672191331022283, guid: 20252fbc0d60a074382f77dd73d754f0,
     type: 3}
+--- !u!114 &169048146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169048137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018afd8ef0c1e854ea820d4060781ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateJumpable
+  _Layer: 0
+  _Priority: 1
+  EventEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  EventLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  _LockControl: 0
+  jumpForce: 25
 --- !u!1 &189616451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,9 +1468,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -5484,9 +5506,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

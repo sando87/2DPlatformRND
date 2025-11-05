@@ -3,22 +3,16 @@ using UnityEngine;
 
 namespace PahlBit
 {
-    public class PlayerStateJump : PlayerStateBase
+    public class PlayerStateFloating : PlayerStateBase
     {
         public float moveSpeed = 7f;
-        public float jumpForce = 14f;
 
         public override void HandleInput()
         {
             if (PlayerMain.LockControl)
                 return;
 
-            if (PlayerInput.JustPressed(PlayerUnitInputType.Jump))
-            {
-                PlayerMain.DoJump(jumpForce);
-                Base.StateMachine.ChangeState(this);
-            }
-            else if(!PlayerMain.IsGrounded)
+            if(!PlayerMain.IsGrounded)
             {
                 Base.StateMachine.ChangeState(this);
             }

@@ -8,13 +8,15 @@ namespace PahlBit
         public float VelocityX { get { return mRB2D.linearVelocity.x; } set { mRB2D.linearVelocity = new Vector2(value, mRB2D.linearVelocity.y); } }
         public float VelocityY { get { return mRB2D.linearVelocity.y; } set { mRB2D.linearVelocity = new Vector2(mRB2D.linearVelocity.x, value); } }
         public Vector2 Velocity { get { return mRB2D.linearVelocity; } set { mRB2D.linearVelocity = value; } }
-        public bool LockGravity { get => mRB2D.bodyType != RigidbodyType2D.Dynamic; set => mRB2D.bodyType = value ? RigidbodyType2D.Kinematic : RigidbodyType2D.Dynamic; }
+        public bool LockGravity { get => mRB2D.gravityScale == 0; set => mRB2D.gravityScale = value ? 0 : mOriGravityScale; }
 
         private Rigidbody2D mRB2D = null;
+        private float mOriGravityScale = 1;
 
         private void Awake()
         {
             mRB2D = GetComponent<Rigidbody2D>();
+            mOriGravityScale = mRB2D.gravityScale;
         }
 
         public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse)
