@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateJump
   _Layer: 0
-  _Priority: 0
+  _Priority: 1
   EventEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -391,7 +391,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _dashForce: 10
-  _dashDuration: 1.2
+  _dashDuration: 0.8
 --- !u!114 &169048145
 MonoBehaviour:
   m_ObjectHideFlags: 0

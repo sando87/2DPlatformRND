@@ -5,7 +5,8 @@ namespace PahlBit
 {
     public class PlayerMain : MonoBehaviour
     {
-        public bool IsGrounded { get; private set; } = false;
+        private bool mIsGround = false;
+        public bool IsGrounded { get => mIsGround && mBaseObj.Phy.VelocityY <= 0.1f; }
 
         BaseObject mBaseObj = null;
 
@@ -27,7 +28,7 @@ namespace PahlBit
         private void UpdateGroundState()
         {
             Vector3 footPos = mBaseObj.Body.Foot;
-            IsGrounded = Physics2D.OverlapCircle(footPos, 0.1f, 1 << LayerMask.NameToLayer("Terrain"));
+            mIsGround = Physics2D.OverlapCircle(footPos, 0.1f, 1 << LayerMask.NameToLayer("Terrain"));
             mBaseObj.AnimHelper.SetParamBool("IsGround", IsGrounded);
         }
 
@@ -60,6 +61,7 @@ namespace PahlBit
         public void DoJump(float jumpForce)
         {
             // 수직 속도 초기화 후 점프력 적용
+            mBaseObj.AnimHelper.CrossFadeToState(AnimStateNameHash.Jump);
             mBaseObj.Phy.VelocityY = 0;
             mBaseObj.Phy.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
