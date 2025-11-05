@@ -17,13 +17,15 @@ public class EnemyBase : MonoBehaviour
         {
             mBase.Phy.VelocityX = 1;
             mBase.Phy.VelocityY = 5;
+            mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Hit);
         }
         else if (damage == 2)
         {
             mBase.Phy.VelocityX = 3;
             mBase.Phy.VelocityY = 15;
+            mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.HitFlying);
         }
         
-        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Hit);
+        
     }
 }

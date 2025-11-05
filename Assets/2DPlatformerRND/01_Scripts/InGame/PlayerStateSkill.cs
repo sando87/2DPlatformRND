@@ -21,7 +21,7 @@ namespace PahlBit
         {
             base.EnterState(param);
 
-            Base.AnimHelper.CrossFadeToState("PlayerSkill", 0);
+            Base.AnimHelper.CrossFadeToState(AnimStateNameHash.Skill, 0);
             Base.Phy.Velocity = new Vector2(0f, 0f);
 
             this.ExDelayedCoroutine(_FireDelay, () =>

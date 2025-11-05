@@ -46,11 +46,11 @@ namespace PahlBit
         }
         public void CrossFadeToState(string stateName, int layer = 0)
         {
-            mAnimator.CrossFade(stateName, 0, layer);
+            mAnimator.CrossFade(stateName, 0, layer, 0);
         }
         public void CrossFadeToState(int stateHashName, int layer = 0)
         {
-            mAnimator.CrossFade(stateHashName, 0, layer);
+            mAnimator.CrossFade(stateHashName, 0, layer, 0);
         }
 
         public int GetCurrentStateNameHash(int layer)

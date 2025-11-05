@@ -28,7 +28,7 @@ namespace PahlBit
 
         private void DoDash()
         {
-            Base.AnimHelper.CrossFadeToState("PlayerDash", 0);
+            Base.AnimHelper.CrossFadeToState(AnimStateNameHash.Dash, 0);
 
             Base.Phy.Velocity = new Vector2(transform.right.x * _dashForce, 0f);
         }
