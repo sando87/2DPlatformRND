@@ -7,8 +7,6 @@ namespace PahlBit
     {
         [SerializeField] GameObject MeleePrefab;
 
-        private bool mSkipFirstFrame = false;
-
         public override void HandleInput()
         {
             if (PlayerInput.JustPressed(PlayerUnitInputType.Attack))
@@ -23,7 +21,6 @@ namespace PahlBit
 
             Base.Phy.Velocity = Vector2.zero;
             Base.Phy.LockGravity = true;
-            mSkipFirstFrame = true;
 
             Base.AnimHelper.SetParamInt("ComboStep", 0);
             PlayAnim(AnimStateNameHash.MeleeA);
@@ -40,12 +37,6 @@ namespace PahlBit
         {
             base.UpdateState();
 
-            if(mSkipFirstFrame)
-            {
-                mSkipFirstFrame = false;
-                return;
-            }
-            
             if (PlayerInput.JustPressed(PlayerUnitInputType.Attack))
             {
                 if (Base.AnimHelper.GetCurrentStateNameHash(Layer) == AnimStateNameHash.MeleeA)

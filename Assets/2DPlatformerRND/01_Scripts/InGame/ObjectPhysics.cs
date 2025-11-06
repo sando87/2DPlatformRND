@@ -23,5 +23,10 @@ namespace PahlBit
         {
             mRB2D.AddForce(force, mode);
         }
+
+        public void MoveFootPosition(Vector3 pos)
+        {
+            mRB2D.transform.position = pos;
+        }
     }
 }

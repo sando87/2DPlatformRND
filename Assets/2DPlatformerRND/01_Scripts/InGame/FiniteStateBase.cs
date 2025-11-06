@@ -15,7 +15,7 @@ namespace PahlBit
 
         public int Layer { get { return _Layer; } }
         public int Priority { get { return _Priority; } }
-        
+
         public BaseObject Base { get; private set; }
 
         [Foldout("Events")]
@@ -26,6 +26,9 @@ namespace PahlBit
         private Dictionary<int, UnityAction> mEventsEnter = new Dictionary<int, UnityAction>();
         private Dictionary<int, UnityAction<int>> mEventsMiddle = new Dictionary<int, UnityAction<int>>();
         private Dictionary<int, UnityAction> mEventsLeave = new Dictionary<int, UnityAction>();
+
+        public bool IsJustEntered { get; set; } = false; // 처음 딱 현재 State모션 진입했을때는 UpdateState호출 안해주기 위한 장치
+        public bool IsStateCancelable { get; protected set; } = true; // 점프나 대쉬로 모션 캔슬 가능한지 여부
 
         public virtual void InitState()
         {
@@ -84,12 +87,16 @@ namespace PahlBit
         {
             return Base.StateMachine.GetCurrentState(Layer) == this;
         }
+        protected FiniteStateBase GetCurrentState()
+        {
+            return Base.StateMachine.GetCurrentState(Layer);
+        }
 
         public void AddEventEnter(AnimStateNameHash stateHash, UnityAction handler)
         {
             if (mEventsEnter.ContainsKey(stateHash))
                 return;
-                
+
             mEventsEnter[stateHash] = () => { if (IsCurrentThisState()) handler.Invoke(); };
             Base.AnimHelper.AddEventEnter(stateHash, mEventsEnter[stateHash]);
         }
@@ -105,7 +112,7 @@ namespace PahlBit
         {
             if (mEventsMiddle.ContainsKey(stateHash))
                 return;
-                
+
             mEventsMiddle[stateHash] = (index) => { if (IsCurrentThisState()) handler.Invoke(index); };
             Base.AnimHelper.AddEventMiddle(stateHash, mEventsMiddle[stateHash]);
         }
@@ -121,7 +128,7 @@ namespace PahlBit
         {
             if (mEventsLeave.ContainsKey(stateHash))
                 return;
-                
+
             mEventsLeave[stateHash] = () => { if (IsCurrentThisState()) handler.Invoke(); };
             Base.AnimHelper.AddEventLeave(stateHash, mEventsLeave[stateHash]);
         }

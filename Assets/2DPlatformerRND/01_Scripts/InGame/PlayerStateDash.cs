@@ -11,7 +11,10 @@ namespace PahlBit
         {
             if (PlayerInput.JustPressed(PlayerUnitInputType.Dash))
             {
-                Base.StateMachine.ChangeState(this);
+                if (GetCurrentState().IsStateCancelable)
+                    Base.StateMachine.ChangeState(this, null, true);
+                else
+                    ChangeStateToThis();
             }
         }
 
@@ -21,7 +24,7 @@ namespace PahlBit
             Base.Phy.LockGravity = true;
 
             DoDash();
-            
+
             ExitStateOnEnd();
         }
 

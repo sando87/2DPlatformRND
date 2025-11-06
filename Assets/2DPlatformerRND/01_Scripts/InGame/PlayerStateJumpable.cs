@@ -11,14 +11,17 @@ namespace PahlBit
         {
             if (PlayerInput.JustPressed(PlayerUnitInputType.Jump))
             {
-                ChangeStateToThis();
+                if (GetCurrentState().IsStateCancelable)
+                    Base.StateMachine.ChangeState(this, null, true);
+                else
+                    ChangeStateToThis();
             }
         }
 
         public override void EnterState(object param)
         {
             base.EnterState(param);
-            
+
             PlayerMain.DoJump(jumpForce);
             Base.StateMachine.ChangeState<PlayerStateFloating>(null, true);
         }

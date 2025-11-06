@@ -8,6 +8,10 @@ namespace PahlBit
         {
             return mono.GetComponentInParent<BaseObject>();
         }
+        public static BaseObject ExGetBase(this Collider2D col)
+        {
+            return col.GetComponentInParent<BaseObject>();
+        }
 
     }
 }

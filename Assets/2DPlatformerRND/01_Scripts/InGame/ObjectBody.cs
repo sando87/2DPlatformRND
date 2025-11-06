@@ -14,6 +14,7 @@ namespace PahlBit
         public Vector2 Front { get => Center + (transform.right * Size * 0.5f); }
         public Vector2 Back { get => Center - (transform.right * Size * 0.5f); }
         public Rect Rect { get => mCollider.ExToRect(); }
+        public Vector2 FrontDir { get => transform.right; }
 
         void Awake()
         {
