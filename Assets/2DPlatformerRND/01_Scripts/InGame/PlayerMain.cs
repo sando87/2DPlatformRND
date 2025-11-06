@@ -25,7 +25,7 @@ namespace PahlBit
             mBaseObj.StateMachine.FixedUpdateState();
         }
 
-        
+
         private void UpdateGroundState()
         {
             Vector3 footPos = mBaseObj.Body.Foot;
@@ -46,7 +46,7 @@ namespace PahlBit
         public void FlipToDir(float dir)
         {
             if (dir == 0) return;
-            
+
             Vector3 front = dir > 0 ? Vector3.forward : Vector3.back;
             transform.rotation = Quaternion.LookRotation(front, transform.up);
         }
@@ -66,6 +66,18 @@ namespace PahlBit
         public void OnIteractWith(Collider2D other)
         {
             LOG.trace(other.transform.gameObject.name);
+        }
+
+        public void DoSlowEffect(float slowTimeScale, float duration, float fadeoutDuration)
+        {
+            Time.timeScale = slowTimeScale;
+            this.ExDelayedCoroutine(duration, () =>
+            {
+                if (fadeoutDuration <= 0)
+                    Time.timeScale = 1;
+                else
+                    this.ExForAWhileCoroutine(fadeoutDuration, (rate) => Time.timeScale = Mathf.Max(slowTimeScale, rate));
+            });
         }
     }
 }

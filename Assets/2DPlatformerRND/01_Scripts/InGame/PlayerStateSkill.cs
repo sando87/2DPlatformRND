@@ -12,6 +12,7 @@ namespace PahlBit
 
         BaseObject mTarget = null;
         float mTimeOfHit = 0;
+        PlayerUnitInputType mNextActionInput = PlayerUnitInputType.None;
 
         public override void HandleInput()
         {
@@ -28,6 +29,7 @@ namespace PahlBit
             Base.Phy.LockGravity = true;
             mTimeOfHit = 0;
             IsStateCancelable = false;
+            mNextActionInput = PlayerUnitInputType.None;
 
             mTarget = FindFrontTarget();
 
@@ -53,17 +55,33 @@ namespace PahlBit
                 });
             });
 
-            ExitStateOnEnd();
+            // ExitStateOnEnd();
+            AddEventEnter(AnimStateNameHash.ExitDummy, ChangeNextState);
         }
 
         public override void UpdateState()
         {
             base.UpdateState();
 
+            if (PlayerInput.JustPressed(PlayerUnitInputType.Jump))
+                mNextActionInput = PlayerUnitInputType.Jump;
+            else if (PlayerInput.JustPressed(PlayerUnitInputType.Dash))
+                mNextActionInput = PlayerUnitInputType.Dash;
+
             if (PlayerInput.JustPressed(PlayerUnitInputType.Skill) && mTimeOfHit == 0)
             {
                 mTimeOfHit = Time.time;
             }
+        }
+
+        void ChangeNextState()
+        {
+            if (mNextActionInput == PlayerUnitInputType.Jump)
+                Base.StateMachine.ChangeState<PlayerStateJumpable>(null, true);
+            else if (mNextActionInput == PlayerUnitInputType.Dash)
+                Base.StateMachine.ChangeState<PlayerStateDash>(null, true);
+            else
+                ChangeControlableState();
         }
 
 
@@ -73,6 +91,7 @@ namespace PahlBit
             Base.Phy.LockGravity = false;
             IsStateCancelable = true;
             Time.timeScale = 1;
+            mNextActionInput = PlayerUnitInputType.None;
         }
 
         bool IsStrongHit()
@@ -105,11 +124,6 @@ namespace PahlBit
             Destroy(melee, 0.1f);
             return melee;
         }
-        void SlowEffect(float slowTimeScale, float duration)
-        {
-            Time.timeScale = slowTimeScale;
-            this.ExDelayedCoroutine(duration, () => Time.timeScale = 1);
-        }
 
         BaseObject FindFrontTarget()
         {
@@ -124,8 +138,7 @@ namespace PahlBit
             if (IsStrongHit())
             {
                 enemy.GetDamaged(3);
-                SlowEffect(0.1f, 0.1f);
-                IsStateCancelable = true;
+                PlayerMain.DoSlowEffect(0.1f, 0.04f, 0);
             }
             else
             {
