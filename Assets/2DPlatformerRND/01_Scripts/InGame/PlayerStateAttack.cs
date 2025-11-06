@@ -63,6 +63,8 @@ namespace PahlBit
 
         void InstantiateMelee(int damage)
         {
+            Base.Phy.VelocityX = 2 * Base.Body.FrontDir.x;
+
             // 스킬 오브젝트 생성
             Vector3 startPos = transform.position + new Vector3(transform.right.x, 0, 0);
             GameObject melee = Instantiate(MeleePrefab, startPos, Quaternion.identity);

@@ -83,10 +83,15 @@ namespace PahlBit
             mTarget = FindFrontTarget();
             if (mTarget != null)
             {
-                float dir = Base.Body.FrontDir.x;
-                Vector3 destPos = mTarget.transform.position - new Vector3(MoveDistance * dir, 0, 0);
-                Base.Phy.MoveFootPosition(destPos);
-                Base.Phy.Velocity = new Vector2(MoveDistance * dir, 0f);
+                PlayerMain.FlipToTarget(mTarget.transform);
+
+                Vector3 delta = mTarget.transform.position - Base.transform.position;
+                Vector2 force = Vector2.zero;
+                force.x = delta.x * 1.2f;
+                force.y = 0;
+
+                Base.Phy.Velocity = Vector2.zero;
+                Base.Phy.AddForce(force);
                 PlayAnimWithFire(AnimStateNameHash.Skill, (idx) => OnFire(0));
                 return;
             }
@@ -180,12 +185,12 @@ namespace PahlBit
         BaseObject FindOverlappedTarget()
         {
             Collider2D col = Physics2D.OverlapCircle(Base.Body.Center, 1, 1 << LayerID.Enemy);
-            if (col == null)
-            {
-                RaycastHit2D hit = Physics2D.Raycast(Base.Body.Center, Base.Body.FrontDir, MoveDistance, 1 << LayerID.Enemy);
-                return hit.collider?.ExGetBase();
-            }
-            return col.ExGetBase();
+            // if (col == null)
+            // {
+            //     RaycastHit2D hit = Physics2D.Raycast(Base.Body.Center, Base.Body.FrontDir, MoveDistance, 1 << LayerID.Enemy);
+            //     return hit.collider?.ExGetBase();
+            // }
+            return col?.ExGetBase();
         }
         BaseObject FindAroundTarget()
         {

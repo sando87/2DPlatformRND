@@ -20,13 +20,13 @@ public class EnemyBase : MonoBehaviour
         if (damage == 1)
         {
             mBase.Phy.VelocityX = 2 * dir;
-            mBase.Phy.VelocityY = 8;
+            mBase.Phy.VelocityY = 12;
             mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Hit);
         }
         else if (damage == 2)
         {
             mBase.Phy.VelocityX = 5 * dir;
-            mBase.Phy.VelocityY = 25;
+            mBase.Phy.VelocityY = 30;
             mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.HitFlying);
         }
         else if (damage == 3)
