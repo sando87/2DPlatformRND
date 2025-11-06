@@ -72,7 +72,7 @@ namespace PahlBit
                 EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
                 if (enemy != null)
                 {
-                    enemy.GetDamaged(damage);
+                    enemy.GetDamaged(damage, Base.transform.right);
                 }
             });
         }

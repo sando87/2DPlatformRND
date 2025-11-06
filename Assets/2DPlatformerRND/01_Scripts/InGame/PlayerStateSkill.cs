@@ -157,7 +157,7 @@ namespace PahlBit
                 EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
                 if (enemy != null)
                 {
-                    enemy.GetDamaged(20);
+                    enemy.GetDamaged(20, Base.transform.right);
                     skill.transform.DOKill();
                     Destroy(skill);
                 }
@@ -199,12 +199,12 @@ namespace PahlBit
 
             if (IsStrongHit())
             {
-                enemy.GetDamaged(3);
+                enemy.GetDamaged(3, Base.transform.right);
                 PlayerMain.DoSlowEffect(0.1f, 0.04f, 0);
             }
             else
             {
-                enemy.GetDamaged(1);
+                enemy.GetDamaged(1, Base.transform.right);
             }
         }
     }
