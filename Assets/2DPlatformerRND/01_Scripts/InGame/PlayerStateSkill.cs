@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ namespace PahlBit
         [SerializeField] GameObject MeleePrefab;
         [SerializeField] GameObject SkillPrefab;
         [SerializeField] float StrongHitRange = 0.2f;
+        [SerializeField] float FrontDetectRange = 8.0f;
+        [SerializeField] float MoveDistance = 3.0f;
 
         BaseObject mTarget = null;
         float mTimeOfHit = 0;
@@ -31,32 +34,65 @@ namespace PahlBit
             IsStateCancelable = false;
             mNextActionInput = PlayerUnitInputType.None;
 
-            mTarget = FindFrontTarget();
-
-            if (mTarget != null)
-            {
-                float dir = Base.Body.FrontDir.x;
-                Vector3 destPos = mTarget.transform.position - new Vector3(3f * dir, 0, 0);
-                Base.Phy.MoveFootPosition(destPos);
-                Base.Phy.Velocity = new Vector2(3f * dir, 0f);
-            }
-            else
-            {
-                Base.Phy.Velocity = new Vector2(0f, 0f);
-            }
-
-            PlayAnimWithFire(AnimStateNameHash.Skill, (idx) =>
-            {
-                GameObject meleeSKill = InstantiateMelee();
-                meleeSKill.GetComponentInChildren<InteractableCollider>().OnInteractEnter.AddListener((col) =>
-                {
-                    EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
-                    DoAttack(enemy);
-                });
-            });
+            // 현재 캐릭터와 주변 적 배치 상황에 따라 거기에 맞는 모션이 나간다.
+            DecideAttackMotionByContext();
 
             // ExitStateOnEnd();
             AddEventEnter(AnimStateNameHash.ExitDummy, ChangeNextState);
+        }
+
+        void DecideAttackMotionByContext()
+        {
+            if (!PlayerMain.IsGrounded)
+            {
+                mTarget = FindAroundTarget();
+                if (mTarget != null)
+                {
+                    PlayerMain.FlipToTarget(mTarget.transform);
+                    Vector3 delta = mTarget.transform.position - Base.transform.position;
+                    Vector2 velocity = Vector2.zero;
+                    velocity.x = delta.x * 1.5f;
+                    velocity.y = 20 + (delta.y * 0.5f);
+
+                    Base.Phy.Velocity = velocity;
+                }
+                else
+                {
+                    Vector2 velocity = Vector2.zero;
+                    velocity.x = 10 * Base.transform.right.x;
+                    velocity.y = 20;
+                    Base.Phy.Velocity = velocity;
+                }
+
+                Base.Phy.LockGravity = false;
+                PlayAnimWithFire(AnimStateNameHash.Skill2, (idx) => OnFire(2));
+                return;
+            }
+
+            mTarget = FindOverlappedTarget();
+            if (mTarget != null)
+            {
+                float dir = Base.Body.FrontDir.x;
+                Vector3 destPos = mTarget.transform.position;
+                Base.Phy.MoveFootPosition(destPos);
+                Base.Phy.Velocity = Vector2.zero;
+                PlayAnimWithFire(AnimStateNameHash.Skill1, (idx) => OnFire(1));
+                return;
+            }
+
+            mTarget = FindFrontTarget();
+            if (mTarget != null)
+            {
+                float dir = Base.Body.FrontDir.x;
+                Vector3 destPos = mTarget.transform.position - new Vector3(MoveDistance * dir, 0, 0);
+                Base.Phy.MoveFootPosition(destPos);
+                Base.Phy.Velocity = new Vector2(MoveDistance * dir, 0f);
+                PlayAnimWithFire(AnimStateNameHash.Skill, (idx) => OnFire(0));
+                return;
+            }
+
+            Base.Phy.Velocity = Vector2.zero;
+            PlayAnimWithFire(AnimStateNameHash.Skill, (idx) => OnFire(0));
         }
 
         public override void UpdateState()
@@ -68,7 +104,7 @@ namespace PahlBit
             else if (PlayerInput.JustPressed(PlayerUnitInputType.Dash))
                 mNextActionInput = PlayerUnitInputType.Dash;
 
-            if (PlayerInput.JustPressed(PlayerUnitInputType.Skill) && mTimeOfHit == 0)
+            if (!PlayerInput.IsPressing(PlayerUnitInputType.Skill) && mTimeOfHit == 0)
             {
                 mTimeOfHit = Time.time;
             }
@@ -92,6 +128,17 @@ namespace PahlBit
             IsStateCancelable = true;
             Time.timeScale = 1;
             mNextActionInput = PlayerUnitInputType.None;
+        }
+
+        void OnFire(int attackType)
+        {
+            GameObject meleeSKill = InstantiateMelee();
+            meleeSKill.GetComponentInChildren<InteractableCollider>().OnInteractEnter.AddListener((col) =>
+            {
+                EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
+                DoAttack(enemy, attackType);
+            });
+
         }
 
         bool IsStrongHit()
@@ -127,11 +174,26 @@ namespace PahlBit
 
         BaseObject FindFrontTarget()
         {
-            RaycastHit2D hit = Physics2D.Raycast(Base.Body.Center, Base.Body.FrontDir, 7, 1 << LayerID.Enemy);
+            RaycastHit2D hit = Physics2D.Raycast(Base.Body.Center, Base.Body.FrontDir, FrontDetectRange, 1 << LayerID.Enemy);
             return hit.collider?.ExGetBase();
         }
+        BaseObject FindOverlappedTarget()
+        {
+            Collider2D col = Physics2D.OverlapCircle(Base.Body.Center, 1, 1 << LayerID.Enemy);
+            if (col == null)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(Base.Body.Center, Base.Body.FrontDir, MoveDistance, 1 << LayerID.Enemy);
+                return hit.collider?.ExGetBase();
+            }
+            return col.ExGetBase();
+        }
+        BaseObject FindAroundTarget()
+        {
+            Collider2D col = Physics2D.OverlapCircle(Base.Body.Center, FrontDetectRange, 1 << LayerID.Enemy);
+            return col?.ExGetBase();
+        }
 
-        void DoAttack(EnemyBase enemy)
+        void DoAttack(EnemyBase enemy, int attackType)
         {
             if (enemy == null) return;
 

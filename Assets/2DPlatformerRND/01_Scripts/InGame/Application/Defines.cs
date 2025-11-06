@@ -5,7 +5,7 @@ namespace PahlBit
     public partial struct AnimStateNameHash
     {
         public static readonly int ExitDummy = Animator.StringToHash("ExitDummy");
-        
+
         public static readonly int Idle = Animator.StringToHash("Idle");
         public static readonly int Run = Animator.StringToHash("Run");
         public static readonly int Jump = Animator.StringToHash("Jump");
@@ -16,6 +16,8 @@ namespace PahlBit
         public static readonly int Respawn = Animator.StringToHash("Respawn");
 
         public static readonly int Skill = Animator.StringToHash("Skill");
+        public static readonly int Skill1 = Animator.StringToHash("Skill1");
+        public static readonly int Skill2 = Animator.StringToHash("Skill2");
         public static readonly int Dash = Animator.StringToHash("Dash");
         public static readonly int HitFlying = Animator.StringToHash("HitFlying");
         public static readonly int HitStrong = Animator.StringToHash("HitStrong");

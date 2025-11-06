@@ -50,6 +50,15 @@ namespace PahlBit
             Vector3 front = dir > 0 ? Vector3.forward : Vector3.back;
             transform.rotation = Quaternion.LookRotation(front, transform.up);
         }
+        public void FlipToTarget(Transform target)
+        {
+            if (target == null) return;
+
+            if (transform.position.x < target.position.x)
+                FlipToDir(1);
+            else
+                FlipToDir(-1);
+        }
 
         public void StopMoving()
         {

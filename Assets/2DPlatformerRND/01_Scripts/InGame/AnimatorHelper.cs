@@ -7,8 +7,8 @@ namespace PahlBit
     public class AnimatorHelper : MonoBehaviour
     {
         [SerializeField] AnimatorStateEventSet[] _stateEvents = null;
-        
-        
+
+
         private Dictionary<AnimStateNameHash, AnimatorStateEventSet> mAnimatorEvents = new Dictionary<AnimStateNameHash, AnimatorStateEventSet>();
 
         Animator mAnimator = null;
@@ -66,6 +66,22 @@ namespace PahlBit
             InvokeEventMiddle(curStateHashName, 0);
         }
 
+        public void Hit0()
+        {
+            int curStateHashName = mAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+            InvokeEventMiddle(curStateHashName, 0);
+        }
+        public void Hit1()
+        {
+            int curStateHashName = mAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+            InvokeEventMiddle(curStateHashName, 1);
+        }
+        public void Hit2()
+        {
+            int curStateHashName = mAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+            InvokeEventMiddle(curStateHashName, 2);
+        }
+
         public void FootR()
         {
         }
@@ -83,7 +99,7 @@ namespace PahlBit
             int curStateHashName = mAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash;
             InvokeEventMiddle(curStateHashName, 0);
         }
-        
+
 
         public void InvokeEventEnter(AnimStateNameHash stateNameHash)
         {
@@ -107,7 +123,7 @@ namespace PahlBit
             }
         }
 
-        
+
 
         public void AddEventEnter(AnimStateNameHash stateNameHash, UnityAction action)
         {
