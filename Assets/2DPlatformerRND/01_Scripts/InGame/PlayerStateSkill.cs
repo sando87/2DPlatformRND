@@ -11,7 +11,7 @@ namespace PahlBit
         [SerializeField] GameObject SkillPrefab;
         [SerializeField] float StrongHitRange = 0.2f;
         [SerializeField] float FrontDetectRange = 8.0f;
-        [SerializeField] float MoveDistance = 3.0f;
+        [SerializeField] float _MoveDistance = 2.0f;
 
         BaseObject mTarget = null;
         float mTimeOfHit = 0;
@@ -83,15 +83,14 @@ namespace PahlBit
             mTarget = FindFrontTarget();
             if (mTarget != null)
             {
-                PlayerMain.FlipToTarget(mTarget.transform);
-
-                Vector3 delta = mTarget.transform.position - Base.transform.position;
-                Vector2 force = Vector2.zero;
-                force.x = delta.x * 1.2f;
-                force.y = 0;
-
                 Base.Phy.Velocity = Vector2.zero;
-                Base.Phy.AddForce(force);
+                Base.Phy.LockMovement = true;
+
+                float dir = Base.Body.FrontDir.x;
+                Vector3 destPos = mTarget.transform.position - new Vector3(_MoveDistance * dir, 0, 0);
+
+                Base.transform.DOMove(destPos, 0.6f).SetEase(Ease.OutExpo);
+
                 PlayAnimWithFire(AnimStateNameHash.Skill, (idx) => OnFire(0));
                 return;
             }
@@ -133,6 +132,8 @@ namespace PahlBit
             IsStateCancelable = true;
             Time.timeScale = 1;
             mNextActionInput = PlayerUnitInputType.None;
+            Base.Phy.LockMovement = false;
+            Base.transform.DOKill();
         }
 
         void OnFire(int attackType)

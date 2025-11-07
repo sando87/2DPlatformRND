@@ -38,9 +38,10 @@ namespace PahlBit
 
         private void DoDash()
         {
-            Base.AnimHelper.CrossFadeToState(AnimStateNameHash.Dash);
-
+            PlayerMain.FlipFrontByInput();
             Base.Phy.Velocity = new Vector2(transform.right.x * _dashForce, 0f);
+
+            Base.AnimHelper.CrossFadeToState(AnimStateNameHash.Dash);
         }
 
     }

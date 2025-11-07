@@ -10,10 +10,12 @@ namespace PahlBit
         public bool LockControl { get; set; } = false;
 
         BaseObject mBaseObj = null;
+        PlayerUnitInput mPlayerInput = null;
 
         private void Awake()
         {
             mBaseObj = GetComponentInParent<BaseObject>();
+            mPlayerInput = GetComponentInParent<PlayerUnitInput>();
         }
         private void Update()
         {
@@ -48,6 +50,14 @@ namespace PahlBit
             if (dir == 0) return;
 
             Vector3 front = dir > 0 ? Vector3.forward : Vector3.back;
+            transform.rotation = Quaternion.LookRotation(front, transform.up);
+        }
+        public void FlipFrontByInput()
+        {
+            float inputDir = mPlayerInput.GetInputValue<Vector2>(PlayerUnitInputType.Move).x;
+            if (inputDir == 0) return;
+
+            Vector3 front = inputDir > 0 ? Vector3.forward : Vector3.back;
             transform.rotation = Quaternion.LookRotation(front, transform.up);
         }
         public void FlipToTarget(Transform target)
