@@ -107,7 +107,7 @@ namespace PahlBit
             }
         }
     }
-    
+
     public class PlayerUnitInputState
     {
         public bool isPressed = false;
