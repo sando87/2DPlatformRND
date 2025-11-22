@@ -22,7 +22,7 @@ namespace PahlBit
         public readonly string MoveSpeedUp;
         public readonly string AttackSpeedUp;
         public readonly string CooltimeDown;
-        public readonly double ShieldAdd;
+        public readonly string ShieldAdd;
         public readonly double ShieldRegen;
         public readonly string FireResist;
         public readonly string IceResist;
@@ -37,9 +37,13 @@ namespace PahlBit
         public BaseStepPair _ManaUp { get; private set; }
         public BaseStepPair _AttackUp { get; private set; }
         public BaseStepPair _DefenceUp { get; private set; }
+
         public Percent _MoveSpeedUp { get; private set; }
         public Percent _AttackSpeedUp { get; private set; }
         public Percent _CooltimeDown { get; private set; }
+
+        public RangeType _ShieldAdd { get; private set; }
+
         public Percent _FireResist { get; private set; }
         public Percent _IceResist { get; private set; }
         public Percent _LightningResist { get; private set; }
@@ -55,6 +59,9 @@ namespace PahlBit
             _MoveSpeedUp = Percent.Parse(MoveSpeedUp);
             _AttackSpeedUp = Percent.Parse(AttackSpeedUp);
             _CooltimeDown = Percent.Parse(CooltimeDown);
+
+            _ShieldAdd = RangeType.Parse(ShieldAdd);
+            
             _FireResist = Percent.Parse(FireResist);
             _IceResist = Percent.Parse(IceResist);
             _LightningResist = Percent.Parse(LightningResist);

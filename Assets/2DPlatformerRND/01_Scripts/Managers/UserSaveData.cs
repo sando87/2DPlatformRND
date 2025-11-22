@@ -7,22 +7,40 @@ namespace PahlBit
     [System.Serializable]
     public class UserSaveData : SaveableBase
     {
-        public int Level = 1;
-        public float Exp = 0;
-        public float Gold = 0;
+        public double Gold = 0;
 
-        public Dictionary<string, ItemSaveInfo> Items = new Dictionary<string, ItemSaveInfo>();
+        public PlayerSaveInfo PlayerData = new PlayerSaveInfo();
     }
 
     [System.Serializable]
-    public class ItemSaveInfo
+    public class PlayerSaveInfo
     {
-        public string ItemID;
+        public StatsInfo Stats = new StatsInfo();
+        public List<ItemInfo> Items = new List<ItemInfo>();
+    }
+
+    [System.Serializable]
+    public class StatsInfo
+    {
+        public double CurrentExp;
+        public int HealthPoint;
+        public int ManaPoint;
+        public int AttackPoint;
+        public int DefensePoint;
+    }
+
+    [System.Serializable]
+    public class ItemInfo
+    {
+        public string InstanceID;
+        public long ResourceID;
         public bool IsEquipped;
         public int Level;
         public int Count;
-        public int RandomSeed;
+        public int PositionIndex;
 
+        public int RandomSeed { get => InstanceID.GetHashCode(); }
         public int LevelIndex { get => Level - 1; }
+        public GameDataItem ResourceData { get => TableItem.Instance.GetInfo(ResourceID); }
     }
 }

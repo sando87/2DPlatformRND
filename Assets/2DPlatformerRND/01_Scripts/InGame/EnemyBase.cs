@@ -36,4 +36,14 @@ public class EnemyBase : MonoBehaviour
             mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.HitStrong);
         }
     }
+
+    void DropItem()
+    {
+        // 아이템 드랍 처리
+        ItemInfo newItem = GameSystem.AssignNewItem();
+        
+        // Instantiate()...Prefab
+
+
+    }
 }

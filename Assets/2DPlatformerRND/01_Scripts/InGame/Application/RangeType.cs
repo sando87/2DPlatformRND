@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using DG.Tweening;
 using DG.Tweening.Core.Easing;
 using UnityEngine;
@@ -15,7 +16,9 @@ namespace PahlBit
         private Ease mEase = Ease.Linear;
         private Func<double, double> mCustomEase;
 
-        private static System.Random ran = new System.Random();
+        public bool IsPercent { get; private set; } = false;
+
+        private System.Random ran = new System.Random();
 
         public void SetSeed(int seed) { ran = new System.Random(seed); }
 
@@ -32,6 +35,49 @@ namespace PahlBit
             mMax = max;
             mEase = Ease.Unset;
             mCustomEase = func;
+        }
+
+        // 예시입력 스트링 "10 ~ 20", "5.5 ~ 15.5", "30% ~ 50%"
+        public static RangeType Parse(string str)
+        {
+            if (string.IsNullOrWhiteSpace(str))
+                throw new ArgumentException("Input string is null or whitespace.");
+
+            // 공백 제거 (전체적으로 깔끔하게)
+            bool isPercent = str.Contains('%');
+            str = str.Trim();
+            str = str.Replace("%", "");
+
+            // '~' 기준으로 분리
+            string[] parts = str.Split('~');
+
+            // 정확히 2개일 때만 허용
+            if (parts.Length != 2)
+                throw new FormatException($"Invalid format: '{str}'. Expected format 'Base+Step'.");
+
+            // 각 파트 앞뒤 공백 제거
+            string basePart = parts[0].Trim();
+            string stepPart = parts[1].Trim();
+
+            if (basePart.Length == 0 || stepPart.Length == 0)
+                throw new FormatException($"Invalid format: '{str}'. Empty base or step value.");
+
+            double baseValue;
+            double stepValue;
+
+            try
+            {
+                baseValue = double.Parse(basePart, CultureInfo.InvariantCulture);
+                stepValue = double.Parse(stepPart, CultureInfo.InvariantCulture);
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Failed to parse base value '{basePart}','{stepPart}'.", ex);
+            }
+
+            RangeType ret = new RangeType(baseValue, stepValue);
+            ret.IsPercent = isPercent;
+            return ret;
         }
 
         public double GetDouble()
