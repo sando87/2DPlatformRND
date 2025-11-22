@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using UnityEngine;
 
 namespace PahlBit
@@ -25,6 +26,24 @@ namespace PahlBit
         public Percent(double percent)
         {
             mPercentVal = percent;
+        }
+
+        public static Percent Parse(string str)
+        {
+            if (string.IsNullOrWhiteSpace(str))
+                throw new FormatException("Input string is null or empty.");
+
+            str = str.Trim();
+
+            bool hasPercent = str.EndsWith("%");
+            if (hasPercent)
+                str = str.Substring(0, str.Length - 1).Trim();
+
+            // 파싱 시도 (문화권 무시하고 '.'로 고정)
+            if (!double.TryParse(str, NumberStyles.Float, CultureInfo.InvariantCulture, out double val))
+                throw new FormatException($"Invalid percent format: {str}");
+
+            return new Percent(val);
         }
 
         // ToString
