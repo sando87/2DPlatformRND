@@ -6,25 +6,29 @@ namespace PahlBit
     /// <summary>
     /// 스펙 테이블 데이터에서 초기값 + (스텝 * 포인트) 형태의 데이터 포멧을 하나의 타입으로 다루기 편하게 하기 위함
     /// </summary>
-    public struct BaseStepPair<T> where T : struct, IConvertible
+    public struct BaseStepPair
     {
-        public T mBase;
-        public T mStep;
+        public double mBase;
+        public double mStep;
+        public bool IsPercent { get; private set; }
 
-        public BaseStepPair(T _base, T _step)
+        public BaseStepPair(double _base, double _step, bool _isPercent = false)
         {
             mBase = _base;
             mStep = _step;
+            IsPercent = _isPercent;
         }
 
         // 입력 예시: "100+20", "15.5+3.2"
-        public static BaseStepPair<T> Parse(string str)
+        public static BaseStepPair Parse(string str)
         {
             if (string.IsNullOrWhiteSpace(str))
                 throw new ArgumentException("Input string is null or whitespace.");
 
             // 공백 제거 (전체적으로 깔끔하게)
+            bool isPercent = str.Contains('%');
             str = str.Trim();
+            str = str.Replace("%", "");
 
             // '+' 기준으로 분리 (중간 공백 제거 허용: e.g. "100 + 20")
             string[] parts = str.Split('+');
@@ -40,28 +44,28 @@ namespace PahlBit
             if (basePart.Length == 0 || stepPart.Length == 0)
                 throw new FormatException($"Invalid format: '{str}'. Empty base or step value.");
 
-            T baseValue;
-            T stepValue;
+            double baseValue;
+            double stepValue;
 
             try
             {
-                baseValue = ConvertToT(basePart);
-                stepValue = ConvertToT(stepPart);
+                baseValue = ConvertToDouble(basePart);
+                stepValue = ConvertToDouble(stepPart);
             }
             catch (Exception ex)
             {
-                throw new FormatException($"Failed to parse base value '{basePart}','{stepPart}' as type {typeof(T).Name}.", ex);
+                throw new FormatException($"Failed to parse base value '{basePart}','{stepPart}'.", ex);
             }
 
-            return new BaseStepPair<T>(baseValue, stepValue);
+            return new BaseStepPair(baseValue, stepValue, isPercent);
         }
 
         // 문자열을 T 타입으로 변환
-        private static T ConvertToT(string s)
+        private static double ConvertToDouble(string s)
         {
             // s를 double로 파싱한 뒤 T로 변환
-            double val = double.Parse(s, CultureInfo.InvariantCulture);
-            return (T)Convert.ChangeType(val, typeof(T), CultureInfo.InvariantCulture);
+            return double.Parse(s, CultureInfo.InvariantCulture);
+            // return (T)Convert.ChangeType(val, typeof(T), CultureInfo.InvariantCulture);
         }
 
         public override string ToString()
@@ -70,14 +74,10 @@ namespace PahlBit
         }
 
         // Base + Step * points
-        public T GetValue(int points)
+        public double GetValue(int points)
         {
-            double baseVal = mBase.ToDouble(CultureInfo.InvariantCulture);
-            double stepVal = mStep.ToDouble(CultureInfo.InvariantCulture);
-
-            double result = baseVal + (stepVal * points);
-
-            return (T)Convert.ChangeType(result, typeof(T), CultureInfo.InvariantCulture);
+            double result = mBase + (mStep * points);
+            return result;
         }
     }
 }

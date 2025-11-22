@@ -21,7 +21,7 @@ namespace PahlBit
 
         // 양수면 배수를 그대로 반환하지만 음수이면 그 역수를 반환한다
         // 예) 70%이면 1.7를 반환, -70%이면 1/(1.7)를 반환
-        public double Rate => mPercentVal >= 0 ? (1 + (mPercentVal * 0.01)) : (1 / (1 + (Math.Abs(mPercentVal) * 0.01)));
+        public double Multiplier => mPercentVal >= 0 ? (1 + (mPercentVal * 0.01)) : (1 / (1 + (Math.Abs(mPercentVal) * 0.01)));
 
         public Percent(double percent)
         {
@@ -67,12 +67,12 @@ namespace PahlBit
         // ---- 숫자와 Percent 연산 (양방향) ----
         // public static Percent operator +(Percent a, double b) => new Percent(a.mPercentVal + b);
         // public static Percent operator -(Percent a, double b) => new Percent(a.mPercentVal - b);
-        public static Percent operator *(Percent a, double b) => new Percent(a.Rate * b);
+        public static Percent operator *(Percent a, double b) => new Percent(a.Multiplier * b);
         // public static Percent operator /(Percent a, double b) => new Percent(a.mPercentVal / b);
 
         // public static Percent operator +(double a, Percent b) => new Percent(a + b.mPercentVal);
         // public static Percent operator -(double a, Percent b) => new Percent(a - b.mPercentVal);
-        public static Percent operator *(double a, Percent b) => new Percent(a * b.Rate);
+        public static Percent operator *(double a, Percent b) => new Percent(a * b.Multiplier);
         //public static Percent operator /(double a, Percent b) => new Percent(a / b.mPercentVal);
 
         // ---- 비교 연산 ----

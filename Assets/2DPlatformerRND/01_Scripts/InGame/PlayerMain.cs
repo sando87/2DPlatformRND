@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -16,9 +17,6 @@ namespace PahlBit
         {
             mBaseObj = GetComponentInParent<BaseObject>();
             mPlayerInput = GetComponentInParent<PlayerUnitInput>();
-
-            GameDataItem item = TableItem.Instance.GetInfo(GameDataItem.ToID("Item01"));
-            LOG.trace(item.pHealthUp);
         }
         private void Update()
         {
