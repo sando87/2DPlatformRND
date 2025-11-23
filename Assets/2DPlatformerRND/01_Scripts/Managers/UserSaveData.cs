@@ -9,18 +9,18 @@ namespace PahlBit
     {
         public double Gold = 0;
 
-        public PlayerSaveInfo PlayerData = new PlayerSaveInfo();
+        public PlayerSaveData PlayerData = new PlayerSaveData();
     }
 
     [System.Serializable]
-    public class PlayerSaveInfo
+    public class PlayerSaveData
     {
-        public StatsInfo Stats = new StatsInfo();
-        public List<ItemInfo> Items = new List<ItemInfo>();
+        public StatsData Stats = new StatsData();
+        public List<ItemData> Items = new List<ItemData>();
     }
 
     [System.Serializable]
-    public class StatsInfo
+    public class StatsData
     {
         public double CurrentExp;
         public int HealthPoint;
@@ -30,7 +30,7 @@ namespace PahlBit
     }
 
     [System.Serializable]
-    public class ItemInfo
+    public class ItemData
     {
         public string InstanceID;
         public long ResourceID;
@@ -41,6 +41,5 @@ namespace PahlBit
 
         public int RandomSeed { get => InstanceID.GetHashCode(); }
         public int LevelIndex { get => Level - 1; }
-        public GameDataItem ResourceData { get => TableItem.Instance.GetInfo(ResourceID); }
     }
 }

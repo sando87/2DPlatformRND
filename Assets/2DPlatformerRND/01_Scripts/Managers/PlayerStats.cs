@@ -8,7 +8,7 @@ namespace PahlBit
     {
         public PlayerRoot PlayerRoot => GetComponentInParent<PlayerRoot>();
 
-        public PropertyBase BasicStat { get; private set; } = new PropertyBase();
+        public StatsBase BasicStat { get; private set; } = new StatsBase();
 
         public void Init()
         {

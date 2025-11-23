@@ -1,7 +1,7 @@
 
 namespace PahlBit
 {
-    public class PropertyBase
+    public class StatsBase
     {
         public double Health;
         public double Mana;

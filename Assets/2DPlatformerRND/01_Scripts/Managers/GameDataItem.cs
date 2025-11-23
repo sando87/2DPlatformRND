@@ -33,39 +33,39 @@ namespace PahlBit
         public long ID { get { return ToID(ItemID); } } // 데이터 접근을 위한 id값
         public static long ToID(string nameID) { return nameID.GetHashCode(); }
 
-        public BaseStepPair _HealthUp { get; private set; }
-        public BaseStepPair _ManaUp { get; private set; }
-        public BaseStepPair _AttackUp { get; private set; }
-        public BaseStepPair _DefenceUp { get; private set; }
+        public BaseStepPair HealthUpPair { get; private set; }
+        public BaseStepPair ManaUpPair { get; private set; }
+        public BaseStepPair AttackUpPair { get; private set; }
+        public BaseStepPair DefenceUpPair { get; private set; }
 
-        public Percent _MoveSpeedUp { get; private set; }
-        public Percent _AttackSpeedUp { get; private set; }
-        public Percent _CooltimeDown { get; private set; }
+        public Percent MoveSpeedUpPercent { get; private set; }
+        public Percent AttackSpeedUpPercent { get; private set; }
+        public Percent CooltimeDownPercent { get; private set; }
 
-        public RangeType _ShieldAdd { get; private set; }
+        public RangeType ShieldAddRange { get; private set; }
 
-        public Percent _FireResist { get; private set; }
-        public Percent _IceResist { get; private set; }
-        public Percent _LightningResist { get; private set; }
-        public Percent _PosionResist { get; private set; }
+        public Percent FireResistPercent { get; private set; }
+        public Percent IceResistPercent { get; private set; }
+        public Percent LightningResistPercent { get; private set; }
+        public Percent PosionResistPercent { get; private set; }
 
         void ICSVFormat.OnLoad()
         {
-            _HealthUp = BaseStepPair.Parse(HealthUp);
-            _ManaUp = BaseStepPair.Parse(ManaUp);
-            _AttackUp = BaseStepPair.Parse(AttackUp);
-            _DefenceUp = BaseStepPair.Parse(DefenceUp);
+            HealthUpPair = BaseStepPair.Parse(HealthUp);
+            ManaUpPair = BaseStepPair.Parse(ManaUp);
+            AttackUpPair = BaseStepPair.Parse(AttackUp);
+            DefenceUpPair = BaseStepPair.Parse(DefenceUp);
             
-            _MoveSpeedUp = Percent.Parse(MoveSpeedUp);
-            _AttackSpeedUp = Percent.Parse(AttackSpeedUp);
-            _CooltimeDown = Percent.Parse(CooltimeDown);
+            MoveSpeedUpPercent = Percent.Parse(MoveSpeedUp);
+            AttackSpeedUpPercent = Percent.Parse(AttackSpeedUp);
+            CooltimeDownPercent = Percent.Parse(CooltimeDown);
 
-            _ShieldAdd = RangeType.Parse(ShieldAdd);
+            ShieldAddRange = RangeType.Parse(ShieldAdd);
             
-            _FireResist = Percent.Parse(FireResist);
-            _IceResist = Percent.Parse(IceResist);
-            _LightningResist = Percent.Parse(LightningResist);
-            _PosionResist = Percent.Parse(PosionResist);
+            FireResistPercent = Percent.Parse(FireResist);
+            IceResistPercent = Percent.Parse(IceResist);
+            LightningResistPercent = Percent.Parse(LightningResist);
+            PosionResistPercent = Percent.Parse(PosionResist);
         }
     }
 

@@ -18,10 +18,6 @@ namespace PahlBit
 
         public bool IsPercent { get; private set; } = false;
 
-        private System.Random ran = new System.Random();
-
-        public void SetSeed(int seed) { ran = new System.Random(seed); }
-
         public RangeType(double min, double max, Ease ease = Ease.Linear)
         {
             mMin = min;
@@ -80,19 +76,17 @@ namespace PahlBit
             return ret;
         }
 
-        public double GetDouble()
+        public double GetDouble(double normalizedPos)
         {
-            double t = ran.NextDouble(); // 0~1
-            t = TransferTime(t);
+            double t = TransferTime(normalizedPos);
             return Lerp(mMin, mMax, t);
         }
 
-        public int GetInt()
+        public int GetInt(double normalizedPos)
         {
             int intMin = (int)Math.Ceiling(mMin);
             int intMax = (int)Math.Floor(mMax);
-            double t = ran.NextDouble(); // 0~1
-            t = TransferTime(t);
+            double t = TransferTime(normalizedPos);
             int ret = (int)Math.Round(Lerp(mMin - 0.5, mMax + 0.5, t));
             return Math.Clamp(ret, intMin, intMax);
         }

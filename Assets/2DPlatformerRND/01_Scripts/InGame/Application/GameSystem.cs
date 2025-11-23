@@ -4,16 +4,19 @@ namespace PahlBit
 {
     public static class GameSystem
     {
-        public static ItemInfo AssignNewItem()
+        public static BuffOption CalculateOption(ItemData data)
         {
-            ItemInfo newItem = new ItemInfo();
-            newItem.InstanceID = System.Guid.NewGuid().ToString();
-            newItem.ResourceID = TableItem.Instance.GetRandomItem().ID;
-            newItem.IsEquipped = false;
-            newItem.Level = 1;
-            newItem.Count = 1;
-            newItem.PositionIndex = -1;
-            return newItem;
+            BuffOption option = new BuffOption();
+            GameDataItem resourceData = TableItem.Instance.GetInfo(data.ResourceID);;
+            int point = data.LevelIndex;
+            System.Random ran = new System.Random(data.RandomSeed);
+
+            option.HealthUp = resourceData.HealthUpPair.GetValue(point);
+            option.HealthRegen = resourceData.HealthRegen;
+            option.MoveSpeedUp = resourceData.MoveSpeedUpPercent;
+            option.ShieldAdd = resourceData.ShieldAddRange.GetDouble(ran.NextDouble());
+            
+            return option;
         }
     }
 }

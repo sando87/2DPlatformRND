@@ -9,7 +9,7 @@ namespace PahlBit
     {
         public PlayerRoot PlayerRoot => GetComponentInParent<PlayerRoot>();
 
-        public PropertyEffect TotalItemEffect { get; private set; } = new PropertyEffect();
+        public BuffOption TotalItemOption { get; private set; } = new BuffOption();
 
         public void Init()
         {
@@ -19,19 +19,16 @@ namespace PahlBit
         {
         }
 
-        public void EquipItem(string itemID)
+        public void EquipItem(ItemData data)
         {
-            GameDataItem itemData = TableItem.Instance.GetInfo(GameDataItem.ToID(itemID));
-            if (itemData != null)
-            {
-                // TotalItemEffect
-            }
-
+            BuffOption option = GameSystem.CalculateOption(data);
+            TotalItemOption.Add(option);
         }
 
-        public void UnEquipItem(string itemID)
+        public void UnEquipItem(ItemData data)
         {
-
+            BuffOption option = GameSystem.CalculateOption(data);
+            TotalItemOption.Subtract(option);
         }
 
 
