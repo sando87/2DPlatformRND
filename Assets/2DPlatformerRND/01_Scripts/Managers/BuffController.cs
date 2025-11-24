@@ -6,7 +6,7 @@ namespace PahlBit
 {
     public class BuffController : MonoBehaviour
     {
-        public PlayerRoot PlayerRoot => GetComponentInParent<PlayerRoot>();
+        public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 
         public BuffOption TotalBuffEffect { get; private set; } = new BuffOption();
 

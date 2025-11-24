@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 
 namespace PahlBit
 {
-    public class PlayerStats : MonoBehaviour
+    public class CharacterStats : MonoBehaviour
     {
-        public PlayerRoot PlayerRoot => GetComponentInParent<PlayerRoot>();
+        public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 
         public StatsBase BasicStat { get; private set; } = new StatsBase();
 

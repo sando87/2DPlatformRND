@@ -9,14 +9,14 @@ namespace PahlBit
     {
         public double Gold = 0;
 
-        public PlayerSaveData PlayerData = new PlayerSaveData();
+        public Dictionary<int, CharacterSaveData> Characters = new Dictionary<int, CharacterSaveData>();
     }
 
     [System.Serializable]
-    public class PlayerSaveData
+    public class CharacterSaveData
     {
         public StatsData Stats = new StatsData();
-        public List<ItemData> Items = new List<ItemData>();
+        public Dictionary<string, ItemData> Items = new Dictionary<string, ItemData>();
     }
 
     [System.Serializable]

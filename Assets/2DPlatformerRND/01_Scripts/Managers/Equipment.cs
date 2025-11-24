@@ -7,7 +7,7 @@ namespace PahlBit
 
     public class Equipment : MonoBehaviour
     {
-        public PlayerRoot PlayerRoot => GetComponentInParent<PlayerRoot>();
+        public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 
         public BuffOption TotalItemOption { get; private set; } = new BuffOption();
 
