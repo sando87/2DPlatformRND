@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace PahlBit
 {
-    public class TableItem : DatabaseCSV<GameDataItem> { }
+    public class ItemResourceTable : DatabaseCSV<ItemResourceData> { }
 
     [System.Serializable]
-    public class GameDataItem : ICSVFormat
+    public class ItemResourceData : ICSVFormat
     {
         public readonly string ItemID;
         public readonly string DisplayName;
@@ -55,13 +55,13 @@ namespace PahlBit
             ManaUpPair = BaseStepPair.Parse(ManaUp);
             AttackUpPair = BaseStepPair.Parse(AttackUp);
             DefenceUpPair = BaseStepPair.Parse(DefenceUp);
-            
+
             MoveSpeedUpPercent = Percent.Parse(MoveSpeedUp);
             AttackSpeedUpPercent = Percent.Parse(AttackSpeedUp);
             CooltimeDownPercent = Percent.Parse(CooltimeDown);
 
             ShieldAddRange = RangeType.Parse(ShieldAdd);
-            
+
             FireResistPercent = Percent.Parse(FireResist);
             IceResistPercent = Percent.Parse(IceResist);
             LightningResistPercent = Percent.Parse(LightningResist);

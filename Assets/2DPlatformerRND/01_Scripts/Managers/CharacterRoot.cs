@@ -13,5 +13,6 @@ public class CharacterRoot : MonoBehaviour
     public CharacterStats Stats => GetComponentInChildren<CharacterStats>();
     public CharacterSkills Skills => GetComponentInChildren<CharacterSkills>();
     public BuffController Buffs => GetComponentInChildren<BuffController>();
+    public Experience Exp => GetComponentInChildren<Experience>();
 
 }

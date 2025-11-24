@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,101 +9,108 @@ namespace PahlBit
     {
         public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 
+        private Dictionary<string, ItemObject> mItems = new Dictionary<string, ItemObject>();
+
+        public StatsOption TotalItemOption { get; private set; } = new StatsOption();
+
+        public double CurrentGold { get; set; } = 0;
+
         public void Init()
         {
+            LoadItemsFromData();
         }
 
-        public void UpdateState()
-        {
-        }
-
-        public void AddItem(ItemData item)
+        void LoadItemsFromData()
         {
             UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
             int charID = CharRoot.CharacterID;
-
-            LOG.errorif(!saveData.Characters.ContainsKey(charID));
-
-            if (saveData.Characters[charID].Items.ContainsKey(item.InstanceID))
+            var savedItems = saveData.Characters[charID].Items;
+            foreach (var pair in savedItems)
             {
-                saveData.Characters[charID].Items[item.InstanceID].Count += item.Count;
+                ItemSaveData itemData = pair.Value;
+                ItemObject item = new ItemObject();
+                item.LoadItem(itemData);
+
+                mItems[itemData.InstanceID] = item;
+
+                if (item.IsEquipped)
+                {
+                    TotalItemOption.Add(item.Option);
+                }
             }
-            else
-            {
-                saveData.Characters[charID].Items[item.InstanceID] = item;
-            }
-            SaveFileManager<UserSaveData>.Save(saveData);
         }
-        public void SubItem(string itemInstID, int count)
+
+        public void AddItem(ItemObject item)
         {
-            UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
-            int charID = CharRoot.CharacterID;
-
-            LOG.errorif(!saveData.Characters.ContainsKey(charID) || !saveData.Characters[charID].Items.ContainsKey(itemInstID));
-
-            saveData.Characters[charID].Items[itemInstID].Count -= count;
-            if (saveData.Characters[charID].Items[itemInstID].Count <= 0)
+            if (mItems.ContainsKey(item.InstanceID))
             {
-                RemoveItem(itemInstID);
+                mItems[item.InstanceID].Count += item.Count;
             }
             else
             {
-                SaveFileManager<UserSaveData>.Save(saveData);
+                mItems[item.InstanceID] = item;
+                UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
+                int charID = CharRoot.CharacterID;
+                saveData.Characters[charID].Items[item.InstanceID] = item.SaveData;
             }
+            GameSystem.DoSave_UserSaveData();
         }
         public void RemoveItem(string itemInstID)
         {
-            UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
-            int charID = CharRoot.CharacterID;
+            LOG.errorif(!mItems.ContainsKey(itemInstID));
+            if (mItems.ContainsKey(itemInstID))
+            {
+                mItems.Remove(itemInstID);
 
-            LOG.errorif(!saveData.Characters.ContainsKey(charID) || !saveData.Characters[charID].Items.ContainsKey(itemInstID));
-
-            saveData.Characters[charID].Items.Remove(itemInstID);
-            SaveFileManager<UserSaveData>.Save(saveData);
+                UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
+                int charID = CharRoot.CharacterID;
+                saveData.Characters[charID].Items.Remove(itemInstID);
+                GameSystem.DoSave_UserSaveData();
+            }
         }
 
+        public void SubItem(string itemInstID, int count)
+        {
+            LOG.errorif(!mItems.ContainsKey(itemInstID));
+            mItems[itemInstID].Count -= count;
+            GameSystem.DoSave_UserSaveData();
+        }
         public void UpgradeItem(string itemInstID)
         {
-            UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
-            int charID = CharRoot.CharacterID;
-
-            LOG.errorif(!saveData.Characters.ContainsKey(charID) || !saveData.Characters[charID].Items.ContainsKey(itemInstID));
-
-            saveData.Characters[charID].Items[itemInstID].Level++;
-            SaveFileManager<UserSaveData>.Save(saveData);
-        }
-
-        public void EquipItem(string itemInstID)
-        {
-            UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
-            int charID = CharRoot.CharacterID;
-
-            LOG.errorif(!saveData.Characters.ContainsKey(charID) || !saveData.Characters[charID].Items.ContainsKey(itemInstID));
-
-            saveData.Characters[charID].Items[itemInstID].IsEquipped = true;
-            SaveFileManager<UserSaveData>.Save(saveData);
-        }
-
-        public void UnEquipItem(string itemInstID)
-        {
-            UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
-            int charID = CharRoot.CharacterID;
-
-            LOG.errorif(!saveData.Characters.ContainsKey(charID) || !saveData.Characters[charID].Items.ContainsKey(itemInstID));
-
-            saveData.Characters[charID].Items[itemInstID].IsEquipped = false;
-            SaveFileManager<UserSaveData>.Save(saveData);
+            LOG.errorif(!mItems.ContainsKey(itemInstID));
+            mItems[itemInstID].Level++;
+            GameSystem.DoSave_UserSaveData();
         }
 
         public void MoveItem(string itemInstID, int newPositionIndex)
         {
-            UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
-            int charID = CharRoot.CharacterID;
+            LOG.errorif(!mItems.ContainsKey(itemInstID));
+            mItems[itemInstID].PositionIndex = newPositionIndex;
+            GameSystem.DoSave_UserSaveData();
+        }
 
-            LOG.errorif(!saveData.Characters.ContainsKey(charID) || !saveData.Characters[charID].Items.ContainsKey(itemInstID));
+        public void EquipItem(string itemInstID)
+        {
+            LOG.errorif(!mItems.ContainsKey(itemInstID));
+            if (mItems[itemInstID].IsEquipped)
+                return;
 
-            saveData.Characters[charID].Items[itemInstID].PositionIndex = newPositionIndex;
-            SaveFileManager<UserSaveData>.Save(saveData);
+            mItems[itemInstID].IsEquipped = true;
+            GameSystem.DoSave_UserSaveData();
+
+            TotalItemOption.Add(mItems[itemInstID].Option);
+        }
+
+        public void UnEquipItem(string itemInstID)
+        {
+            LOG.errorif(!mItems.ContainsKey(itemInstID));
+            if (!mItems[itemInstID].IsEquipped)
+                return;
+
+            mItems[itemInstID].IsEquipped = false;
+            GameSystem.DoSave_UserSaveData();
+
+            TotalItemOption.Subtract(mItems[itemInstID].Option);
         }
 
 

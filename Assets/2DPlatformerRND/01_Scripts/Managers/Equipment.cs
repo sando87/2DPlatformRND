@@ -9,8 +9,6 @@ namespace PahlBit
     {
         public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 
-        public BuffOption TotalItemOption { get; private set; } = new BuffOption();
-
         public void Init()
         {
         }
@@ -19,18 +17,13 @@ namespace PahlBit
         {
         }
 
-        public void EquipItem(ItemData data)
+        public void EquipItem(ItemSaveData data)
         {
-            BuffOption option = GameSystem.CalculateOption(data);
-            TotalItemOption.Add(option);
         }
 
-        public void UnEquipItem(ItemData data)
+        public void UnEquipItem(ItemSaveData data)
         {
-            BuffOption option = GameSystem.CalculateOption(data);
-            TotalItemOption.Subtract(option);
         }
-
 
     }
 }

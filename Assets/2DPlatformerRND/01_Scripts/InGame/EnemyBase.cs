@@ -39,10 +39,6 @@ public class EnemyBase : MonoBehaviour
 
     void DropItem()
     {
-        // 아이템 드랍 처리
-        
-        // Instantiate()...Prefab
-
 
     }
 }

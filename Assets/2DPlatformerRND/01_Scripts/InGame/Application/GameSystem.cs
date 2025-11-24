@@ -4,19 +4,18 @@ namespace PahlBit
 {
     public static class GameSystem
     {
-        public static BuffOption CalculateOption(ItemData data)
+        static public void DoSave_UserSaveData()
         {
-            BuffOption option = new BuffOption();
-            GameDataItem resourceData = TableItem.Instance.GetInfo(data.ResourceID);;
-            int point = data.LevelIndex;
-            System.Random ran = new System.Random(data.RandomSeed);
-
-            option.HealthUp = resourceData.HealthUpPair.GetValue(point);
-            option.HealthRegen = resourceData.HealthRegen;
-            option.MoveSpeedUp = resourceData.MoveSpeedUpPercent;
-            option.ShieldAdd = resourceData.ShieldAddRange.GetDouble(ran.NextDouble());
-            
-            return option;
+            UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
+            SaveFileManager<UserSaveData>.Save(saveData);
+        }
+        static public int CurrentExpToLevel(double accumulatedExp)
+        {
+            return (int)(accumulatedExp / 100) + 1;
+        }
+        static public double GetNextExpForLevelup(int level)
+        {
+            return level * 100;
         }
     }
 }
