@@ -7,7 +7,7 @@ namespace PahlBit
     [System.Serializable]
     public class CharResourceData : ICSVFormat
     {
-        public readonly string PlayerID;
+        public readonly string CharacterID;
         public readonly string DisplayName;
         public readonly string Desc;
 
@@ -26,7 +26,7 @@ namespace PahlBit
 
 
         public int RowIndex { get; set; } // 데이터데이블상에 존재하는 순서
-        public long ID { get { return ToID(PlayerID); } } // 데이터 접근을 위한 id값
+        public long ID { get { return ToID(CharacterID); } } // 데이터 접근을 위한 id값
         public static long ToID(string nameID) { return nameID.GetHashCode(); }
 
     }

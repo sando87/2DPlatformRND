@@ -1,10 +1,18 @@
+using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
+using NaughtyAttributes;
 using PahlBit;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SkillObject : MonoBehaviour
 {
+    [SerializeField]
+    [Dropdown("IDList")]
+    string _ID = "";
+    List<string> IDList { get => SkillResourceTable.Instance.GetAllInfo().Select(info => info.SkillID).ToList(); }
+
     public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 
     public SkillSaveData SaveData { get; private set; } = null;

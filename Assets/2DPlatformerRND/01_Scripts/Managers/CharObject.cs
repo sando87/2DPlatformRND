@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +9,11 @@ namespace PahlBit
 {
     public class CharObject : MonoBehaviour
     {
+        [SerializeField]
+        [Dropdown("IDList")]
+        string _ID = "";
+        List<string> IDList { get => CharResourceTable.Instance.GetAllInfo().Select(info => info.CharacterID).ToList(); }
+
         public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 
         public CharSaveData SaveData { get; private set; } = null;
