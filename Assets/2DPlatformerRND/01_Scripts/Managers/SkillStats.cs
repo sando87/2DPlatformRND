@@ -3,20 +3,20 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 namespace PahlBit
 {
-    public class StatsValue
+    public class SkillStats
     {
-        public double Health;
-        public double Mana;
-        public double Shield;
-
         public double Attack;
-        public double Defence;
-        public double MoveSpeed;
-        public double AttackSpeed;
+        public double ManaUse;
+        public double Cooltime;
+        public double ProjectileCount;
+        public double AttackRange;
+        public double SplashRange;
+        public double Duration;
+        public double Interval;
 
-        public static StatsValue operator *(StatsValue stat, StatsOption option)
+        public static SkillStats operator *(SkillStats stat, ItemStats option)
         {
-            StatsValue result = new StatsValue();
+            SkillStats result = new SkillStats();
             // result.Health = stat.Health * (1 + option.HealthUp.ToDouble()) + option.HealthRegen;
             // result.Mana = stat.Mana * (1 + option.ManaUp.ToDouble()) + option.ManaRegen;
             // result.Attack = stat.Attack * (1 + option.AttackUp.ToDouble());

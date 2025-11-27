@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace PahlBit
 {
-    public class CharacterSkills : MonoBehaviour
+    public class SkillController : MonoBehaviour
     {
         public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 

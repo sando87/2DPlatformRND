@@ -7,7 +7,7 @@ public class ItemObject
 {
     public ItemSaveData SaveData { get; private set; } = null;
     public ItemResourceData ResourceData { get; private set; } = null;
-    public StatsOption Option { get; private set; } = null;
+    public ItemStats Option { get; private set; } = null;
 
     public string InstanceID => SaveData.InstanceID;
     public long ResourceID => ResourceData.ID;
@@ -38,7 +38,7 @@ public class ItemObject
     }
     public void UpdateOption()
     {
-        Option = new StatsOption();
+        Option = new ItemStats();
         int point = SaveData.LevelIndex;
         System.Random ran = new System.Random(SaveData.RandomSeed);
 

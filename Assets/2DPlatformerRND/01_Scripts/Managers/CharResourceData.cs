@@ -2,10 +2,10 @@ using UnityEngine;
 
 namespace PahlBit
 {
-    public class StatsResourceTable : DatabaseCSV<StatsResourceData> { }
+    public class CharResourceTable : DatabaseCSV<CharResourceData> { }
 
     [System.Serializable]
-    public class StatsResourceData : ICSVFormat
+    public class CharResourceData : ICSVFormat
     {
         public readonly string PlayerID;
         public readonly string DisplayName;

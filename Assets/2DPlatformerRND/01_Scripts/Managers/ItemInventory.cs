@@ -5,13 +5,13 @@ using UnityEngine.InputSystem;
 
 namespace PahlBit
 {
-    public class Inventory : MonoBehaviour
+    public class ItemInventory : MonoBehaviour
     {
         public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 
         private Dictionary<string, ItemObject> mItems = new Dictionary<string, ItemObject>();
 
-        public StatsOption TotalItemOption { get; private set; } = new StatsOption();
+        public ItemStats TotalItemOption { get; private set; } = new ItemStats();
 
         public double CurrentGold { get; set; } = 0;
 

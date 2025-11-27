@@ -15,12 +15,13 @@ namespace PahlBit
     [System.Serializable]
     public class CharacterSaveData
     {
-        public StatsSaveData Stats = new StatsSaveData();
+        public CharSaveData Stats = new CharSaveData();
         public Dictionary<string, ItemSaveData> Items = new Dictionary<string, ItemSaveData>();
+        public Dictionary<long, SkillSaveData> Skills = new Dictionary<long, SkillSaveData>();
     }
 
     [System.Serializable]
-    public class StatsSaveData
+    public class CharSaveData
     {
         public double CurrentExp;
         public int HealthPoint;
@@ -41,6 +42,16 @@ namespace PahlBit
 
         public int RandomSeed { get => InstanceID.GetHashCode(); }
         public int LevelIndex { get => Level - 1; }
+    }
 
+    [System.Serializable]
+    public class SkillSaveData
+    {
+        public long ResourceID;
+        public bool IsEquipped;
+        public int Level;
+        public int PositionIndex;
+
+        public int LevelIndex { get => Level - 1; }
     }
 }

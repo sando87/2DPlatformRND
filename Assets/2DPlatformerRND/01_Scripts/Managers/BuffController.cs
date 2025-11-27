@@ -8,7 +8,7 @@ namespace PahlBit
     {
         public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 
-        public StatsOption TotalBuffOption { get; private set; } = new StatsOption();
+        public ItemStats TotalBuffOption { get; private set; } = new ItemStats();
 
         public void Init()
         {

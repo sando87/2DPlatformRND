@@ -10,7 +10,7 @@ namespace PahlBit
 
         private double mFromExp = 0;
         private double mToExp = 0;
-        private StatsSaveData mCharacterSaveData = null;
+        private CharSaveData mCharacterSaveData = null;
 
         public int CurrentLevel { get; private set; } = 0;
         public int CurrentLevelIdx { get => CurrentLevel - 1; }

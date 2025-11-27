@@ -1,7 +1,7 @@
 
 namespace PahlBit
 {
-    public class StatsOption
+    public class ItemStats
     {
         public Percent HealthUp;
         public double HealthRegen;
@@ -20,7 +20,7 @@ namespace PahlBit
         public Percent PosionResist;
 
         // ----- += 연산 메서드 -----
-        public void Add(StatsOption other)
+        public void Add(ItemStats other)
         {
             HealthUp += other.HealthUp;
             HealthRegen += other.HealthRegen;
@@ -40,7 +40,7 @@ namespace PahlBit
         }
 
         // ----- -= 연산 메서드 -----
-        public void Subtract(StatsOption other)
+        public void Subtract(ItemStats other)
         {
             HealthUp -= other.HealthUp;
             HealthRegen -= other.HealthRegen;

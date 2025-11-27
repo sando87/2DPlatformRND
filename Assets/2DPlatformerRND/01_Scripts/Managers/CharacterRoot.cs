@@ -9,9 +9,9 @@ public class CharacterRoot : MonoBehaviour
     public int CharacterID => _CharacterID;
 
     public Equipment Equip => GetComponentInChildren<Equipment>();
-    public Inventory Inven => GetComponentInChildren<Inventory>();
-    public CharacterStats Stats => GetComponentInChildren<CharacterStats>();
-    public CharacterSkills Skills => GetComponentInChildren<CharacterSkills>();
+    public ItemInventory Inven => GetComponentInChildren<ItemInventory>();
+    public CharObject Stats => GetComponentInChildren<CharObject>();
+    public SkillController Skills => GetComponentInChildren<SkillController>();
     public BuffController Buffs => GetComponentInChildren<BuffController>();
     public Experience Exp => GetComponentInChildren<Experience>();
 
