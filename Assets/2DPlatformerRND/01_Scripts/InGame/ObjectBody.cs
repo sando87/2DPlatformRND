@@ -16,6 +16,8 @@ namespace PahlBit
         public Rect Rect { get => mCollider.ExToRect(); }
         public Vector2 FrontDir { get => transform.right; }
 
+        public bool LockBody { get => mCollider.enabled; set => mCollider.enabled = value; }
+
         void Awake()
         {
             mCollider = GetComponent<BoxCollider2D>();

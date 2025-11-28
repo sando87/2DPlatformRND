@@ -59,7 +59,13 @@ public class SkillObject : MonoBehaviour
     {
         return true;
     }
-    public virtual void DoCast()
+    public virtual void StartCasting()
+    {
+    }
+    public virtual void DoFire()
+    {
+    }
+    public virtual void EndSkill()
     {
     }
 

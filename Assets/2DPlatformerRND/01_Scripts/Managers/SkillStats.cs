@@ -5,14 +5,16 @@ namespace PahlBit
 {
     public class SkillStats
     {
-        public double Attack;
-        public double ManaUse;
-        public double Cooltime;
-        public double ProjectileCount;
-        public double AttackRange;
-        public double SplashRange;
-        public double Duration;
-        public double Interval;
+        public float Attack;
+        public float ManaUse;
+        public float Cooltime;
+        public float ProjectileCount;
+        public float ProjectileSpeed;
+        public float ProjectileDistance;
+        public float AttackRange;
+        public float SplashRange;
+        public float Duration;
+        public float Interval;
 
         public static SkillStats operator *(SkillStats stat, ItemStats option)
         {

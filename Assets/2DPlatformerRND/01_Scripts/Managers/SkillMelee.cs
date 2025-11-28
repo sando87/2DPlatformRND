@@ -15,9 +15,9 @@ public class SkillMelee : SkillObject
         return base.IsCastable();
     }
 
-    public override void DoCast()
+    public override void DoFire()
     {
-        base.DoCast();
+        base.DoFire();
 
         DoCastSkill();
     }
@@ -26,8 +26,8 @@ public class SkillMelee : SkillObject
     {
         // 스킬 오브젝트 생성
         Vector3 startPos = transform.position + new Vector3(transform.right.x, 0, 0);
-        ProjectileBase obj = Instantiate(MeleePrefab, startPos, Quaternion.identity);
-        obj.DoCast(this, (col) =>
+        ProjectileBase obj = ProjectileBase.Create(MeleePrefab, startPos, Quaternion.identity, this);
+        obj.OnHit.AddListener((col) =>
         {
             // 충돌 시 처리할 내용
             EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
