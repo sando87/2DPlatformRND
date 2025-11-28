@@ -24,6 +24,14 @@ public class SkillObject : MonoBehaviour
     public int PositionIndex { get => SaveData.PositionIndex; set { SaveData.PositionIndex = value; } }
     public int Level { get => SaveData.Level; set { SaveData.Level = value; } }
 
+    protected BaseObject mBaseObj = null;
+
+    void Awake()
+    {
+        mBaseObj = this.ExGetBase();
+        BaseStats = new SkillStats();
+    }
+
     public void Load(long skillResID)
     {
         int charID = CharRoot.CharacterID;
@@ -46,4 +54,13 @@ public class SkillObject : MonoBehaviour
         BaseStats.Duration = ResourceData.Duration + (ResourceData.DurationPerLv * currentLevelIndex);
         BaseStats.Interval = ResourceData.Interval + (ResourceData.IntervalPerLv * currentLevelIndex);
     }
+
+    public virtual bool IsCastable()
+    {
+        return true;
+    }
+    public virtual void DoCast()
+    {
+    }
+
 }
