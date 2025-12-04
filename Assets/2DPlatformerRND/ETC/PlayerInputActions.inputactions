@@ -34,7 +34,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attack",
+                    "name": "SkillSlotA",
                     "type": "Button",
                     "id": "dd80af83-6a76-40e2-a923-da52355f90a6",
                     "expectedControlType": "",
@@ -43,9 +43,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Skill",
+                    "name": "SkillSlotB",
                     "type": "Button",
                     "id": "b828c1c0-34f4-4598-bbbf-00d4ae03f990",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SkillSlotC",
+                    "type": "Button",
+                    "id": "eef8f46f-ea9c-4a40-b970-40ebdb054178",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SkillSlotD",
+                    "type": "Button",
+                    "id": "b400aacf-431d-46fc-89d0-454a2f693260",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -133,22 +151,44 @@
                 {
                     "name": "",
                     "id": "5a7148c0-390d-4b00-bb6f-8234909b056a",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "SkillSlotA",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "a767dc18-2615-47aa-9170-86c2bef65d5d",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Skill",
+                    "action": "SkillSlotB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a31af176-de5b-4a07-a563-7a88691b71a1",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkillSlotC",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72c5ab80-2624-4830-a2ed-240f4accbe63",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkillSlotD",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -19,7 +19,7 @@ namespace PahlBit
 
         public override void HandleInput()
         {
-            if (PlayerInput.JustPressed(PlayerUnitInputType.Skill))
+            if (PlayerInput.JustPressed(PlayerUnitInputType.SkillSlotB))
             {
                 Base.StateMachine.ChangeState(this);
             }
@@ -108,7 +108,7 @@ namespace PahlBit
             else if (PlayerInput.JustPressed(PlayerUnitInputType.Dash))
                 mNextActionInput = PlayerUnitInputType.Dash;
 
-            if (!PlayerInput.IsPressing(PlayerUnitInputType.Skill) && mTimeOfHit == 0)
+            if (!PlayerInput.IsPressing(PlayerUnitInputType.SkillSlotB) && mTimeOfHit == 0)
             {
                 mTimeOfHit = Time.time;
             }

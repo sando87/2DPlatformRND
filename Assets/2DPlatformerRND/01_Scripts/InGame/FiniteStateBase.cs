@@ -91,6 +91,17 @@ namespace PahlBit
         {
             return Base.StateMachine.GetCurrentState(Layer);
         }
+        public bool IsChangable()
+        {
+            FiniteStateBase currentState = Base.StateMachine.GetCurrentState(Layer);
+            if (currentState == this)
+                return false;
+
+            if (this.Priority < currentState.Priority)
+                return false;
+
+            return true;
+        }
 
         public void AddEventEnter(AnimStateNameHash stateHash, UnityAction handler)
         {

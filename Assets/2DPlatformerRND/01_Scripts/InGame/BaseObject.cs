@@ -9,14 +9,15 @@ namespace PahlBit
         public AnimatorHelper AnimHelper { get => GetComponentInChildren<AnimatorHelper>(); }
         public ObjectBody Body { get => GetComponentInChildren<ObjectBody>(); }
         public ObjectPhysics Phy { get => GetComponentInChildren<ObjectPhysics>(); }
-        
+        public PlayerUnitInput Input { get => GetComponentInChildren<PlayerUnitInput>(); }
+
         void Awake()
         {
         }
 
         void Start()
         {
-            
+
         }
     }
 }

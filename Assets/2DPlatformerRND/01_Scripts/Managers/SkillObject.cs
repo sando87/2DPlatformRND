@@ -3,6 +3,7 @@ using System.Linq;
 using DG.Tweening;
 using NaughtyAttributes;
 using PahlBit;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,11 +26,15 @@ public class SkillObject : MonoBehaviour
     public int Level { get => SaveData.Level; set { SaveData.Level = value; } }
 
     protected BaseObject mBaseObj = null;
+    protected PlayerUnitInput mInput = null;
 
     void Awake()
     {
         mBaseObj = this.ExGetBase();
+        mInput = mBaseObj.Input;
         BaseStats = new SkillStats();
+
+        Load(SkillResourceData.ToID(_ID));
     }
 
     public void Load(long skillResID)
@@ -67,6 +72,28 @@ public class SkillObject : MonoBehaviour
     }
     public virtual void EndSkill()
     {
+    }
+
+    public virtual void OnEquipSkill()
+    {
+    }
+    public virtual void UpdateSkill()
+    {
+    }
+    public virtual void OnUnEquipSkill()
+    {
+    }
+
+    public PlayerUnitInputType GetCurrentInputType()
+    {
+        switch (SaveData.PositionIndex)
+        {
+            case 0: return PlayerUnitInputType.SkillSlotA;
+            case 1: return PlayerUnitInputType.SkillSlotB;
+            case 2: return PlayerUnitInputType.SkillSlotC;
+            case 3: return PlayerUnitInputType.SkillSlotD;
+        }
+        return PlayerUnitInputType.None;
     }
 
 }

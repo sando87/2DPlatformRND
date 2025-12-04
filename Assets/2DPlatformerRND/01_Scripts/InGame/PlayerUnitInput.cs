@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace PahlBit
 {
-    public enum PlayerUnitInputType { None, Jump, Move, Attack, Skill, Dash }
+    public enum PlayerUnitInputType { None, Jump, Move, Dash, SkillSlotA, SkillSlotB, SkillSlotC, SkillSlotD }
 
     public class PlayerUnitInput : MonoBehaviour
     {
@@ -96,12 +96,16 @@ namespace PahlBit
                     return mInputActions.Player.Jump;
                 case PlayerUnitInputType.Move:
                     return mInputActions.Player.Move;
-                case PlayerUnitInputType.Attack:
-                    return mInputActions.Player.Attack;
-                case PlayerUnitInputType.Skill:
-                    return mInputActions.Player.Skill;
                 case PlayerUnitInputType.Dash:
                     return mInputActions.Player.Dash;
+                case PlayerUnitInputType.SkillSlotA:
+                    return mInputActions.Player.SkillSlotA;
+                case PlayerUnitInputType.SkillSlotB:
+                    return mInputActions.Player.SkillSlotB;
+                case PlayerUnitInputType.SkillSlotC:
+                    return mInputActions.Player.SkillSlotC;
+                case PlayerUnitInputType.SkillSlotD:
+                    return mInputActions.Player.SkillSlotD;
                 default:
                     return null;
             }
