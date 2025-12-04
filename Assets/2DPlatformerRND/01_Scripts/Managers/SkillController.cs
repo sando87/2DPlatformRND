@@ -39,7 +39,29 @@ namespace PahlBit
         {
             for (int i = 0; i < SkillSlots.Length; ++i)
             {
+                LearnNewSkill(SkillSlots[i].ResourceID);
+            }
+
+            for (int i = 0; i < SkillSlots.Length; ++i)
+            {
                 EquipSkill(SkillSlots[i], i);
+            }
+        }
+
+        public void LearnNewSkill(long skillResID)
+        {
+            UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
+            int charID = CharRoot.CharacterID;
+            var savedSkills = saveData.Characters[charID].Skills;
+            if (!savedSkills.ContainsKey(skillResID))
+            {
+                SkillSaveData skillSaveData = new SkillSaveData();
+                skillSaveData.ResourceID = skillResID;
+                skillSaveData.IsEquipped = false;
+                skillSaveData.PositionIndex = -1;
+                skillSaveData.Level = 1;
+                savedSkills[skillResID] = skillSaveData;
+                SaveFileManager<UserSaveData>.Save(saveData);
             }
         }
 
@@ -56,7 +78,7 @@ namespace PahlBit
                 {
                     SkillResourceData skillResData = SkillResourceTable.Instance.GetInfo(skillSaveData.ResourceID);
                     SkillObject skillObject = Instantiate(skillResData.SkillPrefab, transform);
-                    skillObject.Load(skillSaveData.ResourceID);
+                    skillObject.LoadSkillData();
                     SkillSlots[skillSaveData.PositionIndex] = skillObject;
                 }
             }
@@ -78,6 +100,7 @@ namespace PahlBit
             // }
 
             SkillSlots[slotIndex] = skill;
+            SkillSlots[slotIndex].LoadSkillData();
             SkillSlots[slotIndex].IsEquipped = true;
             SkillSlots[slotIndex].PositionIndex = slotIndex;
             SkillSlots[slotIndex].OnEquipSkill();

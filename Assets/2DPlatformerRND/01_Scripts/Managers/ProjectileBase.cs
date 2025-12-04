@@ -33,7 +33,7 @@ namespace PahlBit
         void Awake()
         {
             mBaseObj = this.ExGetBase();
-            mInteractCollider = GetComponent<InteractableCollider>();
+            mInteractCollider = GetComponentInChildren<InteractableCollider>();
             InitColliderEvents();
         }
 

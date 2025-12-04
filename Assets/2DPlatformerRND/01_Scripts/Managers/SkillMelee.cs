@@ -14,24 +14,15 @@ public class SkillMelee : SkillObject
     public override bool IsCastable()
     {
         // 나중에 추가로 쿨타임이나 스턴같은 경우에 대한 조건 추가
-        bool ret = SkillMotion.IsChangable();
-        LOG.trace(ret);
-        return ret;
+        return SkillMotion.IsChangable();
     }
 
     public override void UpdateSkill()
     {
         base.UpdateSkill();
 
-        if (mInput.JustPressed(PlayerUnitInputType.SkillSlotA))
-            LOG.trace();
-
-
-        LOG.trace(GetCurrentInputType());
-
         if (mInput.JustPressed(GetCurrentInputType()) && IsCastable())
         {
-            LOG.trace();
             mBaseObj.StateMachine.ChangeState(SkillMotion);
         }
     }

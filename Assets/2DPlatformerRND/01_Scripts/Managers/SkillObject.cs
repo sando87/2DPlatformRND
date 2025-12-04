@@ -20,7 +20,7 @@ public class SkillObject : MonoBehaviour
     public SkillResourceData ResourceData { get; private set; } = null;
     public SkillStats BaseStats { get; private set; } = null;
 
-    public long ResourceID => ResourceData.ID;
+    public long ResourceID => SkillResourceData.ToID(_ID);
     public bool IsEquipped { get => SaveData.IsEquipped; set => SaveData.IsEquipped = value; }
     public int PositionIndex { get => SaveData.PositionIndex; set { SaveData.PositionIndex = value; } }
     public int Level { get => SaveData.Level; set { SaveData.Level = value; } }
@@ -33,15 +33,13 @@ public class SkillObject : MonoBehaviour
         mBaseObj = this.ExGetBase();
         mInput = mBaseObj.Input;
         BaseStats = new SkillStats();
-
-        Load(SkillResourceData.ToID(_ID));
     }
 
-    public void Load(long skillResID)
+    public void LoadSkillData()
     {
         int charID = CharRoot.CharacterID;
-        SaveData = SaveFileManager<UserSaveData>.Load().Characters[charID].Skills[skillResID];
-        ResourceData = SkillResourceTable.Instance.GetInfo(skillResID);
+        SaveData = SaveFileManager<UserSaveData>.Load().Characters[charID].Skills[ResourceID];
+        ResourceData = SkillResourceTable.Instance.GetInfo(ResourceID);
         UpdateBaseValue();
     }
 
