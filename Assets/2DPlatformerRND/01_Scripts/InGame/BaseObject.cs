@@ -19,5 +19,10 @@ namespace PahlBit
         {
 
         }
+
+        public void DestroyObj()
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -14,19 +14,17 @@ namespace PahlBit
         private Dictionary<Collider2D, float> mHitColliders = new Dictionary<Collider2D, float>();
 
         private SkillStats mStats = null;
-        private BaseObject mCaster = null;
         private Vector2 mStartPos = Vector2.zero;
 
         public UnityEvent<Collider2D> OnHit;
         public UnityEvent OnEnd;
 
-        public static ProjectileBase Create(ProjectileBase prefab, Vector3 position, Quaternion rotation, SkillObject skillCaster)
+        public static ProjectileBase Create(ProjectileBase prefab, Vector3 position, Quaternion rotation, SkillStats skillStats, int layer)
         {
             ProjectileBase obj = Instantiate(prefab, position, rotation);
             obj.mStartPos = position;
-            obj.mCaster = skillCaster.ExGetBase();
-            obj.mStats = skillCaster.BaseStats;
-            obj.gameObject.ExSetLayerAll(obj.mCaster.gameObject.layer);
+            obj.mStats = skillStats;
+            obj.gameObject.ExSetLayerAll(layer);
             return obj;
         }
 

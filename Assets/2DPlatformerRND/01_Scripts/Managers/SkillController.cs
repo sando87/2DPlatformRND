@@ -23,11 +23,9 @@ namespace PahlBit
         void Awake()
         {
             mBaseObj = GetComponentInParent<BaseObject>();
-
-            Init();
         }
 
-        public void Init()
+        void Start()
         {
             InitSkillsFromInspector();
 

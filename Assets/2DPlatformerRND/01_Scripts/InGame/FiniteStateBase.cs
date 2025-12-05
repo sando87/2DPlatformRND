@@ -151,7 +151,6 @@ namespace PahlBit
             Base.AnimHelper.RemoveEventLeave(stateHash, mEventsLeave[stateHash]);
             mEventsLeave.Remove(stateHash);
         }
-
         public void RemoveAllEvents()
         {
             foreach (var handler in mEventsEnter)
@@ -159,6 +158,16 @@ namespace PahlBit
                 Base.AnimHelper.RemoveEventEnter(handler.Key, handler.Value);
             }
             mEventsEnter.Clear();
+            foreach (var handler in mEventsMiddle)
+            {
+                Base.AnimHelper.RemoveEventMiddle(handler.Key, handler.Value);
+            }
+            mEventsMiddle.Clear();
+            foreach (var handler in mEventsLeave)
+            {
+                Base.AnimHelper.RemoveEventLeave(handler.Key, handler.Value);
+            }
+            mEventsLeave.Clear();
         }
     }
 }

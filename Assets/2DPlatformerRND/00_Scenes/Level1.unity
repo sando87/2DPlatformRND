@@ -262,8 +262,8 @@ GameObject:
   - component: {fileID: 169048139}
   - component: {fileID: 169048146}
   - component: {fileID: 169048144}
-  - component: {fileID: 169048145}
-  - component: {fileID: 169048142}
+  - component: {fileID: 169048147}
+  - component: {fileID: 169048148}
   m_Layer: 7
   m_Name: PlayerState 0
   m_TagString: Untagged
@@ -351,34 +351,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _LockControl: 0
---- !u!114 &169048142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169048137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 931added3354cb24db541cd0f58262d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateSkill
-  _Layer: 0
-  _Priority: 2
-  EventEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  EventLeave:
-    m_PersistentCalls:
-      m_Calls: []
-  _LockControl: 1
-  MeleePrefab: {fileID: 2657672191331022283, guid: 20252fbc0d60a074382f77dd73d754f0,
-    type: 3}
-  SkillPrefab: {fileID: 8246397898442698589, guid: bd318899aff485a4b8bf10cc02a9b0ce,
-    type: 3}
-  StrongHitRange: 0.2
-  FrontDetectRange: 8
-  _MoveDistance: 2
 --- !u!114 &169048144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,44 +373,6 @@ MonoBehaviour:
       m_Calls: []
   _LockControl: 1
   _dashForce: 15
---- !u!114 &169048145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169048137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02366d625f0b49246a51599e32fde6ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateAttack
-  _Layer: 0
-  _Priority: 1
-  EventEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  EventLeave:
-    m_PersistentCalls:
-      m_Calls: []
-  _LockControl: 1
-  MeleePrefab: {fileID: 2657672191331022283, guid: 20252fbc0d60a074382f77dd73d754f0,
-    type: 3}
-  OnFireMelee:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 999269481}
-        m_TargetAssemblyTypeName: SkillMelee, Assembly-CSharp
-        m_MethodName: DoFire
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &169048146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +395,56 @@ MonoBehaviour:
       m_Calls: []
   _LockControl: 0
   jumpForce: 25
+--- !u!114 &169048147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169048137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f860f2de59c2ba48b2989492b110adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateGeneral
+  _Layer: 0
+  _Priority: 1
+  EventEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  EventLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  _LockControl: 0
+  StateNameHash: -1610822797
+  OnFireIndex:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &169048148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169048137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f860f2de59c2ba48b2989492b110adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateGeneral
+  _Layer: 0
+  _Priority: 1
+  EventEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  EventLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  _LockControl: 0
+  StateNameHash: 1246704634
+  OnFireIndex:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &189616451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,7 +1614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillMelee
   _ID: Skill01
-  SkillMotion: {fileID: 169048145}
+  SkillMotion: {fileID: 169048147}
   MeleePrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
     type: 3}
 --- !u!1 &1020631636
@@ -1814,6 +1798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillBall
   _ID: Skill02
+  SkillMotion: {fileID: 169048148}
   CirclePrefab: {fileID: 4627083357526262411, guid: bd318899aff485a4b8bf10cc02a9b0ce,
     type: 3}
 --- !u!1 &1098099984
@@ -2444,7 +2429,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -5798,8 +5783,8 @@ Transform:
   m_Children:
   - {fileID: 828468630}
   - {fileID: 492533964}
-  - {fileID: 553404818}
   - {fileID: 1359485546}
+  - {fileID: 553404818}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2111099492

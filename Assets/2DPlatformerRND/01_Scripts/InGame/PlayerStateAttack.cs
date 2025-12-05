@@ -1,3 +1,4 @@
+using System;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,10 +15,10 @@ namespace PahlBit
 
         public override void HandleInput()
         {
-            // if (PlayerInput.JustPressed(PlayerUnitInputType.SkillSlotA))
-            // {
-            //     ChangeStateToThis();
-            // }
+            if (PlayerInput.JustPressed(PlayerUnitInputType.SkillSlotA))
+            {
+                ChangeStateToThis();
+            }
         }
 
         public override void EnterState(object param)

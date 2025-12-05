@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
@@ -8,7 +9,7 @@ using UnityEngine.InputSystem;
 
 public class SkillMelee : SkillObject
 {
-    [SerializeField] FiniteStateBase SkillMotion;
+    [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase MeleePrefab;
 
     public override bool IsCastable()
@@ -23,7 +24,7 @@ public class SkillMelee : SkillObject
 
         if (mInput.JustPressed(GetCurrentInputType()) && IsCastable())
         {
-            mBaseObj.StateMachine.ChangeState(SkillMotion);
+            mBaseObj.StateMachine.ChangeState(SkillMotion, (Action)DoFire);
         }
     }
 
@@ -37,15 +38,17 @@ public class SkillMelee : SkillObject
     public void DoCastSkill()
     {
         // 스킬 오브젝트 생성
-        Vector3 startPos = transform.position + new Vector3(transform.right.x, 0, 0);
-        ProjectileBase obj = ProjectileBase.Create(MeleePrefab, startPos, Quaternion.identity, this);
+        Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
+        ProjectileBase obj = ProjectileBase.Create(MeleePrefab, startPos, mBaseObj.transform.rotation, BaseStats, mBaseObj.gameObject.layer);
         obj.OnHit.AddListener((col) =>
         {
             // 충돌 시 처리할 내용
             EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
             if (enemy != null)
             {
-                enemy.GetDamaged((int)BaseStats.Attack, mBaseObj.transform.right);
+                LOG.trace(BaseStats.Attack);
+                int damage = (int)BaseStats.Attack % 3;
+                enemy.GetDamaged(damage, mBaseObj.transform.right);
             }
         });
     }

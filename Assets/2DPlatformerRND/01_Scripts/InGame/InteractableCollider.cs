@@ -62,7 +62,7 @@ public class InteractableCollider : MonoBehaviour
             DoInteractLeave(collision);
         }
     }
-    
+
     private bool IsInteractable(Collider2D other)
     {
         // 콜라이더 이벤트는 콜라이더가 붙어있는 객체에게만 이벤트가 전달 되도록 하기 위함

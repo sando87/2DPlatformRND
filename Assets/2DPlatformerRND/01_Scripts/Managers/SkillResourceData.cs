@@ -21,6 +21,8 @@ namespace PahlBit
         public readonly float CooltimeDownPerLv;
         public readonly float ProjectileCount;
         public readonly float ProjectileCountPerLv;
+        public readonly float ProjectileSpeed;
+        public readonly float ProjectileDistance;
         public readonly float AttackRange;
         public readonly float AttackRangePerLv;
         public readonly float SplashRange;

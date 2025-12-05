@@ -52,6 +52,8 @@ public class SkillObject : MonoBehaviour
         BaseStats.ManaUse = ResourceData.ManaUse + (ResourceData.ManaUsePerLv * currentLevelIndex);
         BaseStats.Cooltime = ResourceData.Cooltime - (ResourceData.CooltimeDownPerLv * currentLevelIndex);
         BaseStats.ProjectileCount = ResourceData.ProjectileCount + (ResourceData.ProjectileCountPerLv * currentLevelIndex);
+        BaseStats.ProjectileSpeed = ResourceData.ProjectileSpeed;
+        BaseStats.ProjectileDistance = ResourceData.ProjectileDistance;
         BaseStats.AttackRange = ResourceData.AttackRange + (ResourceData.AttackRangePerLv * currentLevelIndex);
         BaseStats.SplashRange = ResourceData.SplashRange + (ResourceData.SplashRangePerLv * currentLevelIndex);
         BaseStats.Duration = ResourceData.Duration + (ResourceData.DurationPerLv * currentLevelIndex);
