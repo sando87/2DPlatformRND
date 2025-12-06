@@ -13,9 +13,11 @@ namespace PahlBit
     /// Percent c = new Percent(-100);
     /// double d = 10 * c.Rate; // d는 5
     /// </summary>
+    [System.Serializable]
     public struct Percent : IComparable<Percent>
     {
-        private readonly double mPercentVal; // [%]
+        [SerializeField]
+        private double mPercentVal; // [%]
 
         public double PercentValue => mPercentVal;
 

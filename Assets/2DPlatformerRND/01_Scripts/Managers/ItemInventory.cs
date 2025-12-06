@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,13 +11,43 @@ namespace PahlBit
     {
         public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 
-        private Dictionary<string, ItemObject> mItems = new Dictionary<string, ItemObject>();
+        private Dictionary<string, ItemInfo> mInvenItems = new Dictionary<string, ItemInfo>();
+        private Dictionary<string, ItemInfo> mEquipItems = new Dictionary<string, ItemInfo>();
+        private Dictionary<string, ItemSaveData> mSaveData = null; 
 
         public ItemStats TotalItemOption { get; private set; } = new ItemStats();
 
         public double CurrentGold { get; set; } = 0;
 
-        public void Init()
+        [ShowIf(nameof(ShowInvenItems))]
+        [Dropdown(nameof(ListInvenItems))]
+        [OnValueChanged(nameof(SelectInvenItem))]
+        public ItemInfo mSelectedInvenItem = null;
+        ItemInfo[] ListInvenItems() { return mInvenItems.Values.ToArray(); }
+
+        [SerializeField]
+        [ShowIf(nameof(ShowInvenItems))]
+        private ItemInfo _SelectInvenItem = null;
+        void SelectInvenItem() { _SelectInvenItem = mSelectedInvenItem; _SelectInvenItem._Option = mSelectedInvenItem.Option; }
+
+        [ShowIf(nameof(ShowEquipItems))]
+        [Dropdown("_SelectEquipItem")]
+        public ItemInfo SelectEquipItem = null;
+        ItemInfo[] _SelectEquipItem() { return mEquipItems.Values.ToArray(); }
+
+        bool ShowInvenItems() { return Application.isPlaying && mSaveData != null && mInvenItems.Count > 0; }
+        bool ShowEquipItems() { return Application.isPlaying && mSaveData != null && mEquipItems.Count > 0; }
+
+        [Button]
+        [ShowIf(nameof(ShowInvenItems))]
+        void _EquipItem() { EquipItem(mSelectedInvenItem.InstanceID); }
+
+        [Button]
+        [ShowIf(nameof(ShowEquipItems))]
+        void _UnEquipItem() { UnEquipItem(SelectEquipItem.InstanceID); }
+
+
+        void Awake()
         {
             LoadItemsFromData();
         }
@@ -24,93 +56,101 @@ namespace PahlBit
         {
             UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
             int charID = CharRoot.CharacterID;
-            var savedItems = saveData.Characters[charID].Items;
-            foreach (var pair in savedItems)
+            mSaveData = saveData.Characters[charID].Items;
+            foreach (var pair in mSaveData)
             {
-                ItemSaveData itemData = pair.Value;
-                ItemObject item = new ItemObject();
-                item.LoadItem(itemData);
-
-                mItems[itemData.InstanceID] = item;
+                ItemSaveData itemSaveData = pair.Value;
+                ItemInfo item = new ItemInfo();
+                item.LoadItem(itemSaveData);
 
                 if (item.IsEquipped)
                 {
+                    mEquipItems[itemSaveData.InstanceID] = item;
                     TotalItemOption.Add(item.Option);
+                }
+                else
+                {
+                    mInvenItems[itemSaveData.InstanceID] = item;
                 }
             }
         }
 
-        public void AddItem(ItemObject item)
+        public void AddItem(ItemInfo item)
         {
-            if (mItems.ContainsKey(item.InstanceID))
+            if (mInvenItems.ContainsKey(item.InstanceID))
             {
-                mItems[item.InstanceID].Count += item.Count;
+                mInvenItems[item.InstanceID].Count += item.Count;
             }
             else
             {
-                mItems[item.InstanceID] = item;
-                UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
-                int charID = CharRoot.CharacterID;
-                saveData.Characters[charID].Items[item.InstanceID] = item.SaveData;
+                mInvenItems[item.InstanceID] = item;
+                mSaveData[item.InstanceID] = item.SaveData;
             }
             GameSystem.DoSave_UserSaveData();
         }
         public void RemoveItem(string itemInstID)
         {
-            LOG.errorif(!mItems.ContainsKey(itemInstID));
-            if (mItems.ContainsKey(itemInstID))
-            {
-                mItems.Remove(itemInstID);
-
-                UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
-                int charID = CharRoot.CharacterID;
-                saveData.Characters[charID].Items.Remove(itemInstID);
-                GameSystem.DoSave_UserSaveData();
-            }
+            LOG.errorif(!mSaveData.ContainsKey(itemInstID));
+            mSaveData.Remove(itemInstID);
+            if (mInvenItems.ContainsKey(itemInstID))
+                mInvenItems.Remove(itemInstID);
+            if (mEquipItems.ContainsKey(itemInstID))
+                mEquipItems.Remove(itemInstID);
+            GameSystem.DoSave_UserSaveData();
+        }
+        public ItemInfo GetItem(string itemInstID)
+        {
+            if (mInvenItems.ContainsKey(itemInstID))
+                return mInvenItems[itemInstID];
+            else if (mEquipItems.ContainsKey(itemInstID))
+                return mEquipItems[itemInstID];
+            else
+                return null;
         }
 
         public void SubItem(string itemInstID, int count)
         {
-            LOG.errorif(!mItems.ContainsKey(itemInstID));
-            mItems[itemInstID].Count -= count;
+            GetItem(itemInstID).Count -= count;
             GameSystem.DoSave_UserSaveData();
         }
         public void UpgradeItem(string itemInstID)
         {
-            LOG.errorif(!mItems.ContainsKey(itemInstID));
-            mItems[itemInstID].Level++;
+            GetItem(itemInstID).Level++;
             GameSystem.DoSave_UserSaveData();
         }
 
         public void MoveItem(string itemInstID, int newPositionIndex)
         {
-            LOG.errorif(!mItems.ContainsKey(itemInstID));
-            mItems[itemInstID].PositionIndex = newPositionIndex;
+            GetItem(itemInstID).PositionIndex = newPositionIndex;
             GameSystem.DoSave_UserSaveData();
         }
 
         public void EquipItem(string itemInstID)
         {
-            LOG.errorif(!mItems.ContainsKey(itemInstID));
-            if (mItems[itemInstID].IsEquipped)
+            ItemInfo item = GetItem(itemInstID);
+            if(item.IsEquipped)
                 return;
 
-            mItems[itemInstID].IsEquipped = true;
+            item.IsEquipped = true;
+            mInvenItems.Remove(itemInstID);
+            mEquipItems.Add(itemInstID, item);
             GameSystem.DoSave_UserSaveData();
 
-            TotalItemOption.Add(mItems[itemInstID].Option);
+            TotalItemOption.Add(item.Option);
         }
 
         public void UnEquipItem(string itemInstID)
         {
-            LOG.errorif(!mItems.ContainsKey(itemInstID));
-            if (!mItems[itemInstID].IsEquipped)
+            ItemInfo item = GetItem(itemInstID);
+            if(!item.IsEquipped)
                 return;
 
-            mItems[itemInstID].IsEquipped = false;
+            item.IsEquipped = false;
+            mEquipItems.Remove(itemInstID);
+            mInvenItems.Add(itemInstID, item);
             GameSystem.DoSave_UserSaveData();
 
-            TotalItemOption.Subtract(mItems[itemInstID].Option);
+            TotalItemOption.Subtract(item.Option);
         }
 
 

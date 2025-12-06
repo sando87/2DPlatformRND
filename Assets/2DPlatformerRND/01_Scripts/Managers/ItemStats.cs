@@ -1,6 +1,7 @@
 
 namespace PahlBit
 {
+    [System.Serializable]
     public class ItemStats
     {
         public Percent HealthUp;
