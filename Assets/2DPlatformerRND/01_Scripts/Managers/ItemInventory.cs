@@ -31,9 +31,16 @@ namespace PahlBit
         void SelectInvenItem() { _SelectInvenItem = mSelectedInvenItem; _SelectInvenItem._Option = mSelectedInvenItem.Option; }
 
         [ShowIf(nameof(ShowEquipItems))]
-        [Dropdown("_SelectEquipItem")]
-        public ItemInfo SelectEquipItem = null;
-        ItemInfo[] _SelectEquipItem() { return mEquipItems.Values.ToArray(); }
+        [Dropdown(nameof(ListEquipItems))]
+        [OnValueChanged(nameof(SelectEquipItem))]
+        public ItemInfo mSelectEquipItem = null;
+        ItemInfo[] ListEquipItems() { return mEquipItems.Values.ToArray(); }
+
+        [SerializeField]
+        [ShowIf(nameof(ShowEquipItems))]
+        private ItemInfo _SelectEquipItem = null;
+        void SelectEquipItem() { _SelectEquipItem = mSelectEquipItem; _SelectEquipItem._Option = mSelectEquipItem.Option; }
+
 
         bool ShowInvenItems() { return Application.isPlaying && mSaveData != null && mInvenItems.Count > 0; }
         bool ShowEquipItems() { return Application.isPlaying && mSaveData != null && mEquipItems.Count > 0; }
@@ -44,7 +51,7 @@ namespace PahlBit
 
         [Button]
         [ShowIf(nameof(ShowEquipItems))]
-        void _UnEquipItem() { UnEquipItem(SelectEquipItem.InstanceID); }
+        void _UnEquipItem() { UnEquipItem(mSelectEquipItem.InstanceID); }
 
 
         void Awake()

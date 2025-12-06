@@ -50,9 +50,20 @@ public class ItemInfo
         int point = SaveData.LevelIndex;
         System.Random ran = new System.Random(SaveData.RandomSeed);
 
-        Option.HealthUp = ResourceData.HealthUpPair.GetValue(point);
-        Option.HealthRegen = ResourceData.HealthRegen;
-        Option.MoveSpeedUp = ResourceData.MoveSpeedUpPercent;
-        Option.ShieldAdd = ResourceData.ShieldAddRange.GetDouble(ran.NextDouble());
+        Option.HealthUp = ResourceData._HealthUp.GetValueByPoint(point);
+        Option.HealthRegen = ResourceData._HealthRegen.GetValue();
+        Option.ManaUp = ResourceData._ManaUp.GetValueByPoint(point);
+        Option.ManaRegen = ResourceData._ManaRegen.GetValue();
+        Option.AttackUp = ResourceData._AttackUp.GetValueByPoint(point);
+        Option.DefenceUp = ResourceData._DefenceUp.GetValueByPoint(point);
+        Option.MoveSpeedUp = ResourceData._MoveSpeedUp.GetValue();
+        Option.AttackSpeedUp = ResourceData._AttackSpeedUp.GetValue();
+        Option.CooltimeDown = ResourceData._CooltimeDown.GetValue();
+        Option.ShieldAdd = ResourceData._ShieldAdd.GetValueInRange(ran.ExNextFloatNormalized());
+        Option.ShieldRegen = ResourceData._ShieldRegen.GetValue();
+        Option.FireResist = ResourceData._FireResist.GetValue();
+        Option.IceResist = ResourceData._IceResist.GetValue();
+        Option.LightningResist = ResourceData._LightningResist.GetValue();
+        Option.PosionResist = ResourceData._PosionResist.GetValue();
     }
 }

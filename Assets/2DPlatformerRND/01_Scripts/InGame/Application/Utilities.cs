@@ -21,6 +21,12 @@ namespace PahlBit
                 child.gameObject.ExSetLayerAll(layer);
             }
         }
+        public static float ExNextFloatNormalized(this System.Random random)
+        {
+            // Next(int) 는 0 ~ int.MaxValue-1
+            int value = random.Next(int.MaxValue);      // 0 ~ 2,147,483,646
+            return (float)value / (int.MaxValue - 1); // 0 ~ 1 포함
+        }
 
     }
 }
