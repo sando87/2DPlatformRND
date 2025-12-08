@@ -11,23 +11,28 @@ namespace PahlBit
         public readonly string DisplayName;
         public readonly string Desc;
 
-        public readonly double Health;
-        public readonly double HealthPerLv;
-        public readonly double HealthPerPoint;
-        public readonly double Attack;
-        public readonly double AttackPerLv;
-        public readonly double AttackPerPoint;
-        public readonly double Defence;
-        public readonly double DefencePerLv;
-        public readonly double DefencePerPoint;
-        public readonly double Mana;
-        public readonly double ManaPerLv;
-        public readonly double ManaPerPoint;
-
+        public readonly string Health;
+        public readonly string Attack;
+        public readonly string Defence;
+        public readonly string Mana;
 
         public int RowIndex { get; set; } // 데이터데이블상에 존재하는 순서
         public long ID { get { return ToID(CharacterID); } } // 데이터 접근을 위한 id값
         public static long ToID(string nameID) { return nameID.GetHashCode(); }
+
+        public ParseValue _Health { get; private set; }
+        public ParseValue _Attack { get; private set; }
+        public ParseValue _Defence { get; private set; }
+        public ParseValue _Mana { get; private set; }
+
+        void ICSVFormat.OnLoad()
+        {
+            _Health = ParseValue.Parse(Health);
+            _Attack = ParseValue.Parse(Attack);
+            _Defence = ParseValue.Parse(Defence);
+            _Mana = ParseValue.Parse(Mana);
+        }
+
 
     }
 

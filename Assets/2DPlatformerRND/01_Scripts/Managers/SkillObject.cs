@@ -48,16 +48,16 @@ public class SkillObject : MonoBehaviour
     {
         int currentLevelIndex = SaveData.LevelIndex;
 
-        BaseStats.Attack = ResourceData.Attack + (ResourceData.AttackPerLv * currentLevelIndex);
-        BaseStats.ManaUse = ResourceData.ManaUse + (ResourceData.ManaUsePerLv * currentLevelIndex);
-        BaseStats.Cooltime = ResourceData.Cooltime - (ResourceData.CooltimeDownPerLv * currentLevelIndex);
-        BaseStats.ProjectileCount = ResourceData.ProjectileCount + (ResourceData.ProjectileCountPerLv * currentLevelIndex);
-        BaseStats.ProjectileSpeed = ResourceData.ProjectileSpeed;
-        BaseStats.ProjectileDistance = ResourceData.ProjectileDistance;
-        BaseStats.AttackRange = ResourceData.AttackRange + (ResourceData.AttackRangePerLv * currentLevelIndex);
-        BaseStats.SplashRange = ResourceData.SplashRange + (ResourceData.SplashRangePerLv * currentLevelIndex);
-        BaseStats.Duration = ResourceData.Duration + (ResourceData.DurationPerLv * currentLevelIndex);
-        BaseStats.Interval = ResourceData.Interval + (ResourceData.IntervalPerLv * currentLevelIndex);
+        BaseStats.Attack = ResourceData._Attack.GetValueByPoint(currentLevelIndex);
+        BaseStats.ManaUse = ResourceData._ManaUse.GetValueByPoint(currentLevelIndex);
+        BaseStats.Cooltime = ResourceData._Cooltime.GetValueByPoint(currentLevelIndex);
+        BaseStats.ProjectileCount = ResourceData._ProjectileCount.GetValueByPoint(currentLevelIndex);
+        BaseStats.ProjectileSpeed = ResourceData._ProjectileSpeed.GetValueByPoint(currentLevelIndex);
+        BaseStats.ProjectileDistance = ResourceData._ProjectileDistance.GetValueByPoint(currentLevelIndex);
+        BaseStats.AttackRange = ResourceData._AttackRange.GetValueByPoint(currentLevelIndex);
+        BaseStats.SplashRange = ResourceData._SplashRange.GetValueByPoint(currentLevelIndex);
+        BaseStats.Duration = ResourceData._Duration.GetValueByPoint(currentLevelIndex);
+        BaseStats.Interval = ResourceData._Interval.GetValueByPoint(currentLevelIndex);
     }
 
     public virtual bool IsCastable()

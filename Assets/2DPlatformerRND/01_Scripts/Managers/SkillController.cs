@@ -75,7 +75,8 @@ namespace PahlBit
                 if (skillSaveData.IsEquipped)
                 {
                     SkillResourceData skillResData = SkillResourceTable.Instance.GetInfo(skillSaveData.ResourceID);
-                    SkillObject skillObject = Instantiate(skillResData.SkillPrefab, transform);
+                    SkillObject skillPrefab = Resources.Load<SkillObject>("Prefabs/Skills/" + skillResData.PrefabName);
+                    SkillObject skillObject = Instantiate(skillPrefab, transform);
                     skillObject.LoadSkillData();
                     SkillSlots[skillSaveData.PositionIndex] = skillObject;
                 }

@@ -36,21 +36,10 @@ namespace PahlBit
         {
             int currentLevelIndex = CharRoot.Exp.CurrentLevelIdx;
 
-            BaseStats.Attack = ResourceData.Attack
-                            + (ResourceData.AttackPerLv * currentLevelIndex)
-                            + (ResourceData.AttackPerPoint * SaveData.AttackPoint);
-
-            BaseStats.Defence = ResourceData.Defence
-                            + (ResourceData.DefencePerLv * currentLevelIndex)
-                            + (ResourceData.DefencePerPoint * SaveData.DefensePoint);
-
-            BaseStats.Health = ResourceData.Health
-                            + (ResourceData.HealthPerLv * currentLevelIndex)
-                            + (ResourceData.HealthPerPoint * SaveData.HealthPoint);
-
-            BaseStats.Mana = ResourceData.Mana
-                            + (ResourceData.ManaPerLv * currentLevelIndex)
-                            + (ResourceData.ManaPerPoint * SaveData.ManaPoint);
+            BaseStats.Attack = ResourceData._Attack.GetValueByBoth(SaveData.AttackPoint, currentLevelIndex);
+            BaseStats.Defence = ResourceData._Defence.GetValueByBoth(SaveData.DefensePoint, currentLevelIndex);
+            BaseStats.Health = ResourceData._Health.GetValueByBoth(SaveData.HealthPoint, currentLevelIndex);
+            BaseStats.Mana = ResourceData._Mana.GetValueByBoth(SaveData.ManaPoint, currentLevelIndex);
 
             BaseStats.Shield = 0;
             BaseStats.MoveSpeed = 5;

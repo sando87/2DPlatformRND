@@ -11,7 +11,7 @@ public class ItemObject : MonoBehaviour
         ItemInfo itemInfo = new ItemInfo();
         itemInfo.InitRandomItem();
 
-        ItemObject itemPrefab = Resources.Load<ItemObject>("ItemPrefabs/" + itemInfo.ResourceData.PrefabName);
+        ItemObject itemPrefab = Resources.Load<ItemObject>("Prefabs/Items/" + itemInfo.ResourceData.PrefabName);
         ItemObject itemObj = Instantiate(itemPrefab, position, rotation);
         itemObj.ItemInfo = itemInfo;
         return itemObj;

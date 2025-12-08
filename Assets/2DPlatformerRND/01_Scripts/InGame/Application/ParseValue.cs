@@ -13,34 +13,57 @@ namespace PahlBit
         public float mBaseMin;
         public float mBaseMax;
         public Ease mEase = Ease.Linear;
-        public float mStep;
+        public float mStepByPoint;
+        public float mStepByLevel;
 
-        public ParseValue(float _min, float _max, float _step, Ease _ease)
+        public ParseValue(float _min, float _max, float _stepByPoint, float _stepByLevel, Ease _ease)
         {
             mBaseMin = _min;
             mBaseMax = _max;
-            mStep = _step;
+            mStepByPoint = _stepByPoint;
+            mStepByLevel = _stepByLevel;
             mEase = _ease;
         }
 
         // 입력 string 예시: "3~5@InOutQuad+0.2"
         public static ParseValue Parse(string str)
         {
-            float min = 0f, max = 0f, step = 0f;
+            float min = 0f, max = 0f, stepByPoint = 0f, stepByLevel = 0f;
             Ease ease = Ease.Linear;
 
             string work = str;
 
             // -------------------------------
-            // 1) STEP 파싱: "+0.2"
+            // 1) STEP 파싱: "+0.2" or "-0.2"
             // -------------------------------
-            int plusIdx = work.IndexOf('+');
-            if (plusIdx >= 0)
+            while (true)
             {
-                string stepStr = work.Substring(plusIdx + 1);
-                step = float.Parse(stepStr.Replace("%", "").Trim(), CultureInfo.InvariantCulture);
+                int plusIdx = work.IndexOf('+');
+                if (plusIdx >= 0)
+                {
+                    string stepStr = work.Substring(plusIdx + 1);
+                    if (stepStr.Contains("L"))
+                        stepByLevel = float.Parse(stepStr.Replace("L", "").Trim(), CultureInfo.InvariantCulture);
+                    else
+                        stepByPoint = float.Parse(stepStr, CultureInfo.InvariantCulture);
 
-                work = work.Substring(0, plusIdx); // 나머지 부분만 유지
+                    work = work.Substring(0, plusIdx); // 나머지 부분만 유지
+                    continue;
+                }
+                int minusIdx = work.IndexOf('-');
+                if (minusIdx >= 0)
+                {
+                    string stepStr = work.Substring(minusIdx + 1);
+                    if (stepStr.Contains("L"))
+                        stepByLevel = -float.Parse(stepStr.Replace("L", "").Trim(), CultureInfo.InvariantCulture);
+                    else
+                        stepByPoint = -float.Parse(stepStr, CultureInfo.InvariantCulture);
+
+                    work = work.Substring(0, minusIdx); // 나머지 부분만 유지
+                    continue;
+                }
+
+                break;
             }
 
             // -------------------------------
@@ -65,17 +88,17 @@ namespace PahlBit
                 if (parts.Length != 2)
                     throw new FormatException("잘못된 범위 형식입니다.");
 
-                min = float.Parse(parts[0].Replace("%", "").Trim(), CultureInfo.InvariantCulture);
-                max = float.Parse(parts[1].Replace("%", "").Trim(), CultureInfo.InvariantCulture);
+                min = float.Parse(parts[0], CultureInfo.InvariantCulture);
+                max = float.Parse(parts[1], CultureInfo.InvariantCulture);
             }
             else
             {
                 // 범위가 없으면 단일값
-                min = float.Parse(work.Replace("%", "").Trim(), CultureInfo.InvariantCulture);
+                min = float.Parse(work, CultureInfo.InvariantCulture);
                 max = min;
             }
 
-            return new ParseValue(min, max, step, ease);
+            return new ParseValue(min, max, stepByPoint, stepByLevel, ease);
         }
 
         public override string ToString()
@@ -89,7 +112,17 @@ namespace PahlBit
         }
         public float GetValueByPoint(int points)
         {
-            float result = mBaseMin + (mStep * points);
+            float result = mBaseMin + (mStepByPoint * points);
+            return result;
+        }
+        public float GetValueByLevel(int level)
+        {
+            float result = mBaseMin + (mStepByLevel * level);
+            return result;
+        }
+        public float GetValueByBoth(int point, int level)
+        {
+            float result = mBaseMin + (mStepByPoint * point) + (mStepByLevel * level);
             return result;
         }
         public float GetValueInRange(float normalizedTime)
