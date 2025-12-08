@@ -18,18 +18,15 @@ public class SkillInfo
 
     public long ResourceID => ResourceData.ID;
     public bool IsEquipped { get => SaveData.IsEquipped; set => SaveData.IsEquipped = value; }
+    public bool IsLearned { get => SaveData.IsLearned; set => SaveData.IsLearned = value; }
     public int PositionIndex { get => SaveData.PositionIndex; set { SaveData.PositionIndex = value; } }
     public int Level { get => SaveData.Level; set { SaveData.Level = value; } }
-
-    public void InitSKillResourceData(SkillResourceData resData)
-    {
-        ResourceData = resData;
-        UpdateValue();
-    }
 
     public void ApplySaveData(SkillSaveData skillSaveData)
     {
         SaveData = skillSaveData;
+        ResourceData = SkillResourceTable.Instance.GetInfo(skillSaveData.ResourceID);
+        BaseStats = new SkillStats();
         UpdateValue();
     }
 

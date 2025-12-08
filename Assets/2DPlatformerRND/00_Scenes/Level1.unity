@@ -1699,7 +1699,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1686804806035381227}
+  - {fileID: 4451797711923951524}
   m_Father: {fileID: 1020631640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &855683811
@@ -1714,7 +1716,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e0eb07dcfce17479722aea047c8b21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.SkillController
-  SkillSlots: []
+  SkillSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   OnEquipSkill:
     m_PersistentCalls:
       m_Calls: []
@@ -5940,6 +5946,22 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.13479915, y: -0.10580299, z: 0.20280212}
     m_Extent: {x: 0.41526064, y: 0.111553244, z: 0.6513525}
   m_DirtyAABB: 0
+--- !u!114 &943838284820422018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7632519423705799825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349355b2f3d80ec40b20665435f46702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillBall
+  mSkillResID: 1087738907
+  SkillMotion: {fileID: 169048148}
+  CirclePrefab: {fileID: 4627083357526262411, guid: bd318899aff485a4b8bf10cc02a9b0ce,
+    type: 3}
 --- !u!114 &1370792547281452302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5958,6 +5980,21 @@ MonoBehaviour:
   isUsed: 0
   leftHandPositionWeight: 0
   leftHandRotationWeight: 0
+--- !u!4 &1686804806035381227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4478770573047184174}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.63734, y: -1.02049, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 855683810}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2158081204322577312
 GameObject:
   m_ObjectHideFlags: 0
@@ -5992,6 +6029,54 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4451797711923951524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7632519423705799825}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.63734, y: -1.02049, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 855683810}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4478770573047184174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1686804806035381227}
+  - component: {fileID: 4552262288322647178}
+  m_Layer: 7
+  m_Name: SkillMelee
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &4552262288322647178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4478770573047184174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f562fa239b5994c9c4bd781ae554b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillMelee
+  mSkillResID: 1087738908
+  SkillMotion: {fileID: 169048147}
+  MeleePrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
+    type: 3}
 --- !u!137 &4700356382038952080
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -6305,6 +6390,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9181211533200195414}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7632519423705799825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4451797711923951524}
+  - component: {fileID: 943838284820422018}
+  m_Layer: 7
+  m_Name: SkillBall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &7643688807864744979
 Transform:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
@@ -9,7 +10,8 @@ namespace PahlBit
 {
     public class SkillController : MonoBehaviour
     {
-        [SerializeField] SkillObject[] SkillSlots;
+        [SerializeField] Dictionary<long, SkillObject> mAllSkills = new Dictionary<long, SkillObject>();
+        [SerializeField] SkillObject[] SkillSlots = null;
 
         [Foldout("Events")]
         public UnityEvent<SkillObject> OnEquipSkill = new UnityEvent<SkillObject>();
@@ -23,59 +25,26 @@ namespace PahlBit
         void Awake()
         {
             mBaseObj = GetComponentInParent<BaseObject>();
+            InitSkills();
         }
 
-        void Start()
+        void InitSkills()
         {
-            InitSkillsFromInspector();
-
-            // LoadSkillsFromSaveData();
-        }
-
-        // 인스펙터에 세팅된 상태로 스킬 초기화 한다(임시코드 나중에는 세이브정보로 초기화 해야함)
-        void InitSkillsFromInspector()
-        {
-            for (int i = 0; i < SkillSlots.Length; ++i)
+            SkillObject[] allSkills = GetComponentsInChildren<SkillObject>();
+            foreach (SkillObject skillObj in allSkills)
             {
-                LearnNewSkill(SkillSlots[i].SkillInfo.ResourceID);
-            }
+                skillObj.InitSkillInfo();
+                mAllSkills[skillObj.SkillID] = skillObj;
 
-            for (int i = 0; i < SkillSlots.Length; ++i)
-            {
-                EquipSkill(SkillSlots[i], i);
-            }
-        }
-
-        public void LearnNewSkill(long skillResID)
-        {
-            UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
-            int charID = CharRoot.CharacterID;
-            var savedSkills = saveData.Characters[charID].Skills;
-            if (!savedSkills.ContainsKey(skillResID))
-            {
-                SkillSaveData skillSaveData = new SkillSaveData();
-                skillSaveData.ResourceID = skillResID;
-                skillSaveData.IsEquipped = false;
-                skillSaveData.PositionIndex = -1;
-                skillSaveData.Level = 1;
-                savedSkills[skillResID] = skillSaveData;
-                SaveFileManager<UserSaveData>.Save(saveData);
-            }
-        }
-
-        // 세이브데이터로부터 스킬 초기화 한다
-        void LoadSkillsFromSaveData()
-        {
-            UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
-            int charID = CharRoot.CharacterID;
-            var savedSkills = saveData.Characters[charID].Skills;
-            foreach (var pair in savedSkills)
-            {
-                SkillSaveData skillSaveData = pair.Value;
-                if (skillSaveData.IsEquipped)
+                if (!skillObj.SkillInfo.IsLearned)
                 {
-                    SkillObject skillObject = SkillObject.Create(skillSaveData, transform);
-                    SkillSlots[skillSaveData.PositionIndex] = skillObject;
+                    skillObj.gameObject.SetActive(false);
+                    continue;
+                }
+
+                if (skillObj.SkillInfo.IsEquipped)
+                {
+                    SkillSlots[skillObj.SkillInfo.PositionIndex] = skillObj;
                 }
             }
         }
@@ -84,12 +53,29 @@ namespace PahlBit
         {
             foreach (SkillObject skillObject in SkillSlots)
             {
-                skillObject.UpdateSkill();
+                if (skillObject != null)
+                    skillObject.UpdateSkill();
             }
         }
 
-        public void EquipSkill(SkillObject skill, int slotIndex)
+
+        public void LearnNewSkill(long skillResID)
         {
+            SkillObject skill = mAllSkills[skillResID];
+            skill.gameObject.SetActive(true);
+            skill.OnLearnSkill();
+            GameSystem.DoSave_UserSaveData();
+        }
+        public void LevelupSkill(long skillResID)
+        {
+            SkillObject skill = mAllSkills[skillResID];
+            skill.OnLevelupSkill();
+            GameSystem.DoSave_UserSaveData();
+        }
+
+        public void EquipSkill(long skillResID, int slotIndex)
+        {
+            SkillObject skill = mAllSkills[skillResID];
             SkillSlots[slotIndex] = skill;
             SkillSlots[slotIndex].OnEquipSkill(slotIndex);
             OnEquipSkill?.Invoke(skill);
@@ -97,16 +83,23 @@ namespace PahlBit
             GameSystem.DoSave_UserSaveData();
         }
 
-        public void UnEquipSkill(int slotIndex)
+        public void UnEquipSkill(long skillResID, int slotIndex)
         {
-            if (SkillSlots[slotIndex] == null)
-                return;
-
-            OnUnEquipSkill?.Invoke(SkillSlots[slotIndex]);
+            SkillObject skill = mAllSkills[skillResID];
+            OnUnEquipSkill?.Invoke(skill);
             SkillSlots[slotIndex].OnUnEquipSkill();
             SkillSlots[slotIndex] = null;
 
             GameSystem.DoSave_UserSaveData();
+        }
+        public int FindEmptySkillSlotIndex()
+        {
+            for (int i = 0; i < SkillSlots.Length; ++i)
+            {
+                if (SkillSlots[i] == null)
+                    return i;
+            }
+            return -1;
         }
 
     }

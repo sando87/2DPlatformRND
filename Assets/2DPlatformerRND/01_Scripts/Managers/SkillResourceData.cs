@@ -12,7 +12,6 @@ namespace PahlBit
         public readonly string SkillID;
         public readonly string DisplayName;
         public readonly string Desc;
-        public readonly string PrefabName;
 
         public readonly string Attack;
         public readonly string ManaUse;

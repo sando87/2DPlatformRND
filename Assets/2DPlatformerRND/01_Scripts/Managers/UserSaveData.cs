@@ -49,6 +49,7 @@ namespace PahlBit
     {
         public long ResourceID;
         public bool IsEquipped;
+        public bool IsLearned;
         public int Level;
         public int PositionIndex;
 

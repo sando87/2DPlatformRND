@@ -2,38 +2,70 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using NaughtyAttributes;
+using NUnit.Framework;
 using PahlBit;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class SkillObject : MonoBehaviour
 {
+    [SerializeField]
+    [Dropdown("IDList")]
+    long mSkillResID = 0;
+    DropdownList<long> IDList()
+    {
+        DropdownList<long> rets = new DropdownList<long>();
+        SkillResourceData[] resList = SkillResourceTable.Instance.GetAllInfo();
+        foreach (SkillResourceData resData in resList)
+            rets.Add(resData.SkillID, resData.ID);
+        return rets;
+    }
+
+    [Button]
+    [ShowIf(nameof(IsShowLearn))]
+    void LearnSkill()
+    {
+        SkillController skillController = GetComponentInParent<SkillController>();
+        skillController.LearnNewSkill(SkillID);
+    }
+    bool IsShowLearn() { return Application.isPlaying && !SkillInfo.IsLearned; }
+
+    [Button]
+    [ShowIf(nameof(IsShowLevelUp))]
+    void LevelUpSkill()
+    {
+        SkillController skillController = GetComponentInParent<SkillController>();
+        skillController.LevelupSkill(SkillID);
+    }
+    bool IsShowLevelUp() { return Application.isPlaying && SkillInfo.IsLearned; }
+
+    [Button]
+    [ShowIf(nameof(IsShowEquip))]
+    void EquipSkill()
+    {
+        SkillController skillController = GetComponentInParent<SkillController>();
+        int slotIdx = skillController.FindEmptySkillSlotIndex();
+        if (slotIdx >= 0)
+            skillController.EquipSkill(SkillID, slotIdx);
+    }
+    bool IsShowEquip() { return Application.isPlaying && SkillInfo.IsLearned && !SkillInfo.IsEquipped; }
+
+    [Button]
+    [ShowIf(nameof(IsShowUnEquip))]
+    void UnEquipSkill()
+    {
+        SkillController skillController = GetComponentInParent<SkillController>();
+        skillController.UnEquipSkill(SkillID, SkillInfo.PositionIndex);
+    }
+    bool IsShowUnEquip() { return Application.isPlaying && SkillInfo.IsLearned && SkillInfo.IsEquipped; }
+
     public SkillInfo SkillInfo { get; private set; }
     public SkillStats BaseStats { get => SkillInfo.BaseStats; }
-
-    public static SkillObject Create(long skillResID)
-    {
-        SkillResourceData resData = SkillResourceTable.Instance.GetInfo(skillResID);
-        SkillObject skillPrefab = Resources.Load<SkillObject>("Prefabs/Skills/" + resData.PrefabName);
-        SkillObject skillObj = Instantiate(skillPrefab);
-        skillObj.SkillInfo = new SkillInfo();
-        skillObj.SkillInfo.InitSKillResourceData(resData);
-        return skillObj;
-    }
-    public static SkillObject Create(SkillSaveData skillSaveData, Transform parent)
-    {
-        SkillObject skillObj = Create(skillSaveData.ResourceID);
-        skillObj.SkillInfo.ApplySaveData(skillSaveData);
-        skillObj.transform.SetParent(parent);
-        skillObj.transform.localPosition = Vector3.zero;
-        skillObj.transform.localRotation = Quaternion.identity;
-        skillObj.transform.localScale = Vector3.one;
-        return skillObj;
-    }
+    public long SkillID { get => SkillInfo.ResourceID; }
 
     public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
-
 
     protected BaseObject mBaseObj = null;
     protected PlayerUnitInput mInput = null;
@@ -42,6 +74,19 @@ public class SkillObject : MonoBehaviour
     {
         mBaseObj = this.ExGetBase();
         mInput = mBaseObj.Input;
+    }
+
+    public void InitSkillInfo()
+    {
+        UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
+        int charID = CharRoot.CharacterID;
+        var saveDataAllSkills = saveData.Characters[charID].Skills;
+        if (!saveDataAllSkills.ContainsKey(mSkillResID))
+            saveDataAllSkills[mSkillResID] = new SkillSaveData();
+
+        SkillSaveData skillSaveData = saveDataAllSkills[mSkillResID];
+        SkillInfo = new SkillInfo();
+        SkillInfo.ApplySaveData(skillSaveData);
     }
 
     public virtual bool IsCastable()
@@ -58,6 +103,14 @@ public class SkillObject : MonoBehaviour
     {
     }
 
+    public virtual void OnLevelupSkill()
+    {
+        SkillInfo.Level++;
+    }
+    public virtual void OnLearnSkill()
+    {
+        SkillInfo.IsLearned = true;
+    }
     public virtual void OnEquipSkill(int slotIndex)
     {
         SkillInfo.IsEquipped = true;
