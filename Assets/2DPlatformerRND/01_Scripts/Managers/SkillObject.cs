@@ -9,21 +9,31 @@ using UnityEngine.InputSystem;
 
 public class SkillObject : MonoBehaviour
 {
-    [SerializeField]
-    [Dropdown("IDList")]
-    string _ID = "";
-    List<string> IDList { get => SkillResourceTable.Instance.GetAllInfo().Select(info => info.SkillID).ToList(); }
+    public SkillInfo SkillInfo { get; private set; }
+    public SkillStats BaseStats { get => SkillInfo.BaseStats; }
+
+    public static SkillObject Create(long skillResID)
+    {
+        SkillResourceData resData = SkillResourceTable.Instance.GetInfo(skillResID);
+        SkillObject skillPrefab = Resources.Load<SkillObject>("Prefabs/Skills/" + resData.PrefabName);
+        SkillObject skillObj = Instantiate(skillPrefab);
+        skillObj.SkillInfo = new SkillInfo();
+        skillObj.SkillInfo.InitSKillResourceData(resData);
+        return skillObj;
+    }
+    public static SkillObject Create(SkillSaveData skillSaveData, Transform parent)
+    {
+        SkillObject skillObj = Create(skillSaveData.ResourceID);
+        skillObj.SkillInfo.ApplySaveData(skillSaveData);
+        skillObj.transform.SetParent(parent);
+        skillObj.transform.localPosition = Vector3.zero;
+        skillObj.transform.localRotation = Quaternion.identity;
+        skillObj.transform.localScale = Vector3.one;
+        return skillObj;
+    }
 
     public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 
-    public SkillSaveData SaveData { get; private set; } = null;
-    public SkillResourceData ResourceData { get; private set; } = null;
-    public SkillStats BaseStats { get; private set; } = null;
-
-    public long ResourceID => SkillResourceData.ToID(_ID);
-    public bool IsEquipped { get => SaveData.IsEquipped; set => SaveData.IsEquipped = value; }
-    public int PositionIndex { get => SaveData.PositionIndex; set { SaveData.PositionIndex = value; } }
-    public int Level { get => SaveData.Level; set { SaveData.Level = value; } }
 
     protected BaseObject mBaseObj = null;
     protected PlayerUnitInput mInput = null;
@@ -32,32 +42,6 @@ public class SkillObject : MonoBehaviour
     {
         mBaseObj = this.ExGetBase();
         mInput = mBaseObj.Input;
-        BaseStats = new SkillStats();
-    }
-
-    public void LoadSkillData()
-    {
-        int charID = CharRoot.CharacterID;
-        SaveData = SaveFileManager<UserSaveData>.Load().Characters[charID].Skills[ResourceID];
-        ResourceData = SkillResourceTable.Instance.GetInfo(ResourceID);
-        UpdateBaseValue();
-    }
-
-
-    void UpdateBaseValue()
-    {
-        int currentLevelIndex = SaveData.LevelIndex;
-
-        BaseStats.Attack = ResourceData._Attack.GetValueByPoint(currentLevelIndex);
-        BaseStats.ManaUse = ResourceData._ManaUse.GetValueByPoint(currentLevelIndex);
-        BaseStats.Cooltime = ResourceData._Cooltime.GetValueByPoint(currentLevelIndex);
-        BaseStats.ProjectileCount = ResourceData._ProjectileCount.GetValueByPoint(currentLevelIndex);
-        BaseStats.ProjectileSpeed = ResourceData._ProjectileSpeed.GetValueByPoint(currentLevelIndex);
-        BaseStats.ProjectileDistance = ResourceData._ProjectileDistance.GetValueByPoint(currentLevelIndex);
-        BaseStats.AttackRange = ResourceData._AttackRange.GetValueByPoint(currentLevelIndex);
-        BaseStats.SplashRange = ResourceData._SplashRange.GetValueByPoint(currentLevelIndex);
-        BaseStats.Duration = ResourceData._Duration.GetValueByPoint(currentLevelIndex);
-        BaseStats.Interval = ResourceData._Interval.GetValueByPoint(currentLevelIndex);
     }
 
     public virtual bool IsCastable()
@@ -74,19 +58,26 @@ public class SkillObject : MonoBehaviour
     {
     }
 
-    public virtual void OnEquipSkill()
+    public virtual void OnEquipSkill(int slotIndex)
     {
+        SkillInfo.IsEquipped = true;
+        SkillInfo.PositionIndex = slotIndex;
     }
     public virtual void UpdateSkill()
     {
     }
     public virtual void OnUnEquipSkill()
     {
+        SkillInfo.IsEquipped = false;
+        SkillInfo.PositionIndex = -1;
     }
 
     public PlayerUnitInputType GetCurrentInputType()
     {
-        switch (SaveData.PositionIndex)
+        if (SkillInfo.SaveData == null)
+            return PlayerUnitInputType.None;
+
+        switch (SkillInfo.PositionIndex)
         {
             case 0: return PlayerUnitInputType.SkillSlotA;
             case 1: return PlayerUnitInputType.SkillSlotB;

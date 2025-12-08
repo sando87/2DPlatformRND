@@ -26,8 +26,7 @@ namespace PahlBit
         public readonly string Interval;
 
         public int RowIndex { get; set; } // 데이터데이블상에 존재하는 순서
-        public long ID { get { return ToID(SkillID); } } // 데이터 접근을 위한 id값
-        public static long ToID(string nameID) { return nameID.GetHashCode(); }
+        public long ID { get { return ICSVFormat.ToID(SkillID); } } // 데이터 접근을 위한 id값
 
         public ParseValue _Attack { get; private set; }
         public ParseValue _ManaUse { get; private set; }

@@ -17,8 +17,7 @@ namespace PahlBit
         public readonly string Mana;
 
         public int RowIndex { get; set; } // 데이터데이블상에 존재하는 순서
-        public long ID { get { return ToID(CharacterID); } } // 데이터 접근을 위한 id값
-        public static long ToID(string nameID) { return nameID.GetHashCode(); }
+        public long ID { get { return ICSVFormat.ToID(CharacterID); } } // 데이터 접근을 위한 id값
 
         public ParseValue _Health { get; private set; }
         public ParseValue _Attack { get; private set; }
@@ -32,8 +31,6 @@ namespace PahlBit
             _Defence = ParseValue.Parse(Defence);
             _Mana = ParseValue.Parse(Mana);
         }
-
-
     }
 
 }

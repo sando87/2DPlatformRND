@@ -3,6 +3,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 namespace PahlBit
 {
+    [System.Serializable]
     public class SkillStats
     {
         public float Attack;

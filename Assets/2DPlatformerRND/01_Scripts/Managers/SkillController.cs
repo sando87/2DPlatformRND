@@ -37,7 +37,7 @@ namespace PahlBit
         {
             for (int i = 0; i < SkillSlots.Length; ++i)
             {
-                LearnNewSkill(SkillSlots[i].ResourceID);
+                LearnNewSkill(SkillSlots[i].SkillInfo.ResourceID);
             }
 
             for (int i = 0; i < SkillSlots.Length; ++i)
@@ -74,10 +74,7 @@ namespace PahlBit
                 SkillSaveData skillSaveData = pair.Value;
                 if (skillSaveData.IsEquipped)
                 {
-                    SkillResourceData skillResData = SkillResourceTable.Instance.GetInfo(skillSaveData.ResourceID);
-                    SkillObject skillPrefab = Resources.Load<SkillObject>("Prefabs/Skills/" + skillResData.PrefabName);
-                    SkillObject skillObject = Instantiate(skillPrefab, transform);
-                    skillObject.LoadSkillData();
+                    SkillObject skillObject = SkillObject.Create(skillSaveData, transform);
                     SkillSlots[skillSaveData.PositionIndex] = skillObject;
                 }
             }
@@ -93,16 +90,8 @@ namespace PahlBit
 
         public void EquipSkill(SkillObject skill, int slotIndex)
         {
-            // if (SkillSlots[slotIndex] != null)
-            // {
-            //     UnEquipSkill(slotIndex);
-            // }
-
             SkillSlots[slotIndex] = skill;
-            SkillSlots[slotIndex].LoadSkillData();
-            SkillSlots[slotIndex].IsEquipped = true;
-            SkillSlots[slotIndex].PositionIndex = slotIndex;
-            SkillSlots[slotIndex].OnEquipSkill();
+            SkillSlots[slotIndex].OnEquipSkill(slotIndex);
             OnEquipSkill?.Invoke(skill);
 
             GameSystem.DoSave_UserSaveData();
@@ -115,8 +104,6 @@ namespace PahlBit
 
             OnUnEquipSkill?.Invoke(SkillSlots[slotIndex]);
             SkillSlots[slotIndex].OnUnEquipSkill();
-            SkillSlots[slotIndex].IsEquipped = false;
-            SkillSlots[slotIndex].PositionIndex = -1;
             SkillSlots[slotIndex] = null;
 
             GameSystem.DoSave_UserSaveData();

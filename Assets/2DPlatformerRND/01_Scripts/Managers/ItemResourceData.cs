@@ -31,8 +31,7 @@ namespace PahlBit
         public readonly string PosionResist;
 
         public int RowIndex { get; set; } // 데이터데이블상에 존재하는 순서
-        public long ID { get { return ToID(ItemID); } } // 데이터 접근을 위한 id값
-        public static long ToID(string nameID) { return nameID.GetHashCode(); }
+        public long ID { get { return ICSVFormat.ToID(ItemID); } } // 데이터 접근을 위한 id값
 
         public ParseValue _HealthUp { get; private set; }
         public ParseValue _HealthRegen { get; private set; }
