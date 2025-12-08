@@ -65,6 +65,9 @@ public class SkillObject : MonoBehaviour
     public SkillStats BaseStats { get => SkillInfo.BaseStats; }
     public long SkillID { get => SkillInfo.ResourceID; }
 
+    [SerializeField]
+    private SkillStats _BaseStats = null;
+
     public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 
     protected BaseObject mBaseObj = null;
@@ -87,6 +90,8 @@ public class SkillObject : MonoBehaviour
         SkillSaveData skillSaveData = saveDataAllSkills[mSkillResID];
         SkillInfo = new SkillInfo();
         SkillInfo.ApplySaveData(skillSaveData);
+
+        _BaseStats = SkillInfo.BaseStats;
     }
 
     public virtual bool IsCastable()
@@ -106,6 +111,8 @@ public class SkillObject : MonoBehaviour
     public virtual void OnLevelupSkill()
     {
         SkillInfo.Level++;
+        SkillInfo.UpdateValue();
+        _BaseStats = BaseStats;
     }
     public virtual void OnLearnSkill()
     {

@@ -4,9 +4,6 @@ using UnityEngine;
 [System.Serializable]
 public class SkillInfo
 {
-    [SerializeField]
-    private SkillStats _BaseStats = null;
-
     public override string ToString()
     {
         return ResourceData == null ? "none" : ResourceData.SkillID;
@@ -30,7 +27,7 @@ public class SkillInfo
         UpdateValue();
     }
 
-    void UpdateValue()
+    public void UpdateValue()
     {
         int currentLevelIndex = SaveData == null ? 0 : SaveData.LevelIndex;
 
@@ -44,7 +41,5 @@ public class SkillInfo
         BaseStats.SplashRange = ResourceData._SplashRange.GetValueByPoint(currentLevelIndex);
         BaseStats.Duration = ResourceData._Duration.GetValueByPoint(currentLevelIndex);
         BaseStats.Interval = ResourceData._Interval.GetValueByPoint(currentLevelIndex);
-
-        _BaseStats = BaseStats;
     }
 }
