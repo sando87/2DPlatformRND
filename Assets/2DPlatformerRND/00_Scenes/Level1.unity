@@ -5959,6 +5959,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillBall
   mSkillResID: 1087738907
+  _BaseStats:
+    Attack: 0
+    ManaUse: 0
+    Cooltime: 0
+    ProjectileCount: 0
+    ProjectileSpeed: 0
+    ProjectileDistance: 0
+    AttackRange: 0
+    SplashRange: 0
+    Duration: 0
+    Interval: 0
   SkillMotion: {fileID: 169048148}
   CirclePrefab: {fileID: 4627083357526262411, guid: bd318899aff485a4b8bf10cc02a9b0ce,
     type: 3}
@@ -6074,6 +6085,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillMelee
   mSkillResID: 1087738908
+  _BaseStats:
+    Attack: 0
+    ManaUse: 0
+    Cooltime: 0
+    ProjectileCount: 0
+    ProjectileSpeed: 0
+    ProjectileDistance: 0
+    AttackRange: 0
+    SplashRange: 0
+    Duration: 0
+    Interval: 0
   SkillMotion: {fileID: 169048147}
   MeleePrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
     type: 3}
