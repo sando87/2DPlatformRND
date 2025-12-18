@@ -12,23 +12,43 @@ namespace PahlBit
 
     public class PlayerUnitInput : MonoBehaviour
     {
+        [SerializeField] VirtualInput _VirtualInput = null;
+
         private PlayerInputActions mInputActions;
         private Dictionary<PlayerUnitInputType, PlayerUnitInputState> mInputStates = new Dictionary<PlayerUnitInputType, PlayerUnitInputState>();
 
-        public bool JustPressed(PlayerUnitInputType type) { return GetInputAction(type).triggered; }
-        public bool IsPressing(PlayerUnitInputType type) { return GetInputAction(type).IsPressed(); }
-
+        public bool JustPressed(PlayerUnitInputType type)
+            => GetInputAction(type).triggered || (_VirtualInput != null ? _VirtualInput.JustPressed(type) : false);
+        public bool IsPressing(PlayerUnitInputType type)
+            => GetInputAction(type).IsPressed() || (_VirtualInput != null ? _VirtualInput.IsPressed(type) : false);
+        
         // public bool JustPressed(PlayerUnitInputType type) { return mInputStates[type].justPressed; }
         // public bool IsPressing(PlayerUnitInputType type) { return mInputStates[type].isPressed; }
         // public float HeldTime(PlayerUnitInputType type) { return mInputStates[type].HeldTime; }
 
         public TValue GetInputValue<TValue>(PlayerUnitInputType type) where TValue : struct
         {
-            InputAction action = mInputStates[type].inputAction;
-            if (action != null)
-                return action.ReadValue<TValue>();
+            // Virtual Input 우선
+            if (_VirtualInput != null)
+            {
+                if (typeof(TValue) == typeof(Vector2))
+                {
+                    Vector2 v = _VirtualInput.GetVector2(type);
+                    if (v != Vector2.zero)
+                        return (TValue)(object)v;
+                }
 
-            return default(TValue);
+                if (typeof(TValue) == typeof(float))
+                {
+                    float f = _VirtualInput.GetFloat(type);
+                    if (Mathf.Abs(f) > 0.0001f)
+                        return (TValue)(object)f;
+                }
+            }
+
+            // 실제 입력
+            InputAction action = mInputStates[type].inputAction;
+            return action != null ? action.ReadValue<TValue>() : default;
         }
 
         public UnityEvent<PlayerUnitInputType> EnterInput = new UnityEvent<PlayerUnitInputType>();
