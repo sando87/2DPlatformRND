@@ -72,7 +72,7 @@ namespace PahlBit
             mTarget = FindOverlappedTarget();
             if (mTarget != null)
             {
-                float dir = Base.Body.FrontDir.x;
+                float dir = Base.Body.FrontDirVec2.x;
                 Vector3 destPos = mTarget.transform.position;
                 Base.Phy.MoveFootPosition(destPos);
                 Base.Phy.Velocity = Vector2.zero;
@@ -86,7 +86,7 @@ namespace PahlBit
                 Base.Phy.Velocity = Vector2.zero;
                 Base.Phy.LockMovement = true;
 
-                float dir = Base.Body.FrontDir.x;
+                float dir = Base.Body.FrontDirVec2.x;
                 Vector3 destPos = mTarget.transform.position - new Vector3(_MoveDistance * dir, 0, 0);
 
                 Base.transform.DOMove(destPos, 0.6f).SetEase(Ease.OutExpo);
@@ -180,7 +180,7 @@ namespace PahlBit
 
         BaseObject FindFrontTarget()
         {
-            RaycastHit2D hit = Physics2D.Raycast(Base.Body.Center, Base.Body.FrontDir, FrontDetectRange, 1 << LayerID.Enemy);
+            RaycastHit2D hit = Physics2D.Raycast(Base.Body.Center, Base.Body.FrontDirVec2, FrontDetectRange, 1 << LayerID.Enemy);
             return hit.collider?.ExGetBase();
         }
         BaseObject FindOverlappedTarget()

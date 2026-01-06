@@ -69,7 +69,7 @@ namespace PahlBit
 
         void InstantiateMelee(int damage)
         {
-            Base.Phy.VelocityX = 2 * Base.Body.FrontDir.x;
+            Base.Phy.VelocityX = 2 * Base.Body.FrontDirVec2.x;
 
             OnFireMelee?.Invoke();
 
