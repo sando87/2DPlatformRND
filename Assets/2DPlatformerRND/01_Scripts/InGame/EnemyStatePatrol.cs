@@ -15,6 +15,7 @@ namespace PahlBit
         public override void EnterState(object param)
         {
             base.EnterState(param);
+            this.ExDelayedTask(3, () => LOG.trace()).Forget();
         }
 
         public override void LeaveState()
