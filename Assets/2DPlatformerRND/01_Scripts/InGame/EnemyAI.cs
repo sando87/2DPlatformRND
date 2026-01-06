@@ -10,15 +10,23 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float _DetectRange = 5f;
     [SerializeField] float _AttackRange = 2f;
     [SerializeField] float _ThinkInterval = 0.1f;
+    [SerializeField] float _MoveSpeed = 3f;
 
     BaseObject mBase = null;
     BaseObject mPlayerTarget = null;
 
     CancellationTokenSource mAI_CTS;
+    CancellationTokenSource mStateCTS;
 
     private void Awake()
     {
         mBase = this.ExGetBase();
+    }
+
+    void Start()
+    {
+        mBase.AnimHelper.AddEventMiddle(AnimStateNameHash.Attack, OnFireAttack);
+        mBase.AnimHelper.AddEventLeave(AnimStateNameHash.Attack, OnEndAttack);
     }
 
     void OnEnable()
@@ -60,6 +68,7 @@ public class EnemyAI : MonoBehaviour
                 {
                     // 공격 모드 진입
                     mPlayerTarget = target;
+                    CancelStateResetCTS(ct);
                     await EnterAttackMode(ct);
                     await EnterRecoverMode(ct);
                 }
@@ -67,7 +76,8 @@ public class EnemyAI : MonoBehaviour
                 {
                     // 추적 모드 진입
                     mPlayerTarget = target;
-                    EnterChaseMode(ct).Forget();
+                    CancelStateResetCTS(ct);
+                    EnterChaseMode(mStateCTS.Token).Forget();
                     await UniTask.WhenAny(IsAttackableTarget(ct), IsLostTarget(ct));
                 }
             }
@@ -75,7 +85,8 @@ public class EnemyAI : MonoBehaviour
             {
                 // 주변 대상이 없으면 순찬모드 진입 후 탐색
                 mPlayerTarget = null;
-                EnterPatrolMode(ct).Forget();
+                CancelStateResetCTS(ct);
+                EnterPatrolMode(mStateCTS.Token).Forget();
                 await IsDetectedTarget(ct);
             }
         }
@@ -149,7 +160,12 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-
+    void CancelStateResetCTS(CancellationToken parent)
+    {
+        mStateCTS?.Cancel();
+        mStateCTS?.Dispose();
+        mStateCTS = CancellationTokenSource.CreateLinkedTokenSource(parent);
+    }
 
     async UniTask EnterPatrolMode(CancellationToken ct)
     {
@@ -161,7 +177,7 @@ public class EnemyAI : MonoBehaviour
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 1.5f)), cancellationToken: ct);
                 curDir *= -1;
                 Turn(curDir);
-                Move(curDir);
+                Move(curDir * _MoveSpeed);
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(1.5f, 2.5f)), cancellationToken: ct);
                 Stop();
             }
@@ -174,14 +190,32 @@ public class EnemyAI : MonoBehaviour
 
     async UniTask EnterChaseMode(CancellationToken ct)
     {
+        try
+        {
+            while (!ct.IsCancellationRequested)
+            {
+                int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
+                Turn(curDir);
+                Move(curDir * _MoveSpeed);
+                await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 1.5f)), cancellationToken: ct);
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            // LOG.trace(ex.Message);
+        }
     }
 
     async UniTask EnterAttackMode(CancellationToken ct)
     {
+        Stop();
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Attack);
+        await UniTask.WaitUntil(() => mBase.AnimHelper.GetCurrentStateNameHash(0) != (int)AnimStateNameHash.Attack, cancellationToken: ct);
     }
 
     async UniTask EnterRecoverMode(CancellationToken ct)
     {
+        await UniTask.Delay(TimeSpan.FromSeconds(1.5f), cancellationToken: ct);
     }
 
 
@@ -210,9 +244,22 @@ public class EnemyAI : MonoBehaviour
     }
     protected void Move(float moveHoriVelocity)
     {
-        Turn(moveHoriVelocity);
         mBase.Phy.VelocityX = moveHoriVelocity;
         mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Run);
+    }
+
+    void OnFireAttack(int idx)
+    {
+        LOG.trace("Enemy Attack Fired!");
+        // 공격 판정
+        if (mPlayerTarget != null)
+        {
+            // Vector2 toTarget = (mPlayerTarget.Body.Center - mBase.Body.Center).normalized;
+            // mPlayerTarget.GetDamaged(1, toTarget);
+        }
+    }
+    void OnEndAttack()
+    {
     }
 
 }
