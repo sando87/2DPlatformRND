@@ -32,4 +32,16 @@ namespace PahlBit
         public static readonly int UpperAttack = Animator.StringToHash("UpperAttack");
 
     }
+
+    public class LayerID
+    {
+        public static readonly int Terrain = LayerMask.NameToLayer("Terrain");
+        public static readonly int Player = LayerMask.NameToLayer("Player");
+        public static readonly int Enemy = LayerMask.NameToLayer("Enemy");
+        public static readonly int Neutral = LayerMask.NameToLayer("Neutral");
+        public static readonly int PlatformPlayer = LayerMask.NameToLayer("PlatformPlayer");
+        public static readonly int PlayerObject = LayerMask.NameToLayer("PlayerObject");
+        public static readonly int PlatformEnemy = LayerMask.NameToLayer("PlatformEnemy");
+        public static readonly int Platform = LayerMask.NameToLayer("Platform");
+    }
 }
