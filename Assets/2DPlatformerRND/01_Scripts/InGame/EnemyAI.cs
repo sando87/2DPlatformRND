@@ -49,6 +49,9 @@ public class EnemyAI : MonoBehaviour
     }
     public void StopAI()
     {
+        mStateCTS?.Cancel();
+        mStateCTS?.Dispose();
+
         // 모든 상태 종료
         mAI_CTS?.Cancel();
         mAI_CTS?.Dispose();
@@ -56,107 +59,96 @@ public class EnemyAI : MonoBehaviour
 
     async UniTask MainAIFlow(CancellationToken ct)
     {
+        await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: ct);
+        Stop();
+        await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: ct);
+
         // 최초 상태
         while (!ct.IsCancellationRequested)
         {
-            BaseObject target = DetectPlayerAround(_DetectRange);
+            // 주변 대상이 없으면 순찬모드 진입 후 탐색
+            mPlayerTarget = null;
+            CancelStateResetCTS(ct);
+            EnterPatrolMode(mStateCTS.Token).Forget();
+            BaseObject target = await DetectTarget(mStateCTS.Token, _DetectRange);
+            if (target == null)
+                continue;
+            else
+                mPlayerTarget = target;
+
+            // 타겟 발견시 공격범위 밖이면 추격모드 진입
+            bool isAttackable = IsTargetInRange(_AttackRange);
+            if (!isAttackable)
+            {
+                CancelStateResetCTS(ct);
+                EnterChaseMode(mStateCTS.Token).Forget();
+                int returnIdx = await UniTask.WhenAny(IsAttackableTarget(mStateCTS.Token), IsLostTarget(mStateCTS.Token));
+                if (mStateCTS.IsCancellationRequested)
+                    break;
+
+                isAttackable = returnIdx == 0;
+            }
+
+            if (isAttackable) // 공격 모드 진입
+            {
+                CancelStateResetCTS(ct);
+                await EnterAttackMode(mStateCTS.Token);
+                await EnterRecoverMode(mStateCTS.Token);
+            }
+        }
+    }
+
+
+    async UniTask<BaseObject> DetectTarget(CancellationToken ct, float range)
+    {
+        while (!ct.IsCancellationRequested)
+        {
+            BaseObject target = DetectPlayerAround(range);
             if (target != null)
             {
-                // 타겟 발견 => 공격가능하면 바로 공격 아니면 추적모드 진입
-                mPlayerTarget = target;
-                if (Vector2.Distance(mBase.Body.Center, mPlayerTarget.Body.Center) <= _AttackRange)
-                {
-                    // 공격 모드 진입
-                    mPlayerTarget = target;
-                    CancelStateResetCTS(ct);
-                    await EnterAttackMode(ct);
-                    await EnterRecoverMode(ct);
-                }
-                else
-                {
-                    // 추적 모드 진입
-                    mPlayerTarget = target;
-                    CancelStateResetCTS(ct);
-                    EnterChaseMode(mStateCTS.Token).Forget();
-                    await UniTask.WhenAny(IsAttackableTarget(ct), IsLostTarget(ct));
-                }
+                return target;
             }
             else
             {
-                // 주변 대상이 없으면 순찬모드 진입 후 탐색
-                mPlayerTarget = null;
-                CancelStateResetCTS(ct);
-                EnterPatrolMode(mStateCTS.Token).Forget();
-                await IsDetectedTarget(ct);
+                await UniTask.Delay(TimeSpan.FromSeconds(_ThinkInterval), cancellationToken: ct);
             }
         }
+        return null;
     }
-
-
-    async UniTask IsDetectedTarget(CancellationToken ct)
+    bool IsTargetInRange(float range)
     {
-        try
-        {
-            while (!ct.IsCancellationRequested)
-            {
-                BaseObject target = DetectPlayerAround(_DetectRange);
-                if (target != null)
-                {
-                    break;
-                }
-                else
-                {
-                    await UniTask.Delay(TimeSpan.FromSeconds(_ThinkInterval), cancellationToken: ct);
-                }
-            }
-        }
-        catch (OperationCanceledException)
-        {
-            // LOG.trace(ex.Message);
-        }
+        if (mPlayerTarget == null)
+            return false;
+
+        float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - mPlayerTarget.Body.Center);
+        return distSqr <= range * range;
     }
     async UniTask IsAttackableTarget(CancellationToken ct)
     {
-        try
+        while (!ct.IsCancellationRequested)
         {
-            while (!ct.IsCancellationRequested)
+            if (IsTargetInRange(_AttackRange))
             {
-                BaseObject target = DetectPlayerAround(_AttackRange);
-                if (target != null)
-                {
-                    break;
-                }
-                else
-                {
-                    await UniTask.Delay(TimeSpan.FromSeconds(_ThinkInterval), cancellationToken: ct);
-                }
+                break;
             }
-        }
-        catch (OperationCanceledException)
-        {
-            // LOG.trace(ex.Message);
+            else
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(_ThinkInterval), cancellationToken: ct);
+            }
         }
     }
     async UniTask IsLostTarget(CancellationToken ct)
     {
-        try
+        while (!ct.IsCancellationRequested)
         {
-            while (!ct.IsCancellationRequested)
+            if (!IsTargetInRange(_DetectLossRange))
             {
-                BaseObject target = DetectPlayerAround(_DetectLossRange);
-                if (target == null)
-                {
-                    break;
-                }
-                else
-                {
-                    await UniTask.Delay(TimeSpan.FromSeconds(_ThinkInterval), cancellationToken: ct);
-                }
+                break;
             }
-        }
-        catch (OperationCanceledException)
-        {
-            // LOG.trace(ex.Message);
+            else
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(_ThinkInterval), cancellationToken: ct);
+            }
         }
     }
 
@@ -192,7 +184,7 @@ public class EnemyAI : MonoBehaviour
     {
         try
         {
-            while (!ct.IsCancellationRequested)
+            while (!ct.IsCancellationRequested && mPlayerTarget != null)
             {
                 int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
                 Turn(curDir);
