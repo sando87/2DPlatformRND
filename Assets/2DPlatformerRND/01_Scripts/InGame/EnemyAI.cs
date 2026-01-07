@@ -77,19 +77,13 @@ public class EnemyAI : MonoBehaviour
                 mPlayerTarget = target;
 
             // 타겟 발견시 공격범위 밖이면 추격모드 진입
-            bool isAttackable = IsTargetInRange(_AttackRange);
-            if (!isAttackable)
-            {
-                CancelStateResetCTS(ct);
-                EnterChaseMode(mStateCTS.Token).Forget();
-                int returnIdx = await UniTask.WhenAny(IsAttackableTarget(mStateCTS.Token), IsLostTarget(mStateCTS.Token));
-                if (mStateCTS.IsCancellationRequested)
-                    break;
+            CancelStateResetCTS(ct);
+            EnterChaseMode(mStateCTS.Token).Forget();
+            int returnIdx = await UniTask.WhenAny(IsAttackableTarget(mStateCTS.Token), IsLostTarget(mStateCTS.Token));
+            if (mStateCTS.IsCancellationRequested)
+                break;
 
-                isAttackable = returnIdx == 0;
-            }
-
-            if (isAttackable) // 공격 모드 진입
+            if (returnIdx == 0) // 공격 모드 진입
             {
                 CancelStateResetCTS(ct);
                 await EnterAttackMode(mStateCTS.Token);
@@ -161,6 +155,7 @@ public class EnemyAI : MonoBehaviour
 
     async UniTask EnterPatrolMode(CancellationToken ct)
     {
+        await UniTask.Yield();
         try
         {
             int curDir = mBase.Body.FrontDirInt;
@@ -182,6 +177,7 @@ public class EnemyAI : MonoBehaviour
 
     async UniTask EnterChaseMode(CancellationToken ct)
     {
+        await UniTask.Yield();
         try
         {
             while (!ct.IsCancellationRequested && mPlayerTarget != null)
@@ -214,7 +210,7 @@ public class EnemyAI : MonoBehaviour
 
     BaseObject DetectPlayerAround(float range)
     {
-        Collider2D col = Physics2D.OverlapCircle(mBase.Body.Center, range, LayerID.Player);
+        Collider2D col = Physics2D.OverlapCircle(mBase.Body.Center, range, 1 << LayerID.Player);
         if (col != null)
         {
             return col.ExGetBase();
