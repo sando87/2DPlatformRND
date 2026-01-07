@@ -6,6 +6,16 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    public enum EnemyState
+    {
+        None,
+        Idle,
+        Patrol,
+        Chase,
+        Attack,
+        Recover,
+    }
+
     [SerializeField] float _DetectLossRange = 8f;
     [SerializeField] float _DetectRange = 5f;
     [SerializeField] float _AttackRange = 2f;
@@ -17,7 +27,9 @@ public class EnemyAI : MonoBehaviour
 
     CancellationTokenSource mAI_CTS;
     CancellationTokenSource mStateCTS;
-    CancellationTokenSource mMoveCTS;
+    CancellationTokenSource mMoveCTS = null;
+
+    EnemyState mState = EnemyState.Idle;
 
     private void Awake()
     {
@@ -44,9 +56,13 @@ public class EnemyAI : MonoBehaviour
     {
         mAI_CTS?.Cancel();
         mAI_CTS?.Dispose();
-
         mAI_CTS = new CancellationTokenSource();
-        MainAIFlow(mAI_CTS.Token).Forget();
+
+        mStateCTS?.Cancel();
+        mStateCTS?.Dispose();
+        mStateCTS = CancellationTokenSource.CreateLinkedTokenSource(mAI_CTS.Token);
+
+        MainLoop(mAI_CTS.Token).Forget();
     }
     public void StopAI()
     {
@@ -61,47 +77,152 @@ public class EnemyAI : MonoBehaviour
         mAI_CTS?.Dispose();
     }
 
-    async UniTask MainAIFlow(CancellationToken ct)
+    async UniTask MainLoop(CancellationToken ct)
     {
         await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: ct);
-        Stop();
-        await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: ct);
 
-        // 최초 상태
         while (!ct.IsCancellationRequested)
         {
-            // 주변 대상이 없으면 순찬모드 진입 후 탐색
-            mPlayerTarget = null;
-            CancelStateResetCTS(ct);
-            EnterPatrolMode(mStateCTS.Token).Forget();
-            BaseObject target = await DetectTarget(mStateCTS.Token, _DetectRange);
-            if (target == null)
-                continue;
-            else
-                mPlayerTarget = target;
-
-            // 타겟 발견시 공격범위 밖이면 추격모드 진입
-            CancelStateResetCTS(ct);
-            EnterChaseMode(mStateCTS.Token).Forget();
-            int returnIdx = await UniTask.WhenAny(IsAttackableTarget(mStateCTS.Token), IsLostTarget(mStateCTS.Token));
-            if (mStateCTS.IsCancellationRequested)
-                break;
-
-            if (returnIdx == 0) // 공격 모드 진입
+            try
             {
-                CancelStateResetCTS(ct);
-                await EnterAttackMode(mStateCTS.Token);
-                await EnterRecoverMode(mStateCTS.Token);
+                switch (mState)
+                {
+                    case EnemyState.Idle:
+                        ChangeState(await IdleMode(mStateCTS.Token));
+                        break;
+
+                    case EnemyState.Patrol:
+                        ChangeState(await PatrolMode(mStateCTS.Token));
+                        break;
+
+                    case EnemyState.Chase:
+                        ChangeState(await ChaseMode(mStateCTS.Token));
+                        break;
+
+                    case EnemyState.Attack:
+                        ChangeState(await AttackMode(mStateCTS.Token));
+                        break;
+
+                    case EnemyState.Recover:
+                        ChangeState(await RecoverMode(mStateCTS.Token));
+                        break;
+                    default:
+                        ChangeState(EnemyState.Idle);
+                        break;
+                }
             }
+            catch (OperationCanceledException)
+            {
+            }
+        }
+    }
+    public void ChangeState(EnemyState enemyState)
+    {
+        mStateCTS?.Cancel();
+        mStateCTS?.Dispose();
+        mStateCTS = CancellationTokenSource.CreateLinkedTokenSource(mAI_CTS.Token);
+
+        mState = enemyState;
+    }
+    async UniTask<EnemyState> IdleMode(CancellationToken ctx)
+    {
+        try
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: ctx);
+            return EnemyState.Patrol;
+        }
+        finally
+        {
+        }
+    }
+
+    async UniTask<EnemyState> PatrolMode(CancellationToken ctx)
+    {
+        // ===== ENTER =====
+        Stop();
+        mPlayerTarget = null;
+
+        try
+        {
+            DoPatrolMoving(ctx).Forget();
+            mPlayerTarget = await DetectTarget(ctx);
+            if (mPlayerTarget != null)
+            {
+                if (IsTargetInRange(_AttackRange))
+                {
+                    return EnemyState.Attack;
+                }
+                else
+                {
+                    return EnemyState.Chase;
+                }
+            }
+        }
+        finally
+        {
+            // ===== EXIT =====
+            Stop();
+        }
+
+        return EnemyState.Patrol;
+    }
+    async UniTask<EnemyState> ChaseMode(CancellationToken ctx)
+    {
+        try
+        {
+            DoChaseMoving(ctx).Forget();
+            int returnIdx = await UniTask.WhenAny(IsAttackableTarget(ctx), IsLostTarget(ctx));
+            if (returnIdx == 0)
+                return EnemyState.Attack;
+            else if (returnIdx == 1)
+                return EnemyState.Patrol;
+        }
+        finally
+        {
+        }
+        return EnemyState.Patrol;
+    }
+    async UniTask<EnemyState> AttackMode(CancellationToken ctx)
+    {
+        try
+        {
+            Stop();
+            mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Attack);
+            await UniTask.WaitUntil(() => mBase.AnimHelper.GetCurrentStateNameHash(0) != (int)AnimStateNameHash.Attack, cancellationToken: ctx);
+            return EnemyState.Recover;
+        }
+        finally
+        {
+            // EXIT
+            // 공격 후 정리 (히트박스 off 등)
+        }
+    }
+    async UniTask<EnemyState> RecoverMode(CancellationToken ctx)
+    {
+        try
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(1.5f), cancellationToken: ctx);
+
+            if (mPlayerTarget == null)
+                return EnemyState.Patrol;
+            else if (IsTargetInRange(_AttackRange))
+                return EnemyState.Attack;
+            else if (IsTargetInRange(_DetectLossRange))
+                return EnemyState.Chase;
+            else
+                return EnemyState.Patrol;
+        }
+        finally
+        {
         }
     }
 
 
-    async UniTask<BaseObject> DetectTarget(CancellationToken ct, float range)
+    async UniTask<BaseObject> DetectTarget(CancellationToken ct)
     {
         while (!ct.IsCancellationRequested)
         {
-            BaseObject target = DetectPlayerAround(range);
+            BaseObject target = DetectPlayerAround(_DetectRange);
             if (target != null)
             {
                 return target;
@@ -139,7 +260,11 @@ public class EnemyAI : MonoBehaviour
     {
         while (!ct.IsCancellationRequested)
         {
-            if (!IsTargetInRange(_DetectLossRange))
+            if (mPlayerTarget == null)
+            {
+                break;
+            }
+            else if (!IsTargetInRange(_DetectLossRange))
             {
                 break;
             }
@@ -150,19 +275,11 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    void CancelStateResetCTS(CancellationToken parent)
-    {
-        mStateCTS?.Cancel();
-        mStateCTS?.Dispose();
-        mStateCTS = CancellationTokenSource.CreateLinkedTokenSource(parent);
-    }
 
-    async UniTask EnterPatrolMode(CancellationToken ct)
+    async UniTask DoPatrolMoving(CancellationToken ct)
     {
         try
         {
-            await UniTask.Yield(cancellationToken: ct);
-            Stop();
             int curDir = mBase.Body.FrontDirInt;
             while (!ct.IsCancellationRequested)
             {
@@ -170,7 +287,7 @@ public class EnemyAI : MonoBehaviour
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 1.5f)), cancellationToken: ct);
                 curDir *= -1;
                 Turn(curDir);
-                StartMoving(mMoveCTS.Token, curDir * _MoveSpeed).Forget();
+                StartMoving(curDir * _MoveSpeed);
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(1.5f, 2.5f)), cancellationToken: ct);
             }
         }
@@ -180,7 +297,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    async UniTask EnterChaseMode(CancellationToken ct)
+    async UniTask DoChaseMoving(CancellationToken ct)
     {
         try
         {
@@ -190,7 +307,7 @@ public class EnemyAI : MonoBehaviour
             {
                 int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
                 Turn(curDir);
-                StartMoving(mMoveCTS.Token, curDir * _MoveSpeed).Forget();
+                StartMoving(curDir * _MoveSpeed);
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 1.5f)), cancellationToken: ct);
             }
         }
@@ -199,20 +316,6 @@ public class EnemyAI : MonoBehaviour
             // LOG.trace(ex.Message);
         }
     }
-
-    async UniTask EnterAttackMode(CancellationToken ct)
-    {
-        Stop();
-        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Attack);
-        await UniTask.WaitUntil(() => mBase.AnimHelper.GetCurrentStateNameHash(0) != (int)AnimStateNameHash.Attack, cancellationToken: ct);
-    }
-
-    async UniTask EnterRecoverMode(CancellationToken ct)
-    {
-        await UniTask.Delay(TimeSpan.FromSeconds(1.5f), cancellationToken: ct);
-    }
-
-
 
     BaseObject DetectPlayerAround(float range)
     {
@@ -226,12 +329,15 @@ public class EnemyAI : MonoBehaviour
 
     void Stop()
     {
-        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
-        mBase.Phy.Velocity = Vector2.zero;
+        if (mBase != null)
+        {
+            mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
+            mBase.Phy.Velocity = Vector2.zero;
+        }
 
         mMoveCTS?.Cancel();
         mMoveCTS?.Dispose();
-        mMoveCTS = new CancellationTokenSource();
+        mMoveCTS = null;
     }
     void Turn(float worldDir)
     {
@@ -240,14 +346,25 @@ public class EnemyAI : MonoBehaviour
         Vector3 front = worldDir > 0 ? Vector3.forward : Vector3.back;
         transform.rotation = Quaternion.LookRotation(front, transform.up);
     }
-    async UniTask StartMoving(CancellationToken ct, float moveHoriVelocity)
+    void StartMoving(float velocity)
+    {
+        mMoveCTS?.Cancel();
+        mMoveCTS?.Dispose();
+        mMoveCTS = new CancellationTokenSource();
+
+        MoveLoop(mMoveCTS.Token, velocity).Forget();
+    }
+
+    async UniTask MoveLoop(CancellationToken ct, float v)
     {
         mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Run);
+
         while (!ct.IsCancellationRequested)
         {
-            mBase.Phy.VelocityX = moveHoriVelocity;
-            await UniTask.Yield(cancellationToken: ct);
+            mBase.Phy.VelocityX = v;
+            await UniTask.Yield(ct);
         }
+
         mBase.Phy.Velocity = Vector2.zero;
     }
 
