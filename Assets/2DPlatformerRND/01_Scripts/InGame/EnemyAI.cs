@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour
 
     CancellationTokenSource mAI_CTS;
     CancellationTokenSource mStateCTS;
+    CancellationTokenSource mMoveCTS;
 
     private void Awake()
     {
@@ -49,6 +50,9 @@ public class EnemyAI : MonoBehaviour
     }
     public void StopAI()
     {
+        mMoveCTS?.Cancel();
+        mMoveCTS?.Dispose();
+
         mStateCTS?.Cancel();
         mStateCTS?.Dispose();
 
@@ -155,18 +159,19 @@ public class EnemyAI : MonoBehaviour
 
     async UniTask EnterPatrolMode(CancellationToken ct)
     {
-        await UniTask.Yield();
         try
         {
+            await UniTask.Yield(cancellationToken: ct);
+            Stop();
             int curDir = mBase.Body.FrontDirInt;
             while (!ct.IsCancellationRequested)
             {
+                Stop();
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 1.5f)), cancellationToken: ct);
                 curDir *= -1;
                 Turn(curDir);
-                Move(curDir * _MoveSpeed);
+                StartMoving(mMoveCTS.Token, curDir * _MoveSpeed).Forget();
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(1.5f, 2.5f)), cancellationToken: ct);
-                Stop();
             }
         }
         catch (OperationCanceledException)
@@ -177,14 +182,15 @@ public class EnemyAI : MonoBehaviour
 
     async UniTask EnterChaseMode(CancellationToken ct)
     {
-        await UniTask.Yield();
         try
         {
+            await UniTask.Yield(cancellationToken: ct);
+            Stop();
             while (!ct.IsCancellationRequested && mPlayerTarget != null)
             {
                 int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
                 Turn(curDir);
-                Move(curDir * _MoveSpeed);
+                StartMoving(mMoveCTS.Token, curDir * _MoveSpeed).Forget();
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 1.5f)), cancellationToken: ct);
             }
         }
@@ -218,22 +224,31 @@ public class EnemyAI : MonoBehaviour
         return null;
     }
 
-    protected void Stop()
+    void Stop()
     {
         mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
         mBase.Phy.Velocity = Vector2.zero;
+
+        mMoveCTS?.Cancel();
+        mMoveCTS?.Dispose();
+        mMoveCTS = new CancellationTokenSource();
     }
-    protected void Turn(float worldDir)
+    void Turn(float worldDir)
     {
         if (worldDir == 0) return;
 
         Vector3 front = worldDir > 0 ? Vector3.forward : Vector3.back;
         transform.rotation = Quaternion.LookRotation(front, transform.up);
     }
-    protected void Move(float moveHoriVelocity)
+    async UniTask StartMoving(CancellationToken ct, float moveHoriVelocity)
     {
-        mBase.Phy.VelocityX = moveHoriVelocity;
         mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Run);
+        while (!ct.IsCancellationRequested)
+        {
+            mBase.Phy.VelocityX = moveHoriVelocity;
+            await UniTask.Yield(cancellationToken: ct);
+        }
+        mBase.Phy.Velocity = Vector2.zero;
     }
 
     void OnFireAttack(int idx)
