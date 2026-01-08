@@ -5901,11 +5901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b47cc91083f5346bccf431011944b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  _DetectLossRange: 8
-  _DetectRange: 5
-  _AttackRange: 2
   _ThinkInterval: 0.1
-  _MoveSpeed: 3
 --- !u!114 &2111099496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5919,6 +5915,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.EnemyDataMono
   _ID: Enemy01
+  <Data>k__BackingField:
+    <Stats>k__BackingField:
+      Health: 0
+      Attack: 0
+      Defence: 0
+      MoveSpeed: 0
+      AttackSpeed: 0
+      Cooltime: 0
+      DetectRange: 0
+      AttackRange: 0
+      ItemDrop:
+        mPercentVal: 0
+      GoldOnDeath: 0
+      ExpOnDeath: 0
 --- !u!137 &312820601880245780
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ using UnityEngine.InputSystem;
 public class EnemyData
 {
     public EnemyResourceData ResourceData { get; private set; } = null;
+
+    [field: SerializeField]
     public EnemyStats Stats { get; private set; } = null;
 
     public void InitData(string enemyID)

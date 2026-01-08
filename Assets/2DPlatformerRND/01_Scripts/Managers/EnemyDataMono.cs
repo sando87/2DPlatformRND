@@ -11,15 +11,10 @@ namespace PahlBit
     {
         [SerializeField]
         [Dropdown("IDList")]
-        // [OnValueChanged(nameof(SelectEnemyID))]
         string _ID = "";
         List<string> IDList { get => EnemyResourceTable.Instance.GetAllInfo().Select(info => info.EnemyID).ToList(); }
 
-        // [SerializeField]
-        // [ReadOnly]
-        // private EnemyData _EnemyData = null;
-        // void SelectEnemyID() { if (_EnemyData == null) { _EnemyData = new EnemyData(); } _EnemyData.InitData(_ID); _EnemyData._StatsForDev = _EnemyData.Stats; }
-
+        [field: SerializeField]
         public EnemyData Data { get; private set; } = null;
 
         void Awake()
