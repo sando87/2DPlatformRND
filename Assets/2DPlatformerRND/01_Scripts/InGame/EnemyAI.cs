@@ -16,13 +16,8 @@ public class EnemyAI : MonoBehaviour
         Recover,
     }
 
-    [SerializeField] float _DetectLossRange = 8f;
-    [SerializeField] float _DetectRange = 5f;
-    [SerializeField] float _AttackRange = 2f;
-    [SerializeField] float _ThinkInterval = 0.1f;
-    [SerializeField] float _MoveSpeed = 3f;
-
     BaseObject mBase = null;
+    EnemyStats mStats = null;
     BaseObject mPlayerTarget = null;
 
     CancellationTokenSource mAI_CTS;
@@ -31,13 +26,21 @@ public class EnemyAI : MonoBehaviour
 
     EnemyState mState = EnemyState.Idle;
 
-    private void Awake()
+    [SerializeField] float _ThinkInterval = 0.5f;
+    float DetectLossRange { get { return mStats.DetectRange * 1.5f; } }
+    float DetectRange { get { return mStats.DetectRange; } }
+    float AttackRange { get { return mStats.AttackRange; } }
+    float MoveSpeed { get { return mStats.MoveSpeed; } }
+
+    void Awake()
     {
         mBase = this.ExGetBase();
     }
 
     void Start()
     {
+        mStats = mBase.GetComponentInChildren<EnemyDataMono>().Data.Stats;
+
         mBase.AnimHelper.AddEventMiddle(AnimStateNameHash.Attack, OnFireAttack);
         mBase.AnimHelper.AddEventLeave(AnimStateNameHash.Attack, OnEndAttack);
     }
@@ -148,7 +151,7 @@ public class EnemyAI : MonoBehaviour
             mPlayerTarget = await DetectTarget(ctx);
             if (mPlayerTarget != null)
             {
-                if (IsTargetInRange(_AttackRange))
+                if (IsTargetInRange(AttackRange))
                 {
                     return EnemyState.Attack;
                 }
@@ -205,9 +208,9 @@ public class EnemyAI : MonoBehaviour
 
             if (mPlayerTarget == null)
                 return EnemyState.Patrol;
-            else if (IsTargetInRange(_AttackRange))
+            else if (IsTargetInRange(AttackRange))
                 return EnemyState.Attack;
-            else if (IsTargetInRange(_DetectLossRange))
+            else if (IsTargetInRange(DetectLossRange))
                 return EnemyState.Chase;
             else
                 return EnemyState.Patrol;
@@ -222,7 +225,7 @@ public class EnemyAI : MonoBehaviour
     {
         while (!ct.IsCancellationRequested)
         {
-            BaseObject target = DetectPlayerAround(_DetectRange);
+            BaseObject target = DetectPlayerAround(DetectRange);
             if (target != null)
             {
                 return target;
@@ -246,7 +249,7 @@ public class EnemyAI : MonoBehaviour
     {
         while (!ct.IsCancellationRequested)
         {
-            if (IsTargetInRange(_AttackRange))
+            if (IsTargetInRange(AttackRange))
             {
                 break;
             }
@@ -264,7 +267,7 @@ public class EnemyAI : MonoBehaviour
             {
                 break;
             }
-            else if (!IsTargetInRange(_DetectLossRange))
+            else if (!IsTargetInRange(DetectLossRange))
             {
                 break;
             }
@@ -287,7 +290,7 @@ public class EnemyAI : MonoBehaviour
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 1.5f)), cancellationToken: ct);
                 curDir *= -1;
                 Turn(curDir);
-                StartMoving(curDir * _MoveSpeed);
+                StartMoving(curDir * MoveSpeed);
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(1.5f, 2.5f)), cancellationToken: ct);
             }
         }
@@ -307,7 +310,7 @@ public class EnemyAI : MonoBehaviour
             {
                 int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
                 Turn(curDir);
-                StartMoving(curDir * _MoveSpeed);
+                StartMoving(curDir * MoveSpeed);
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 1.5f)), cancellationToken: ct);
             }
         }
