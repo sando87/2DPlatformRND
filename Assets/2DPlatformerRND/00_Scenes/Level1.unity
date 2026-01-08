@@ -5799,6 +5799,7 @@ GameObject:
   - component: {fileID: 2111099494}
   - component: {fileID: 2111099490}
   - component: {fileID: 2111099495}
+  - component: {fileID: 2111099496}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -5905,6 +5906,19 @@ MonoBehaviour:
   _AttackRange: 2
   _ThinkInterval: 0.1
   _MoveSpeed: 3
+--- !u!114 &2111099496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111099486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43459b6858ca0da4ea1c5155f638e474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.EnemyDataMono
+  _ID: Enemy01
 --- !u!137 &312820601880245780
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
