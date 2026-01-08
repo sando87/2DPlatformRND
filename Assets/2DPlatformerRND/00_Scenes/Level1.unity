@@ -1742,6 +1742,9 @@ GameObject:
   - component: {fileID: 1020631648}
   - component: {fileID: 1020631637}
   - component: {fileID: 1020631649}
+  - component: {fileID: 1020631650}
+  - component: {fileID: 1020631651}
+  - component: {fileID: 1020631652}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -1865,6 +1868,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterRoot
   _CharacterID: 1
+--- !u!114 &1020631650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020631636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f329b954c0b6224084e15002829f0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.Experience
+  OnLevelUp:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1020631651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020631636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bab4e09feee42a43a3d7d88eaf78e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.CharObject
+  _MoveSpeed: 5
+  _AttackSpeed: 1
+  _ID: Character01
+  <BaseStats>k__BackingField:
+    Health: 0
+    Mana: 0
+    Shield: 0
+    Attack: 0
+    Defence: 0
+    MoveSpeed: 0
+    AttackSpeed: 0
+  <TotalStats>k__BackingField:
+    Health: 0
+    Mana: 0
+    Shield: 0
+    Attack: 0
+    Defence: 0
+    MoveSpeed: 0
+    AttackSpeed: 0
+--- !u!114 &1020631652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020631636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22bef6b20d622a74d9998cfff6db6d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.BuffController
 --- !u!1 &1098099984
 GameObject:
   m_ObjectHideFlags: 0

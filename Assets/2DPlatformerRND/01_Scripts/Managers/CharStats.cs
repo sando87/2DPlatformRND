@@ -3,27 +3,29 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 namespace PahlBit
 {
+    [System.Serializable]
     public class CharStats
     {
-        public double Health;
-        public double Mana;
-        public double Shield;
-
-        public double Attack;
-        public double Defence;
-        public double MoveSpeed;
-        public double AttackSpeed;
+        public float Health;
+        public float Mana;
+        public float Shield;
+        public float Attack;
+        public float Defence;
+        public float MoveSpeed;
+        public float AttackSpeed;
 
         public static CharStats operator *(CharStats stat, ItemStats option)
         {
             CharStats result = new CharStats();
-            // result.Health = stat.Health * (1 + option.HealthUp.ToDouble()) + option.HealthRegen;
-            // result.Mana = stat.Mana * (1 + option.ManaUp.ToDouble()) + option.ManaRegen;
-            // result.Attack = stat.Attack * (1 + option.AttackUp.ToDouble());
-            // result.Defence = stat.Defence * (1 + option.DefenceUp.ToDouble());
-            // result.MoveSpeed = stat.MoveSpeed * (1 + option.MoveSpeedUp.ToDouble());
-            // result.AttackSpeed = stat.AttackSpeed * (1 + option.AttackSpeedUp.ToDouble());
-            // result.Shield = stat.Shield + option.ShieldAdd + option.ShieldRegen;
+
+            result.Health = stat.Health * option.HealthUp;
+            result.Mana = stat.Mana * option.ManaUp;
+            result.Shield = option.ShieldAdd;
+            result.Attack = stat.Attack * option.AttackUp;
+            result.Defence = stat.Defence * option.DefenceUp;
+            result.MoveSpeed = stat.MoveSpeed * option.MoveSpeedUp;
+            result.AttackSpeed = stat.AttackSpeed * option.AttackSpeedUp;
+
             return result;
         }
     }

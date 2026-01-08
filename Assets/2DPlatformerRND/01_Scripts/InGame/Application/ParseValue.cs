@@ -25,7 +25,7 @@ namespace PahlBit
             mEase = _ease;
         }
 
-        // 입력 string 예시: "3~5@InOutQuad+0.2"
+        // 입력 string 예시: "3~5@InOutQuad+0.2+0.3L"
         public static ParseValue Parse(string str)
         {
             float min = 0f, max = 0f, stepByPoint = 0f, stepByLevel = 0f;
@@ -38,7 +38,7 @@ namespace PahlBit
             // -------------------------------
             while (true)
             {
-                int plusIdx = work.IndexOf('+');
+                int plusIdx = work.LastIndexOf('+');
                 if (plusIdx >= 0)
                 {
                     string stepStr = work.Substring(plusIdx + 1);
@@ -50,7 +50,7 @@ namespace PahlBit
                     work = work.Substring(0, plusIdx); // 나머지 부분만 유지
                     continue;
                 }
-                int minusIdx = work.IndexOf('-');
+                int minusIdx = work.LastIndexOf('-');
                 if (minusIdx >= 0)
                 {
                     string stepStr = work.Substring(minusIdx + 1);

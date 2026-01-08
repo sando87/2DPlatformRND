@@ -37,7 +37,6 @@ public class CharacterRoot : MonoBehaviour
         return mCharacterID;
     }
 
-    public Equipment Equip => GetComponentInChildren<Equipment>();
     public ItemInventory Inven => GetComponentInChildren<ItemInventory>();
     public CharObject Stats => GetComponentInChildren<CharObject>();
     public SkillController Skills => GetComponentInChildren<SkillController>();

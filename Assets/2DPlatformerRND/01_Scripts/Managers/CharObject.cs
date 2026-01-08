@@ -9,6 +9,9 @@ namespace PahlBit
 {
     public class CharObject : MonoBehaviour
     {
+        [SerializeField] float _MoveSpeed = 5f;
+        [SerializeField] float _AttackSpeed = 1f;
+
         [SerializeField]
         [Dropdown("IDList")]
         string _ID = "";
@@ -18,10 +21,18 @@ namespace PahlBit
 
         public CharSaveData SaveData { get; private set; } = null;
         public CharResourceData ResourceData { get; private set; } = null;
+
+        [field: SerializeField]
         public CharStats BaseStats { get; private set; } = new CharStats();
+        [field: SerializeField]
         public CharStats TotalStats { get; private set; } = new CharStats();
 
-        public void Init(long statsID)
+        void Awake()
+        {
+            Init(_ID);
+        }
+
+        public void Init(string statsID)
         {
             ResourceData = CharResourceTable.Instance.GetInfo(statsID);
             UserSaveData userSaveData = SaveFileManager<UserSaveData>.Load();
@@ -42,8 +53,8 @@ namespace PahlBit
             BaseStats.Mana = ResourceData._Mana.GetValueByBoth(SaveData.ManaPoint, currentLevelIndex);
 
             BaseStats.Shield = 0;
-            BaseStats.MoveSpeed = 5;
-            BaseStats.AttackSpeed = 1;
+            BaseStats.MoveSpeed = _MoveSpeed;
+            BaseStats.AttackSpeed = _AttackSpeed;
         }
         void UpdateTotalStat()
         {
