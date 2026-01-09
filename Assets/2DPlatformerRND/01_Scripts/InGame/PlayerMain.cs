@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace PahlBit
@@ -11,12 +12,18 @@ namespace PahlBit
         public bool LockControl { get; set; } = false;
 
         BaseObject mBaseObj = null;
+        CharObject mSpec = null;
         PlayerUnitInput mPlayerInput = null;
 
         private void Awake()
         {
             mBaseObj = GetComponentInParent<BaseObject>();
-            mPlayerInput = GetComponentInParent<PlayerUnitInput>();
+            mSpec = mBaseObj.GetComponentInChildren<CharObject>();
+            mPlayerInput = mBaseObj.GetComponentInChildren<PlayerUnitInput>();
+        }
+        void Start()
+        {
+            mBaseObj.Health.InitHealth(mSpec.TotalStats.Health, mSpec.TotalStats.Mana, mSpec.TotalStats.Shield);
         }
         private void Update()
         {

@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,16 +16,19 @@ namespace PahlBit
         public float CurrentMana => mCurrentMana;
         public float CurrentShield => mCurrentShield;
 
-        public UnityEvent OnDamaged = new UnityEvent();
-        public UnityEvent OnDied = new UnityEvent();
-
         float mMaxCurrentHP = 10;
         float mMaxCurrentMana = 0;
         float mMaxCurrentShield = 0;
 
+        [SerializeField, NaughtyAttributes.ReadOnly]
         float mCurrentHP = 10;
+        [SerializeField, NaughtyAttributes.ReadOnly]
         float mCurrentMana = 0;
+        [SerializeField, NaughtyAttributes.ReadOnly]
         float mCurrentShield = 0;
+
+        public UnityEvent OnDamaged = new UnityEvent();
+        public UnityEvent OnDied = new UnityEvent();
 
         public void InitHealth(float maxHp, float maxMana, float maxShield)
         {

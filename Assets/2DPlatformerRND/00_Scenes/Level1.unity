@@ -1745,6 +1745,8 @@ GameObject:
   - component: {fileID: 1020631650}
   - component: {fileID: 1020631651}
   - component: {fileID: 1020631652}
+  - component: {fileID: 1020631653}
+  - component: {fileID: 1020631654}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -1926,6 +1928,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22bef6b20d622a74d9998cfff6db6d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.BuffController
+--- !u!114 &1020631653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020631636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7970c8edcdb6a684dadc3cd357b6c5bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.BattleDispatcher
+  EventOnHitResult:
+    m_PersistentCalls:
+      m_Calls: []
+  EventOnKillResult:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1020631654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020631636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc6104ce35a20a468ef2c8785639a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.Health
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDied:
+    m_PersistentCalls:
+      m_Calls: []
+  mCurrentHP: 10
+  mCurrentMana: 0
+  mCurrentShield: 0
 --- !u!1 &1098099984
 GameObject:
   m_ObjectHideFlags: 0
@@ -5861,6 +5902,7 @@ GameObject:
   - component: {fileID: 2111099490}
   - component: {fileID: 2111099495}
   - component: {fileID: 2111099496}
+  - component: {fileID: 2111099497}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -5962,6 +6004,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b47cc91083f5346bccf431011944b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  MeleePrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
+    type: 3}
   _ThinkInterval: 0.1
 --- !u!114 &2111099496
 MonoBehaviour:
@@ -5990,6 +6034,27 @@ MonoBehaviour:
         mPercentVal: 0
       GoldOnDeath: 0
       ExpOnDeath: 0
+--- !u!114 &2111099497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111099486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc6104ce35a20a468ef2c8785639a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.Health
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDied:
+    m_PersistentCalls:
+      m_Calls: []
+  mCurrentHP: 10
+  mCurrentMana: 0
+  mCurrentShield: 0
 --- !u!137 &312820601880245780
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

@@ -25,6 +25,22 @@ namespace PahlBit
             Init();
         }
 
+        void Start()
+        {
+            BattleDispatcher battleDispatcher = this.ExGetBase().GetComponentInChildren<BattleDispatcher>();
+            if (battleDispatcher != null)
+            {
+                battleDispatcher.EventOnKillResult.AddListener((result) =>
+                {
+                    if (result.IsKilled)
+                    {
+                        float gainedExp = result.Target.ExGetBase().GetComponentInChildren<EnemyDataMono>().Data.Stats.ExpOnDeath;
+                        AddExp(gainedExp);
+                    }
+                });
+            }
+        }
+
         public void Init()
         {
             UserSaveData userSaveData = SaveFileManager<UserSaveData>.Load();

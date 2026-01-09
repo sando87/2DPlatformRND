@@ -26,6 +26,7 @@ public class EnemyAI : MonoBehaviour
 
     EnemyState mState = EnemyState.Idle;
 
+    [SerializeField] ProjectileBase MeleePrefab;
     [SerializeField] float _ThinkInterval = 0.5f;
     float DetectLossRange { get { return mStats.DetectRange * 1.5f; } }
     float DetectRange { get { return mStats.DetectRange; } }
@@ -373,16 +374,27 @@ public class EnemyAI : MonoBehaviour
 
     void OnFireAttack(int idx)
     {
-        LOG.trace("Enemy Attack Fired!");
-        // 공격 판정
-        if (mPlayerTarget != null)
-        {
-            // Vector2 toTarget = (mPlayerTarget.Body.Center - mBase.Body.Center).normalized;
-            // mPlayerTarget.GetDamaged(1, toTarget);
-        }
+        DoFireAttack();
     }
     void OnEndAttack()
     {
+    }
+
+    public void DoFireAttack()
+    {
+        // 스킬 오브젝트 생성
+        Vector2 startPos = mBase.Body.Center + new Vector2(transform.right.x, 0);
+        ProjectileBase obj = ProjectileBase.Create(MeleePrefab, startPos, mBase.transform.rotation, mBase.gameObject.layer);
+        obj.OnHit.AddListener((col) =>
+        {
+            // 충돌 시 처리할 내용
+            Health health = col.ExGetBase().GetComponentInChildren<Health>();
+            if (health != null)
+            {
+                float damage = mStats.Attack;
+                health.GetDamaged(damage);
+            }
+        });
     }
 
 }

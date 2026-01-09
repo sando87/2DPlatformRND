@@ -9,21 +9,22 @@ namespace PahlBit
 {
     public class ProjectileBase : MonoBehaviour
     {
+        [field: SerializeField]
+        public ProjectileInfo Stats { get; set; }
+
         private BaseObject mBaseObj = null;
         private InteractableCollider mInteractCollider = null;
         private Dictionary<Collider2D, float> mHitColliders = new Dictionary<Collider2D, float>();
 
-        private SkillStats mStats = null;
         private Vector2 mStartPos = Vector2.zero;
 
         public UnityEvent<Collider2D> OnHit;
         public UnityEvent OnEnd;
 
-        public static ProjectileBase Create(ProjectileBase prefab, Vector3 position, Quaternion rotation, SkillStats skillStats, int layer)
+        public static ProjectileBase Create(ProjectileBase prefab, Vector3 position, Quaternion rotation, int layer)
         {
             ProjectileBase obj = Instantiate(prefab, position, rotation);
             obj.mStartPos = position;
-            obj.mStats = skillStats;
             obj.gameObject.ExSetLayerAll(layer);
             return obj;
         }
@@ -50,35 +51,31 @@ namespace PahlBit
 
         void Start()
         {
-            if (mStats == null) return;
-
-            if (mStats.Duration > 0)
+            if (Stats.Duration > 0)
                 EndAfterDuration();
 
-            if (mStats.ProjectileSpeed > 0)
+            if (Stats.MoveSpeed > 0)
                 LaunchProjectile();
         }
 
         void Update()
         {
-            if (mStats == null) return;
-
-            if (mStats.Interval > 0)
+            if (Stats.Interval > 0)
                 HitEventEveryInterval();
 
-            if (mStats.ProjectileDistance > 0)
+            if (Stats.MaxDistance > 0)
                 EndAfterDistance();
         }
 
         void LaunchProjectile()
         {
-            Vector2 vel = transform.right * mStats.ProjectileSpeed;
+            Vector2 vel = transform.right * Stats.MoveSpeed;
             mBaseObj.Phy.VelocityX = vel.x;
             mBaseObj.Phy.VelocityY = vel.y;
         }
         void EndAfterDistance()
         {
-            if ((mStartPos - transform.position.ExToVector2()).magnitude > mStats.ProjectileDistance)
+            if ((mStartPos - transform.position.ExToVector2()).magnitude > Stats.MaxDistance)
             {
                 DoEndProjectile();
             }
@@ -86,7 +83,7 @@ namespace PahlBit
 
         void EndAfterDuration()
         {
-            this.ExDelayedCoroutine(mStats.Duration, DoEndProjectile);
+            this.ExDelayedCoroutine(Stats.Duration, DoEndProjectile);
         }
 
         void DoEndProjectile()
@@ -100,7 +97,7 @@ namespace PahlBit
         void HitEventEveryInterval()
         {
             // 현재 Hit된 콜라이더들을 interval마다 OnHit콜백 호출해줌
-            double interval = mStats.Interval;
+            double interval = Stats.Interval;
             foreach (var kvp in mHitColliders)
             {
                 Collider2D col = kvp.Key;

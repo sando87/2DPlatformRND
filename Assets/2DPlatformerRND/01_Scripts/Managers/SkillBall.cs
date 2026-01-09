@@ -38,16 +38,22 @@ public class SkillBall : SkillObject
     {
         // 스킬 오브젝트 생성
         Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
-        ProjectileBase obj = ProjectileBase.Create(CirclePrefab, startPos, mBaseObj.transform.rotation, BaseStats, mBaseObj.gameObject.layer);
+        ProjectileBase obj = ProjectileBase.Create(CirclePrefab, startPos, mBaseObj.transform.rotation, mBaseObj.gameObject.layer);
         obj.OnHit.AddListener((col) =>
         {
             // 충돌 시 처리할 내용
-            EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
-            if (enemy != null)
+            Health health = col.ExGetBase().GetComponentInChildren<Health>();
+            if (health != null)
             {
-                LOG.trace(BaseStats.Attack);
-                int damage = (int)BaseStats.Attack % 3;
-                enemy.GetDamaged(damage + 1, mBaseObj.transform.right);
+                float damage = BaseStats.Attack;
+                health.GetDamaged(damage);
+
+                AttackResult result = new AttackResult()
+                {
+                    Target = col.ExGetBase(),
+                    IsKilled = health.IsDead,
+                };
+                mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
             }
         });
     }
