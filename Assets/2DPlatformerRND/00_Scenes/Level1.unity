@@ -264,6 +264,8 @@ GameObject:
   - component: {fileID: 169048144}
   - component: {fileID: 169048147}
   - component: {fileID: 169048148}
+  - component: {fileID: 169048150}
+  - component: {fileID: 169048149}
   m_Layer: 7
   m_Name: PlayerState 0
   m_TagString: Untagged
@@ -445,6 +447,48 @@ MonoBehaviour:
   OnFireIndex:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &169048149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169048137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a232f6cebb42b05479604c6a2c164d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateDeath
+  _Layer: 0
+  _Priority: 3
+  EventEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  EventLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  _LockControl: 0
+--- !u!114 &169048150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169048137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5026d456289de1d4aaae456788184935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerStateDamaged
+  _Layer: 0
+  _Priority: 2
+  EventEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  EventLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  _LockControl: 0
 --- !u!1 &189616451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1958,15 +2002,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc6104ce35a20a468ef2c8785639a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.Health
+  mCurrentHP: 10
+  mCurrentMana: 0
+  mCurrentShield: 0
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
   OnDied:
     m_PersistentCalls:
       m_Calls: []
-  mCurrentHP: 10
-  mCurrentMana: 0
-  mCurrentShield: 0
 --- !u!1 &1098099984
 GameObject:
   m_ObjectHideFlags: 0
@@ -6046,15 +6090,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc6104ce35a20a468ef2c8785639a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.Health
+  mCurrentHP: 10
+  mCurrentMana: 0
+  mCurrentShield: 0
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
   OnDied:
     m_PersistentCalls:
       m_Calls: []
-  mCurrentHP: 10
-  mCurrentMana: 0
-  mCurrentShield: 0
 --- !u!137 &312820601880245780
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

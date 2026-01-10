@@ -13,6 +13,7 @@ namespace PahlBit
         public static readonly int Attack = Animator.StringToHash("Attack");
         public static readonly int Hit = Animator.StringToHash("Hit");
         public static readonly int WakeUp = Animator.StringToHash("WakeUp");
+        public static readonly int Damaged = Animator.StringToHash("Damaged");
         public static readonly int Death = Animator.StringToHash("Death");
         public static readonly int Respawn = Animator.StringToHash("Respawn");
 
