@@ -14,6 +14,8 @@ public class EnemyAI : MonoBehaviour
         Chase,
         Attack,
         Recover,
+        Damaged,
+        Death,
     }
 
     BaseObject mBase = null;
@@ -42,8 +44,8 @@ public class EnemyAI : MonoBehaviour
     {
         mStats = mBase.GetComponentInChildren<EnemyDataMono>().Data.Stats;
 
-        mBase.AnimHelper.AddEventMiddle(AnimStateNameHash.Attack, OnFireAttack);
-        mBase.AnimHelper.AddEventLeave(AnimStateNameHash.Attack, OnEndAttack);
+        mBase.Health.OnDamaged.AddListener(ChangeDamagedState);
+        mBase.Health.OnDied.AddListener(ChangeDeathState);
     }
 
     void OnEnable()
@@ -65,6 +67,8 @@ public class EnemyAI : MonoBehaviour
         mStateCTS?.Cancel();
         mStateCTS?.Dispose();
         mStateCTS = CancellationTokenSource.CreateLinkedTokenSource(mAI_CTS.Token);
+        
+        mState = EnemyState.Patrol;
 
         MainLoop(mAI_CTS.Token).Forget();
     }
@@ -110,9 +114,18 @@ public class EnemyAI : MonoBehaviour
                     case EnemyState.Recover:
                         ChangeState(await RecoverMode(mStateCTS.Token));
                         break;
-                    default:
-                        ChangeState(EnemyState.Idle);
+
+                    case EnemyState.Damaged:
+                        ChangeState(await DamagedMode(mStateCTS.Token));
                         break;
+
+                    case EnemyState.Death:
+                        ChangeState(await DeathMode(mStateCTS.Token));
+                        break;
+
+                    case EnemyState.None:
+                    default:
+                        return;
                 }
             }
             catch (OperationCanceledException)
@@ -191,8 +204,8 @@ public class EnemyAI : MonoBehaviour
         try
         {
             Stop();
-            mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Attack);
-            await UniTask.WaitUntil(() => mBase.AnimHelper.GetCurrentStateNameHash(0) != (int)AnimStateNameHash.Attack, cancellationToken: ctx);
+            await mBase.AnimHelper.PlayAnim(AnimStateNameHash.Attack, ctx, OnFireAttack);
+            OnEndAttack();
             return EnemyState.Recover;
         }
         finally
@@ -215,6 +228,36 @@ public class EnemyAI : MonoBehaviour
                 return EnemyState.Chase;
             else
                 return EnemyState.Patrol;
+        }
+        finally
+        {
+        }
+    }
+    void ChangeDamagedState()
+    {
+        ChangeState(EnemyState.Damaged);
+    }
+    async UniTask<EnemyState> DamagedMode(CancellationToken ctx)
+    {
+        try
+        {
+            await mBase.AnimHelper.PlayAnim(AnimStateNameHash.Hit, ctx);
+            return EnemyState.Recover;
+        }
+        finally
+        {
+        }
+    }
+    void ChangeDeathState()
+    {
+        ChangeState(EnemyState.Death);
+    }
+    async UniTask<EnemyState> DeathMode(CancellationToken ctx)
+    {
+        try
+        {
+            await mBase.AnimHelper.PlayAnim(AnimStateNameHash.Death, ctx);
+            return EnemyState.None;
         }
         finally
         {

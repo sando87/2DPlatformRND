@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Cysharp.Threading.Tasks;
+using System;
+using System.Threading;
 
 namespace PahlBit
 {
@@ -59,6 +62,22 @@ namespace PahlBit
         }
 
 
+        Action<int> _onFire;
+        async public UniTask PlayAnim(int stateHashName, CancellationToken ct, Action<int> onFire = null, int layer = 0)
+        {
+            try
+            {
+                _onFire = onFire;
+                mAnimator.CrossFade(stateHashName, 0, layer, 0);
+                await UniTask.WaitUntil(() => mAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash != stateHashName, cancellationToken: ct);
+            }
+            finally
+            {
+                _onFire = null;
+            }
+        }
+
+
 
         public void Hit()
         {
@@ -110,6 +129,8 @@ namespace PahlBit
         }
         public void InvokeEventMiddle(AnimStateNameHash stateNameHash, int index)
         {
+            _onFire?.Invoke(index);
+
             if (mAnimatorEvents.ContainsKey(stateNameHash))
             {
                 mAnimatorEvents[stateNameHash].EventMiddle.Invoke(index);
