@@ -141,8 +141,8 @@ namespace PahlBit
             GameObject meleeSKill = InstantiateMelee();
             meleeSKill.GetComponentInChildren<InteractableCollider>().OnInteractEnter.AddListener((col) =>
             {
-                EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
-                DoAttack(enemy, attackType);
+                Health target = col.ExGetBase().Health;
+                DoAttack(target, attackType);
             });
 
         }
@@ -160,10 +160,10 @@ namespace PahlBit
             skill.transform.DOMove(destPos, 0.5f).OnComplete(() => Destroy(skill));
             skill.GetComponentInChildren<InteractableCollider>().OnInteractEnter.AddListener((col) =>
             {
-                EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
-                if (enemy != null)
+                Health targetHP = col.GetComponentInParent<Health>();
+                if (targetHP != null)
                 {
-                    enemy.GetDamaged(20, Base.transform.right);
+                    targetHP.GetDamaged(10);
                     skill.transform.DOKill();
                     Destroy(skill);
                 }
@@ -199,18 +199,18 @@ namespace PahlBit
             return col?.ExGetBase();
         }
 
-        void DoAttack(EnemyBase enemy, int attackType)
+        void DoAttack(Health enemy, int attackType)
         {
             if (enemy == null) return;
 
             if (IsStrongHit())
             {
-                enemy.GetDamaged(3, Base.transform.right);
+                enemy.GetDamaged(3);
                 PlayerMain.DoSlowEffect(0.1f, 0.04f, 0);
             }
             else
             {
-                enemy.GetDamaged(1, Base.transform.right);
+                enemy.GetDamaged(1);
             }
         }
     }
