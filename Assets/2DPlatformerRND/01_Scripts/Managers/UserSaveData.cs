@@ -7,7 +7,7 @@ namespace PahlBit
     [System.Serializable]
     public class UserSaveData : SaveableBase
     {
-        public double Gold = 0;
+        public int Gold = 0;
 
         public Dictionary<int, CharacterSaveData> Characters = new Dictionary<int, CharacterSaveData>();
     }
@@ -23,7 +23,7 @@ namespace PahlBit
     [System.Serializable]
     public class CharSaveData
     {
-        public double CurrentExp;
+        public float CurrentExp;
         public int HealthPoint;
         public int ManaPoint;
         public int AttackPoint;

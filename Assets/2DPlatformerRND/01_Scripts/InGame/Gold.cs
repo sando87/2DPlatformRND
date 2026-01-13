@@ -1,11 +1,19 @@
+using PahlBit;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Gold : MonoBehaviour
 {
-    public void OnColliderEnter(Collider2D col)
+    public int GoldAmount { get; set; } = 5;
+
+    public void OnPickedUp(Collider2D col)
     {
-        LOG.trace(col.name + " : Gold +1");
+        ItemInventory inven = col.ExGetBase().GetComponentInChildren<ItemInventory>();
+        if (inven != null)
+        {
+            inven.CurrentGold += GoldAmount;
+        }
+
         Destroy(gameObject);
     }
 }

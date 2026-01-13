@@ -8,15 +8,15 @@ namespace PahlBit
     {
         public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
 
-        private double mFromExp = 0;
-        private double mToExp = 0;
+        private float mFromExp = 0;
+        private float mToExp = 0;
         private CharSaveData mCharacterSaveData = null;
 
         public int CurrentLevel { get; private set; } = 0;
         public int CurrentLevelIdx { get => CurrentLevel - 1; }
-        public double RemainExp { get { return mToExp - CurrentExp; } }
-        public double CurrentExpRate { get { return (CurrentExp - mFromExp) / (mToExp - mFromExp); } }
-        public double CurrentExp { get; private set; } = 0;
+        public float RemainExp { get { return mToExp - CurrentExp; } }
+        public float CurrentExpRate { get { return (CurrentExp - mFromExp) / (mToExp - mFromExp); } }
+        public float CurrentExp { get; private set; } = 0;
 
         public UnityEvent OnLevelUp = new UnityEvent();
 
@@ -52,10 +52,11 @@ namespace PahlBit
             mToExp = GameSystem.GetNextExpForLevelup(CurrentLevel);
         }
 
-        public void AddExp(double exp)
+        public void AddExp(float exp)
         {
             CurrentExp += exp;
             mCharacterSaveData.CurrentExp = CurrentExp;
+            GameSystem.RequestSave();
 
             while (CurrentExp >= mToExp)
             {

@@ -13,11 +13,13 @@ namespace PahlBit
 
         private Dictionary<string, ItemInfo> mInvenItems = new Dictionary<string, ItemInfo>();
         private Dictionary<string, ItemInfo> mEquipItems = new Dictionary<string, ItemInfo>();
-        private Dictionary<string, ItemSaveData> mSaveData = null; 
+        private Dictionary<string, ItemSaveData> mSaveData = null;
+        private UserSaveData mUserSaveData = null;
 
-        public ItemStats TotalItemOption { get; private set; } = new ItemStats();
+        public ItemStats TotalItemOption
+        { get; private set; } = new ItemStats();
 
-        public double CurrentGold { get; set; } = 0;
+        public int CurrentGold { get { return mUserSaveData.Gold; } set { mUserSaveData.Gold = value; GameSystem.RequestSave(); } }
 
         [ShowIf(nameof(ShowInvenItems))]
         [Dropdown(nameof(ListInvenItems))]
@@ -61,9 +63,9 @@ namespace PahlBit
 
         void LoadItemsFromData()
         {
-            UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
+            mUserSaveData = SaveFileManager<UserSaveData>.Load();
             int charID = CharRoot.CharacterID;
-            mSaveData = saveData.Characters[charID].Items;
+            mSaveData = mUserSaveData.Characters[charID].Items;
             foreach (var pair in mSaveData)
             {
                 ItemSaveData itemSaveData = pair.Value;
@@ -135,7 +137,7 @@ namespace PahlBit
         public void EquipItem(string itemInstID)
         {
             ItemInfo item = GetItem(itemInstID);
-            if(item.IsEquipped)
+            if (item.IsEquipped)
                 return;
 
             item.IsEquipped = true;
@@ -149,7 +151,7 @@ namespace PahlBit
         public void UnEquipItem(string itemInstID)
         {
             ItemInfo item = GetItem(itemInstID);
-            if(!item.IsEquipped)
+            if (!item.IsEquipped)
                 return;
 
             item.IsEquipped = false;

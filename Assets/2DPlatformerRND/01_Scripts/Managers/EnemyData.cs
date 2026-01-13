@@ -31,7 +31,7 @@ public class EnemyData
         Stats.DetectRange = ResourceData._DetectRange.GetValue();
         Stats.AttackRange = ResourceData._AttackRange.GetValue();
         Stats.ItemDrop = ResourceData._ItemDrop.GetValue();
-        Stats.GoldOnDeath = ResourceData._GoldOnDeath.GetValueInRange(MyUtils.RandomRate());
+        Stats.GoldOnDeath = (int)ResourceData._GoldOnDeath.GetValueInRange(MyUtils.RandomRate());
         Stats.ExpOnDeath = ResourceData._ExpOnDeath.GetValue();
     }
 }

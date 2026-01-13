@@ -13,7 +13,7 @@ namespace PahlBit
         public float DetectRange;
         public float AttackRange;
         public Percent ItemDrop;
-        public float GoldOnDeath;
+        public int GoldOnDeath;
         public float ExpOnDeath;
 
         // ----- += 연산 메서드 -----
