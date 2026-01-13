@@ -86,7 +86,7 @@ namespace PahlBit
             this.ExDelayedCoroutine(Stats.Duration, DoEndProjectile);
         }
 
-        void DoEndProjectile()
+        public void DoEndProjectile()
         {
             mBaseObj.Phy.Velocity = Vector2.zero;
             mBaseObj.Phy.LockGravity = true;

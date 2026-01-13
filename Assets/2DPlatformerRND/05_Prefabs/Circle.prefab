@@ -303,6 +303,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed08aaa428101ad4498334da7bc8ad08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.ProjectileBase
+  <Stats>k__BackingField:
+    MoveSpeed: 10
+    MaxDistance: 0
+    AttackRange: 0
+    SplashRange: 0
+    Duration: 1
+    Interval: 0
   OnHit:
     m_PersistentCalls:
       m_Calls: []

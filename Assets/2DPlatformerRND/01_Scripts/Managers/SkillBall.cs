@@ -54,6 +54,8 @@ public class SkillBall : SkillObject
                     IsKilled = health.IsDead,
                 };
                 mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
+
+                obj.DoEndProjectile();
             }
         });
     }
