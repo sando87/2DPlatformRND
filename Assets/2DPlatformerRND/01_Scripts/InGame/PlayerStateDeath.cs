@@ -20,14 +20,14 @@ namespace PahlBit
             base.EnterState(param);
 
             PlayAnim(AnimStateNameHash.Death);
-            PlayerMain.StopMoving();
-            PlayerMain.LockControl = true;
+            Base.Phy.StopMoving();
+            Base.Ctrl.LockAll = true;
         }
 
         public override void LeaveState()
         {
             base.LeaveState();
-            PlayerMain.LockControl = false;
+            Base.Ctrl.LockAll = false;
         }
     }
 }

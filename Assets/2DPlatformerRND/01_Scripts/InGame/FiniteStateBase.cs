@@ -8,13 +8,29 @@ using UnityEngine.Events;
 
 namespace PahlBit
 {
+    public enum FiniteStateType
+    {
+        None,
+        Idle,
+        Walk,
+        Run,
+        Floating,
+        Dash,
+        Attack,
+        Damaged,
+        Stuned,
+        Death,
+        Respawn,
+    }
     public class FiniteStateBase : MonoBehaviour
     {
         [SerializeField][Range(0, 10)] int _Layer = 0;
         [SerializeField][Range(0, 10)] int _Priority = 0;
+        [SerializeField] FiniteStateType _StateType = FiniteStateType.None;
 
         public int Layer { get { return _Layer; } }
         public int Priority { get { return _Priority; } }
+        public FiniteStateType StateType { get { return _StateType; } }
 
         public BaseObject Base { get; private set; }
 
@@ -73,15 +89,10 @@ namespace PahlBit
         {
             Base.AnimHelper.CrossFadeToState(stateName, Layer);
         }
-        protected void PlayAnim(AnimStateNameHash stateHashName)
+        protected PlayAnimEnvent PlayAnim(AnimStateNameHash stateHashName)
         {
             Base.AnimHelper.CrossFadeToState(stateHashName, Layer);
-        }
-        protected void PlayAnimWithFire(AnimStateNameHash stateHashName, UnityAction<int> onFired)
-        {
-            Base.AnimHelper.CrossFadeToState(stateHashName, Layer);
-
-            AddEventMiddle(stateHashName, onFired);
+            return new PlayAnimEnvent(this, stateHashName);
         }
         protected bool IsCurrentThisState()
         {
@@ -168,6 +179,27 @@ namespace PahlBit
                 Base.AnimHelper.RemoveEventLeave(handler.Key, handler.Value);
             }
             mEventsLeave.Clear();
+        }
+    }
+
+    public struct PlayAnimEnvent
+    {
+        FiniteStateBase mFsmBase;
+        AnimStateNameHash mStateHash;
+        public PlayAnimEnvent(FiniteStateBase _fsm, AnimStateNameHash _hash)
+        {
+            mFsmBase = _fsm;
+            mStateHash = _hash;
+        }
+        public PlayAnimEnvent OnFire(UnityAction<int> _onFire)
+        {
+            mFsmBase.AddEventMiddle(mStateHash, _onFire);
+            return new PlayAnimEnvent(mFsmBase, mStateHash);
+        }
+        public PlayAnimEnvent OnEnd(UnityAction _onEnd)
+        {
+            mFsmBase.AddEventLeave(mStateHash, _onEnd);
+            return new PlayAnimEnvent(mFsmBase, mStateHash);
         }
     }
 }

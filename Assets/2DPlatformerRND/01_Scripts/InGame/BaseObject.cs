@@ -11,6 +11,7 @@ namespace PahlBit
         public ObjectPhysics Phy { get => GetComponentInChildren<ObjectPhysics>(); }
         public PlayerUnitInput Input { get => GetComponentInChildren<PlayerUnitInput>(); }
         public Health Health { get => GetComponentInChildren<Health>(); }
+        public PlayerController Ctrl { get => GetComponentInChildren<PlayerController>(); }
 
         void Awake()
         {

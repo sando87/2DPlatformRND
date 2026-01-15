@@ -19,17 +19,17 @@ namespace PahlBit
         {
             base.EnterState(param);
 
-            PlayAnim(AnimStateNameHash.Damaged);
-            PlayerMain.StopMoving();
-            PlayerMain.LockControl = true;
+            Base.Phy.StopMoving();
+            Base.Ctrl.LockAll = true;
 
-            ExitStateOnEnd();
+            PlayAnim(AnimStateNameHash.Damaged)
+            .OnEnd(DoLeaveCurrentState);
         }
 
         public override void LeaveState()
         {
             base.LeaveState();
-            PlayerMain.LockControl = false;
+            Base.Ctrl.LockAll = false;
         }
     }
 }

@@ -7,42 +7,29 @@ namespace PahlBit
     {
         [SerializeField] float _dashForce = 20f;
 
-        public override void HandleInput()
-        {
-            if (PlayerInput.JustPressed(PlayerUnitInputType.Dash))
-            {
-                if (GetCurrentState().IsStateCancelable)
-                    Base.StateMachine.ChangeState(this, null, true);
-                else
-                    ChangeStateToThis();
-            }
-        }
-
         public override void EnterState(object param)
         {
             base.EnterState(param);
+            Base.Ctrl.LockMove = true;
             Base.Phy.LockGravity = true;
 
             DoDash();
+        }
 
-            ExitStateOnEnd();
+        private void DoDash()
+        {
+            Base.Phy.TurnToInput(Base.Input.MoveX);
+            Base.Phy.Velocity = new Vector2(transform.right.x * _dashForce, 0f);
+
+            PlayAnim(AnimStateNameHash.Dash)
+            .OnEnd(DoLeaveCurrentState);
         }
 
         public override void LeaveState()
         {
             base.LeaveState();
             Base.Phy.LockGravity = false;
+            Base.Ctrl.LockMove = false;
         }
-
-
-
-        private void DoDash()
-        {
-            PlayerMain.FlipFrontByInput();
-            Base.Phy.Velocity = new Vector2(transform.right.x * _dashForce, 0f);
-
-            Base.AnimHelper.CrossFadeToState(AnimStateNameHash.Dash);
-        }
-
     }
 }

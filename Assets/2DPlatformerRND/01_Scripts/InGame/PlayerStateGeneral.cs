@@ -28,15 +28,14 @@ namespace PahlBit
 
             Base.Phy.Velocity = Vector2.zero;
             Base.Phy.LockGravity = true;
+            Base.Ctrl.LockMove = true;
 
-            PlayAnim(StateNameHash);
-
-            AddEventMiddle(StateNameHash, InvokeEvent);
-
-            ExitStateOnEnd();
+            PlayAnim(StateNameHash)
+            .OnFire(InvokeFireEvent)
+            .OnEnd(DoLeaveCurrentState);
         }
 
-        void InvokeEvent(int fireIndex)
+        void InvokeFireEvent(int fireIndex)
         {
             OnFireIndex?.Invoke(fireIndex);
 
@@ -48,6 +47,7 @@ namespace PahlBit
         {
             base.LeaveState();
             Base.Phy.LockGravity = false;
+            Base.Ctrl.LockMove = false;
             mEventFire = null;
             mEventFireIdx = null;
         }

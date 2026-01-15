@@ -7,16 +7,16 @@ namespace PahlBit
     {
         public float moveSpeed = 7f;
 
-        public override void HandleInput()
-        {
-            if (PlayerMain.LockControl)
-                return;
+        // public override void HandleInput()
+        // {
+        //     if (PlayerMain.LockControl)
+        //         return;
 
-            if(!PlayerMain.IsGrounded)
-            {
-                Base.StateMachine.ChangeState(this);
-            }
-        }
+        //     if(!PlayerMain.IsGrounded)
+        //     {
+        //         Base.StateMachine.ChangeState(this);
+        //     }
+        // }
 
         public override void EnterState(object param)
         {
@@ -29,9 +29,8 @@ namespace PahlBit
         {
             base.UpdateState();
 
-            Vector2 moveInput = PlayerInput.GetInputValue<Vector2>(PlayerUnitInputType.Move);
-            float moveX = moveInput.x * moveSpeed;
-            PlayerMain.MoveHorizontally(moveX);
+            float moveX = PlayerInput.MoveX * moveSpeed;
+            Base.Phy.MoveHorizontally(moveX);
         }
 
     }

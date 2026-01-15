@@ -43,12 +43,12 @@ namespace PahlBit
 
         void DecideAttackMotionByContext()
         {
-            if (!PlayerMain.IsGrounded)
+            if (!Base.Ctrl.IsGrounded)
             {
                 mTarget = FindAroundTarget();
                 if (mTarget != null)
                 {
-                    PlayerMain.FlipToTarget(mTarget.transform);
+                    Base.Phy.TurnToTarget(mTarget.transform);
                     Vector3 delta = mTarget.transform.position - Base.transform.position;
                     Vector2 velocity = Vector2.zero;
                     velocity.x = delta.x * 1.5f;
@@ -65,7 +65,8 @@ namespace PahlBit
                 }
 
                 Base.Phy.LockGravity = false;
-                PlayAnimWithFire(AnimStateNameHash.Skill2, (idx) => OnFire(2));
+                PlayAnim(AnimStateNameHash.Skill2)
+                .OnFire((idx) => OnFire(2));
                 return;
             }
 
@@ -76,7 +77,8 @@ namespace PahlBit
                 Vector3 destPos = mTarget.transform.position;
                 Base.Phy.MoveFootPosition(destPos);
                 Base.Phy.Velocity = Vector2.zero;
-                PlayAnimWithFire(AnimStateNameHash.Skill1, (idx) => OnFire(1));
+                PlayAnim(AnimStateNameHash.Skill1)
+                .OnFire((idx) => OnFire(1));
                 return;
             }
 
@@ -91,12 +93,14 @@ namespace PahlBit
 
                 Base.transform.DOMove(destPos, 0.6f).SetEase(Ease.OutExpo);
 
-                PlayAnimWithFire(AnimStateNameHash.Skill, (idx) => OnFire(0));
+                PlayAnim(AnimStateNameHash.Skill)
+                .OnFire((idx) => OnFire(0));
                 return;
             }
 
             Base.Phy.Velocity = Vector2.zero;
-            PlayAnimWithFire(AnimStateNameHash.Skill, (idx) => OnFire(0));
+            PlayAnim(AnimStateNameHash.Skill)
+            .OnFire((idx) => OnFire(0));
         }
 
         public override void UpdateState()
@@ -121,7 +125,7 @@ namespace PahlBit
             else if (mNextActionInput == PlayerUnitInputType.Dash)
                 Base.StateMachine.ChangeState<PlayerStateDash>(null, true);
             else
-                ChangeControlableState();
+                DoLeaveCurrentState();
         }
 
 
@@ -206,7 +210,7 @@ namespace PahlBit
             if (IsStrongHit())
             {
                 enemy.GetDamaged(3);
-                PlayerMain.DoSlowEffect(0.1f, 0.04f, 0);
+                // PlayerMain.DoSlowEffect(0.1f, 0.04f, 0);
             }
             else
             {

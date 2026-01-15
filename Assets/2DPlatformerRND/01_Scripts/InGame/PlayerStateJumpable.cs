@@ -22,7 +22,7 @@ namespace PahlBit
         {
             base.EnterState(param);
 
-            PlayerMain.DoJump(jumpForce);
+            Base.Phy.DoJump(jumpForce);
             Base.StateMachine.ChangeState<PlayerStateFloating>(null, true);
         }
 

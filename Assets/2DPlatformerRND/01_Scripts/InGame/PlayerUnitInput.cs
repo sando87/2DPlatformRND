@@ -21,10 +21,13 @@ namespace PahlBit
             => GetInputAction(type).triggered || (_VirtualInput != null ? _VirtualInput.JustPressed(type) : false);
         public bool IsPressing(PlayerUnitInputType type)
             => GetInputAction(type).IsPressed() || (_VirtualInput != null ? _VirtualInput.IsPressed(type) : false);
-        
+
         // public bool JustPressed(PlayerUnitInputType type) { return mInputStates[type].justPressed; }
         // public bool IsPressing(PlayerUnitInputType type) { return mInputStates[type].isPressed; }
         // public float HeldTime(PlayerUnitInputType type) { return mInputStates[type].HeldTime; }
+
+        public float MoveX { get => GetInputValue<Vector2>(PlayerUnitInputType.Move).x; }
+        public float MoveY { get => GetInputValue<Vector2>(PlayerUnitInputType.Move).y; }
 
         public TValue GetInputValue<TValue>(PlayerUnitInputType type) where TValue : struct
         {

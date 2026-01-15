@@ -11,11 +11,13 @@ namespace PahlBit
         public bool LockGravity { get => mRB2D.gravityScale == 0; set => mRB2D.gravityScale = value ? 0 : mOriGravityScale; }
         public bool LockMovement { get => mRB2D.bodyType != RigidbodyType2D.Dynamic; set => mRB2D.bodyType = value ? RigidbodyType2D.Kinematic : RigidbodyType2D.Dynamic; }
 
+        private BaseObject mBase = null;
         private Rigidbody2D mRB2D = null;
         private float mOriGravityScale = 1;
 
         private void Awake()
         {
+            mBase = this.ExGetBase();
             mRB2D = GetComponent<Rigidbody2D>();
             mOriGravityScale = mRB2D.gravityScale;
         }
@@ -28,6 +30,45 @@ namespace PahlBit
         public void MoveFootPosition(Vector3 pos)
         {
             mRB2D.transform.position = pos;
+        }
+
+
+        public void MoveHorizontally(float moveHoriVelocity)
+        {
+            TurnToInput(moveHoriVelocity);
+            VelocityX = moveHoriVelocity;
+        }
+        public void StopMoving()
+        {
+            Velocity = Vector2.zero;
+        }
+        public void TurnToWorldDir(int rightDir)
+        {
+            if (rightDir == 0) return;
+
+            Vector3 front = rightDir > 0 ? Vector3.forward : Vector3.back;
+            transform.rotation = Quaternion.LookRotation(front, transform.up);
+        }
+        public void TurnToInput(float moveX)
+        {
+            if (moveX.ExIsAlmostZero()) return;
+
+            int rightDir = moveX > 0 ? 1 : -1;
+            TurnToWorldDir(rightDir);
+        }
+        public void TurnToTarget(Transform target)
+        {
+            if (target == null) return;
+
+            int rightDir = target.position.x > mBase.transform.position.x ? 1 : -1;
+            TurnToWorldDir(rightDir);
+        }
+
+        public void DoJump(float jumpForce)
+        {
+            // 수직 속도 초기화 후 점프력 적용
+            VelocityY = 0;
+            AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
 }
