@@ -39,6 +39,27 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG_Far
+    uniqueID: 3589554239
+    locked: 0
+  - name: BG_Mid1
+    uniqueID: 409792149
+    locked: 0
+  - name: BG_Mid2
+    uniqueID: 3048791691
+    locked: 0
+  - name: PG_Back
+    uniqueID: 1756381661
+    locked: 0
+  - name: PG_Tiles
+    uniqueID: 346245127
+    locked: 0
+  - name: PG_Front
+    uniqueID: 3995476331
+    locked: 0
+  - name: FG
+    uniqueID: 1748502953
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
