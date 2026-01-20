@@ -44,5 +44,12 @@ namespace PahlBit
         public static readonly int PlayerObject = LayerMask.NameToLayer("PlayerObject");
         public static readonly int PlatformEnemy = LayerMask.NameToLayer("PlatformEnemy");
         public static readonly int Platform = LayerMask.NameToLayer("Platform");
+        public static readonly int ThinPlatform = LayerMask.NameToLayer("ThinPlatform");
+        public static readonly int StandableOnThin = LayerMask.NameToLayer("StandableOnThin");
+    }
+
+    public class MyLayerMask
+    {
+        public static readonly int Ground = 1 << LayerID.Terrain | 1 << LayerID.ThinPlatform;
     }
 }

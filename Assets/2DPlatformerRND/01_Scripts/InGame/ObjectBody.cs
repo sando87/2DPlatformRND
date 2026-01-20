@@ -1,10 +1,13 @@
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace PahlBit
 {
     public class ObjectBody : MonoBehaviour
     {
+        [SerializeField] BoxCollider2D _ThinPlatform = null;
+
         BoxCollider2D mCollider = null;
 
         public Vector2 Center { get => transform.position.ExToVector2() + mCollider.offset; }
@@ -17,7 +20,8 @@ namespace PahlBit
         public Vector2 FrontDirVec2 { get => transform.right; }
         public int FrontDirInt { get => transform.right.x > 0 ? 1 : -1; }
 
-        public bool LockBody { get => mCollider.enabled; set => mCollider.enabled = value; }
+        public bool LockBody { get => !mCollider.enabled; set => mCollider.enabled = !value; }
+        public bool LockThinPlatform { get { return _ThinPlatform ? !_ThinPlatform.enabled : false; } set { if (_ThinPlatform) _ThinPlatform.enabled = !value; } }
 
         void Awake()
         {

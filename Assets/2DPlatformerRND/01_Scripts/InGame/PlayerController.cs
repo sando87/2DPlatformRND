@@ -50,15 +50,18 @@ namespace PahlBit
         }
         void Start()
         {
-            // ListenDropDownOnewayPlatform().Forget();
         }
         private void Update()
         {
-            UpdateEnvironmentState();
-
             DoMovement();
             Jump();
+            DropDown();
             Dash();
+        }
+
+        void FixedUpdate()
+        {
+            UpdateEnvironmentState();
         }
 
         void DoMovement()
@@ -96,6 +99,19 @@ namespace PahlBit
                 mFSM.ChangeStateForce(mFsmFloat);
             }
         }
+        void DropDown()
+        {
+            if (LockJump)
+                return;
+
+            if (mPlayerInput.JustPressed(PlayerUnitInputType.Jump)
+            && mPlayerInput.MoveY < 0
+            && IsGrounded)
+            {
+                mBaseObj.Body.LockThinPlatform = true;
+                this.ExDelayedCoroutine(0.5f, () => mBaseObj.Body.LockThinPlatform = false);
+            }
+        }
         void Dash()
         {
             if (LockDash)
@@ -110,41 +126,18 @@ namespace PahlBit
 
         private void UpdateEnvironmentState()
         {
-            Vector3 footPos = mBaseObj.Body.Foot;
-            mIsGround = Physics2D.OverlapCircle(footPos, 0.1f, 1 << LayerID.Terrain);
-        }
+            int layerMask = MyLayerMask.Ground;
+            Vector2 footPos = mBaseObj.Body.Foot;
 
+            bool isOverlapped = Physics2D.OverlapCircle(footPos + new Vector2(0, 0.1f), 0.05f, layerMask);
 
+            Vector2 bodySize = mBaseObj.Body.Size;
+            Rect box = new Rect();
+            box.size = new Vector2(bodySize.x, 0.1f);
+            box.center = footPos + new Vector2(0, 0.05f);
+            bool isCasted = Physics2D.BoxCast(box.center, box.size, 0, Vector2.down, 0.1f, layerMask);
 
-        async UniTask ListenDropDownOnewayPlatform()
-        {
-            CancellationToken ct = this.GetCancellationTokenOnDestroy();
-            while (!ct.IsCancellationRequested)
-            {
-                await UniTask.WaitUntil(() =>
-                    mBaseObj.Input.MoveY < 0 &&
-                    mBaseObj.Input.JustPressed(PlayerUnitInputType.Jump),
-                    cancellationToken: ct
-                );
-
-                // Physics2D.IgnoreLayerCollision(LayerID.Player, LayerID.PlatformOneway, true);
-
-                // await UniTask.Delay(TimeSpan.FromSeconds(0.2f), cancellationToken: ct);
-
-                // Physics2D.IgnoreLayerCollision(LayerID.Player, LayerID.PlatformOneway, false);
-
-                // try
-                // {
-                //     await UniTask.Delay(TimeSpan.FromSeconds(0.2f), cancellationToken: ct);
-                // }
-                // finally
-                // {
-                //     // 🔥 무조건 복구
-                //     Physics2D.IgnoreLayerCollision(LayerID.Player, LayerID.PlatformOneway, false);
-                // }
-
-                await UniTask.Yield(PlayerLoopTiming.Update);
-            }
+            mIsGround = !isOverlapped && isCasted;
         }
     }
 }
