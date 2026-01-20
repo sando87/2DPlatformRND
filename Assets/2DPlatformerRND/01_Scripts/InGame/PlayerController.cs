@@ -109,7 +109,7 @@ namespace PahlBit
             && IsGrounded)
             {
                 mBaseObj.Body.LockThinPlatform = true;
-                this.ExDelayedCoroutine(0.5f, () => mBaseObj.Body.LockThinPlatform = false);
+                this.ExDelayedCoroutine(0.2f, () => mBaseObj.Body.LockThinPlatform = false);
             }
         }
         void Dash()
