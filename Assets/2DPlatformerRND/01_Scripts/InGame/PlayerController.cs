@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -139,5 +140,75 @@ namespace PahlBit
 
             mIsGround = !isOverlapped && isCasted;
         }
+
+
+        public static List<Vector2> SimulateJumpTrajectory(
+            Vector2 startPosition,
+            float impulse,
+            float mass,
+            float gravityScale,
+            float linearDamping,
+            float velocityX,
+            float totalTime)
+        {
+            List<Vector2> positions = new();
+
+            float dt = Time.fixedDeltaTime;
+
+            // 초기 상태
+            Vector2 pos = startPosition;
+            Vector2 vel = Vector2.up * (impulse / mass);
+
+            // 중력
+            Vector2 gravity = new Vector2(0f, -9.81f) * gravityScale;
+
+            float elapsed = 0f;
+
+            while (elapsed < totalTime)
+            {
+                // 중력 가속
+                vel += gravity * dt;
+
+                // Linear Damping (Rigidbody2D.drag)
+                vel *= 1f / (1f + linearDamping * dt);
+
+                vel.x = velocityX;
+
+                // 위치 적분
+                pos += vel * dt;
+
+                positions.Add(pos);
+
+                elapsed += dt;
+            }
+
+            return positions;
+        }
+
+        [Button("Simulate Jump Points")]
+        void SimulateJumpPoints()
+        {
+            // impulse:25 => max height:4.6, duration upto peak:0.37s
+            // impulse:22 => max height:3.6, duration upto peak:0.33s
+            // impulse:18 => max height:2.5, duration upto peak:0.27s
+            // impulse:14 => max height:1.6, duration upto peak:0.21s
+            var trajectory = SimulateJumpTrajectory(
+                startPosition: mBaseObj.transform.position,
+                impulse: 25f,
+                mass: 1f,
+                gravityScale: 5f,
+                linearDamping: 1f,
+                velocityX: 7f,
+                totalTime: 1f
+            );
+
+            for (int i = 0; i < trajectory.Count - 1; i++)
+            {
+                bool isUp = trajectory[i + 1].y > trajectory[i].y;
+                Color lineColor = isUp ? Color.red : Color.blue;
+                Debug.DrawLine(trajectory[i], trajectory[i] + new Vector2(0.2f, 0), lineColor, 5f);
+            }
+        }
+
     }
 }
