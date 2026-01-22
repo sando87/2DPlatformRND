@@ -96,6 +96,7 @@ namespace PahlBit
             if (mPlayerInput.JustPressed(PlayerUnitInputType.Jump)
             && mPlayerInput.MoveY >= 0)
             {
+                SimulateJumpPoints();
                 mBaseObj.Phy.DoJump(_JumpForce);
                 mFSM.ChangeStateForce(mFsmFloat);
             }
@@ -186,12 +187,42 @@ namespace PahlBit
         }
 
         [Button("Simulate Jump Points")]
-        void SimulateJumpPoints()
+        public void SimulateJumpPoints()
         {
-            // impulse:25 => max height:4.6, duration upto peak:0.37s
-            // impulse:22 => max height:3.6, duration upto peak:0.33s
-            // impulse:18 => max height:2.5, duration upto peak:0.27s
-            // impulse:14 => max height:1.6, duration upto peak:0.21s
+            // impulse:25 => max height:4.6, duration upto peak:0.4s
+            // impulse:22 => max height:3.6, duration upto peak:0.36s
+            // impulse:18 => max height:2.5, duration upto peak:0.32s
+            // impulse:14 => max height:1.6, duration upto peak:0.24s
+
+            // Gravity: -9.81, Mass: 1, GravityScale: 5, LinearDamping: 1, VelX: 7, ForceY Impulse : 25의 힘 기준
+
+            // impulse:25 => max height:4.6 기준
+            // 해석 : 높이4에서는 x축 Gap이 1칸부터 3칸 가능
+            // 4 : 1~3
+            // 3 : 1~3
+            // 2 : 1~4
+            // 1 : 1~5
+            // 0 : 1~5
+            // - 1 : 1~5
+            // - 2 : 1~6
+            // - 3 : 1~6
+            // - 4 : 1~6
+            // - 5 : 1~7
+
+
+            // impulse:18 => max height:2.5 기준
+            // 측정해봐야함...
+
+
+            // 그냥 앞으로 가면서 떨어지는 기준
+            // 0 : x
+            // - 1 : 1
+            // - 2 : 1~2
+            // - 3 : 1~3
+            // - 4 : 1~3
+            // - 5 : 1~4
+
+
             var trajectory = SimulateJumpTrajectory(
                 startPosition: mBaseObj.transform.position,
                 impulse: 25f,
