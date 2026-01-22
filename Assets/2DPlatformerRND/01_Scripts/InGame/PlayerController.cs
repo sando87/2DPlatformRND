@@ -155,15 +155,21 @@ namespace PahlBit
             List<Vector2> positions = new();
 
             float dt = Time.fixedDeltaTime;
+            // float dt = 0.01f;
 
             // 초기 상태
             Vector2 pos = startPosition;
             Vector2 vel = Vector2.up * (impulse / mass);
 
+            // int startY = (int)startPosition.y;
+            // float peakY = 0;
+            // int refY = 0;
+
             // 중력
             Vector2 gravity = new Vector2(0f, -9.81f) * gravityScale;
 
             float elapsed = 0f;
+            // List<Vector2> points = new List<Vector2>();
 
             while (elapsed < totalTime)
             {
@@ -174,14 +180,39 @@ namespace PahlBit
                 vel *= 1f / (1f + linearDamping * dt);
 
                 vel.x = velocityX;
+                
+                // if(vel.y < 0)
+                // {
+                //     if(peakY == 0)
+                //     {
+                //         peakY = pos.y;
+                //         refY = (int)peakY;
+                //         LOG.trace("Peak Y at: " + (peakY - startPosition.y).ToString("F2") + "m");
+                //         LOG.trace("Time to Peak: " + elapsed.ToString("F2") + "s");
+                //     }
+                // }
 
                 // 위치 적분
                 pos += vel * dt;
+
+                // if(vel.y < 0)
+                // {
+                //     if(pos.y < refY)
+                //     {
+                //         int dy = refY - startY;
+                //         // LOG.trace(dy + " : " + elapsed.ToString("F2") + "s");
+                //         points.Add(new Vector2(dy, elapsed));
+                //         refY--;
+                //     }
+                // }
 
                 positions.Add(pos);
 
                 elapsed += dt;
             }
+
+            // string result = string.Join(",", points);
+            // Debug.Log(result);
 
             return positions;
         }
@@ -189,48 +220,25 @@ namespace PahlBit
         [Button("Simulate Jump Points")]
         public void SimulateJumpPoints()
         {
-            // impulse:25 => max height:4.6, duration upto peak:0.4s
-            // impulse:22 => max height:3.6, duration upto peak:0.36s
-            // impulse:18 => max height:2.5, duration upto peak:0.32s
-            // impulse:14 => max height:1.6, duration upto peak:0.24s
-
-            // Gravity: -9.81, Mass: 1, GravityScale: 5, LinearDamping: 1, VelX: 7, ForceY Impulse : 25의 힘 기준
-
-            // impulse:25 => max height:4.6 기준
-            // 해석 : 높이4에서는 x축 Gap이 1칸부터 3칸 가능
-            // 4 : 1~3
-            // 3 : 1~3
-            // 2 : 1~4
-            // 1 : 1~5
-            // 0 : 1~5
-            // - 1 : 1~5
-            // - 2 : 1~6
-            // - 3 : 1~6
-            // - 4 : 1~6
-            // - 5 : 1~7
-
-
-            // impulse:18 => max height:2.5 기준
-            // 측정해봐야함...
-
-
-            // 그냥 앞으로 가면서 떨어지는 기준
-            // 0 : x
-            // - 1 : 1
-            // - 2 : 1~2
-            // - 3 : 1~3
-            // - 4 : 1~3
-            // - 5 : 1~4
-
+            // Gravity: -9.81, Mass: 1, GravityScale: 5, LinearDamping: 1, VelX: 7 
+            // Impulse 힘에 따른 높이까지 떨어지는데 걸리는 시간 테이블
+            // 힘 25점프, 높이 4.7, 피크까지시간 0.41s
+            // (4.00, 0.58),(3.00, 0.68),(2.00, 0.76),(1.00, 0.82),(0.00, 0.88),(-1.00, 0.93),(-2.00, 0.98),(-3.00, 1.02),(-4.00, 1.07),(-5.00, 1.11),(-6.00, 1.15)
+            // 힘 22점프, 높이 3.73, 피크까지시간 0.37s
+            // (3.00, 0.54),(2.00, 0.64),(1.00, 0.72),(0.00, 0.78),(-1.00, 0.84),(-2.00, 0.89),(-3.00, 0.94),(-4.00, 0.98),(-5.00, 1.03),(-6.00, 1.07)
+            // 힘 18점프, 높이 2.59, 피크까지시간 0.31s
+            // (2.00, 0.46),(1.00, 0.57),(0.00, 0.65),(-1.00, 0.71),(-2.00, 0.77),(-3.00, 0.82),(-4.00, 0.87),(-5.00, 0.92),(-6.00, 0.96)
+            // 힘 14점프, 높이 1.62, 피크까지시간 0.25s
+            // (1.00, 0.41),(0.00, 0.51),(-1.00, 0.59),(-2.00, 0.65),(-3.00, 0.71),(-4.00, 0.76),(-5.00, 0.81),(-6.00, 0.86)
 
             var trajectory = SimulateJumpTrajectory(
                 startPosition: mBaseObj.transform.position,
-                impulse: 25f,
+                impulse: _JumpForce,
                 mass: 1f,
                 gravityScale: 5f,
                 linearDamping: 1f,
                 velocityX: 7f,
-                totalTime: 1f
+                totalTime: 1.5f
             );
 
             for (int i = 0; i < trajectory.Count - 1; i++)
