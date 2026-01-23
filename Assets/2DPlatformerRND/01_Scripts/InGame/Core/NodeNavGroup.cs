@@ -3,6 +3,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 
 
 namespace PahlBit
@@ -33,52 +34,276 @@ namespace PahlBit
 
         // 이게 핵심 알고리즘...
         // 주변 지형과의 위치나 높이에 따라 이동 가능 판단 및 이동 속성 부여
-        // 주변 지형의 다양도에 따라 구현 난이도 상승..
+        // 정적으로 미리 계산해 둘 수 있는 정보는 모두 여기서 처리해서 저장해 둠
+        // 주변 지형의 복잡도에 따라 구현 난이도 상승..
         bool CreateTransitions(NodeNavGroup targetGroup, List<NodeTransition> transitions)
         {
-            // 기본적으로 점프 높이는 3칸으로 고정하고 좌우 이동속도는 초당5칸으로 고정
-            float jumpHeight = 3f;
-            float moveSpeed = 5f;
-
             Rect targetRect = targetGroup.GetRect();
             Rect myRect = GetRect();
 
             // case 1: 타겟이 완전히 왼쪽으로 나가 있는 경우
             if (targetRect.xMax < myRect.xMin)
             {
-                NodeNav targetMostRightNode = targetGroup.MostRightNode;
-                NodeNav myMostLeftNode = MostLeftNode;
-                return false;
+                NodeNav startNode = MostLeftNode;
+                NodeNav endNode = targetGroup.MostRightNode;
+
+                if (startNode.Position.x - 1 == endNode.Position.x) // 바로 옆칸에 붙어있는 경우
+                {
+                    if (startNode.Position.y > endNode.Position.y) // 바로 옆칸인데 아래에 지면이 있는경우
+                    {
+                        NodeTransition transition = new NodeTransition();
+                        transition.StartNode = startNode;
+                        transition.EndNode = endNode;
+                        transition.TransitionType = NodeTransitionType.WalkAndFall;
+                        transitions.Add(transition);
+                    }
+                    else // 바로 옆칸인데 위로 지면이 있는경우
+                    {
+                        NodeNav nextNode = startNode.RightNode;
+                        if (nextNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = nextNode;
+                            transition.EndNode = endNode;
+                            transition.TransitionType = NodeTransitionType.MovingJump;
+                            transitions.Add(transition);
+                        }
+                        else
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startNode;
+                            transition.EndNode = endNode;
+                            transition.TransitionType = NodeTransitionType.JumpAndMove;
+                            transitions.Add(transition);
+                        }
+                    }
+                }
+                else
+                {
+                    NodeTransition transition = new NodeTransition();
+                    transition.StartNode = startNode;
+                    transition.EndNode = endNode;
+                    transition.TransitionType = NodeTransitionType.MovingJump;
+                    transitions.Add(transition);
+                }
             }
             // case 2: 타겟이 완전히 오른쪽으로 나가 있는 경우
             else if (myRect.xMax < targetRect.xMin)
             {
-                return false;
+                NodeNav startNode = MostRightNode;
+                NodeNav endNode = targetGroup.MostLeftNode;
+
+                if (startNode.Position.x + 1 == endNode.Position.x) // 바로 옆칸에 붙어있는 경우
+                {
+                    if (startNode.Position.y > endNode.Position.y) // 바로 옆칸인데 아래에 지면이 있는경우
+                    {
+                        NodeTransition transition = new NodeTransition();
+                        transition.StartNode = startNode;
+                        transition.EndNode = endNode;
+                        transition.TransitionType = NodeTransitionType.WalkAndFall;
+                        transitions.Add(transition);
+                    }
+                    else // 바로 옆칸인데 위로 지면이 있는경우
+                    {
+                        NodeNav nextNode = startNode.LeftNode;
+                        if (nextNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = nextNode;
+                            transition.EndNode = endNode;
+                            transition.TransitionType = NodeTransitionType.MovingJump;
+                            transitions.Add(transition);
+                        }
+                        else
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startNode;
+                            transition.EndNode = endNode;
+                            transition.TransitionType = NodeTransitionType.JumpAndMove;
+                            transitions.Add(transition);
+                        }
+                    }
+                }
+                else
+                {
+                    NodeTransition transition = new NodeTransition();
+                    transition.StartNode = startNode;
+                    transition.EndNode = endNode;
+                    transition.TransitionType = NodeTransitionType.MovingJump;
+                    transitions.Add(transition);
+                }
             }
             // case 3: 타겟이 나의 왼쪽만 겹치는 경우
             else if (targetRect.xMin <= myRect.xMin && myRect.xMin <= targetRect.xMax && targetRect.xMax < myRect.xMax)
             {
-                NodeTransition transition = new NodeTransition();
-                transitions.Add(transition);
-                return transitions.Count > 0;
+                if (targetRect.center.y > myRect.center.y) // 타겟지형이 위쪽일 경우
+                {
+                    int targetMostRightNodeWorldPosX = targetGroup.MostRightNode.Position.x;
+                    NodeNav startNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX + 2);
+                    if (startNode != null)
+                    {
+                        NodeTransition transition = new NodeTransition();
+                        transition.StartNode = startNode;
+                        transition.EndNode = targetGroup.MostRightNode;
+                        transition.TransitionType = NodeTransitionType.MovingJump;
+                        transitions.Add(transition);
+                    }
+                    else
+                    {
+                        startNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX + 1);
+                        if (startNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startNode;
+                            transition.EndNode = targetGroup.MostRightNode;
+                            transition.TransitionType = NodeTransitionType.JumpAndMove;
+                            transitions.Add(transition);
+                        }
+                    }
+                }
+                else // 타겟지형이 아래쪽일 경우
+                {
+                    int myMostLeftNodeWorldPosX = MostLeftNode.Position.x;
+                    NodeNav endNode = targetGroup.GetNodeAtWorldPosX(myMostLeftNodeWorldPosX - 1);
+                    if (endNode != null)
+                    {
+                        NodeTransition transition = new NodeTransition();
+                        transition.StartNode = MostLeftNode;
+                        transition.EndNode = endNode;
+                        transition.TransitionType = NodeTransitionType.WalkAndFall;
+                        transitions.Add(transition);
+                    }
+                }
             }
             // case 4: 타겟이 나의 오른쪽만 겹치는 경우
             else if (myRect.xMin < targetRect.xMin && targetRect.xMin <= myRect.xMax && myRect.xMax <= targetRect.xMax)
             {
-                NodeTransition transition = new NodeTransition();
-                transitions.Add(transition);
-                return transitions.Count > 0;
+                if (targetRect.center.y > myRect.center.y) // 타겟지형이 위쪽일 경우
+                {
+                    int targetMostLeftNodeWorldPosX = targetGroup.MostLeftNode.Position.x;
+                    NodeNav startNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX - 2);
+                    if (startNode != null)
+                    {
+                        NodeTransition transition = new NodeTransition();
+                        transition.StartNode = startNode;
+                        transition.EndNode = targetGroup.MostLeftNode;
+                        transition.TransitionType = NodeTransitionType.MovingJump;
+                        transitions.Add(transition);
+                    }
+                    else
+                    {
+                        startNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX - 1);
+                        if (startNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startNode;
+                            transition.EndNode = targetGroup.MostLeftNode;
+                            transition.TransitionType = NodeTransitionType.JumpAndMove;
+                            transitions.Add(transition);
+                        }
+                    }
+                }
+                else // 타겟지형이 아래쪽일 경우
+                {
+                    int myMostRightNodeWorldPosX = MostRightNode.Position.x;
+                    NodeNav endNode = targetGroup.GetNodeAtWorldPosX(myMostRightNodeWorldPosX + 1);
+                    if (endNode != null)
+                    {
+                        NodeTransition transition = new NodeTransition();
+                        transition.StartNode = MostRightNode;
+                        transition.EndNode = endNode;
+                        transition.TransitionType = NodeTransitionType.WalkAndFall;
+                        transitions.Add(transition);
+                    }
+                }
             }
             // case 5: 타겟이 내 안에 포함된 있는 경우
             else if (myRect.xMin < targetRect.xMin && targetRect.xMax < myRect.xMax)
             {
+                if (myRect.center.y < targetRect.center.y)
+                {
+                    int targetMostLeftNodeWorldPosX = targetGroup.MostLeftNode.Position.x;
+                    NodeNav startLeftNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX - 2);
+                    if (startLeftNode != null)
+                    {
+                        NodeTransition transition = new NodeTransition();
+                        transition.StartNode = startLeftNode;
+                        transition.EndNode = targetGroup.MostLeftNode;
+                        transition.TransitionType = NodeTransitionType.MovingJump;
+                        transitions.Add(transition);
+                    }
+                    else
+                    {
+                        startLeftNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX - 1);
+                        if (startLeftNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startLeftNode;
+                            transition.EndNode = targetGroup.MostLeftNode;
+                            transition.TransitionType = NodeTransitionType.JumpAndMove;
+                            transitions.Add(transition);
+                        }
+                    }
+
+
+                    int targetMostRightNodeWorldPosX = targetGroup.MostRightNode.Position.x;
+                    NodeNav startRightNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX + 2);
+                    if (startRightNode != null)
+                    {
+                        NodeTransition transition = new NodeTransition();
+                        transition.StartNode = startRightNode;
+                        transition.EndNode = targetGroup.MostRightNode;
+                        transition.TransitionType = NodeTransitionType.MovingJump;
+                        transitions.Add(transition);
+                    }
+                    else
+                    {
+                        startRightNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX + 1);
+                        if (startRightNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startRightNode;
+                            transition.EndNode = targetGroup.MostRightNode;
+                            transition.TransitionType = NodeTransitionType.JumpAndMove;
+                            transitions.Add(transition);
+                        }
+                    }
+
+                }
             }
             // case 6: 타겟안에 내가 포함된 경우
-            else if (targetRect.xMin <= myRect.xMin && myRect.xMax <= targetRect.xMax)
+            else if (targetRect.xMin < myRect.xMin && myRect.xMax < targetRect.xMax)
             {
-                NodeTransition transition = new NodeTransition();
-                transitions.Add(transition);
-                return transitions.Count > 0;
+                if (myRect.center.y > targetRect.center.y) // 타겟지형이 아래쪽일 경우 좌우로 떨어지는 경우만 처리
+                {
+                    int myMostLeftNodeWorldPosX = MostLeftNode.Position.x;
+                    NodeNav endLeftNode = targetGroup.GetNodeAtWorldPosX(myMostLeftNodeWorldPosX - 1);
+                    if (endLeftNode != null)
+                    {
+                        NodeTransition transition = new NodeTransition();
+                        transition.StartNode = MostLeftNode;
+                        transition.EndNode = endLeftNode;
+                        transition.TransitionType = NodeTransitionType.WalkAndFall;
+                        transitions.Add(transition);
+                    }
+
+                    int myMostRightNodeWorldPosX = MostRightNode.Position.x;
+                    NodeNav endRightNode = targetGroup.GetNodeAtWorldPosX(myMostRightNodeWorldPosX + 1);
+                    if (endRightNode != null)
+                    {
+                        NodeTransition transition = new NodeTransition();
+                        transition.StartNode = MostRightNode;
+                        transition.EndNode = endRightNode;
+                        transition.TransitionType = NodeTransitionType.WalkAndFall;
+                        transitions.Add(transition);
+                    }
+                }
+            }
+            else
+            {
+                LOG.warn("플랫폼 라우팅 초기화 경고 : 예상치 못한 지형 케이스 발생");
+                LOG.trace(myRect);
+                LOG.trace(targetRect);
             }
             return transitions.Count > 0;
         }
@@ -89,6 +314,26 @@ namespace PahlBit
             rect.min = GroundNodes[0].MinPos;
             rect.max = GroundNodes[GroundNodes.Count - 1].MaxPos;
             return rect;
+        }
+
+        public NodeNav GetNodeAtIndex(int index)
+        {
+            if (index < 0 || index >= GroundNodes.Count)
+                return null;
+            return GroundNodes[index];
+        }
+
+        public NodeNav GetNodeAtWorldPosX(int worldPosX)
+        {
+            int localIndex = worldPosX - MostLeftNode.Position.x;
+            return GetNodeAtIndex(localIndex);
+        }
+
+        public List<NodeTransition> GetTransitions(NodeNavGroup targetGroup)
+        {
+            if (Transitions.ContainsKey(targetGroup))
+                return Transitions[targetGroup];
+            return null;
         }
 
     }

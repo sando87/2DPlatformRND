@@ -35,6 +35,7 @@ namespace PahlBit
 
                         NodeNav newNode = new NodeNav(pos);
                         newNode.ParentGroup = groundNodeGroup;
+                        newNode.IndexInGroup = groundNodeGroup.GroundNodes.Count;
                         groundNodeGroup.GroundNodes.Add(newNode);
                         mGroundNodes[pos] = newNode;
                         pos.x++;
@@ -82,5 +83,28 @@ namespace PahlBit
             }
         }
 
+        public NodeTransition GetNextTransition(Vector2 worldPos)
+        {
+            NodeNav currentNode = GetCurrentGroundNode(worldPos);
+            if (currentNode == null)
+                return null;
+
+            NodeNavGroup currentGroup = currentNode.ParentGroup;
+            NodeNavGroup nextGroup = currentGroup.LinkedGroups[UnityEngine.Random.Range(0, currentGroup.LinkedGroups.Count)];
+            List<NodeTransition> transitions = currentGroup.GetTransitions(nextGroup);
+            if (transitions != null && transitions.Count > 0)
+            {
+                return transitions[UnityEngine.Random.Range(0, transitions.Count)];
+            }
+            return null;
+        }
+
+        public NodeNav GetCurrentGroundNode(Vector2 worldPos)
+        {
+            Vector2Int nodePos = new Vector2Int(Mathf.FloorToInt(worldPos.x), Mathf.FloorToInt(worldPos.y) - 1);
+            if (mGroundNodes.ContainsKey(nodePos))
+                return mGroundNodes[nodePos];
+            return null;
+        }
     }
 }
