@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
+using System.IO;
 
 
 namespace PahlBit
@@ -13,7 +14,7 @@ namespace PahlBit
         Dictionary<Vector2Int, NodeNav> mGroundNodes = new Dictionary<Vector2Int, NodeNav>();
         List<NodeNavGroup> mNodeGroups = new List<NodeNavGroup>();
 
-        void Init(Tilemap tilemap)
+        public void Init(Tilemap tilemap)
         {
             BoundsInt bounds = tilemap.cellBounds;
             NodeNavGroup groundNodeGroup = null;
@@ -83,20 +84,34 @@ namespace PahlBit
             }
         }
 
-        public NodeTransition GetNextTransition(Vector2 worldPos)
+        public PathInfo GetNextPath(Vector2 worldPos, float moveSpeed)
         {
             NodeNav currentNode = GetCurrentGroundNode(worldPos);
             if (currentNode == null)
                 return null;
 
             NodeNavGroup currentGroup = currentNode.ParentGroup;
-            NodeNavGroup nextGroup = currentGroup.LinkedGroups[UnityEngine.Random.Range(0, currentGroup.LinkedGroups.Count)];
-            List<NodeTransition> transitions = currentGroup.GetTransitions(nextGroup);
-            if (transitions != null && transitions.Count > 0)
+            List<PathInfo> possiblePaths = new List<PathInfo>();
+            foreach (var transition in currentGroup.Transitions)
             {
-                return transitions[UnityEngine.Random.Range(0, transitions.Count)];
+                bool isPossibleJump = JumpSimulationTable.IsPossibleJump(
+                    startPos: transition.StartNode.Position,
+                    destPos: transition.EndNode.Position,
+                    horizontalMoveSpeed: moveSpeed,
+                    out float requiredJumpForce
+                );
+
+                if (isPossibleJump)
+                {
+                    PathInfo pathInfo = new PathInfo();
+                    pathInfo.Transition = transition;
+                    pathInfo.jumpForce = requiredJumpForce;
+                    possiblePaths.Add(pathInfo);
+                }
             }
-            return null;
+
+            PathInfo selectedPath = possiblePaths.Count > 0 ? possiblePaths[UnityEngine.Random.Range(0, possiblePaths.Count)] : null;
+            return selectedPath;
         }
 
         public NodeNav GetCurrentGroundNode(Vector2 worldPos)
@@ -106,5 +121,11 @@ namespace PahlBit
                 return mGroundNodes[nodePos];
             return null;
         }
+    }
+
+    public class PathInfo
+    {
+        public NodeTransition Transition { get; set; }
+        public float jumpForce { get; set; }
     }
 }

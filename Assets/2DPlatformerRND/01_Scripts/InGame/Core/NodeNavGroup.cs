@@ -13,7 +13,7 @@ namespace PahlBit
         public bool IsThingPlatform { get; set; } = false;
         public List<NodeNav> GroundNodes = new List<NodeNav>();
         public List<NodeNavGroup> LinkedGroups = new List<NodeNavGroup>();
-        public Dictionary<NodeNavGroup, List<NodeTransition>> Transitions = new Dictionary<NodeNavGroup, List<NodeTransition>>();
+        public List<NodeTransition> Transitions = new List<NodeTransition>();
 
         public NodeNav MostLeftNode { get => GroundNodes[0]; }
         public NodeNav MostRightNode { get => GroundNodes[GroundNodes.Count - 1]; }
@@ -28,7 +28,7 @@ namespace PahlBit
                 if (!hasTransitions)
                     continue;
 
-                Transitions[linkedGroup] = transitions;
+                Transitions.AddRange(transitions);
             }
         }
 
@@ -328,13 +328,5 @@ namespace PahlBit
             int localIndex = worldPosX - MostLeftNode.Position.x;
             return GetNodeAtIndex(localIndex);
         }
-
-        public List<NodeTransition> GetTransitions(NodeNavGroup targetGroup)
-        {
-            if (Transitions.ContainsKey(targetGroup))
-                return Transitions[targetGroup];
-            return null;
-        }
-
     }
 }
