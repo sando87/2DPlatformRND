@@ -17,8 +17,7 @@ namespace PahlBit
     {
         [SerializeField] float _JumpForce = 25f;
 
-        private bool mIsGround = false;
-        public bool IsGrounded { get => mIsGround && mBaseObj.Phy.VelocityY <= 0.1f; }
+        public bool IsGrounded { get => mBaseObj.Phy.IsGrounded; }
 
         public bool LockMove { get; set; } = false;
         public bool LockJump { get; set; } = false;
@@ -60,11 +59,6 @@ namespace PahlBit
             Dash();
         }
 
-        void FixedUpdate()
-        {
-            UpdateEnvironmentState();
-        }
-
         void DoMovement()
         {
             if (LockMove)
@@ -96,7 +90,7 @@ namespace PahlBit
             if (mPlayerInput.JustPressed(PlayerUnitInputType.Jump)
             && mPlayerInput.MoveY >= 0)
             {
-                SimulateJumpPoints();
+                // SimulateJumpPoints();
                 mBaseObj.Phy.DoJump(_JumpForce);
                 mFSM.ChangeStateForce(mFsmFloat);
             }
@@ -123,23 +117,6 @@ namespace PahlBit
             {
                 mFSM.ChangeState<PlayerStateDash>();
             }
-        }
-
-
-        private void UpdateEnvironmentState()
-        {
-            int layerMask = MyLayerMask.Ground;
-            Vector2 footPos = mBaseObj.Body.Foot;
-
-            bool isOverlapped = Physics2D.OverlapCircle(footPos + new Vector2(0, 0.1f), 0.05f, layerMask);
-
-            Vector2 bodySize = mBaseObj.Body.Size;
-            Rect box = new Rect();
-            box.size = new Vector2(bodySize.x, 0.1f);
-            box.center = footPos + new Vector2(0, 0.05f);
-            bool isCasted = Physics2D.BoxCast(box.center, box.size, 0, Vector2.down, 0.1f, layerMask);
-
-            mIsGround = !isOverlapped && isCasted;
         }
 
         [Button("Simulate Jump Points")]

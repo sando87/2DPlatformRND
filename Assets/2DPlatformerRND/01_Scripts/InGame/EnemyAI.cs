@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PahlBit;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -30,14 +31,19 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] ProjectileBase MeleePrefab;
     [SerializeField] float _ThinkInterval = 0.5f;
+    [SerializeField] Tilemap _Tilemap;
+
     float DetectLossRange { get { return mStats.DetectRange * 1.5f; } }
     float DetectRange { get { return mStats.DetectRange; } }
     float AttackRange { get { return mStats.AttackRange; } }
     float MoveSpeed { get { return mStats.MoveSpeed; } }
 
+    PlatformerPathfinder mPathfinder = new PlatformerPathfinder();
+
     void Awake()
     {
         mBase = this.ExGetBase();
+        mPathfinder.Init(_Tilemap);
     }
 
     void Start()
@@ -67,7 +73,7 @@ public class EnemyAI : MonoBehaviour
         mStateCTS?.Cancel();
         mStateCTS?.Dispose();
         mStateCTS = CancellationTokenSource.CreateLinkedTokenSource(mAI_CTS.Token);
-        
+
         mState = EnemyState.Patrol;
 
         MainLoop(mAI_CTS.Token).Forget();
@@ -330,13 +336,64 @@ public class EnemyAI : MonoBehaviour
             int curDir = mBase.Body.FrontDirInt;
             while (!ct.IsCancellationRequested)
             {
-                Stop();
-                await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 1.5f)), cancellationToken: ct);
-                curDir *= -1;
-                Turn(curDir);
-                StartMoving(curDir * MoveSpeed);
-                await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(1.5f, 2.5f)), cancellationToken: ct);
+                await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
+                PathInfo path = FindPath();
+                if (path != null)
+                    await GotoPathDestPosition(path, ct);
+                // await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
             }
+        }
+        catch (OperationCanceledException)
+        {
+            // LOG.trace(ex.Message);
+        }
+    }
+
+    PathInfo FindPath()
+    {
+        PathInfo path = mPathfinder.FindPath(mBase.Body.Foot, MoveSpeed);
+        if (path != null)
+            return path;
+
+        path = mPathfinder.FindPath(mBase.Body.FootFront, MoveSpeed);
+        if (path != null)
+            return path;
+
+        path = mPathfinder.FindPath(mBase.Body.FootBack, MoveSpeed);
+        if (path != null)
+            return path;
+
+        return null;
+    }
+
+    async UniTask GotoPathDestPosition(PathInfo path, CancellationToken ct)
+    {
+        try
+        {
+            Stop();
+            Vector2 worldWayPos = path.Transition.StartNode.CenterTopPos;
+            Vector2 worldDestPos = path.Transition.EndNode.CenterTopPos;
+            LOG.trace(worldDestPos);
+            await MoveToDestPosition(MoveSpeed, worldWayPos);
+            LOG.trace("도착");
+            await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
+            LOG.trace("점프시작");
+            if (path.Transition.TransitionType == NodeTransitionType.MovingJump)
+            {
+                await JumpMoving(path.jumpForce, MoveSpeed, worldDestPos);
+                LOG.trace("점프착지");
+            }
+            else if (path.Transition.TransitionType == NodeTransitionType.JumpAndMove)
+            {
+                await JumpAndMove(path.jumpForce, MoveSpeed, worldDestPos);
+                LOG.trace("점프착지");
+            }
+            else if (path.Transition.TransitionType == NodeTransitionType.WalkAndFall)
+            {
+                await MoveAndFall(MoveSpeed, worldDestPos);
+                LOG.trace("낙하착지");
+            }
+            Stop();
         }
         catch (OperationCanceledException)
         {
@@ -366,11 +423,11 @@ public class EnemyAI : MonoBehaviour
 
     BaseObject DetectPlayerAround(float range)
     {
-        Collider2D col = Physics2D.OverlapCircle(mBase.Body.Center, range, 1 << LayerID.Player);
-        if (col != null)
-        {
-            return col.ExGetBase();
-        }
+        // Collider2D col = Physics2D.OverlapCircle(mBase.Body.Center, range, 1 << LayerID.Player);
+        // if (col != null)
+        // {
+        //     return col.ExGetBase();
+        // }
         return null;
     }
 
@@ -413,6 +470,126 @@ public class EnemyAI : MonoBehaviour
         }
 
         mBase.Phy.Velocity = Vector2.zero;
+    }
+
+    async UniTask MoveToDestPosition(float velocityX, Vector2 destPos)
+    {
+        mMoveCTS?.Cancel();
+        mMoveCTS?.Dispose();
+        mMoveCTS = new CancellationTokenSource();
+
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Run);
+        Vector2 startPos = mBase.Body.Foot;
+        int startDir = startPos.x < destPos.x ? 1 : -1;
+        Turn(startDir);
+
+        while (!mMoveCTS.Token.IsCancellationRequested)
+        {
+            if (IsArrivedDestPosition(destPos, startDir))
+                break;
+
+            mBase.Phy.VelocityX = velocityX * startDir;
+            await UniTask.Yield(mMoveCTS.Token);
+        }
+
+        mBase.Phy.Velocity = Vector2.zero;
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
+    }
+
+    async UniTask MoveAndFall(float velocityX, Vector2 destPos)
+    {
+        mMoveCTS?.Cancel();
+        mMoveCTS?.Dispose();
+        mMoveCTS = new CancellationTokenSource();
+
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Run);
+        Vector2 startPos = mBase.Body.Foot;
+        int startDir = startPos.x < destPos.x ? 1 : -1;
+        Turn(startDir);
+
+        // 앞으로 그냥 걸어감(낙하될때까지)
+        while (!mMoveCTS.Token.IsCancellationRequested)
+        {
+            mBase.Phy.VelocityX = velocityX * startDir;
+            await UniTask.Yield(mMoveCTS.Token);
+
+            if (IsArrivedDestPosition(destPos + new Vector2(0.5f * startDir, 0), startDir))
+                break;
+        }
+
+        await UniTask.WaitUntil(() => mBase.Phy.IsGrounded, cancellationToken: mMoveCTS.Token);
+
+        // 착지
+        mBase.Phy.Velocity = Vector2.zero;
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
+
+    }
+
+    async UniTask JumpMoving(float jumpForce, float velocityX, Vector2 destPos)
+    {
+        mMoveCTS?.Cancel();
+        mMoveCTS?.Dispose();
+        mMoveCTS = new CancellationTokenSource();
+
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Jump);
+        Vector2 startPos = mBase.Body.Foot;
+        int startDir = startPos.x < destPos.x ? 1 : -1;
+        Turn(startDir);
+        mBase.Phy.DoJump(jumpForce);
+
+        while (!mMoveCTS.Token.IsCancellationRequested)
+        {
+            mBase.Phy.VelocityX = velocityX * startDir;
+            await UniTask.Yield(mMoveCTS.Token);
+
+            if (mBase.Phy.IsGrounded)
+                break;
+        }
+
+        mBase.Phy.Velocity = Vector2.zero;
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
+    }
+
+    async UniTask JumpAndMove(float jumpForce, float velocityX, Vector2 destPos)
+    {
+        mMoveCTS?.Cancel();
+        mMoveCTS?.Dispose();
+        mMoveCTS = new CancellationTokenSource();
+
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Jump);
+        Vector2 startPos = mBase.Body.Foot;
+        int startDir = startPos.x < destPos.x ? 1 : -1;
+        Turn(startDir);
+        mBase.Phy.DoJump(jumpForce);
+
+        while (!mMoveCTS.Token.IsCancellationRequested)
+        {
+            if (mBase.Phy.VelocityY < 0)
+            {
+                if (!IsArrivedDestPosition(destPos, startDir))
+                    mBase.Phy.VelocityX = velocityX * startDir;
+                else
+                    mBase.Phy.VelocityX = 0;
+            }
+
+            await UniTask.Yield(mMoveCTS.Token);
+
+            if (mBase.Phy.IsGrounded)
+                break;
+        }
+
+        mBase.Phy.Velocity = Vector2.zero;
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
+    }
+
+    bool IsArrivedDestPosition(Vector2 destPos, int startDir)
+    {
+        Vector2 curPos = mBase.Body.Foot;
+        if (Mathf.Abs(curPos.x - destPos.x) <= 0.2f)
+            return true;
+
+        int currentDir = curPos.x < destPos.x ? 1 : -1;
+        return startDir != currentDir;
     }
 
     void OnFireAttack(int idx)

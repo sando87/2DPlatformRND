@@ -10,16 +10,23 @@ namespace PahlBit
         public Vector2 Velocity { get { return mRB2D.linearVelocity; } set { mRB2D.linearVelocity = value; } }
         public bool LockGravity { get => mRB2D.gravityScale == 0; set => mRB2D.gravityScale = value ? 0 : mOriGravityScale; }
         public bool LockMovement { get => mRB2D.bodyType != RigidbodyType2D.Dynamic; set => mRB2D.bodyType = value ? RigidbodyType2D.Kinematic : RigidbodyType2D.Dynamic; }
+        public bool IsGrounded { get => mIsGround && VelocityY <= 0.1f; }
 
         private BaseObject mBase = null;
         private Rigidbody2D mRB2D = null;
         private float mOriGravityScale = 1;
+        private bool mIsGround = false;
 
         private void Awake()
         {
             mBase = this.ExGetBase();
             mRB2D = GetComponent<Rigidbody2D>();
             mOriGravityScale = mRB2D.gravityScale;
+        }
+
+        void FixedUpdate()
+        {
+            UpdateGroundState();
         }
 
         public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse)
@@ -69,6 +76,22 @@ namespace PahlBit
             // 수직 속도 초기화 후 점프력 적용
             VelocityY = 0;
             AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+
+        private void UpdateGroundState()
+        {
+            int layerMask = MyLayerMask.Ground;
+            Vector2 footPos = mBase.Body.Foot;
+
+            bool isOverlapped = Physics2D.OverlapCircle(footPos + new Vector2(0, 0.1f), 0.05f, layerMask);
+
+            Vector2 bodySize = mBase.Body.Size;
+            Rect box = new Rect();
+            box.size = new Vector2(bodySize.x, 0.1f);
+            box.center = footPos + new Vector2(0, 0.05f);
+            bool isCasted = Physics2D.BoxCast(box.center, box.size, 0, Vector2.down, 0.1f, layerMask);
+
+            mIsGround = !isOverlapped && isCasted;
         }
     }
 }

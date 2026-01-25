@@ -16,6 +16,10 @@ namespace PahlBit
         public Vector2 Head { get => Center + (transform.up * Size * 0.5f); }
         public Vector2 Front { get => Center + (transform.right * Size * 0.5f); }
         public Vector2 Back { get => Center - (transform.right * Size * 0.5f); }
+
+        public Vector2 FootFront { get => Center + new Vector2(Size.x * 0.5f * FrontDirInt, -Size.y * 0.5f); }
+        public Vector2 FootBack { get => Center + new Vector2(-Size.x * 0.5f * FrontDirInt, -Size.y * 0.5f); }
+
         public Rect Rect { get => mCollider.ExToRect(); }
         public Vector2 FrontDirVec2 { get => transform.right; }
         public int FrontDirInt { get => transform.right.x > 0 ? 1 : -1; }

@@ -84,7 +84,7 @@ namespace PahlBit
             }
         }
 
-        public PathInfo GetNextPath(Vector2 worldPos, float moveSpeed)
+        public PathInfo FindPath(Vector2 worldPos, float moveSpeed)
         {
             NodeNav currentNode = GetCurrentGroundNode(worldPos);
             if (currentNode == null)
