@@ -1,0 +1,148 @@
+using System;
+using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using UnityEngine.Tilemaps;
+using System.Collections.Generic;
+using System.IO;
+
+
+namespace PahlBit
+{
+    public class PlayerDepthManager : SingletonMono<PlayerDepthManager>
+    {
+        const int DepthWidthRange = 18;
+        const int DepthHeightRange = 10;
+
+        // 방향 벡터 (상하좌우)
+        Vector2Int[] mDirections =
+        {
+            Vector2Int.up,
+            Vector2Int.down,
+            Vector2Int.left,
+            Vector2Int.right
+        };
+
+        [SerializeField] Tilemap _Tilemap = null;
+        [SerializeField] GameObject _Player = null;
+
+        // BFS용 큐
+        Queue<Vector2Int> mQueue = new Queue<Vector2Int>();
+
+        // 방문 체크 (depth 기록 여부)
+        Dictionary<Vector2Int, int> mVisited = new Dictionary<Vector2Int, int>();
+
+        Dictionary<Vector2Int, PlayerDepthInfo> mPlayerDepthInfo = new Dictionary<Vector2Int, PlayerDepthInfo>();
+
+        void Update()
+        {
+            if (_Player != null)
+            {
+                UpdatePlayerDepth(_Player.transform.position);
+                // DebugDrawDepthInfo();
+            }
+        }
+
+        public void UpdatePlayerDepth(Vector2 playerPosition)
+        {
+            if (_Tilemap == null)
+                return;
+
+            // 월드 → 그리드 좌표
+            Vector3Int playerCell3D = _Tilemap.WorldToCell(playerPosition);
+            Vector2Int playerCell = new Vector2Int(playerCell3D.x, playerCell3D.y);
+
+            mQueue.Clear();
+            mVisited.Clear();
+
+            // 시작점
+            mQueue.Enqueue(playerCell);
+            mVisited[playerCell] = 0;
+
+            while (mQueue.Count > 0)
+            {
+                Vector2Int current = mQueue.Dequeue();
+                int currentDepth = mVisited[current];
+
+                // 범위 제한
+                int dx = Mathf.Abs(current.x - playerCell.x);
+                int dy = Mathf.Abs(current.y - playerCell.y);
+
+                if (dx > DepthWidthRange || dy > DepthHeightRange)
+                    continue;
+
+                // 막힌 칸은 기록도, 확산도 안 함
+                if (IsBlocked(current))
+                    continue;
+
+                // Depth 정보 업데이트
+                if (!mPlayerDepthInfo.TryGetValue(current, out PlayerDepthInfo info))
+                {
+                    info = new PlayerDepthInfo(current);
+                    mPlayerDepthInfo.Add(current, info);
+                }
+                info.UpdateDepth(currentDepth);
+
+                // 이웃 탐색
+                foreach (var dir in mDirections)
+                {
+                    Vector2Int next = current + dir;
+
+                    if (mVisited.ContainsKey(next))
+                        continue;
+
+                    mVisited[next] = currentDepth + 1;
+                    mQueue.Enqueue(next);
+                }
+            }
+        }
+
+        bool IsBlocked(Vector2Int pos)
+        {
+            Vector3Int pos3D = new Vector3Int(pos.x, pos.y, 0);
+            return _Tilemap.HasTile(pos3D);
+        }
+
+        public PlayerDepthInfo GetPlayerDepthInfoAtPos(Vector2Int pos)
+        {
+            if (mPlayerDepthInfo.TryGetValue(pos, out PlayerDepthInfo info))
+            {
+                return info;
+            }
+            return null;
+        }
+
+        void DebugDrawDepthInfo()
+        {
+            foreach (var kvp in mPlayerDepthInfo)
+            {
+                Vector2Int pos = kvp.Key;
+                PlayerDepthInfo info = kvp.Value;
+
+                Vector3 worldPos = _Tilemap.CellToWorld(new Vector3Int(pos.x, pos.y, 0)) + new Vector3(0.5f, 0.5f, 0f);
+                int depth = info.IsOld ? 20 : info.Depth;
+                Debug.DrawLine(worldPos, worldPos + Vector3.up * 0.5f, Color.Lerp(Color.green, Color.red, depth / 20f), 0.1f);
+            }
+        }
+
+    }
+
+    public class PlayerDepthInfo
+    {
+        public Vector2Int Position { get; private set; }
+        public int Depth { get; private set; } = 0;
+        public float DirtyTime { get; private set; } = 0f;
+        public bool IsOld { get => (Time.time - DirtyTime) > 5f; }
+
+        public PlayerDepthInfo(Vector2Int position)
+        {
+            Position = position;
+        }
+
+        public void UpdateDepth(int depth)
+        {
+            Depth = depth;
+            DirtyTime = Time.time;
+        }
+    }
+}
