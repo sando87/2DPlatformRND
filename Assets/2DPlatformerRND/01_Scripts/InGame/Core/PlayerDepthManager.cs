@@ -38,7 +38,7 @@ namespace PahlBit
         {
             if (_Player != null)
             {
-                UpdatePlayerDepth(_Player.transform.position);
+                UpdatePlayerDepth(_Player.GetComponent<BaseObject>().Body.Center);
                 // DebugDrawDepthInfo();
             }
         }
@@ -120,8 +120,7 @@ namespace PahlBit
                 PlayerDepthInfo info = kvp.Value;
 
                 Vector3 worldPos = _Tilemap.CellToWorld(new Vector3Int(pos.x, pos.y, 0)) + new Vector3(0.5f, 0.5f, 0f);
-                int depth = info.IsOld ? 20 : info.Depth;
-                Debug.DrawLine(worldPos, worldPos + Vector3.up * 0.5f, Color.Lerp(Color.green, Color.red, depth / 20f), 0.1f);
+                Debug.DrawLine(worldPos, worldPos + Vector3.up * 0.5f, Color.Lerp(Color.green, Color.red, info.GetDepth() / 30f), 0.1f);
             }
         }
 
@@ -129,10 +128,12 @@ namespace PahlBit
 
     public class PlayerDepthInfo
     {
+        const int MaxDepth = 30;
+
         public Vector2Int Position { get; private set; }
-        public int Depth { get; private set; } = 0;
-        public float DirtyTime { get; private set; } = 0f;
-        public bool IsOld { get => (Time.time - DirtyTime) > 5f; }
+        float mDirtyTime = 0f;
+        int mDepth = 0;
+        public bool IsOld { get => (Time.time - mDirtyTime) > 5f; }
 
         public PlayerDepthInfo(Vector2Int position)
         {
@@ -141,8 +142,13 @@ namespace PahlBit
 
         public void UpdateDepth(int depth)
         {
-            Depth = depth;
-            DirtyTime = Time.time;
+            mDepth = depth;
+            mDepth.ExSetMaximum(MaxDepth);
+            mDirtyTime = Time.time;
+        }
+        public int GetDepth()
+        {
+            return IsOld ? MaxDepth : mDepth;
         }
     }
 }

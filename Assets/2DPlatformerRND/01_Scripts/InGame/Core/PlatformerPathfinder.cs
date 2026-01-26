@@ -171,7 +171,23 @@ namespace PahlBit
                 }
             }
 
-            PathInfo selectedPath = possiblePaths.Count > 0 ? possiblePaths[UnityEngine.Random.Range(0, possiblePaths.Count)] : null;
+            PathInfo selectedPath = null;
+            int minDepth = int.MaxValue;
+            foreach (var path in possiblePaths)
+            {
+                Vector2Int startPos = path.Transition.StartNode.Position;
+                Vector2Int endPos = path.Transition.EndNode.Position;
+                PlayerDepthInfo depthInfo = PlayerDepthManager.Instance.GetPlayerDepthInfoAtPos(endPos + new Vector2Int(0, 1));
+                if (depthInfo == null || depthInfo.IsOld)
+                    continue;
+
+                int curDepth = depthInfo.GetDepth();
+                if (curDepth < minDepth)
+                {
+                    minDepth = curDepth;
+                    selectedPath = path;
+                }
+            }
             return selectedPath;
         }
 
