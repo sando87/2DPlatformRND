@@ -353,6 +353,9 @@ public class EnemyAI : MonoBehaviour
 
     PathInfo FindPath()
     {
+        if (!mBase.Phy.IsGrounded)
+            return null;
+
         PathInfo path = mPathfinder.FindPath(mBase.Body.Foot, MoveSpeed);
         if (path != null)
             return path;

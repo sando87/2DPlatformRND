@@ -126,7 +126,7 @@ namespace PahlBit
                     bool isPossibleJump = JumpSimulationTable.IsPossibleJump(
                         startPos: transition.StartNode.Position,
                         destPos: transition.EndNode.Position,
-                        horizontalMoveSpeed: 0,
+                        horizontalMoveSpeed: moveSpeed,
                         out float requiredJumpForce
                     );
 
