@@ -30,9 +30,10 @@ namespace PahlBit
             // 힘 14점프, 높이 1.62, 피크까지시간 0.25s
             // (1.00, 0.41),(0.00, 0.51),(-1.00, 0.59),(-2.00, 0.65),(-3.00, 0.71),(-4.00, 0.76),(-5.00, 0.81),(-6.00, 0.86)
 
-            mJumpTable[4] = new float[] { 0.00f, 0.00f, 0.00f, 0.58f };
-            mJumpTable[3] = new float[] { 0.00f, 0.00f, 0.54f, 0.68f };
-            mJumpTable[2] = new float[] { 0.00f, 0.46f, 0.64f, 0.76f };
+            //                   점프힘      14    18     22     25
+            mJumpTable[4] = new float[] { -1.0f, -1.0f, -1.0f, 0.58f };
+            mJumpTable[3] = new float[] { -1.0f, -1.0f, 0.54f, 0.68f };
+            mJumpTable[2] = new float[] { -1.0f, 0.46f, 0.64f, 0.76f };
             mJumpTable[1] = new float[] { 0.41f, 0.57f, 0.72f, 0.82f };
             mJumpTable[0] = new float[] { 0.51f, 0.65f, 0.78f, 0.88f };
             mJumpTable[-1] = new float[] { 0.59f, 0.71f, 0.84f, 0.93f };
@@ -41,16 +42,20 @@ namespace PahlBit
             mJumpTable[-4] = new float[] { 0.76f, 0.87f, 0.98f, 1.07f };
             mJumpTable[-5] = new float[] { 0.81f, 0.92f, 1.03f, 1.11f };
             mJumpTable[-6] = new float[] { 0.86f, 0.96f, 1.07f, 1.15f };
+            mJumpTable[-7] = new float[] { 0.90f, 1.00f, 1.11f, 1.18f };
+            mJumpTable[-8] = new float[] { 0.94f, 1.04f, 1.14f, 1.21f };
+            mJumpTable[-9] = new float[] { 0.97f, 1.08f, 1.17f, 1.24f };
+            mJumpTable[-10] = new float[] { 1.00f, 1.11f, 1.20f, 1.26f };
         }
 
-        static float GetJumpForce(int destOffsetY, float floatingTime)
+        static float GetJumpForce(int destOffsetY, float requiredTimeToReach)
         {
             if (mJumpTable.Count == 0)
             {
                 InitJumpTable();
             }
 
-            if (destOffsetY < -6 || destOffsetY > 4)
+            if (destOffsetY < -10 || destOffsetY > 4)
             {
                 return -1f;
             }
@@ -59,7 +64,11 @@ namespace PahlBit
             int idx = 0;
             for (idx = 0; idx < timeTable.Length; idx++)
             {
-                if (floatingTime < timeTable[idx])
+                float maxFloatingTime = timeTable[idx];
+                if (maxFloatingTime < 0)
+                    continue;
+
+                if (requiredTimeToReach < maxFloatingTime)
                     return idx == 0 ? 14f : (idx == 1 ? 18f : (idx == 2 ? 22f : 25f));
             }
 

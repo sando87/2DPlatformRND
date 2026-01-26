@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PahlBit;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -32,6 +33,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] ProjectileBase MeleePrefab;
     [SerializeField] float _ThinkInterval = 0.5f;
     [SerializeField] Tilemap _Tilemap;
+    [SerializeField] Tilemap _ThinTilemap;
 
     float DetectLossRange { get { return mStats.DetectRange * 1.5f; } }
     float DetectRange { get { return mStats.DetectRange; } }
@@ -43,7 +45,7 @@ public class EnemyAI : MonoBehaviour
     void Awake()
     {
         mBase = this.ExGetBase();
-        mPathfinder.Init(_Tilemap);
+        mPathfinder.Init(_Tilemap, _ThinTilemap);
     }
 
     void Start()
@@ -371,27 +373,57 @@ public class EnemyAI : MonoBehaviour
         try
         {
             Stop();
-            Vector2 worldWayPos = path.Transition.StartNode.CenterTopPos;
-            Vector2 worldDestPos = path.Transition.EndNode.CenterTopPos;
-            LOG.trace(worldDestPos);
-            await MoveToDestPosition(MoveSpeed, worldWayPos);
-            LOG.trace("도착");
-            await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
-            LOG.trace("점프시작");
-            if (path.Transition.TransitionType == NodeTransitionType.MovingJump)
+            if (path.Transition.TransitionType == NodeTransitionType.JustJumpUp)
             {
-                await JumpMoving(path.jumpForce, MoveSpeed, worldDestPos);
-                LOG.trace("점프착지");
+                if (path.IsNoNeedToMove)
+                {
+                    await JustJumpUp(path.JumpForce);
+                }
+                else
+                {
+                    Vector2 worldWayPos = path.Transition.StartNode.CenterTopPos;
+                    await MoveToDestPosition(MoveSpeed, worldWayPos);
+                    await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
+                    await JustJumpUp(path.JumpForce);
+                }
+            }
+            else if (path.Transition.TransitionType == NodeTransitionType.DropDown)
+            {
+                if (path.IsNoNeedToMove)
+                {
+                    await DropDown();
+                }
+                else
+                {
+                    Vector2 worldWayPos = path.Transition.StartNode.CenterTopPos;
+                    await MoveToDestPosition(MoveSpeed, worldWayPos);
+                    await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
+                    await DropDown();
+                }
+            }
+            else if (path.Transition.TransitionType == NodeTransitionType.MovingJump)
+            {
+                Vector2 worldWayPos = path.Transition.StartNode.CenterTopPos;
+                Vector2 worldDestPos = path.Transition.EndNode.CenterTopPos;
+                await MoveToDestPosition(MoveSpeed, worldWayPos);
+                await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
+                await JumpMoving(path.JumpForce, MoveSpeed, worldDestPos);
             }
             else if (path.Transition.TransitionType == NodeTransitionType.JumpAndMove)
             {
-                await JumpAndMove(path.jumpForce, MoveSpeed, worldDestPos);
-                LOG.trace("점프착지");
+                Vector2 worldWayPos = path.Transition.StartNode.CenterTopPos;
+                Vector2 worldDestPos = path.Transition.EndNode.CenterTopPos;
+                await MoveToDestPosition(MoveSpeed, worldWayPos);
+                await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
+                await JumpAndMove(path.JumpForce, MoveSpeed, worldDestPos);
             }
             else if (path.Transition.TransitionType == NodeTransitionType.WalkAndFall)
             {
+                Vector2 worldWayPos = path.Transition.StartNode.CenterTopPos;
+                Vector2 worldDestPos = path.Transition.EndNode.CenterTopPos;
+                await MoveToDestPosition(MoveSpeed, worldWayPos);
+                await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
                 await MoveAndFall(MoveSpeed, worldDestPos);
-                LOG.trace("낙하착지");
             }
             Stop();
         }
@@ -525,6 +557,33 @@ public class EnemyAI : MonoBehaviour
 
     }
 
+    async UniTask JustJumpUp(float jumpForce)
+    {
+        mMoveCTS?.Cancel();
+        mMoveCTS?.Dispose();
+        mMoveCTS = new CancellationTokenSource();
+
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Jump);
+        mBase.Phy.DoJump(jumpForce);
+        await UniTask.WaitUntil(() => mBase.Phy.IsGrounded, cancellationToken: mMoveCTS.Token);
+
+        mBase.Phy.Velocity = Vector2.zero;
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
+    }
+    async UniTask DropDown()
+    {
+        mMoveCTS?.Cancel();
+        mMoveCTS?.Dispose();
+        mMoveCTS = new CancellationTokenSource();
+
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Jump);
+
+        mBase.Body.LockThinPlatformMomentarily();
+        await UniTask.WaitUntil(() => mBase.Phy.IsGrounded, cancellationToken: mMoveCTS.Token);
+
+        mBase.Phy.Velocity = Vector2.zero;
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
+    }
     async UniTask JumpMoving(float jumpForce, float velocityX, Vector2 destPos)
     {
         mMoveCTS?.Cancel();

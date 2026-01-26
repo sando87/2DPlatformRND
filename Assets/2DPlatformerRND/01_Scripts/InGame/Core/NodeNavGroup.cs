@@ -10,7 +10,7 @@ namespace PahlBit
 {
     public class NodeNavGroup
     {
-        public bool IsThingPlatform { get; set; } = false;
+        public bool IsThinPlatform { get; set; } = false;
         public List<NodeNav> GroundNodes = new List<NodeNav>();
         public List<NodeNavGroup> LinkedGroups = new List<NodeNavGroup>();
         public List<NodeTransition> Transitions = new List<NodeTransition>();
@@ -138,40 +138,72 @@ namespace PahlBit
             {
                 if (targetRect.center.y > myRect.center.y) // 타겟지형이 위쪽일 경우
                 {
-                    int targetMostRightNodeWorldPosX = targetGroup.MostRightNode.Position.x;
-                    NodeNav startNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX + 2);
-                    if (startNode != null)
+                    if (targetGroup.IsThinPlatform)
                     {
-                        NodeTransition transition = new NodeTransition();
-                        transition.StartNode = startNode;
-                        transition.EndNode = targetGroup.MostRightNode;
-                        transition.TransitionType = NodeTransitionType.MovingJump;
-                        transitions.Add(transition);
-                    }
-                    else
-                    {
-                        startNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX + 1);
+                        int targetMostRightNodeWorldPosX = targetGroup.MostRightNode.Position.x;
+                        NodeNav startNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX);
                         if (startNode != null)
                         {
                             NodeTransition transition = new NodeTransition();
                             transition.StartNode = startNode;
                             transition.EndNode = targetGroup.MostRightNode;
-                            transition.TransitionType = NodeTransitionType.JumpAndMove;
+                            transition.TransitionType = NodeTransitionType.JustJumpUp;
                             transitions.Add(transition);
+                        }
+                    }
+                    else
+                    {
+                        int targetMostRightNodeWorldPosX = targetGroup.MostRightNode.Position.x;
+                        NodeNav startNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX + 2);
+                        if (startNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startNode;
+                            transition.EndNode = targetGroup.MostRightNode;
+                            transition.TransitionType = NodeTransitionType.MovingJump;
+                            transitions.Add(transition);
+                        }
+                        else
+                        {
+                            startNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX + 1);
+                            if (startNode != null)
+                            {
+                                NodeTransition transition = new NodeTransition();
+                                transition.StartNode = startNode;
+                                transition.EndNode = targetGroup.MostRightNode;
+                                transition.TransitionType = NodeTransitionType.JumpAndMove;
+                                transitions.Add(transition);
+                            }
                         }
                     }
                 }
                 else // 타겟지형이 아래쪽일 경우
                 {
-                    int myMostLeftNodeWorldPosX = MostLeftNode.Position.x;
-                    NodeNav endNode = targetGroup.GetNodeAtWorldPosX(myMostLeftNodeWorldPosX - 1);
-                    if (endNode != null)
+                    if (IsThinPlatform)
                     {
-                        NodeTransition transition = new NodeTransition();
-                        transition.StartNode = MostLeftNode;
-                        transition.EndNode = endNode;
-                        transition.TransitionType = NodeTransitionType.WalkAndFall;
-                        transitions.Add(transition);
+                        int targetMostRightNodeWorldPosX = targetGroup.MostRightNode.Position.x;
+                        NodeNav startNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX);
+                        if (startNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startNode;
+                            transition.EndNode = targetGroup.MostRightNode;
+                            transition.TransitionType = NodeTransitionType.DropDown;
+                            transitions.Add(transition);
+                        }
+                    }
+                    else
+                    {
+                        int myMostLeftNodeWorldPosX = MostLeftNode.Position.x;
+                        NodeNav endNode = targetGroup.GetNodeAtWorldPosX(myMostLeftNodeWorldPosX - 1);
+                        if (endNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = MostLeftNode;
+                            transition.EndNode = endNode;
+                            transition.TransitionType = NodeTransitionType.WalkAndFall;
+                            transitions.Add(transition);
+                        }
                     }
                 }
             }
@@ -180,40 +212,72 @@ namespace PahlBit
             {
                 if (targetRect.center.y > myRect.center.y) // 타겟지형이 위쪽일 경우
                 {
-                    int targetMostLeftNodeWorldPosX = targetGroup.MostLeftNode.Position.x;
-                    NodeNav startNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX - 2);
-                    if (startNode != null)
+                    if (targetGroup.IsThinPlatform)
                     {
-                        NodeTransition transition = new NodeTransition();
-                        transition.StartNode = startNode;
-                        transition.EndNode = targetGroup.MostLeftNode;
-                        transition.TransitionType = NodeTransitionType.MovingJump;
-                        transitions.Add(transition);
-                    }
-                    else
-                    {
-                        startNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX - 1);
+                        int targetMostLeftNodeWorldPosX = targetGroup.MostLeftNode.Position.x;
+                        NodeNav startNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX);
                         if (startNode != null)
                         {
                             NodeTransition transition = new NodeTransition();
                             transition.StartNode = startNode;
                             transition.EndNode = targetGroup.MostLeftNode;
-                            transition.TransitionType = NodeTransitionType.JumpAndMove;
+                            transition.TransitionType = NodeTransitionType.JustJumpUp;
                             transitions.Add(transition);
+                        }
+                    }
+                    else
+                    {
+                        int targetMostLeftNodeWorldPosX = targetGroup.MostLeftNode.Position.x;
+                        NodeNav startNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX - 2);
+                        if (startNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startNode;
+                            transition.EndNode = targetGroup.MostLeftNode;
+                            transition.TransitionType = NodeTransitionType.MovingJump;
+                            transitions.Add(transition);
+                        }
+                        else
+                        {
+                            startNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX - 1);
+                            if (startNode != null)
+                            {
+                                NodeTransition transition = new NodeTransition();
+                                transition.StartNode = startNode;
+                                transition.EndNode = targetGroup.MostLeftNode;
+                                transition.TransitionType = NodeTransitionType.JumpAndMove;
+                                transitions.Add(transition);
+                            }
                         }
                     }
                 }
                 else // 타겟지형이 아래쪽일 경우
                 {
-                    int myMostRightNodeWorldPosX = MostRightNode.Position.x;
-                    NodeNav endNode = targetGroup.GetNodeAtWorldPosX(myMostRightNodeWorldPosX + 1);
-                    if (endNode != null)
+                    if (IsThinPlatform)
                     {
-                        NodeTransition transition = new NodeTransition();
-                        transition.StartNode = MostRightNode;
-                        transition.EndNode = endNode;
-                        transition.TransitionType = NodeTransitionType.WalkAndFall;
-                        transitions.Add(transition);
+                        int targetMostLeftNodeWorldPosX = targetGroup.MostLeftNode.Position.x;
+                        NodeNav startNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX);
+                        if (startNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startNode;
+                            transition.EndNode = targetGroup.MostLeftNode;
+                            transition.TransitionType = NodeTransitionType.DropDown;
+                            transitions.Add(transition);
+                        }
+                    }
+                    else
+                    {
+                        int myMostRightNodeWorldPosX = MostRightNode.Position.x;
+                        NodeNav endNode = targetGroup.GetNodeAtWorldPosX(myMostRightNodeWorldPosX + 1);
+                        if (endNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = MostRightNode;
+                            transition.EndNode = endNode;
+                            transition.TransitionType = NodeTransitionType.WalkAndFall;
+                            transitions.Add(transition);
+                        }
                     }
                 }
             }
@@ -222,53 +286,106 @@ namespace PahlBit
             {
                 if (myRect.center.y < targetRect.center.y)
                 {
-                    int targetMostLeftNodeWorldPosX = targetGroup.MostLeftNode.Position.x;
-                    NodeNav startLeftNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX - 2);
-                    if (startLeftNode != null)
+                    if (targetGroup.IsThinPlatform)
                     {
-                        NodeTransition transition = new NodeTransition();
-                        transition.StartNode = startLeftNode;
-                        transition.EndNode = targetGroup.MostLeftNode;
-                        transition.TransitionType = NodeTransitionType.MovingJump;
-                        transitions.Add(transition);
-                    }
-                    else
-                    {
-                        startLeftNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX - 1);
+                        int targetMostLeftNodeWorldPosX = targetGroup.MostLeftNode.Position.x;
+                        NodeNav startLeftNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX);
                         if (startLeftNode != null)
                         {
                             NodeTransition transition = new NodeTransition();
                             transition.StartNode = startLeftNode;
                             transition.EndNode = targetGroup.MostLeftNode;
-                            transition.TransitionType = NodeTransitionType.JumpAndMove;
+                            transition.TransitionType = NodeTransitionType.JustJumpUp;
                             transitions.Add(transition);
                         }
-                    }
 
-
-                    int targetMostRightNodeWorldPosX = targetGroup.MostRightNode.Position.x;
-                    NodeNav startRightNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX + 2);
-                    if (startRightNode != null)
-                    {
-                        NodeTransition transition = new NodeTransition();
-                        transition.StartNode = startRightNode;
-                        transition.EndNode = targetGroup.MostRightNode;
-                        transition.TransitionType = NodeTransitionType.MovingJump;
-                        transitions.Add(transition);
-                    }
-                    else
-                    {
-                        startRightNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX + 1);
+                        int targetMostRightNodeWorldPosX = targetGroup.MostRightNode.Position.x;
+                        NodeNav startRightNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX);
                         if (startRightNode != null)
                         {
                             NodeTransition transition = new NodeTransition();
                             transition.StartNode = startRightNode;
                             transition.EndNode = targetGroup.MostRightNode;
-                            transition.TransitionType = NodeTransitionType.JumpAndMove;
+                            transition.TransitionType = NodeTransitionType.JustJumpUp;
                             transitions.Add(transition);
                         }
                     }
+                    else
+                    {
+                        int targetMostLeftNodeWorldPosX = targetGroup.MostLeftNode.Position.x;
+                        NodeNav startLeftNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX - 2);
+                        if (startLeftNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startLeftNode;
+                            transition.EndNode = targetGroup.MostLeftNode;
+                            transition.TransitionType = NodeTransitionType.MovingJump;
+                            transitions.Add(transition);
+                        }
+                        else
+                        {
+                            startLeftNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX - 1);
+                            if (startLeftNode != null)
+                            {
+                                NodeTransition transition = new NodeTransition();
+                                transition.StartNode = startLeftNode;
+                                transition.EndNode = targetGroup.MostLeftNode;
+                                transition.TransitionType = NodeTransitionType.JumpAndMove;
+                                transitions.Add(transition);
+                            }
+                        }
 
+
+                        int targetMostRightNodeWorldPosX = targetGroup.MostRightNode.Position.x;
+                        NodeNav startRightNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX + 2);
+                        if (startRightNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startRightNode;
+                            transition.EndNode = targetGroup.MostRightNode;
+                            transition.TransitionType = NodeTransitionType.MovingJump;
+                            transitions.Add(transition);
+                        }
+                        else
+                        {
+                            startRightNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX + 1);
+                            if (startRightNode != null)
+                            {
+                                NodeTransition transition = new NodeTransition();
+                                transition.StartNode = startRightNode;
+                                transition.EndNode = targetGroup.MostRightNode;
+                                transition.TransitionType = NodeTransitionType.JumpAndMove;
+                                transitions.Add(transition);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (IsThinPlatform)
+                    {
+                        int targetMostLeftNodeWorldPosX = targetGroup.MostLeftNode.Position.x;
+                        NodeNav startLeftNode = GetNodeAtWorldPosX(targetMostLeftNodeWorldPosX);
+                        if (startLeftNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startLeftNode;
+                            transition.EndNode = targetGroup.MostLeftNode;
+                            transition.TransitionType = NodeTransitionType.DropDown;
+                            transitions.Add(transition);
+                        }
+
+                        int targetMostRightNodeWorldPosX = targetGroup.MostRightNode.Position.x;
+                        NodeNav startRightNode = GetNodeAtWorldPosX(targetMostRightNodeWorldPosX);
+                        if (startRightNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = startRightNode;
+                            transition.EndNode = targetGroup.MostRightNode;
+                            transition.TransitionType = NodeTransitionType.DropDown;
+                            transitions.Add(transition);
+                        }
+                    }
                 }
             }
             // case 6: 타겟안에 내가 포함된 경우
@@ -276,26 +393,80 @@ namespace PahlBit
             {
                 if (myRect.center.y > targetRect.center.y) // 타겟지형이 아래쪽일 경우 좌우로 떨어지는 경우만 처리
                 {
-                    int myMostLeftNodeWorldPosX = MostLeftNode.Position.x;
-                    NodeNav endLeftNode = targetGroup.GetNodeAtWorldPosX(myMostLeftNodeWorldPosX - 1);
-                    if (endLeftNode != null)
+                    if (IsThinPlatform)
                     {
-                        NodeTransition transition = new NodeTransition();
-                        transition.StartNode = MostLeftNode;
-                        transition.EndNode = endLeftNode;
-                        transition.TransitionType = NodeTransitionType.WalkAndFall;
-                        transitions.Add(transition);
-                    }
+                        int myMostLeftNodeWorldPosX = MostLeftNode.Position.x;
+                        NodeNav endLeftNode = targetGroup.GetNodeAtWorldPosX(myMostLeftNodeWorldPosX);
+                        if (endLeftNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = MostLeftNode;
+                            transition.EndNode = endLeftNode;
+                            transition.TransitionType = NodeTransitionType.DropDown;
+                            transitions.Add(transition);
+                        }
 
-                    int myMostRightNodeWorldPosX = MostRightNode.Position.x;
-                    NodeNav endRightNode = targetGroup.GetNodeAtWorldPosX(myMostRightNodeWorldPosX + 1);
-                    if (endRightNode != null)
+                        int myMostRightNodeWorldPosX = MostRightNode.Position.x;
+                        NodeNav endRightNode = targetGroup.GetNodeAtWorldPosX(myMostRightNodeWorldPosX);
+                        if (endRightNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = MostRightNode;
+                            transition.EndNode = endRightNode;
+                            transition.TransitionType = NodeTransitionType.DropDown;
+                            transitions.Add(transition);
+                        }
+                    }
+                    else
                     {
-                        NodeTransition transition = new NodeTransition();
-                        transition.StartNode = MostRightNode;
-                        transition.EndNode = endRightNode;
-                        transition.TransitionType = NodeTransitionType.WalkAndFall;
-                        transitions.Add(transition);
+                        int myMostLeftNodeWorldPosX = MostLeftNode.Position.x;
+                        NodeNav endLeftNode = targetGroup.GetNodeAtWorldPosX(myMostLeftNodeWorldPosX - 1);
+                        if (endLeftNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = MostLeftNode;
+                            transition.EndNode = endLeftNode;
+                            transition.TransitionType = NodeTransitionType.WalkAndFall;
+                            transitions.Add(transition);
+                        }
+
+                        int myMostRightNodeWorldPosX = MostRightNode.Position.x;
+                        NodeNav endRightNode = targetGroup.GetNodeAtWorldPosX(myMostRightNodeWorldPosX + 1);
+                        if (endRightNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = MostRightNode;
+                            transition.EndNode = endRightNode;
+                            transition.TransitionType = NodeTransitionType.WalkAndFall;
+                            transitions.Add(transition);
+                        }
+                    }
+                }
+                else
+                {
+                    if (targetGroup.IsThinPlatform)
+                    {
+                        int myMostLeftNodeWorldPosX = MostLeftNode.Position.x;
+                        NodeNav endLeftNode = targetGroup.GetNodeAtWorldPosX(myMostLeftNodeWorldPosX);
+                        if (endLeftNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = MostLeftNode;
+                            transition.EndNode = endLeftNode;
+                            transition.TransitionType = NodeTransitionType.JustJumpUp;
+                            transitions.Add(transition);
+                        }
+
+                        int myMostRightNodeWorldPosX = MostRightNode.Position.x;
+                        NodeNav endRightNode = targetGroup.GetNodeAtWorldPosX(myMostRightNodeWorldPosX);
+                        if (endRightNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = MostRightNode;
+                            transition.EndNode = endRightNode;
+                            transition.TransitionType = NodeTransitionType.JustJumpUp;
+                            transitions.Add(transition);
+                        }
                     }
                 }
             }

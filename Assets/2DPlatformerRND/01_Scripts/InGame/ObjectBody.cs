@@ -31,5 +31,11 @@ namespace PahlBit
         {
             mCollider = GetComponent<BoxCollider2D>();
         }
+
+        public void LockThinPlatformMomentarily(float duration = 0.2f)
+        {
+            LockThinPlatform = true;
+            this.ExDelayedCoroutine(duration, () => LockThinPlatform = false);
+        }
     }
 }

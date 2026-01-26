@@ -19,6 +19,7 @@ namespace PahlBit
         public Vector2Int Position { get; private set; }
         public NodeNavGroup ParentGroup { get; set; }
         public int IndexInGroup { get; set; } = -1;
+        public bool IsThin { get; set; } = false;
 
         public NodeNav(Vector2Int position)
         {

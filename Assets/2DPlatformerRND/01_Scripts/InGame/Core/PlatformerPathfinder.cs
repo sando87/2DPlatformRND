@@ -14,9 +14,12 @@ namespace PahlBit
         Dictionary<Vector2Int, NodeNav> mGroundNodes = new Dictionary<Vector2Int, NodeNav>();
         List<NodeNavGroup> mNodeGroups = new List<NodeNavGroup>();
 
-        public void Init(Tilemap tilemap)
+        public void Init(Tilemap tilemap, Tilemap thinTilemap)
         {
             BoundsInt bounds = tilemap.cellBounds;
+            BoundsInt thinBounds = thinTilemap.cellBounds;
+            bounds.min = Vector3Int.Min(bounds.min, thinBounds.min);
+            bounds.max = Vector3Int.Max(bounds.max, thinBounds.max);
             NodeNavGroup groundNodeGroup = null;
 
             for (int x = bounds.min.x; x < bounds.max.x; x++)
@@ -32,11 +35,30 @@ namespace PahlBit
                         if (groundNodeGroup == null)
                         {
                             groundNodeGroup = new NodeNavGroup();
+                            groundNodeGroup.IsThinPlatform = false;
                         }
 
                         NodeNav newNode = new NodeNav(pos);
                         newNode.ParentGroup = groundNodeGroup;
                         newNode.IndexInGroup = groundNodeGroup.GroundNodes.Count;
+                        newNode.IsThin = false;
+                        groundNodeGroup.GroundNodes.Add(newNode);
+                        mGroundNodes[pos] = newNode;
+                        pos.x++;
+                    }
+
+                    while (IsThinTile(thinTilemap, pos))
+                    {
+                        if (groundNodeGroup == null)
+                        {
+                            groundNodeGroup = new NodeNavGroup();
+                            groundNodeGroup.IsThinPlatform = true;
+                        }
+
+                        NodeNav newNode = new NodeNav(pos);
+                        newNode.ParentGroup = groundNodeGroup;
+                        newNode.IndexInGroup = groundNodeGroup.GroundNodes.Count;
+                        newNode.IsThin = true;
                         groundNodeGroup.GroundNodes.Add(newNode);
                         mGroundNodes[pos] = newNode;
                         pos.x++;
@@ -67,12 +89,17 @@ namespace PahlBit
             Vector3Int pos = new Vector3Int(position.x, position.y, 0);
             return tilemap.HasTile(pos) && !tilemap.HasTile(pos + Vector3Int.up);
         }
+        bool IsThinTile(Tilemap tilemap, Vector2Int position)
+        {
+            Vector3Int pos = new Vector3Int(position.x, position.y, 0);
+            return tilemap.gameObject.layer == LayerID.ThinPlatform && tilemap.HasTile(pos);
+        }
 
         void LinkGroups(NodeNavGroup newGroup)
         {
             Rect newRect = newGroup.GetRect();
-            newRect.min -= new Vector2(12, 8);
-            newRect.max += new Vector2(12, 8);
+            newRect.min -= new Vector2(14, 9);
+            newRect.max += new Vector2(14, 9);
             foreach (NodeNavGroup group in mNodeGroups)
             {
                 Rect groupRect = group.GetRect();
@@ -94,19 +121,53 @@ namespace PahlBit
             List<PathInfo> possiblePaths = new List<PathInfo>();
             foreach (var transition in currentGroup.Transitions)
             {
-                bool isPossibleJump = JumpSimulationTable.IsPossibleJump(
-                    startPos: transition.StartNode.Position,
-                    destPos: transition.EndNode.Position,
-                    horizontalMoveSpeed: moveSpeed,
-                    out float requiredJumpForce
-                );
-
-                if (isPossibleJump)
+                if (transition.TransitionType == NodeTransitionType.JustJumpUp)
                 {
+                    bool isPossibleJump = JumpSimulationTable.IsPossibleJump(
+                        startPos: transition.StartNode.Position,
+                        destPos: transition.EndNode.Position,
+                        horizontalMoveSpeed: 0,
+                        out float requiredJumpForce
+                    );
+
+                    if (isPossibleJump)
+                    {
+                        NodeNav endNode = transition.EndNode.ParentGroup.GetNodeAtWorldPosX(currentNode.Position.x);
+                        bool isNoNeedToMove = endNode != null;
+
+                        PathInfo pathInfo = new PathInfo();
+                        pathInfo.Transition = transition;
+                        pathInfo.JumpForce = requiredJumpForce;
+                        pathInfo.IsNoNeedToMove = isNoNeedToMove;
+                        possiblePaths.Add(pathInfo);
+                    }
+                }
+                else if (transition.TransitionType == NodeTransitionType.DropDown)
+                {
+                    NodeNav endNode = transition.EndNode.ParentGroup.GetNodeAtWorldPosX(currentNode.Position.x);
+                    bool isNoNeedToMove = endNode != null;
+
                     PathInfo pathInfo = new PathInfo();
                     pathInfo.Transition = transition;
-                    pathInfo.jumpForce = requiredJumpForce;
+                    pathInfo.IsNoNeedToMove = isNoNeedToMove;
                     possiblePaths.Add(pathInfo);
+                }
+                else
+                {
+                    bool isPossibleJump = JumpSimulationTable.IsPossibleJump(
+                        startPos: transition.StartNode.Position,
+                        destPos: transition.EndNode.Position,
+                        horizontalMoveSpeed: moveSpeed,
+                        out float requiredJumpForce
+                    );
+
+                    if (isPossibleJump)
+                    {
+                        PathInfo pathInfo = new PathInfo();
+                        pathInfo.Transition = transition;
+                        pathInfo.JumpForce = requiredJumpForce;
+                        possiblePaths.Add(pathInfo);
+                    }
                 }
             }
 
@@ -126,6 +187,7 @@ namespace PahlBit
     public class PathInfo
     {
         public NodeTransition Transition { get; set; }
-        public float jumpForce { get; set; }
+        public float JumpForce { get; set; }
+        public bool IsNoNeedToMove { get; set; } = false;
     }
 }
