@@ -127,7 +127,7 @@ namespace PahlBit
                         startPos: transition.StartNode.Position,
                         destPos: transition.EndNode.Position,
                         horizontalMoveSpeed: moveSpeed,
-                        out float requiredJumpForce
+                        out int requiredJumpLevel
                     );
 
                     if (isPossibleJump)
@@ -137,7 +137,7 @@ namespace PahlBit
 
                         PathInfo pathInfo = new PathInfo();
                         pathInfo.Transition = transition;
-                        pathInfo.JumpForce = requiredJumpForce;
+                        pathInfo.JumpForce = JumpSimulationTable.JumpLevelToForce(requiredJumpLevel);
                         pathInfo.IsNoNeedToMove = isNoNeedToMove;
                         possiblePaths.Add(pathInfo);
                     }
@@ -158,14 +158,14 @@ namespace PahlBit
                         startPos: transition.StartNode.Position,
                         destPos: transition.EndNode.Position,
                         horizontalMoveSpeed: moveSpeed,
-                        out float requiredJumpForce
+                        out int requiredJumpLevel
                     );
 
-                    if (isPossibleJump)
+                    if (isPossibleJump && !transition.IsBlocked(requiredJumpLevel))
                     {
                         PathInfo pathInfo = new PathInfo();
                         pathInfo.Transition = transition;
-                        pathInfo.JumpForce = requiredJumpForce;
+                        pathInfo.JumpForce = JumpSimulationTable.JumpLevelToForce(requiredJumpLevel);
                         possiblePaths.Add(pathInfo);
                     }
                 }

@@ -66,6 +66,7 @@ namespace PahlBit
                             transition.StartNode = nextNode;
                             transition.EndNode = endNode;
                             transition.TransitionType = NodeTransitionType.MovingJump;
+                            CalcJumpCastBlocked(transition);
                             transitions.Add(transition);
                         }
                         else
@@ -84,6 +85,7 @@ namespace PahlBit
                     transition.StartNode = startNode;
                     transition.EndNode = endNode;
                     transition.TransitionType = NodeTransitionType.MovingJump;
+                    CalcJumpCastBlocked(transition);
                     transitions.Add(transition);
                 }
             }
@@ -112,6 +114,7 @@ namespace PahlBit
                             transition.StartNode = nextNode;
                             transition.EndNode = endNode;
                             transition.TransitionType = NodeTransitionType.MovingJump;
+                            CalcJumpCastBlocked(transition);
                             transitions.Add(transition);
                         }
                         else
@@ -130,6 +133,7 @@ namespace PahlBit
                     transition.StartNode = startNode;
                     transition.EndNode = endNode;
                     transition.TransitionType = NodeTransitionType.MovingJump;
+                    CalcJumpCastBlocked(transition);
                     transitions.Add(transition);
                 }
             }
@@ -161,6 +165,7 @@ namespace PahlBit
                             transition.StartNode = startNode;
                             transition.EndNode = targetGroup.MostRightNode;
                             transition.TransitionType = NodeTransitionType.MovingJump;
+                            CalcJumpCastBlocked(transition);
                             transitions.Add(transition);
                         }
                         else
@@ -235,6 +240,7 @@ namespace PahlBit
                             transition.StartNode = startNode;
                             transition.EndNode = targetGroup.MostLeftNode;
                             transition.TransitionType = NodeTransitionType.MovingJump;
+                            CalcJumpCastBlocked(transition);
                             transitions.Add(transition);
                         }
                         else
@@ -320,6 +326,7 @@ namespace PahlBit
                             transition.StartNode = startLeftNode;
                             transition.EndNode = targetGroup.MostLeftNode;
                             transition.TransitionType = NodeTransitionType.MovingJump;
+                            CalcJumpCastBlocked(transition);
                             transitions.Add(transition);
                         }
                         else
@@ -344,6 +351,7 @@ namespace PahlBit
                             transition.StartNode = startRightNode;
                             transition.EndNode = targetGroup.MostRightNode;
                             transition.TransitionType = NodeTransitionType.MovingJump;
+                            CalcJumpCastBlocked(transition);
                             transitions.Add(transition);
                         }
                         else
@@ -498,6 +506,24 @@ namespace PahlBit
         {
             int localIndex = worldPosX - MostLeftNode.Position.x;
             return GetNodeAtIndex(localIndex);
+        }
+
+        void CalcJumpCastBlocked(NodeTransition transition)
+        {
+            if (transition.TransitionType != NodeTransitionType.MovingJump)
+                return;
+
+            float moveSpeed = 7;
+            for (int jumpLevel = 1; jumpLevel <= 4; jumpLevel++)
+            {
+                RaycastHit2D hitInfo = JumpSimulationTable.JumpCast(transition.StartNode.CenterTopPos, moveSpeed, jumpLevel);
+                if (hitInfo.collider != null)
+                {
+                    Vector2 nodeInnerPos = hitInfo.point - (hitInfo.normal * 0.1f);
+                    Rect targetNodeGroupArea = transition.EndNode.ParentGroup.GetRect();
+                    transition.IsBlockedJumping[jumpLevel - 1] = !targetNodeGroupArea.Contains(nodeInnerPos);
+                }
+            }
         }
     }
 }

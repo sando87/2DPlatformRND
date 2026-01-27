@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
+using System.Collections;
 
 
 namespace PahlBit
@@ -48,7 +49,7 @@ namespace PahlBit
             mJumpTable[-10] = new float[] { 1.00f, 1.11f, 1.20f, 1.26f };
         }
 
-        static float GetJumpForce(int destOffsetY, float requiredTimeToReach)
+        static int GetJumpLevel(int destOffsetY, float requiredTimeToReach)
         {
             if (mJumpTable.Count == 0)
             {
@@ -57,33 +58,32 @@ namespace PahlBit
 
             if (destOffsetY < -10 || destOffsetY > 4)
             {
-                return -1f;
+                return -1;
             }
 
             float[] timeTable = mJumpTable[destOffsetY];
-            int idx = 0;
-            for (idx = 0; idx < timeTable.Length; idx++)
+            for (int idx = 0; idx < timeTable.Length; idx++)
             {
                 float maxFloatingTime = timeTable[idx];
                 if (maxFloatingTime < 0)
                     continue;
 
                 if (requiredTimeToReach < maxFloatingTime)
-                    return idx == 0 ? 14f : (idx == 1 ? 18f : (idx == 2 ? 22f : 25f));
+                    return idx + 1;
             }
 
-            return -1f;
+            return -1;
         }
 
         // 현재 이동속도로 도착지점까지 점프로 이동 가능한지 여부 판단 및 가능하다면 필요한 점프값 반환
-        public static bool IsPossibleJump(Vector2Int startPos, Vector2Int destPos, float horizontalMoveSpeed, out float requiredJumpForce)
+        public static bool IsPossibleJump(Vector2Int startPos, Vector2Int destPos, float horizontalMoveSpeed, out int requiredJumpLevel)
         {
             int offsetY = destPos.y - startPos.y;
             float distanceX = Mathf.Abs(destPos.x - startPos.x);
             float timeToReach = distanceX / Mathf.Abs(horizontalMoveSpeed);
-            float jumpForce = GetJumpForce(offsetY, timeToReach);
-            requiredJumpForce = jumpForce;
-            return jumpForce > 0f;
+            int jumpLevel = GetJumpLevel(offsetY, timeToReach);
+            requiredJumpLevel = jumpLevel;
+            return jumpLevel > 0f;
         }
 
 
@@ -182,6 +182,56 @@ namespace PahlBit
                 Color lineColor = isUp ? Color.red : Color.blue;
                 Debug.DrawLine(trajectory[i], trajectory[i] + new Vector2(0.2f, 0), lineColor, 5f);
             }
+        }
+
+        public static int JumpLevelToForce(int jumpLevel)
+        {
+            switch (jumpLevel)
+            {
+                case 1: return 14;
+                case 2: return 18;
+                case 3: return 22;
+                case 4: return 25;
+            }
+            return 0;
+        }
+        public static int JumpForceToLevel(int jumpForce)
+        {
+            switch (jumpForce)
+            {
+                case 14: return 1;
+                case 18: return 2;
+                case 22: return 3;
+                case 25: return 4;
+            }
+            return 0;
+        }
+
+        public static RaycastHit2D JumpCast(Vector2 startPos, float moveSpeed, int jumpLevel)
+        {
+            // 점프힘 25일때 최대높이 4.7, 피크까지시간 0.41s
+            // 힘 22점프, 높이 3.73, 피크까지시간 0.37s
+            // 힘 18점프, 높이 2.59, 피크까지시간 0.31s
+            // 힘 14점프, 높이 1.62, 피크까지시간 0.25s
+
+            Vector2 cenPos = startPos + new Vector2(0, 1);
+            Vector2 peakPos = Vector2.zero;
+            switch (jumpLevel)
+            {
+                case 4: peakPos = new Vector2(startPos.x + (moveSpeed * 0.41f), startPos.y + 4.70f); break;
+                case 3: peakPos = new Vector2(startPos.x + (moveSpeed * 0.37f), startPos.y + 3.73f); break;
+                case 2: peakPos = new Vector2(startPos.x + (moveSpeed * 0.31f), startPos.y + 2.59f); break;
+                case 1: peakPos = new Vector2(startPos.x + (moveSpeed * 0.25f), startPos.y + 1.62f); break;
+            }
+
+            Vector2 diff = peakPos - startPos;
+            RaycastHit2D hitInfo = Physics2D.BoxCast(cenPos, new Vector2(1, 2), 0, diff.normalized, diff.magnitude, 1 << LayerID.Terrain);
+            if (hitInfo.collider == null)
+            {
+                Vector2 dir = new Vector2(diff.normalized.x, -diff.normalized.y);
+                hitInfo = Physics2D.BoxCast(peakPos, new Vector2(1, 2), 0, dir, diff.magnitude + 10, 1 << LayerID.Terrain | 1 << LayerID.ThinPlatform);
+            }
+            return hitInfo;
         }
 
     }

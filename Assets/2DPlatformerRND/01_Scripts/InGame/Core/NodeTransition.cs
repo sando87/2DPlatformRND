@@ -3,6 +3,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 using UnityEditor.Experimental.GraphView;
+using RPGCharacterAnims.Actions;
 
 
 namespace PahlBit
@@ -12,6 +13,8 @@ namespace PahlBit
         public NodeTransitionType TransitionType { get; set; }
         public NodeNav StartNode { get; set; }
         public NodeNav EndNode { get; set; }
+        public bool[] IsBlockedJumping = new bool[4];
+        public bool IsBlocked(int jumpLevel) { return IsBlockedJumping[jumpLevel - 1]; }
     }
 
     public enum NodeTransitionType
