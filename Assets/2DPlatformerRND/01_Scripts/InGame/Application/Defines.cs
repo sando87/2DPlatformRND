@@ -34,6 +34,13 @@ namespace PahlBit
 
     }
 
+    public static class AnimatorParams
+    {
+        public static readonly int MotionSpeed = Animator.StringToHash("MotionSpeed");
+        // public static readonly int IsGround = Animator.StringToHash("IsGround");
+        // public static readonly int IsMoving = Animator.StringToHash("IsMoving");
+    }
+
     public class LayerID
     {
         public static readonly int Terrain = LayerMask.NameToLayer("Terrain");

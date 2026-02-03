@@ -149,9 +149,10 @@ public class SkillObject : MonoBehaviour
         return PlayerUnitInputType.None;
     }
 
-    protected void ApplyStatsToProjectile(ProjectileBase proj)
+    protected void ApplySkillStatsToProjectile(ProjectileBase proj)
     {
         proj.Stats.MoveSpeed = BaseStats.ProjectileSpeed;
+        proj.Stats.FireAngle = 0;
         proj.Stats.MaxDistance = BaseStats.ProjectileDistance;
         proj.Stats.SkillRange = BaseStats.AttackRange;
         proj.Stats.SplashRange = BaseStats.SplashRange;

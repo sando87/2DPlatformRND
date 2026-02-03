@@ -7,6 +7,7 @@ namespace PahlBit
     public class ProjectileInfo
     {
         public float MoveSpeed;
+        public float FireAngle;
         public float MaxDistance;
         public float SkillRange;
         public float SplashRange;

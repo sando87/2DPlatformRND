@@ -47,6 +47,24 @@ namespace PahlBit
         {
             mAnimator.SetTrigger(paramName);
         }
+
+        public void SetParamFloat(int paramNameHash, float value)
+        {
+            mAnimator.SetFloat(paramNameHash, value);
+        }
+        public void SetParamInt(int paramNameHash, int value)
+        {
+            mAnimator.SetInteger(paramNameHash, value);
+        }
+        public void SetParamBool(int paramNameHash, bool value)
+        {
+            mAnimator.SetBool(paramNameHash, value);
+        }
+        public void SetParamTrigger(int paramNameHash)
+        {
+            mAnimator.SetTrigger(paramNameHash);
+        }
+
         public void CrossFadeToState(string stateName, int layer = 0)
         {
             mAnimator.CrossFade(stateName, 0, layer, 0);

@@ -12,6 +12,12 @@ namespace PahlBit
         [SerializeField] float _MoveSpeed = 5f;
         [SerializeField] float _AttackSpeed = 1f;
 
+        [Button]
+        void UpdateMotionSpeed()
+        {
+            this.ExGetBase().AnimHelper.SetParamFloat(AnimatorParams.MotionSpeed, _AttackSpeed);
+        }
+
         [SerializeField]
         [Dropdown("IDList")]
         string _ID = "";

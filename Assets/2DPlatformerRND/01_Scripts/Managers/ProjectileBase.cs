@@ -56,6 +56,12 @@ namespace PahlBit
 
             if (Stats.MoveSpeed > 0)
                 LaunchProjectile();
+
+            if (Stats.FireAngle != 0)
+            {
+                Quaternion newRotation = transform.rotation * Quaternion.Euler(0f, 0f, Stats.FireAngle);
+                transform.rotation = newRotation;
+            }
         }
 
         void Update()

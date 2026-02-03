@@ -61,7 +61,7 @@ public class SkillArrow : SkillObject
                 mBaseObj.gameObject.layer
             );
 
-            ApplyStatsToProjectile(proj);
+            ApplySkillStatsToProjectile(proj);
 
             RegistOnHitEvent(proj);
         }
