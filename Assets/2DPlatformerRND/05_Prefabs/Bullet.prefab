@@ -306,7 +306,7 @@ MonoBehaviour:
   <Stats>k__BackingField:
     MoveSpeed: 10
     MaxDistance: 0
-    AttackRange: 0
+    SkillRange: 0
     SplashRange: 0
     Duration: 1
     Interval: 0
@@ -315,4 +315,16 @@ MonoBehaviour:
       m_Calls: []
   OnEnd:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1200170532658568389}
+        m_TargetAssemblyTypeName: PahlBit.BaseObject, Assembly-CSharp
+        m_MethodName: DestroyObj
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

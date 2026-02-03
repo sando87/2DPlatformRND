@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace PahlBit
@@ -53,11 +54,13 @@ namespace PahlBit
         public int Level;
         public int PositionIndex;
 
+        [JsonIgnore]
         public int LevelIndex { get => Level - 1; }
 
         public SkillSaveData(long _resourceID)
         {
             this.ResourceID = _resourceID;
+            this.Level = 1;
         }
     }
 }
