@@ -85,7 +85,9 @@ public class SkillObject : MonoBehaviour
         int charID = CharRoot.CharacterID;
         var saveDataAllSkills = saveData.Characters[charID].Skills;
         if (!saveDataAllSkills.ContainsKey(mSkillResID))
-            saveDataAllSkills[mSkillResID] = new SkillSaveData();
+        {
+            saveDataAllSkills[mSkillResID] = new SkillSaveData(mSkillResID);
+        }
 
         SkillSaveData skillSaveData = saveDataAllSkills[mSkillResID];
         SkillInfo = new SkillInfo();
@@ -145,6 +147,16 @@ public class SkillObject : MonoBehaviour
             case 3: return PlayerUnitInputType.SkillSlotD;
         }
         return PlayerUnitInputType.None;
+    }
+
+    protected void ApplyStatsToProjectile(ProjectileBase proj)
+    {
+        proj.Stats.MoveSpeed = BaseStats.ProjectileSpeed;
+        proj.Stats.MaxDistance = BaseStats.ProjectileDistance;
+        proj.Stats.SkillRange = BaseStats.AttackRange;
+        proj.Stats.SplashRange = BaseStats.SplashRange;
+        proj.Stats.Duration = BaseStats.Duration;
+        proj.Stats.Interval = BaseStats.Interval;
     }
 
 }

@@ -79,6 +79,12 @@ namespace PahlBit
 
 
 
+        public void Fire()
+        {
+            int curStateHashName = mAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+            InvokeEventMiddle(curStateHashName, 0);
+        }
+
         public void Hit()
         {
             int curStateHashName = mAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash;

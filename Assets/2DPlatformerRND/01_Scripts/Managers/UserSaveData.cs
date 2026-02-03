@@ -54,5 +54,10 @@ namespace PahlBit
         public int PositionIndex;
 
         public int LevelIndex { get => Level - 1; }
+
+        public SkillSaveData(long _resourceID)
+        {
+            this.ResourceID = _resourceID;
+        }
     }
 }

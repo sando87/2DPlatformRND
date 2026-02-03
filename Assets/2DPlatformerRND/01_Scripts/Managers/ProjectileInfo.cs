@@ -8,7 +8,7 @@ namespace PahlBit
     {
         public float MoveSpeed;
         public float MaxDistance;
-        public float AttackRange;
+        public float SkillRange;
         public float SplashRange;
         public float Duration;
         public float Interval;
