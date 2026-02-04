@@ -10,13 +10,13 @@ namespace PahlBit
 {
     public class SkillController : MonoBehaviour
     {
-        [SerializeField] Dictionary<long, SkillObject> mAllSkills = new Dictionary<long, SkillObject>();
-        [SerializeField] SkillObject[] SkillSlots = null;
+        [SerializeField] Dictionary<string, SkillBase> mAllSkills = new Dictionary<string, SkillBase>();
+        [SerializeField] SkillBase[] SkillSlots = null;
 
         [Foldout("Events")]
-        public UnityEvent<SkillObject> OnEquipSkill = new UnityEvent<SkillObject>();
+        public UnityEvent<SkillBase> OnEquipSkill = new UnityEvent<SkillBase>();
         [Foldout("Events")]
-        public UnityEvent<SkillObject> OnUnEquipSkill = new UnityEvent<SkillObject>();
+        public UnityEvent<SkillBase> OnUnEquipSkill = new UnityEvent<SkillBase>();
 
         BaseObject mBaseObj = null;
 
@@ -27,28 +27,28 @@ namespace PahlBit
 
         public void InitSkills(int characterID)
         {
-            SkillObject[] allSkills = GetComponentsInChildren<SkillObject>();
-            foreach (SkillObject skillObj in allSkills)
+            SkillBase[] allSkills = GetComponentsInChildren<SkillBase>();
+            foreach (SkillBase skillObj in allSkills)
             {
                 skillObj.InitSkillInfo(characterID);
-                mAllSkills[skillObj.SkillID] = skillObj;
+                mAllSkills[skillObj.ResourceID] = skillObj;
 
-                if (!skillObj.SkillInfo.IsLearned)
+                if (!skillObj.IsLearned)
                 {
                     skillObj.gameObject.SetActive(false);
                     continue;
                 }
 
-                if (skillObj.SkillInfo.IsEquipped)
+                if (skillObj.IsEquipped)
                 {
-                    SkillSlots[skillObj.SkillInfo.PositionIndex] = skillObj;
+                    SkillSlots[skillObj.PositionIndex] = skillObj;
                 }
             }
         }
 
         public void Update()
         {
-            foreach (SkillObject skillObject in SkillSlots)
+            foreach (SkillBase skillObject in SkillSlots)
             {
                 if (skillObject != null)
                     skillObject.UpdateSkill();
@@ -56,38 +56,32 @@ namespace PahlBit
         }
 
 
-        public void LearnNewSkill(long skillResID)
+        public void LearnNewSkill(string skillResID)
         {
-            SkillObject skill = mAllSkills[skillResID];
+            SkillBase skill = mAllSkills[skillResID];
             skill.gameObject.SetActive(true);
-            skill.OnLearnSkill();
-            GameSystem.DoSave_UserSaveData();
+            skill.OnLearnedSkill();
         }
-        public void LevelupSkill(long skillResID)
+        public void LevelupSkill(string skillResID)
         {
-            SkillObject skill = mAllSkills[skillResID];
+            SkillBase skill = mAllSkills[skillResID];
             skill.OnLevelupSkill();
-            GameSystem.DoSave_UserSaveData();
         }
 
-        public void EquipSkill(long skillResID, int slotIndex)
+        public void EquipSkill(string skillResID, int slotIndex)
         {
-            SkillObject skill = mAllSkills[skillResID];
+            SkillBase skill = mAllSkills[skillResID];
             SkillSlots[slotIndex] = skill;
-            SkillSlots[slotIndex].OnEquipSkill(slotIndex);
+            SkillSlots[slotIndex].OnEquipedSkill(slotIndex);
             OnEquipSkill?.Invoke(skill);
-
-            GameSystem.DoSave_UserSaveData();
         }
 
-        public void UnEquipSkill(long skillResID, int slotIndex)
+        public void UnEquipSkill(string skillResID, int slotIndex)
         {
-            SkillObject skill = mAllSkills[skillResID];
+            SkillBase skill = mAllSkills[skillResID];
             OnUnEquipSkill?.Invoke(skill);
-            SkillSlots[slotIndex].OnUnEquipSkill();
+            SkillSlots[slotIndex].OnUnEquipedSkill();
             SkillSlots[slotIndex] = null;
-
-            GameSystem.DoSave_UserSaveData();
         }
         public int FindEmptySkillSlotIndex()
         {

@@ -13,6 +13,7 @@ namespace PahlBit
         public Health Health { get => GetComponentInChildren<Health>(); }
         public PlayerController Ctrl { get => GetComponentInChildren<PlayerController>(); }
         public BuffController Buffs => GetComponentInChildren<BuffController>();
+        public SpecBase Spec => GetComponentInChildren<SpecBase>();
 
         public PlayerMain PlayerObj => GetComponentInChildren<PlayerMain>();
         public EnemyBase EnemyObj => GetComponentInChildren<EnemyBase>();

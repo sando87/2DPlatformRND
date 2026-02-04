@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityEngine.InputSystem;
 
-public class SkillGun : SkillObject
+public class SkillGun : SkillBase
 {
     [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase ProjectilePrefab;
@@ -44,7 +44,7 @@ public class SkillGun : SkillObject
 
         ApplySkillStatsToProjectile(proj);
 
-        Vector2 desPos = startPos + (BaseStats.ProjectileDistance * proj.transform.right.ExToVector2());
+        Vector2 desPos = startPos + (Spec.BaseStats.ProjectileDistance * proj.transform.right.ExToVector2());
         Vector2 ranDesPos = MyUtils.Random(desPos, RandomDestPos);
         Vector2 diff = ranDesPos - startPos;
         proj.transform.right = (ranDesPos - startPos).normalized;
@@ -56,7 +56,7 @@ public class SkillGun : SkillObject
             Health health = col.ExGetBase().GetComponentInChildren<Health>();
             if (health != null)
             {
-                float damage = BaseStats.Attack;
+                float damage = Spec.BaseStats.Attack;
                 health.GetDamaged(damage);
 
                 AttackResult result = new AttackResult()

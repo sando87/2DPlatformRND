@@ -29,7 +29,7 @@ namespace PahlBit
         }
 
         BaseObject mBaseObj = null;
-        CharObject mSpec = null;
+        SpecPlayer mSpec = null;
         PlayerUnitInput mPlayerInput = null;
         FiniteStateMachine mFSM = null;
 
@@ -40,7 +40,7 @@ namespace PahlBit
         private void Awake()
         {
             mBaseObj = GetComponentInParent<BaseObject>();
-            mSpec = mBaseObj.GetComponentInChildren<CharObject>();
+            mSpec = mBaseObj.GetComponentInChildren<SpecPlayer>();
             mPlayerInput = mBaseObj.GetComponentInChildren<PlayerUnitInput>();
 
             mFSM = mBaseObj.StateMachine;

@@ -50,7 +50,7 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
-        mStats = mBase.GetComponentInChildren<EnemyDataMono>().Data.Stats;
+        mStats = mBase.EnemyObj.Spec.TotalStats;
 
         mBase.Health.OnDamaged.AddListener(ChangeDamagedState);
         mBase.Health.OnDied.AddListener(ChangeDeathState);

@@ -20,7 +20,7 @@ namespace PahlBit
         public Experience Exp { get; private set; }
         public ItemInventory Inven { get; private set; }
         public SkillController SkillCtrl { get; private set; }
-        public CharObject Stats { get; private set; }
+        public SpecPlayer Spec { get; private set; }
 
         BaseObject mBaseObj = null;
 
@@ -37,8 +37,8 @@ namespace PahlBit
             SkillCtrl = GetComponentInChildren<SkillController>();
             SkillCtrl.InitSkills(CharacterID);
 
-            Stats = GetComponentInChildren<CharObject>();
-            Stats.Init(CharacterID, _ResourceID);
+            Spec = GetComponentInChildren<SpecPlayer>();
+            Spec.Init(CharacterID, _ResourceID);
         }
         void Start()
         {

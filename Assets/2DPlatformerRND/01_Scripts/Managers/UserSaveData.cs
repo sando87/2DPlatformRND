@@ -18,7 +18,7 @@ namespace PahlBit
     {
         public CharSaveData Stats = new CharSaveData();
         public Dictionary<string, ItemSaveData> Items = new Dictionary<string, ItemSaveData>();
-        public Dictionary<long, SkillSaveData> Skills = new Dictionary<long, SkillSaveData>();
+        public Dictionary<string, SkillSaveData> Skills = new Dictionary<string, SkillSaveData>();
     }
 
     [System.Serializable]
@@ -48,7 +48,7 @@ namespace PahlBit
     [System.Serializable]
     public class SkillSaveData
     {
-        public long ResourceID;
+        public string ResourceID;
         public bool IsEquipped;
         public bool IsLearned;
         public int Level;
@@ -57,7 +57,7 @@ namespace PahlBit
         [JsonIgnore]
         public int LevelIndex { get => Level - 1; }
 
-        public SkillSaveData(long _resourceID)
+        public SkillSaveData(string _resourceID)
         {
             this.ResourceID = _resourceID;
             this.Level = 1;

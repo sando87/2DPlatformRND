@@ -7,7 +7,7 @@ using PahlBit;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SkillBall : SkillObject
+public class SkillBall : SkillBase
 {
     [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase CirclePrefab;
@@ -45,7 +45,7 @@ public class SkillBall : SkillObject
             Health health = col.ExGetBase().GetComponentInChildren<Health>();
             if (health != null)
             {
-                float damage = BaseStats.Attack;
+                float damage = Spec.BaseStats.Attack;
                 health.GetDamaged(damage);
 
                 AttackResult result = new AttackResult()

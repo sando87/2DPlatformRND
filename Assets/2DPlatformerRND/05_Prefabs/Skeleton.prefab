@@ -70,6 +70,7 @@ MonoBehaviour:
   GoldDropPercent: 30
   GoldPrefab: {fileID: 5461417893251240980, guid: 5dd89691a4a14614aba050b3c09ae3bf,
     type: 3}
+  _ResourceID: Enemy01
 --- !u!114 &7996635295318006703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,21 +139,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43459b6858ca0da4ea1c5155f638e474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.EnemyDataMono
-  _ID: Enemy01
-  <Data>k__BackingField:
-    <Stats>k__BackingField:
-      Health: 0
-      Attack: 0
-      Defence: 0
-      MoveSpeed: 0
-      AttackSpeed: 0
-      Cooltime: 0
-      DetectRange: 0
-      AttackRange: 0
-      ItemDrop:
-        mPercentVal: 0
-      GoldOnDeath: 0
-      ExpOnDeath: 0
+  <TotalStats>k__BackingField:
+    Health: 0
+    Attack: 0
+    Defence: 0
+    MoveSpeed: 0
+    AttackSpeed: 0
+    Cooltime: 0
+    DetectRange: 0
+    AttackRange: 0
+    ItemDrop:
+      mPercentVal: 0
+    GoldOnDeath: 0
+    ExpOnDeath: 0
 --- !u!114 &4959186170716446665
 MonoBehaviour:
   m_ObjectHideFlags: 0

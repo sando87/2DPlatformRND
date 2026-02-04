@@ -16,37 +16,21 @@ namespace PahlBit
         public int GoldOnDeath;
         public float ExpOnDeath;
 
-        // ----- += 연산 메서드 -----
-        public void Add(EnemyStats other)
+        public static EnemyStats operator *(EnemyStats stat, SpecOption option)
         {
-            Health += other.Health;
-            Attack += other.Attack;
-            Defence += other.Defence;
-            MoveSpeed += other.MoveSpeed;
-            AttackSpeed += other.AttackSpeed;
-            Cooltime += other.Cooltime;
-            DetectRange += other.DetectRange;
-            AttackRange += other.AttackRange;
-            ItemDrop += other.ItemDrop;
-            GoldOnDeath += other.GoldOnDeath;
-            ExpOnDeath += other.ExpOnDeath;
-
-        }
-
-        // ----- -= 연산 메서드 -----
-        public void Subtract(EnemyStats other)
-        {
-            Health -= other.Health;
-            Attack -= other.Attack;
-            Defence -= other.Defence;
-            MoveSpeed -= other.MoveSpeed;
-            AttackSpeed -= other.AttackSpeed;
-            Cooltime -= other.Cooltime;
-            DetectRange -= other.DetectRange;
-            AttackRange -= other.AttackRange;
-            ItemDrop -= other.ItemDrop;
-            GoldOnDeath -= other.GoldOnDeath;
-            ExpOnDeath -= other.ExpOnDeath;
+            EnemyStats result = new EnemyStats();
+            result.Health = stat.Health * option.HealthUp;
+            result.Attack = stat.Attack * option.AttackUp;
+            result.Defence = stat.Defence * option.DefenceUp;
+            result.MoveSpeed = stat.MoveSpeed * option.MoveSpeedUp;
+            result.AttackSpeed = stat.AttackSpeed * option.AttackSpeedUp;
+            result.Cooltime = stat.Cooltime * option.CooltimeDown;
+            result.DetectRange = stat.DetectRange;
+            result.AttackRange = stat.AttackRange;
+            result.ItemDrop = stat.ItemDrop;
+            result.GoldOnDeath = stat.GoldOnDeath;
+            result.ExpOnDeath = stat.ExpOnDeath;
+            return result;
         }
     }
 

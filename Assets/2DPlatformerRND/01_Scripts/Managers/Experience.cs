@@ -27,8 +27,12 @@ namespace PahlBit
                 {
                     if (result.IsKilled)
                     {
-                        float gainedExp = result.Target.ExGetBase().GetComponentInChildren<EnemyDataMono>().Data.Stats.ExpOnDeath;
-                        AddExp(gainedExp);
+                        EnemyBase enemy = result.Target.ExGetBase().EnemyObj;
+                        if (enemy != null)
+                        {
+                            float gainedExp = enemy.Spec.TotalStats.ExpOnDeath;
+                            AddExp(gainedExp);
+                        }
                     }
                 });
             }

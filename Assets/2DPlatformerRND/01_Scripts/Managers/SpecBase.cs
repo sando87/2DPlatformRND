@@ -13,6 +13,6 @@ namespace PahlBit
         public virtual float MaxMana { get; }
         public virtual float MaxShield { get; }
 
-        public virtual SpecOption Option { get; }
+        public virtual SpecOption Option { get; } = new SpecOption();
     }
 }

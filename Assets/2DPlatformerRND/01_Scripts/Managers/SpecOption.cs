@@ -59,6 +59,49 @@ namespace PahlBit
             LightningResist -= other.LightningResist;
             PosionResist -= other.PosionResist;
         }
+
+        public static SpecOption operator +(SpecOption a, SpecOption b)
+        {
+            return new SpecOption
+            {
+                HealthUp = a.HealthUp + b.HealthUp,
+                HealthRegen = a.HealthRegen + b.HealthRegen,
+                ManaUp = a.ManaUp + b.ManaUp,
+                ManaRegen = a.ManaRegen + b.ManaRegen,
+                AttackUp = a.AttackUp + b.AttackUp,
+                DefenceUp = a.DefenceUp + b.DefenceUp,
+                MoveSpeedUp = a.MoveSpeedUp + b.MoveSpeedUp,
+                AttackSpeedUp = a.AttackSpeedUp + b.AttackSpeedUp,
+                CooltimeDown = a.CooltimeDown + b.CooltimeDown,
+                ShieldAdd = a.ShieldAdd + b.ShieldAdd,
+                ShieldRegen = a.ShieldRegen + b.ShieldRegen,
+                FireResist = a.FireResist + b.FireResist,
+                IceResist = a.IceResist + b.IceResist,
+                LightningResist = a.LightningResist + b.LightningResist,
+                PosionResist = a.PosionResist + b.PosionResist,
+            };
+        }
+        public static SpecOption operator -(SpecOption a, SpecOption b)
+        {
+            return new SpecOption
+            {
+                HealthUp = a.HealthUp - b.HealthUp,
+                HealthRegen = a.HealthRegen - b.HealthRegen,
+                ManaUp = a.ManaUp - b.ManaUp,
+                ManaRegen = a.ManaRegen - b.ManaRegen,
+                AttackUp = a.AttackUp - b.AttackUp,
+                DefenceUp = a.DefenceUp - b.DefenceUp,
+                MoveSpeedUp = a.MoveSpeedUp - b.MoveSpeedUp,
+                AttackSpeedUp = a.AttackSpeedUp - b.AttackSpeedUp,
+                CooltimeDown = a.CooltimeDown - b.CooltimeDown,
+                ShieldAdd = a.ShieldAdd - b.ShieldAdd,
+                ShieldRegen = a.ShieldRegen - b.ShieldRegen,
+                FireResist = a.FireResist - b.FireResist,
+                IceResist = a.IceResist - b.IceResist,
+                LightningResist = a.LightningResist - b.LightningResist,
+                PosionResist = a.PosionResist - b.PosionResist,
+            };
+        }
     }
 
 }

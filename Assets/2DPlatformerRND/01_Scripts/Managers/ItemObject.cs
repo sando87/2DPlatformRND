@@ -17,7 +17,7 @@ public class ItemObject : MonoBehaviour
         return itemObj;
     }
 
-    public void PickItem(Collider2D col)
+    public void OnPickedUpBy(Collider2D col)
     {
         BaseObject pickerPlayer = col.GetComponentInParent<BaseObject>();
         ItemInventory inventory = pickerPlayer.GetComponentInChildren<ItemInventory>();

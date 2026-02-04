@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using NaughtyAttributes;
 using PahlBit;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,26 +10,32 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] int GoldDropPercent = 30;
     [SerializeField] Gold GoldPrefab = null;
 
+    [SerializeField]
+    [Dropdown(nameof(IDList))]
+    string _ResourceID = "";
+    List<string> IDList { get => EnemyResourceTable.Instance.GetAllInfo().Select(info => info.EnemyID).ToList(); }
+
+    public SpecEnemy Spec { get; private set; } = null;
+
     BaseObject mBase = null;
-    EnemyDataMono mEnemyData = null;
 
     private void Awake()
     {
         mBase = GetComponentInParent<BaseObject>();
-        mEnemyData = mBase.GetComponentInChildren<EnemyDataMono>();
+
+        Spec = mBase.GetComponentInChildren<SpecEnemy>();
+        Spec.InitData(_ResourceID);
     }
 
     void Start()
     {
-
-        mBase.Health.InitHealth(mEnemyData.Data.Stats.Health, 0, 0);
+        mBase.Health.InitHealth(Spec.TotalStats.Health, 0, 0);
         mBase.Health.OnDied.AddListener(OnDeath);
-
     }
 
     public void OnDeath()
     {
-        if (MyUtils.IsPercentHit((int)mEnemyData.Data.Stats.ItemDrop.PercentValue))
+        if (MyUtils.IsPercentHit((int)Spec.TotalStats.ItemDrop.PercentValue))
             DropItem();
 
         if (MyUtils.IsPercentHit(GoldDropPercent))
@@ -40,6 +49,6 @@ public class EnemyBase : MonoBehaviour
     void DropGold()
     {
         Gold itemObj = Instantiate(GoldPrefab, mBase.Body.Center, Quaternion.identity);
-        itemObj.GoldAmount = mEnemyData.Data.Stats.GoldOnDeath;
+        itemObj.GoldAmount = Spec.TotalStats.GoldOnDeath;
     }
 }

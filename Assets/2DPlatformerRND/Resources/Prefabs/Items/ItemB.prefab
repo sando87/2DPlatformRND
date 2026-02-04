@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d744c9de0ec7aa478e952774f915150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.ObjectBody
+  _ThinPlatform: {fileID: 0}
 --- !u!114 &770095612890520687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,8 +111,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8872753720201472015}
-        m_TargetAssemblyTypeName: Item, Assembly-CSharp
-        m_MethodName: PickItem
+        m_TargetAssemblyTypeName: ItemObject, Assembly-CSharp
+        m_MethodName: OnPickedUpBy
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -7,7 +7,7 @@ using PahlBit;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SkillMelee : SkillObject
+public class SkillMelee : SkillBase
 {
     [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase MeleePrefab;
@@ -46,7 +46,7 @@ public class SkillMelee : SkillObject
             Health health = col.ExGetBase().GetComponentInChildren<Health>();
             if (health != null)
             {
-                float damage = BaseStats.Attack;
+                float damage = Spec.BaseStats.Attack;
                 health.GetDamaged(damage);
 
                 AttackResult result = new AttackResult()

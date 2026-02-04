@@ -12,24 +12,25 @@ namespace PahlBit
         [SerializeField] float _MoveSpeed = 5f;
         [SerializeField] float _AttackSpeed = 1f;
 
+        public override float MaxHealth => TotalStats.Health;
+        public override float MaxMana => TotalStats.Mana;
+        public override float MaxShield => TotalStats.Shield;
+
         public override SpecOption Option => TotalOption;
 
-        public CharResourceData ResourceData { get; private set; } = null;
         public CharSaveData SaveData { get; private set; } = null;
+        public CharResourceData ResourceData { get; private set; } = null;
         public CharStats BaseStats { get; private set; } = null;
-        public CharStats TotalStats { get; private set; } = null;
         public SpecOption TotalOption { get; private set; } = null;
+        public CharStats TotalStats { get; private set; } = null;
 
-        private BaseObject mBaseObj = null;
-        private ItemInventory mInven = null;
-        private BuffController mBuff = null;
-
+        BaseObject mBaseObj = null;
+        PlayerMain mPlayerObj = null;
 
         void Awake()
         {
             mBaseObj = this.ExGetBase();
-            mInven = mBaseObj.GetComponentInChildren<ItemInventory>();
-            mBuff = mBaseObj.GetComponentInChildren<BuffController>();
+            mPlayerObj = mBaseObj.PlayerObj;
         }
 
         public void Init(int characterID, string resourceID)
@@ -39,7 +40,8 @@ namespace PahlBit
             SaveData = userSaveData.Characters[characterID].Stats;
 
             UpdateBasicStat();
-            UpdateOption();
+            UpdateTotalOption();
+            UpdateTotalStats();
         }
 
         void UpdateBasicStat()
@@ -55,13 +57,15 @@ namespace PahlBit
             BaseStats.MoveSpeed = _MoveSpeed;
             BaseStats.AttackSpeed = _AttackSpeed;
         }
-        void UpdateOption()
-        {
-            TotalOption = new SpecOption();
-            TotalOption.Add(mInven.TotalItemOption);
-            TotalOption.Add(mBuff.TotalBuffOption);
 
-            TotalStats = BaseStats * mInven.TotalItemOption;
+        public void UpdateTotalOption()
+        {
+            TotalOption = mPlayerObj.Inven.TotalItemOption + mBaseObj.Buffs.TotalBuffOption;
+        }
+
+        public void UpdateTotalStats()
+        {
+            TotalStats = BaseStats * TotalOption;
         }
 
     }
