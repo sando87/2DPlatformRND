@@ -18,22 +18,19 @@ namespace PahlBit
         [Foldout("Events")]
         public UnityEvent<SkillObject> OnUnEquipSkill = new UnityEvent<SkillObject>();
 
-        public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
-
         BaseObject mBaseObj = null;
 
         void Awake()
         {
             mBaseObj = GetComponentInParent<BaseObject>();
-            InitSkills();
         }
 
-        void InitSkills()
+        public void InitSkills(int characterID)
         {
             SkillObject[] allSkills = GetComponentsInChildren<SkillObject>();
             foreach (SkillObject skillObj in allSkills)
             {
-                skillObj.InitSkillInfo();
+                skillObj.InitSkillInfo(characterID);
                 mAllSkills[skillObj.SkillID] = skillObj;
 
                 if (!skillObj.SkillInfo.IsLearned)

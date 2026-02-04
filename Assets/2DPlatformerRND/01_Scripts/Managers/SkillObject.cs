@@ -68,8 +68,6 @@ public class SkillObject : MonoBehaviour
     [SerializeField]
     private SkillStats _BaseStats = null;
 
-    public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
-
     protected BaseObject mBaseObj = null;
     protected PlayerUnitInput mInput = null;
 
@@ -79,11 +77,10 @@ public class SkillObject : MonoBehaviour
         mInput = mBaseObj.Input;
     }
 
-    public void InitSkillInfo()
+    public void InitSkillInfo(int characterID)
     {
         UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
-        int charID = CharRoot.CharacterID;
-        var saveDataAllSkills = saveData.Characters[charID].Skills;
+        var saveDataAllSkills = saveData.Characters[characterID].Skills;
         if (!saveDataAllSkills.ContainsKey(mSkillResID))
         {
             saveDataAllSkills[mSkillResID] = new SkillSaveData(mSkillResID);

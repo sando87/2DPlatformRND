@@ -17,7 +17,7 @@ namespace PahlBit
         public float Duration;
         public float Interval;
 
-        public static SkillStats operator *(SkillStats stat, ItemStats option)
+        public static SkillStats operator *(SkillStats stat, SpecOption option)
         {
             SkillStats result = new SkillStats();
             // result.Health = stat.Health * (1 + option.HealthUp.ToDouble()) + option.HealthRegen;

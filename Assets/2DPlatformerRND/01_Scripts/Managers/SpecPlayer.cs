@@ -7,24 +7,29 @@ using UnityEngine.InputSystem;
 
 namespace PahlBit
 {
-    public class CharObject : MonoBehaviour
+    public class SpecPlayer : SpecBase
     {
         [SerializeField] float _MoveSpeed = 5f;
         [SerializeField] float _AttackSpeed = 1f;
 
-        public CharSaveData SaveData { get; private set; } = null;
+        public override SpecOption Option => TotalOption;
+
         public CharResourceData ResourceData { get; private set; } = null;
+        public CharSaveData SaveData { get; private set; } = null;
+        public CharStats BaseStats { get; private set; } = null;
+        public CharStats TotalStats { get; private set; } = null;
+        public SpecOption TotalOption { get; private set; } = null;
 
-        [field: SerializeField]
-        public CharStats BaseStats { get; private set; } = new CharStats();
-        [field: SerializeField]
-        public CharStats TotalStats { get; private set; } = new CharStats();
+        private BaseObject mBaseObj = null;
+        private ItemInventory mInven = null;
+        private BuffController mBuff = null;
 
-        BaseObject mBaseObj = null;
 
         void Awake()
         {
             mBaseObj = this.ExGetBase();
+            mInven = mBaseObj.GetComponentInChildren<ItemInventory>();
+            mBuff = mBaseObj.GetComponentInChildren<BuffController>();
         }
 
         public void Init(int characterID, string resourceID)
@@ -34,7 +39,7 @@ namespace PahlBit
             SaveData = userSaveData.Characters[characterID].Stats;
 
             UpdateBasicStat();
-            UpdateTotalStat();
+            UpdateOption();
         }
 
         void UpdateBasicStat()
@@ -50,13 +55,13 @@ namespace PahlBit
             BaseStats.MoveSpeed = _MoveSpeed;
             BaseStats.AttackSpeed = _AttackSpeed;
         }
-        void UpdateTotalStat()
+        void UpdateOption()
         {
-            SpecOption totalOption = new SpecOption();
-            totalOption.Add(mBaseObj.PlayerObj.Inven.TotalItemOption);
-            totalOption.Add(mBaseObj.Buffs.TotalBuffOption);
+            TotalOption = new SpecOption();
+            TotalOption.Add(mInven.TotalItemOption);
+            TotalOption.Add(mBuff.TotalBuffOption);
 
-            TotalStats = BaseStats * totalOption;
+            TotalStats = BaseStats * mInven.TotalItemOption;
         }
 
     }

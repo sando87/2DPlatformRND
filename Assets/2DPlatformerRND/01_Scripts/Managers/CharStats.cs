@@ -14,7 +14,7 @@ namespace PahlBit
         public float MoveSpeed;
         public float AttackSpeed;
 
-        public static CharStats operator *(CharStats stat, ItemStats option)
+        public static CharStats operator *(CharStats stat, SpecOption option)
         {
             CharStats result = new CharStats();
 

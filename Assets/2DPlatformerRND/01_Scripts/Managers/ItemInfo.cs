@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 [System.Serializable]
 public class ItemInfo
 {
-    public ItemStats _Option = null;
+    public SpecOption _Option = null;
 
     public override string ToString()
     {
@@ -15,7 +15,7 @@ public class ItemInfo
 
     public ItemSaveData SaveData { get; private set; } = null;
     public ItemResourceData ResourceData { get; private set; } = null;
-    public ItemStats Option { get; private set; } = null;
+    public SpecOption Option { get; private set; } = null;
 
     public string InstanceID => SaveData.InstanceID;
     public long ResourceID => ResourceData.ID;
@@ -46,7 +46,7 @@ public class ItemInfo
     }
     public void UpdateOption()
     {
-        Option = new ItemStats();
+        Option = new SpecOption();
         int point = SaveData.LevelIndex;
         System.Random ran = new System.Random(SaveData.RandomSeed);
 

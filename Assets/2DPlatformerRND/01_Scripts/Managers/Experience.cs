@@ -6,8 +6,6 @@ namespace PahlBit
 {
     public class Experience : MonoBehaviour
     {
-        public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
-
         private float mFromExp = 0;
         private float mToExp = 0;
         private CharSaveData mCharacterSaveData = null;
@@ -19,11 +17,6 @@ namespace PahlBit
         public float CurrentExp { get; private set; } = 0;
 
         public UnityEvent OnLevelUp = new UnityEvent();
-
-        void Awake()
-        {
-            Init();
-        }
 
         void Start()
         {
@@ -41,10 +34,10 @@ namespace PahlBit
             }
         }
 
-        public void Init()
+        public void Init(int characterID)
         {
             UserSaveData userSaveData = SaveFileManager<UserSaveData>.Load();
-            mCharacterSaveData = userSaveData.Characters[CharRoot.CharacterID].Stats;
+            mCharacterSaveData = userSaveData.Characters[characterID].Stats;
             CurrentExp = mCharacterSaveData.CurrentExp;
             CurrentLevel = GameSystem.CurrentExpToLevel(mCharacterSaveData.CurrentExp);
 

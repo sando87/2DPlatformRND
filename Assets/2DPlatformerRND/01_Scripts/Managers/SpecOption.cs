@@ -2,7 +2,7 @@
 namespace PahlBit
 {
     [System.Serializable]
-    public class ItemStats
+    public class SpecOption
     {
         public Percent HealthUp;
         public float HealthRegen;
@@ -21,7 +21,7 @@ namespace PahlBit
         public Percent PosionResist;
 
         // ----- += 연산 메서드 -----
-        public void Add(ItemStats other)
+        public void Add(SpecOption other)
         {
             HealthUp += other.HealthUp;
             HealthRegen += other.HealthRegen;
@@ -41,7 +41,7 @@ namespace PahlBit
         }
 
         // ----- -= 연산 메서드 -----
-        public void Subtract(ItemStats other)
+        public void Subtract(SpecOption other)
         {
             HealthUp -= other.HealthUp;
             HealthRegen -= other.HealthRegen;

@@ -9,15 +9,13 @@ namespace PahlBit
 {
     public class ItemInventory : MonoBehaviour
     {
-        public CharacterRoot CharRoot => GetComponentInParent<CharacterRoot>();
-
         private Dictionary<string, ItemInfo> mInvenItems = new Dictionary<string, ItemInfo>();
         private Dictionary<string, ItemInfo> mEquipItems = new Dictionary<string, ItemInfo>();
         private Dictionary<string, ItemSaveData> mSaveData = null;
         private UserSaveData mUserSaveData = null;
 
-        public ItemStats TotalItemOption
-        { get; private set; } = new ItemStats();
+        public SpecOption TotalItemOption
+        { get; private set; } = new SpecOption();
 
         public int CurrentGold { get { return mUserSaveData.Gold; } set { mUserSaveData.Gold = value; GameSystem.RequestSave(); } }
 
@@ -56,16 +54,10 @@ namespace PahlBit
         void _UnEquipItem() { UnEquipItem(mSelectEquipItem.InstanceID); }
 
 
-        void Awake()
-        {
-            LoadItemsFromData();
-        }
-
-        void LoadItemsFromData()
+        public void LoadItemsFromData(int characterID)
         {
             mUserSaveData = SaveFileManager<UserSaveData>.Load();
-            int charID = CharRoot.CharacterID;
-            mSaveData = mUserSaveData.Characters[charID].Items;
+            mSaveData = mUserSaveData.Characters[characterID].Items;
             foreach (var pair in mSaveData)
             {
                 ItemSaveData itemSaveData = pair.Value;
