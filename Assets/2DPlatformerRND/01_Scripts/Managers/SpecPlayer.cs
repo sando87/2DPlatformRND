@@ -21,20 +21,19 @@ namespace PahlBit
         public CharSaveData SaveData { get; private set; } = null;
         public CharResourceData ResourceData { get; private set; } = null;
         public CharStats BaseStats { get; private set; } = null;
+        [field: SerializeField]
         public SpecOption TotalOption { get; private set; } = null;
+        [field: SerializeField]
         public CharStats TotalStats { get; private set; } = null;
 
         BaseObject mBaseObj = null;
         PlayerMain mPlayerObj = null;
 
-        void Awake()
+        public void Init(int characterID, string resourceID)
         {
             mBaseObj = this.ExGetBase();
             mPlayerObj = mBaseObj.PlayerObj;
-        }
 
-        public void Init(int characterID, string resourceID)
-        {
             ResourceData = CharResourceTable.Instance.GetInfo(resourceID);
             UserSaveData userSaveData = SaveFileManager<UserSaveData>.Load();
             SaveData = userSaveData.Characters[characterID].Stats;
@@ -47,6 +46,8 @@ namespace PahlBit
         void UpdateBasicStat()
         {
             int currentLevelIndex = GameSystem.CurrentExpToLevel(SaveData.CurrentExp);
+
+            BaseStats = new CharStats();
 
             BaseStats.Attack = ResourceData._Attack.GetValueByBoth(SaveData.AttackPoint, currentLevelIndex);
             BaseStats.Defence = ResourceData._Defence.GetValueByBoth(SaveData.DefensePoint, currentLevelIndex);

@@ -16,7 +16,6 @@ namespace PahlBit
         public EnemyResourceData ResourceData { get; private set; } = null;
         public EnemyStats BaseStats { get; private set; } = null;
         public SpecOption TotalOption { get; private set; } = null;
-
         [field: SerializeField]
         public EnemyStats TotalStats { get; private set; } = null;
 

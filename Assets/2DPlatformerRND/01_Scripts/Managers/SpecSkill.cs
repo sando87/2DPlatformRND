@@ -11,14 +11,8 @@ namespace PahlBit
     {
         public SkillSaveData SaveData { get; private set; } = null;
         public SkillResourceData ResourceData { get; private set; } = null;
+        [field: SerializeField]
         public SkillStats BaseStats { get; private set; } = null;
-
-        BaseObject mBaseObj = null;
-
-        void Awake()
-        {
-            mBaseObj = this.ExGetBase();
-        }
 
         public void Init(int characterID, string resourceID)
         {
@@ -32,6 +26,8 @@ namespace PahlBit
         public void UpdateBasicStat()
         {
             int currentLevelIndex = SaveData == null ? 0 : SaveData.LevelIndex;
+
+            BaseStats = new SkillStats();
 
             BaseStats.Attack = ResourceData._Attack.GetValueByPoint(currentLevelIndex);
             BaseStats.ManaUse = ResourceData._ManaUse.GetValueByPoint(currentLevelIndex);

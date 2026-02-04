@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8391774183680255402}
   - component: {fileID: 8536736938578584811}
   - component: {fileID: 4959186170716446665}
+  - component: {fileID: 6612556377838412465}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Untagged
@@ -173,6 +174,18 @@ MonoBehaviour:
   OnDied:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6612556377838412465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662150947426525976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22bef6b20d622a74d9998cfff6db6d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.BuffController
 --- !u!1 &3744473320614122168
 GameObject:
   m_ObjectHideFlags: 0
