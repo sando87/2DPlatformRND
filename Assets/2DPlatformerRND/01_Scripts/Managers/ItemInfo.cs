@@ -61,6 +61,12 @@ public class ItemInfo
         Option.CooltimeDown = ResourceData._CooltimeDown.GetValue();
         Option.ShieldAdd = ResourceData._ShieldAdd.GetValueInRange(ran.ExNextFloatNormalized());
         Option.ShieldRegen = ResourceData._ShieldRegen.GetValue();
+        Option.CriticalRate = ResourceData._CriticalRate.GetValue();
+        Option.CriticalAttack = ResourceData._CriticalAttack.GetValue();
+        Option.ProjectileCountUp = ResourceData._ProjectileCountUp.GetValue();
+        Option.ProjectileSpeedUp = ResourceData._ProjectileSpeedUp.GetValue();
+        Option.SplashRangeUp = ResourceData._SplashRangeUp.GetValue();
+        Option.DurationUp = ResourceData._DurationUp.GetValue();
         Option.FireResist = ResourceData._FireResist.GetValue();
         Option.IceResist = ResourceData._IceResist.GetValue();
         Option.LightningResist = ResourceData._LightningResist.GetValue();

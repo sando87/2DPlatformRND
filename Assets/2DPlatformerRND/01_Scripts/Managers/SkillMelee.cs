@@ -46,7 +46,7 @@ public class SkillMelee : SkillBase
             Health health = col.ExGetBase().GetComponentInChildren<Health>();
             if (health != null)
             {
-                float damage = Spec.BaseStats.Attack;
+                float damage = Spec.Attack;
                 health.GetDamaged(damage);
 
                 AttackResult result = new AttackResult()

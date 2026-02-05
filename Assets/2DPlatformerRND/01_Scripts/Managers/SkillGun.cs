@@ -44,11 +44,11 @@ public class SkillGun : SkillBase
 
         ApplySkillStatsToProjectile(proj);
 
-        Vector2 desPos = startPos + (Spec.BaseStats.ProjectileDistance * proj.transform.right.ExToVector2());
+        Vector2 desPos = startPos + (Spec.AttackRange * proj.transform.right.ExToVector2());
         Vector2 ranDesPos = MyUtils.Random(desPos, RandomDestPos);
         Vector2 diff = ranDesPos - startPos;
         proj.transform.right = (ranDesPos - startPos).normalized;
-        proj.Stats.MaxDistance = diff.magnitude;
+        proj.Stats.AttackRange = diff.magnitude;
 
         proj.OnHit.AddListener((col) =>
         {
@@ -56,7 +56,7 @@ public class SkillGun : SkillBase
             Health health = col.ExGetBase().GetComponentInChildren<Health>();
             if (health != null)
             {
-                float damage = Spec.BaseStats.Attack;
+                float damage = Spec.Attack;
                 health.GetDamaged(damage);
 
                 AttackResult result = new AttackResult()

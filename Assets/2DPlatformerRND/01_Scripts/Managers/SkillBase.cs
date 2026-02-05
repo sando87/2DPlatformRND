@@ -148,8 +148,7 @@ public class SkillBase : MonoBehaviour
     {
         proj.Stats.MoveSpeed = Spec.ProjectileSpeed;
         proj.Stats.FireAngle = 0;
-        proj.Stats.MaxDistance = Spec.ProjectileDistance;
-        proj.Stats.SkillRange = Spec.AttackRange;
+        proj.Stats.AttackRange = Spec.AttackRange;
         proj.Stats.SplashRange = Spec.SplashRange;
         proj.Stats.Duration = Spec.Duration;
         proj.Stats.Interval = Spec.Interval;

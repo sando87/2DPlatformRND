@@ -18,7 +18,6 @@ namespace PahlBit
         public readonly string Cooltime;
         public readonly string ProjectileCount;
         public readonly string ProjectileSpeed;
-        public readonly string ProjectileDistance;
         public readonly string AttackRange;
         public readonly string SplashRange;
         public readonly string Duration;
@@ -32,7 +31,6 @@ namespace PahlBit
         public ParseValue _Cooltime { get; private set; }
         public ParseValue _ProjectileCount { get; private set; }
         public ParseValue _ProjectileSpeed { get; private set; }
-        public ParseValue _ProjectileDistance { get; private set; }
         public ParseValue _AttackRange { get; private set; }
         public ParseValue _SplashRange { get; private set; }
         public ParseValue _Duration { get; private set; }
@@ -46,7 +44,6 @@ namespace PahlBit
             _Cooltime = ParseValue.Parse(Cooltime);
             _ProjectileCount = ParseValue.Parse(ProjectileCount);
             _ProjectileSpeed = ParseValue.Parse(ProjectileSpeed);
-            _ProjectileDistance = ParseValue.Parse(ProjectileDistance);
             _AttackRange = ParseValue.Parse(AttackRange);
             _SplashRange = ParseValue.Parse(SplashRange);
             _Duration = ParseValue.Parse(Duration);

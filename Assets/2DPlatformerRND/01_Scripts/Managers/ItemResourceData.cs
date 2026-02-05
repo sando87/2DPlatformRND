@@ -25,6 +25,14 @@ namespace PahlBit
         public readonly string CooltimeDown;
         public readonly string ShieldAdd;
         public readonly string ShieldRegen;
+
+        public readonly string CriticalRate;
+        public readonly string CriticalAttack;
+        public readonly string ProjectileCountUp;
+        public readonly string ProjectileSpeedUp;
+        public readonly string SplashRangeUp;
+        public readonly string DurationUp;
+
         public readonly string FireResist;
         public readonly string IceResist;
         public readonly string LightningResist;
@@ -44,6 +52,12 @@ namespace PahlBit
         public ParseValue _CooltimeDown { get; private set; }
         public ParseValue _ShieldAdd { get; private set; }
         public ParseValue _ShieldRegen { get; private set; }
+        public ParseValue _CriticalRate { get; private set; }
+        public ParseValue _CriticalAttack { get; private set; }
+        public ParseValue _ProjectileCountUp { get; private set; }
+        public ParseValue _ProjectileSpeedUp { get; private set; }
+        public ParseValue _SplashRangeUp { get; private set; }
+        public ParseValue _DurationUp { get; private set; }
         public ParseValue _FireResist { get; private set; }
         public ParseValue _IceResist { get; private set; }
         public ParseValue _LightningResist { get; private set; }
@@ -62,6 +76,12 @@ namespace PahlBit
             _CooltimeDown = ParseValue.Parse(CooltimeDown);
             _ShieldAdd = ParseValue.Parse(ShieldAdd);
             _ShieldRegen = ParseValue.Parse(ShieldRegen);
+            _CriticalRate = ParseValue.Parse(CriticalRate);
+            _CriticalAttack = ParseValue.Parse(CriticalAttack);
+            _ProjectileCountUp = ParseValue.Parse(ProjectileCountUp);
+            _ProjectileSpeedUp = ParseValue.Parse(ProjectileSpeedUp);
+            _SplashRangeUp = ParseValue.Parse(SplashRangeUp);
+            _DurationUp = ParseValue.Parse(DurationUp);
             _FireResist = ParseValue.Parse(FireResist);
             _IceResist = ParseValue.Parse(IceResist);
             _LightningResist = ParseValue.Parse(LightningResist);

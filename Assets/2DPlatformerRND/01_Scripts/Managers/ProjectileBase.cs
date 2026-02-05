@@ -69,7 +69,7 @@ namespace PahlBit
             if (Stats.Interval > 0)
                 HitEventEveryInterval();
 
-            if (Stats.MaxDistance > 0)
+            if (Stats.AttackRange > 0)
                 EndAfterDistance();
         }
 
@@ -81,7 +81,7 @@ namespace PahlBit
         }
         void EndAfterDistance()
         {
-            if ((mStartPos - transform.position.ExToVector2()).magnitude > Stats.MaxDistance)
+            if ((mStartPos - transform.position.ExToVector2()).magnitude > Stats.AttackRange)
             {
                 DoEndProjectile();
             }

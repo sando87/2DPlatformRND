@@ -12,7 +12,6 @@ namespace PahlBit
         public float Cooltime;
         public float ProjectileCount;
         public float ProjectileSpeed;
-        public float ProjectileDistance;
         public float AttackRange;
         public float SplashRange;
         public float Duration;

@@ -15,6 +15,12 @@ namespace PahlBit
         public Percent CooltimeDown;
         public float ShieldAdd;
         public float ShieldRegen;
+        public Percent CriticalRate;
+        public Percent CriticalAttack;
+        public float ProjectileCountUp;
+        public Percent ProjectileSpeedUp;
+        public Percent SplashRangeUp;
+        public Percent DurationUp;
         public Percent FireResist;
         public Percent IceResist;
         public Percent LightningResist;
@@ -34,6 +40,12 @@ namespace PahlBit
             CooltimeDown += other.CooltimeDown;
             ShieldAdd += other.ShieldAdd;
             ShieldRegen += other.ShieldRegen;
+            CriticalRate += other.CriticalRate;
+            CriticalAttack += other.CriticalAttack;
+            ProjectileCountUp += other.ProjectileCountUp;
+            ProjectileSpeedUp += other.ProjectileSpeedUp;
+            SplashRangeUp += other.SplashRangeUp;
+            DurationUp += other.DurationUp;
             FireResist += other.FireResist;
             IceResist += other.IceResist;
             LightningResist += other.LightningResist;
@@ -54,6 +66,12 @@ namespace PahlBit
             CooltimeDown -= other.CooltimeDown;
             ShieldAdd -= other.ShieldAdd;
             ShieldRegen -= other.ShieldRegen;
+            CriticalRate -= other.CriticalRate;
+            CriticalAttack -= other.CriticalAttack;
+            ProjectileCountUp -= other.ProjectileCountUp;
+            ProjectileSpeedUp -= other.ProjectileSpeedUp;
+            SplashRangeUp -= other.SplashRangeUp;
+            DurationUp -= other.DurationUp;
             FireResist -= other.FireResist;
             IceResist -= other.IceResist;
             LightningResist -= other.LightningResist;
@@ -75,6 +93,12 @@ namespace PahlBit
                 CooltimeDown = a.CooltimeDown + b.CooltimeDown,
                 ShieldAdd = a.ShieldAdd + b.ShieldAdd,
                 ShieldRegen = a.ShieldRegen + b.ShieldRegen,
+                CriticalRate = a.CriticalRate + b.CriticalRate,
+                CriticalAttack = a.CriticalAttack + b.CriticalAttack,
+                ProjectileCountUp = a.ProjectileCountUp + b.ProjectileCountUp,
+                ProjectileSpeedUp = a.ProjectileSpeedUp + b.ProjectileSpeedUp,
+                SplashRangeUp = a.SplashRangeUp + b.SplashRangeUp,
+                DurationUp = a.DurationUp + b.DurationUp,
                 FireResist = a.FireResist + b.FireResist,
                 IceResist = a.IceResist + b.IceResist,
                 LightningResist = a.LightningResist + b.LightningResist,
@@ -96,6 +120,12 @@ namespace PahlBit
                 CooltimeDown = a.CooltimeDown - b.CooltimeDown,
                 ShieldAdd = a.ShieldAdd - b.ShieldAdd,
                 ShieldRegen = a.ShieldRegen - b.ShieldRegen,
+                CriticalRate = a.CriticalRate - b.CriticalRate,
+                CriticalAttack = a.CriticalAttack - b.CriticalAttack,
+                ProjectileCountUp = a.ProjectileCountUp - b.ProjectileCountUp,
+                ProjectileSpeedUp = a.ProjectileSpeedUp - b.ProjectileSpeedUp,
+                SplashRangeUp = a.SplashRangeUp - b.SplashRangeUp,
+                DurationUp = a.DurationUp - b.DurationUp,
                 FireResist = a.FireResist - b.FireResist,
                 IceResist = a.IceResist - b.IceResist,
                 LightningResist = a.LightningResist - b.LightningResist,

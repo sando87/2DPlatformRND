@@ -16,7 +16,6 @@ namespace PahlBit
         public float Cooltime => BaseStats.Cooltime * (mSpecPlayer.ItemOption.CooltimeDown + mSpecPlayer.BuffOption.CooltimeDown);
         public float ProjectileCount => BaseStats.ProjectileCount;
         public float ProjectileSpeed => BaseStats.ProjectileSpeed;
-        public float ProjectileDistance => BaseStats.ProjectileDistance;
         public float AttackRange => BaseStats.AttackRange;
         public float SplashRange => BaseStats.SplashRange;
         public float Duration => BaseStats.Duration;
@@ -50,7 +49,6 @@ namespace PahlBit
             BaseStats.Cooltime = ResourceData._Cooltime.GetValueByPoint(currentLevelIndex);
             BaseStats.ProjectileCount = ResourceData._ProjectileCount.GetValueByPoint(currentLevelIndex);
             BaseStats.ProjectileSpeed = ResourceData._ProjectileSpeed.GetValueByPoint(currentLevelIndex);
-            BaseStats.ProjectileDistance = ResourceData._ProjectileDistance.GetValueByPoint(currentLevelIndex);
             BaseStats.AttackRange = ResourceData._AttackRange.GetValueByPoint(currentLevelIndex);
             BaseStats.SplashRange = ResourceData._SplashRange.GetValueByPoint(currentLevelIndex);
             BaseStats.Duration = ResourceData._Duration.GetValueByPoint(currentLevelIndex);
