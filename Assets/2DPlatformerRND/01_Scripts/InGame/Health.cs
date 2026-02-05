@@ -27,7 +27,7 @@ namespace PahlBit
         [SerializeField, NaughtyAttributes.ReadOnly]
         float mCurrentShield = 0;
 
-        public UnityEvent OnDamaged = new UnityEvent();
+        public UnityEvent<DamagedResultInfo> OnDamaged = new UnityEvent<DamagedResultInfo>();
         public UnityEvent OnDied = new UnityEvent();
 
         public void InitHealth(float maxHp, float maxMana, float maxShield)
@@ -45,6 +45,11 @@ namespace PahlBit
         {
             if (IsDead || damage <= 0) return;
 
+            DamagedResultInfo damageRetInfo = new DamagedResultInfo();
+            damageRetInfo.MaxHealth = mMaxCurrentHP;
+            damageRetInfo.BeforeHealth = mCurrentHP;
+            damageRetInfo.OriDamage = damage;
+
             float remainDamage = damage;
 
             if (mCurrentShield > 0)
@@ -57,15 +62,15 @@ namespace PahlBit
             if (remainDamage > 0)
             {
                 mCurrentHP -= remainDamage;
+                mCurrentHP.ExSetMinimum(0);
 
-                if (mCurrentHP <= 0)
+                damageRetInfo.ValidDamage = remainDamage;
+                damageRetInfo.AfterHealth = mCurrentHP;
+                OnDamaged.Invoke(damageRetInfo);
+
+                if (IsDead)
                 {
-                    mCurrentHP = 0;
                     OnDied.Invoke();
-                }
-                else
-                {
-                    OnDamaged.Invoke();
                 }
             }
         }

@@ -60,6 +60,9 @@ TagManager:
   - name: FG
     uniqueID: 1748502953
     locked: 0
+  - name: HPBarWorld
+    uniqueID: 1991203615
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

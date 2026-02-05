@@ -9,7 +9,7 @@ namespace PahlBit
         {
             base.InitState();
 
-            Base.Health.OnDamaged.AddListener(() =>
+            Base.Health.OnDamaged.AddListener((retInfo) =>
             {
                 ChangeStateToThis();
             });

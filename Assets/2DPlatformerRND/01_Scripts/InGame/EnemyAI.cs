@@ -241,7 +241,7 @@ public class EnemyAI : MonoBehaviour
         {
         }
     }
-    void ChangeDamagedState()
+    void ChangeDamagedState(DamagedResultInfo retInfo)
     {
         ChangeState(EnemyState.Damaged);
     }
