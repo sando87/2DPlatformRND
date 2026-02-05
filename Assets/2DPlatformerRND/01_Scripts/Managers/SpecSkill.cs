@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using NaughtyAttributes;
+using NaughtyAttributes.Test;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,11 +11,22 @@ namespace PahlBit
 {
     public class SpecSkill : SpecBase
     {
+        public float Attack => BaseStats.Attack * (mSpecPlayer.ItemOption.AttackUp + mSpecPlayer.BuffOption.AttackUp);
+        public float ManaUse => BaseStats.ManaUse;
+        public float Cooltime => BaseStats.Cooltime * (mSpecPlayer.ItemOption.CooltimeDown + mSpecPlayer.BuffOption.CooltimeDown);
+        public float ProjectileCount => BaseStats.ProjectileCount;
+        public float ProjectileSpeed => BaseStats.ProjectileSpeed;
+        public float ProjectileDistance => BaseStats.ProjectileDistance;
+        public float AttackRange => BaseStats.AttackRange;
+        public float SplashRange => BaseStats.SplashRange;
+        public float Duration => BaseStats.Duration;
+        public float Interval => BaseStats.Interval;
+
         public SkillSaveData SaveData { get; private set; } = null;
         public SkillResourceData ResourceData { get; private set; } = null;
         public SkillStats BaseStats { get; private set; } = null;
-        [field: SerializeField]
-        public SkillStats TotalStats { get; private set; } = null;
+
+        private SpecPlayer mSpecPlayer = null;
 
         public void Init(int characterID, string resourceID)
         {
@@ -21,8 +34,9 @@ namespace PahlBit
             UserSaveData userSaveData = SaveFileManager<UserSaveData>.Load();
             SaveData = userSaveData.Characters[characterID].Skills[resourceID];
 
+            mSpecPlayer = this.ExGetBase().PlayerObj.Spec;
+
             UpdateBasicStat();
-            UpdateTotalStat();
         }
 
         public void UpdateBasicStat()
@@ -41,12 +55,6 @@ namespace PahlBit
             BaseStats.SplashRange = ResourceData._SplashRange.GetValueByPoint(currentLevelIndex);
             BaseStats.Duration = ResourceData._Duration.GetValueByPoint(currentLevelIndex);
             BaseStats.Interval = ResourceData._Interval.GetValueByPoint(currentLevelIndex);
-        }
-
-        public void UpdateTotalStat()
-        {
-            SpecPlayer specPlayer = this.ExGetBase().PlayerObj.Spec;
-            TotalStats = BaseStats * specPlayer.Option;
         }
     }
 }

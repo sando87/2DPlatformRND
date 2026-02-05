@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 namespace PahlBit
@@ -16,21 +17,5 @@ namespace PahlBit
         public float SplashRange;
         public float Duration;
         public float Interval;
-
-        public static SkillStats operator *(SkillStats stat, SpecOption option)
-        {
-            SkillStats result = new SkillStats();
-            result.Attack = stat.Attack * option.AttackUp;
-            result.ManaUse = stat.ManaUse;
-            result.Cooltime = stat.Cooltime * option.CooltimeDown;
-            result.ProjectileCount = stat.ProjectileCount;
-            result.ProjectileSpeed = stat.ProjectileSpeed;
-            result.ProjectileDistance = stat.ProjectileDistance;
-            result.AttackRange = stat.AttackRange;
-            result.SplashRange = stat.SplashRange;
-            result.Duration = stat.Duration;
-            result.Interval = stat.Interval;
-            return result;
-        }
     }
 }

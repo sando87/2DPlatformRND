@@ -21,6 +21,8 @@ namespace PahlBit
         public CharSaveData SaveData { get; private set; } = null;
         public CharResourceData ResourceData { get; private set; } = null;
         public CharStats BaseStats { get; private set; } = null;
+        public SpecOption ItemOption => mPlayerObj.Inven.TotalItemOption;
+        public SpecOption BuffOption => mBaseObj.Buffs.TotalBuffOption;
         [field: SerializeField]
         private SpecOption TotalOption { get; set; } = null;
         [field: SerializeField]

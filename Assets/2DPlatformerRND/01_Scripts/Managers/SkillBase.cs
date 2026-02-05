@@ -146,13 +146,13 @@ public class SkillBase : MonoBehaviour
 
     protected void ApplySkillStatsToProjectile(ProjectileBase proj)
     {
-        proj.Stats.MoveSpeed = Spec.TotalStats.ProjectileSpeed;
+        proj.Stats.MoveSpeed = Spec.ProjectileSpeed;
         proj.Stats.FireAngle = 0;
-        proj.Stats.MaxDistance = Spec.TotalStats.ProjectileDistance;
-        proj.Stats.SkillRange = Spec.TotalStats.AttackRange;
-        proj.Stats.SplashRange = Spec.TotalStats.SplashRange;
-        proj.Stats.Duration = Spec.TotalStats.Duration;
-        proj.Stats.Interval = Spec.TotalStats.Interval;
+        proj.Stats.MaxDistance = Spec.ProjectileDistance;
+        proj.Stats.SkillRange = Spec.AttackRange;
+        proj.Stats.SplashRange = Spec.SplashRange;
+        proj.Stats.Duration = Spec.Duration;
+        proj.Stats.Interval = Spec.Interval;
     }
 
 }

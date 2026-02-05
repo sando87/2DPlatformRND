@@ -34,7 +34,7 @@ public class SkillArrow : SkillBase
         base.DoFire();
 
         Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
-        FireMultiShot((int)Spec.TotalStats.ProjectileCount, startPos, mBaseObj.transform.rotation, 90);
+        FireMultiShot((int)Spec.ProjectileCount, startPos, mBaseObj.transform.rotation, 90);
     }
 
     void FireMultiShot(int arrowCount, Vector2 startPos, Quaternion baseRotation, float maxSpreadAngle)
@@ -77,7 +77,7 @@ public class SkillArrow : SkillBase
             Health health = col.ExGetBase().GetComponentInChildren<Health>();
             if (health != null)
             {
-                float damage = Spec.TotalStats.Attack;
+                float damage = Spec.Attack;
                 health.GetDamaged(damage);
 
                 AttackResult result = new AttackResult()
