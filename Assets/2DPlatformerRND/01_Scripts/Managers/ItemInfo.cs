@@ -65,6 +65,7 @@ public class ItemInfo
         Option.CriticalAttack = ResourceData._CriticalAttack.GetValue();
         Option.ProjectileCountUp = ResourceData._ProjectileCountUp.GetValue();
         Option.ProjectileSpeedUp = ResourceData._ProjectileSpeedUp.GetValue();
+        Option.AttackRangeUp = ResourceData._AttackRangeUp.GetValue();
         Option.SplashRangeUp = ResourceData._SplashRangeUp.GetValue();
         Option.DurationUp = ResourceData._DurationUp.GetValue();
         Option.FireResist = ResourceData._FireResist.GetValue();

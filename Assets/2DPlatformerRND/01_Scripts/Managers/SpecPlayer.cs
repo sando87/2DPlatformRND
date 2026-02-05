@@ -16,33 +16,26 @@ namespace PahlBit
         public override float MaxMana => TotalStats.Mana;
         public override float MaxShield => TotalStats.Shield;
 
-        public override SpecOption Option => TotalOption;
-
         public CharSaveData SaveData { get; private set; } = null;
         public CharResourceData ResourceData { get; private set; } = null;
         public CharStats BaseStats { get; private set; } = null;
-        public SpecOption ItemOption => mPlayerObj.Inven.TotalItemOption;
-        public SpecOption BuffOption => mBaseObj.Buffs.TotalBuffOption;
-        [field: SerializeField]
-        private SpecOption TotalOption { get; set; } = null;
+
         [field: SerializeField]
         public CharStats TotalStats { get; private set; } = null;
 
         BaseObject mBaseObj = null;
-        PlayerMain mPlayerObj = null;
 
         public void Init(int characterID, string resourceID)
         {
             mBaseObj = this.ExGetBase();
-            mPlayerObj = mBaseObj.PlayerObj;
 
             ResourceData = CharResourceTable.Instance.GetInfo(resourceID);
             UserSaveData userSaveData = SaveFileManager<UserSaveData>.Load();
             SaveData = userSaveData.Characters[characterID].Stats;
 
             UpdateBasicStat();
-            UpdateTotalOption();
-            UpdateTotalStats();
+
+            Option = mBaseObj.PlayerObj.Inven.TotalItemOption;
         }
 
         void UpdateBasicStat()
@@ -59,16 +52,6 @@ namespace PahlBit
             BaseStats.Shield = 0;
             BaseStats.MoveSpeed = _MoveSpeed;
             BaseStats.AttackSpeed = _AttackSpeed;
-        }
-
-        public void UpdateTotalOption()
-        {
-            TotalOption = mPlayerObj.Inven.TotalItemOption + mBaseObj.Buffs.TotalBuffOption;
-        }
-
-        public void UpdateTotalStats()
-        {
-            TotalStats = BaseStats * TotalOption;
         }
 
     }

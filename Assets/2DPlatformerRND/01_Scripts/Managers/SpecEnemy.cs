@@ -11,11 +11,9 @@ namespace PahlBit
     {
         public override float MaxHealth => TotalStats.Health;
 
-        public override SpecOption Option => TotalOption;
-
         public EnemyResourceData ResourceData { get; private set; } = null;
         public EnemyStats BaseStats { get; private set; } = null;
-        public SpecOption TotalOption { get; private set; } = null;
+
         [field: SerializeField]
         public EnemyStats TotalStats { get; private set; } = null;
 
@@ -23,7 +21,6 @@ namespace PahlBit
         {
             ResourceData = EnemyResourceTable.Instance.GetInfo(resourceID);
             UpdateBasicStats();
-            UpdateTotalStats();
         }
         void UpdateBasicStats()
         {
@@ -40,11 +37,6 @@ namespace PahlBit
             BaseStats.ItemDrop = ResourceData._ItemDrop.GetValue();
             BaseStats.GoldOnDeath = (int)ResourceData._GoldOnDeath.GetValueInRange(MyUtils.RandomRate());
             BaseStats.ExpOnDeath = ResourceData._ExpOnDeath.GetValue();
-        }
-        public void UpdateTotalStats()
-        {
-            TotalOption = this.ExGetBase().Buffs.TotalBuffOption;
-            TotalStats = BaseStats * TotalOption;
         }
     }
 }

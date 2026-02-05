@@ -12,6 +12,12 @@ public class SkillArrow : SkillBase
     [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase ProjectilePrefab;
 
+    private float mMotionSpeed = 0;
+    private int mProjectileCount = 0;
+    private float mDamage = 0;
+    private Percent mCriticalRate = 0;
+    private Percent mCriticalAttack = 0;
+
     public override bool IsCastable()
     {
         return SkillMotion.IsChangable();
@@ -23,10 +29,19 @@ public class SkillArrow : SkillBase
 
         if (mInput.JustPressed(GetCurrentInputType()) && IsCastable())
         {
-            float motionSpeedMultiflier = mBaseObj.PlayerObj.Spec.Option.AttackSpeedUp.Multiplier;
-            mBaseObj.AnimHelper.SetParamFloat(AnimatorParams.MotionSpeed, motionSpeedMultiflier);
+            UpdateSpec();
+            mBaseObj.AnimHelper.SetParamFloat(AnimatorParams.MotionSpeed, mMotionSpeed);
             mBaseObj.StateMachine.ChangeState(SkillMotion, (Action)DoFire);
         }
+    }
+
+    void UpdateSpec()
+    {
+        mMotionSpeed = mBaseObj.PlayerObj.Spec.Option.AttackSpeedUp.Multiplier;
+        mProjectileCount = (int)Spec.ProjectileCount;
+        mDamage = Spec.Attack;
+        mCriticalRate = mBaseObj.PlayerObj.Spec.Option.CriticalRate;
+        mCriticalAttack = mBaseObj.PlayerObj.Spec.Option.CriticalAttack;
     }
 
     public override void DoFire()
@@ -34,7 +49,7 @@ public class SkillArrow : SkillBase
         base.DoFire();
 
         Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
-        FireMultiShot((int)Spec.ProjectileCount, startPos, mBaseObj.transform.rotation, 90);
+        FireMultiShot(mProjectileCount, startPos, mBaseObj.transform.rotation, 90);
     }
 
     void FireMultiShot(int arrowCount, Vector2 startPos, Quaternion baseRotation, float maxSpreadAngle)
@@ -77,8 +92,13 @@ public class SkillArrow : SkillBase
             Health health = col.ExGetBase().GetComponentInChildren<Health>();
             if (health != null)
             {
-                float damage = Spec.Attack;
-                health.GetDamaged(damage);
+                // 크리티컬 Hit시 크리티컬 공격 증가 추가 적용
+                float damage = mDamage;
+                bool isCriticalHit = MyUtils.IsPercentHit((int)mCriticalRate.PercentValue);
+                if (isCriticalHit)
+                    damage *= mCriticalAttack;
+
+                health.GetDamaged(new DamageInfo(damage, isCritical: isCriticalHit));
 
                 AttackResult result = new AttackResult()
                 {

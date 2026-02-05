@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using RPGCharacterAnims.Actions;
 using UnityEngine;
 
 namespace PahlBit
@@ -30,6 +31,7 @@ namespace PahlBit
         public readonly string CriticalAttack;
         public readonly string ProjectileCountUp;
         public readonly string ProjectileSpeedUp;
+        public readonly string AttackRangeUp;
         public readonly string SplashRangeUp;
         public readonly string DurationUp;
 
@@ -56,6 +58,7 @@ namespace PahlBit
         public ParseValue _CriticalAttack { get; private set; }
         public ParseValue _ProjectileCountUp { get; private set; }
         public ParseValue _ProjectileSpeedUp { get; private set; }
+        public ParseValue _AttackRangeUp { get; private set; }
         public ParseValue _SplashRangeUp { get; private set; }
         public ParseValue _DurationUp { get; private set; }
         public ParseValue _FireResist { get; private set; }
@@ -80,6 +83,7 @@ namespace PahlBit
             _CriticalAttack = ParseValue.Parse(CriticalAttack);
             _ProjectileCountUp = ParseValue.Parse(ProjectileCountUp);
             _ProjectileSpeedUp = ParseValue.Parse(ProjectileSpeedUp);
+            _AttackRangeUp = ParseValue.Parse(AttackRangeUp);
             _SplashRangeUp = ParseValue.Parse(SplashRangeUp);
             _DurationUp = ParseValue.Parse(DurationUp);
             _FireResist = ParseValue.Parse(FireResist);

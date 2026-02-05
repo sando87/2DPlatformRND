@@ -14,6 +14,7 @@ namespace PahlBit
     public struct DamageInfo
     {
         public float Amount;
+        public bool IsCritical;
         public DamageType Type;
         public GameObject Attacker;
         public Vector3 HitPoint;       // 타격 위치
@@ -21,6 +22,7 @@ namespace PahlBit
 
         public DamageInfo(
             float amount,
+            bool isCritical = false,
             DamageType type = DamageType.Normal,
             GameObject attacker = null,
             Vector3 hitPoint = default,
@@ -28,6 +30,7 @@ namespace PahlBit
         )
         {
             Amount = amount;
+            IsCritical = isCritical;
             Type = type;
             Attacker = attacker;
             HitPoint = hitPoint;
@@ -45,6 +48,7 @@ namespace PahlBit
         {
             return new DamageInfo(
                 a.Amount + b.Amount,
+                a.IsCritical,
                 a.Type,
                 a.Attacker,
                 a.HitPoint,

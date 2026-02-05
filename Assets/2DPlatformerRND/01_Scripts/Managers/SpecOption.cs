@@ -19,6 +19,7 @@ namespace PahlBit
         public Percent CriticalAttack;
         public float ProjectileCountUp;
         public Percent ProjectileSpeedUp;
+        public Percent AttackRangeUp;
         public Percent SplashRangeUp;
         public Percent DurationUp;
         public Percent FireResist;
@@ -44,6 +45,7 @@ namespace PahlBit
             CriticalAttack += other.CriticalAttack;
             ProjectileCountUp += other.ProjectileCountUp;
             ProjectileSpeedUp += other.ProjectileSpeedUp;
+            AttackRangeUp += other.AttackRangeUp;
             SplashRangeUp += other.SplashRangeUp;
             DurationUp += other.DurationUp;
             FireResist += other.FireResist;
@@ -70,6 +72,7 @@ namespace PahlBit
             CriticalAttack -= other.CriticalAttack;
             ProjectileCountUp -= other.ProjectileCountUp;
             ProjectileSpeedUp -= other.ProjectileSpeedUp;
+            AttackRangeUp -= other.AttackRangeUp;
             SplashRangeUp -= other.SplashRangeUp;
             DurationUp -= other.DurationUp;
             FireResist -= other.FireResist;
@@ -97,6 +100,7 @@ namespace PahlBit
                 CriticalAttack = a.CriticalAttack + b.CriticalAttack,
                 ProjectileCountUp = a.ProjectileCountUp + b.ProjectileCountUp,
                 ProjectileSpeedUp = a.ProjectileSpeedUp + b.ProjectileSpeedUp,
+                AttackRangeUp = a.AttackRangeUp + b.AttackRangeUp,
                 SplashRangeUp = a.SplashRangeUp + b.SplashRangeUp,
                 DurationUp = a.DurationUp + b.DurationUp,
                 FireResist = a.FireResist + b.FireResist,
@@ -124,6 +128,7 @@ namespace PahlBit
                 CriticalAttack = a.CriticalAttack - b.CriticalAttack,
                 ProjectileCountUp = a.ProjectileCountUp - b.ProjectileCountUp,
                 ProjectileSpeedUp = a.ProjectileSpeedUp - b.ProjectileSpeedUp,
+                AttackRangeUp = a.AttackRangeUp - b.AttackRangeUp,
                 SplashRangeUp = a.SplashRangeUp - b.SplashRangeUp,
                 DurationUp = a.DurationUp - b.DurationUp,
                 FireResist = a.FireResist - b.FireResist,

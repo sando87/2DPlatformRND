@@ -11,14 +11,14 @@ namespace PahlBit
 {
     public class SpecSkill : SpecBase
     {
-        public float Attack => BaseStats.Attack * (mSpecPlayer.ItemOption.AttackUp + mSpecPlayer.BuffOption.AttackUp);
+        public float Attack => BaseStats.Attack * mSpecPlayer.Option.AttackUp;
         public float ManaUse => BaseStats.ManaUse;
-        public float Cooltime => BaseStats.Cooltime * (mSpecPlayer.ItemOption.CooltimeDown + mSpecPlayer.BuffOption.CooltimeDown);
-        public float ProjectileCount => BaseStats.ProjectileCount;
-        public float ProjectileSpeed => BaseStats.ProjectileSpeed;
-        public float AttackRange => BaseStats.AttackRange;
-        public float SplashRange => BaseStats.SplashRange;
-        public float Duration => BaseStats.Duration;
+        public float Cooltime => BaseStats.Cooltime * mSpecPlayer.Option.CooltimeDown;
+        public float ProjectileCount => BaseStats.ProjectileCount + mSpecPlayer.Option.ProjectileCountUp;
+        public float ProjectileSpeed => BaseStats.ProjectileSpeed * mSpecPlayer.Option.ProjectileSpeedUp;
+        public float AttackRange => BaseStats.AttackRange * mSpecPlayer.Option.AttackRangeUp;
+        public float SplashRange => BaseStats.SplashRange * mSpecPlayer.Option.SplashRangeUp;
+        public float Duration => BaseStats.Duration * mSpecPlayer.Option.DurationUp;
         public float Interval => BaseStats.Interval;
 
         public SkillSaveData SaveData { get; private set; } = null;
