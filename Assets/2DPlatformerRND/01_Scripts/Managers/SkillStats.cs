@@ -20,13 +20,16 @@ namespace PahlBit
         public static SkillStats operator *(SkillStats stat, SpecOption option)
         {
             SkillStats result = new SkillStats();
-            // result.Health = stat.Health * (1 + option.HealthUp.ToDouble()) + option.HealthRegen;
-            // result.Mana = stat.Mana * (1 + option.ManaUp.ToDouble()) + option.ManaRegen;
-            // result.Attack = stat.Attack * (1 + option.AttackUp.ToDouble());
-            // result.Defence = stat.Defence * (1 + option.DefenceUp.ToDouble());
-            // result.MoveSpeed = stat.MoveSpeed * (1 + option.MoveSpeedUp.ToDouble());
-            // result.AttackSpeed = stat.AttackSpeed * (1 + option.AttackSpeedUp.ToDouble());
-            // result.Shield = stat.Shield + option.ShieldAdd + option.ShieldRegen;
+            result.Attack = stat.Attack * option.AttackUp;
+            result.ManaUse = stat.ManaUse;
+            result.Cooltime = stat.Cooltime * option.CooltimeDown;
+            result.ProjectileCount = stat.ProjectileCount;
+            result.ProjectileSpeed = stat.ProjectileSpeed;
+            result.ProjectileDistance = stat.ProjectileDistance;
+            result.AttackRange = stat.AttackRange;
+            result.SplashRange = stat.SplashRange;
+            result.Duration = stat.Duration;
+            result.Interval = stat.Interval;
             return result;
         }
     }

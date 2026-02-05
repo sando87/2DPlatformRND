@@ -34,15 +34,15 @@ namespace PahlBit
             Inven = GetComponentInChildren<ItemInventory>();
             Inven.LoadItemsFromData(CharacterID);
 
-            SkillCtrl = GetComponentInChildren<SkillController>();
-            SkillCtrl.InitSkills(CharacterID);
-
             Spec = GetComponentInChildren<SpecPlayer>();
             Spec.Init(CharacterID, _ResourceID);
+
+            SkillCtrl = GetComponentInChildren<SkillController>();
+            SkillCtrl.InitSkills(CharacterID);
         }
         void Start()
         {
-            // mBaseObj.Health.InitHealth(mSpec.TotalStats.Health, mSpec.TotalStats.Mana, mSpec.TotalStats.Shield);
+            mBaseObj.Health.InitHealth(Spec.TotalStats.Health, Spec.TotalStats.Mana, Spec.TotalStats.Shield);
         }
 
 

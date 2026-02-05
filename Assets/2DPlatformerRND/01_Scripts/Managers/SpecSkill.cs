@@ -11,8 +11,9 @@ namespace PahlBit
     {
         public SkillSaveData SaveData { get; private set; } = null;
         public SkillResourceData ResourceData { get; private set; } = null;
-        [field: SerializeField]
         public SkillStats BaseStats { get; private set; } = null;
+        [field: SerializeField]
+        public SkillStats TotalStats { get; private set; } = null;
 
         public void Init(int characterID, string resourceID)
         {
@@ -21,6 +22,7 @@ namespace PahlBit
             SaveData = userSaveData.Characters[characterID].Skills[resourceID];
 
             UpdateBasicStat();
+            UpdateTotalStat();
         }
 
         public void UpdateBasicStat()
@@ -39,6 +41,12 @@ namespace PahlBit
             BaseStats.SplashRange = ResourceData._SplashRange.GetValueByPoint(currentLevelIndex);
             BaseStats.Duration = ResourceData._Duration.GetValueByPoint(currentLevelIndex);
             BaseStats.Interval = ResourceData._Interval.GetValueByPoint(currentLevelIndex);
+        }
+
+        public void UpdateTotalStat()
+        {
+            SpecPlayer specPlayer = this.ExGetBase().PlayerObj.Spec;
+            TotalStats = BaseStats * specPlayer.Option;
         }
     }
 }

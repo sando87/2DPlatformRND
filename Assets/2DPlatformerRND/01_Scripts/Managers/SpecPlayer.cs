@@ -22,7 +22,7 @@ namespace PahlBit
         public CharResourceData ResourceData { get; private set; } = null;
         public CharStats BaseStats { get; private set; } = null;
         [field: SerializeField]
-        public SpecOption TotalOption { get; private set; } = null;
+        private SpecOption TotalOption { get; set; } = null;
         [field: SerializeField]
         public CharStats TotalStats { get; private set; } = null;
 
