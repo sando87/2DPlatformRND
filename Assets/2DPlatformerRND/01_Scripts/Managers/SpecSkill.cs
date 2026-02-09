@@ -11,7 +11,7 @@ namespace PahlBit
 {
     public class SpecSkill : SpecBase
     {
-        public float Attack => BaseStats.Attack * mSpecPlayer.Option.AttackUp;
+        public float Attack => BaseStats.Attack * mSpecPlayer.Option.PhyAttackUp;
         public float ManaUse => BaseStats.ManaUse;
         public float Cooltime => BaseStats.Cooltime * mSpecPlayer.Option.CooltimeDown;
         public float ProjectileCount => BaseStats.ProjectileCount + mSpecPlayer.Option.ProjectileCountUp;
@@ -20,6 +20,11 @@ namespace PahlBit
         public float SplashRange => BaseStats.SplashRange * mSpecPlayer.Option.SplashRangeUp;
         public float Duration => BaseStats.Duration * mSpecPlayer.Option.DurationUp;
         public float Interval => BaseStats.Interval;
+
+        public Percent PhyAttackUp => BaseStats.PhyAttackUp + mSpecPlayer.Option.PhyAttackUp;
+        public Percent FireAttackUp => BaseStats.FireAttackUp + mSpecPlayer.Option.FireAttackUp;
+        public Percent IceAttackUp => BaseStats.IceAttackUp + mSpecPlayer.Option.IceAttackUp;
+        public Percent LightningAttackUp => BaseStats.LightningAttackUp + mSpecPlayer.Option.LightningAttackUp;
 
         public SkillSaveData SaveData { get; private set; } = null;
         public SkillResourceData ResourceData { get; private set; } = null;
@@ -53,6 +58,10 @@ namespace PahlBit
             BaseStats.SplashRange = ResourceData._SplashRange.GetValueByPoint(currentLevelIndex);
             BaseStats.Duration = ResourceData._Duration.GetValueByPoint(currentLevelIndex);
             BaseStats.Interval = ResourceData._Interval.GetValueByPoint(currentLevelIndex);
+            BaseStats.PhyAttackUp = ResourceData._PhyAttackUp.GetValueByPoint(currentLevelIndex);
+            BaseStats.FireAttackUp = ResourceData._FireAttackUp.GetValueByPoint(currentLevelIndex);
+            BaseStats.IceAttackUp = ResourceData._IceAttackUp.GetValueByPoint(currentLevelIndex);
+            BaseStats.LightningAttackUp = ResourceData._LightningAttackUp.GetValueByPoint(currentLevelIndex);
         }
     }
 }

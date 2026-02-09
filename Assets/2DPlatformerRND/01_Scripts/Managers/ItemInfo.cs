@@ -54,7 +54,11 @@ public class ItemInfo
         Option.HealthRegen = ResourceData._HealthRegen.GetValue();
         Option.ManaUp = ResourceData._ManaUp.GetValueByPoint(point);
         Option.ManaRegen = ResourceData._ManaRegen.GetValue();
-        Option.AttackUp = ResourceData._AttackUp.GetValueByPoint(point);
+        Option.BaseAttackAdd = ResourceData._BaseAttackAdd.GetValueByPoint(point);
+        Option.PhyAttackUp = ResourceData._PhyAttackUp.GetValueByPoint(point);
+        Option.FireAttackUp = ResourceData._FireAttackUp.GetValueByPoint(point);
+        Option.IceAttackUp = ResourceData._IceAttackUp.GetValueByPoint(point);
+        Option.LightningAttackUp = ResourceData._LightningAttackUp.GetValueByPoint(point);
         Option.DefenceUp = ResourceData._DefenceUp.GetValueByPoint(point);
         Option.MoveSpeedUp = ResourceData._MoveSpeedUp.GetValue();
         Option.AttackSpeedUp = ResourceData._AttackSpeedUp.GetValue();

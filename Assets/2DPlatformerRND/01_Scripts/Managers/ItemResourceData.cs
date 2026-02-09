@@ -19,7 +19,11 @@ namespace PahlBit
         public readonly string HealthRegen;
         public readonly string ManaUp;
         public readonly string ManaRegen;
-        public readonly string AttackUp;
+        public readonly string BaseAttackAdd;
+        public readonly string PhyAttackUp;
+        public readonly string FireAttackUp;
+        public readonly string IceAttackUp;
+        public readonly string LightningAttackUp;
         public readonly string DefenceUp;
         public readonly string MoveSpeedUp;
         public readonly string AttackSpeedUp;
@@ -47,7 +51,11 @@ namespace PahlBit
         public ParseValue _HealthRegen { get; private set; }
         public ParseValue _ManaUp { get; private set; }
         public ParseValue _ManaRegen { get; private set; }
-        public ParseValue _AttackUp { get; private set; }
+        public ParseValue _BaseAttackAdd { get; private set; }
+        public ParseValue _PhyAttackUp { get; private set; }
+        public ParseValue _FireAttackUp { get; private set; }
+        public ParseValue _IceAttackUp { get; private set; }
+        public ParseValue _LightningAttackUp { get; private set; }
         public ParseValue _DefenceUp { get; private set; }
         public ParseValue _MoveSpeedUp { get; private set; }
         public ParseValue _AttackSpeedUp { get; private set; }
@@ -72,7 +80,11 @@ namespace PahlBit
             _HealthRegen = ParseValue.Parse(HealthRegen);
             _ManaUp = ParseValue.Parse(ManaUp);
             _ManaRegen = ParseValue.Parse(ManaRegen);
-            _AttackUp = ParseValue.Parse(AttackUp);
+            _BaseAttackAdd = ParseValue.Parse(BaseAttackAdd);
+            _PhyAttackUp = ParseValue.Parse(PhyAttackUp);
+            _FireAttackUp = ParseValue.Parse(FireAttackUp);
+            _IceAttackUp = ParseValue.Parse(IceAttackUp);
+            _LightningAttackUp = ParseValue.Parse(LightningAttackUp);
             _DefenceUp = ParseValue.Parse(DefenceUp);
             _MoveSpeedUp = ParseValue.Parse(MoveSpeedUp);
             _AttackSpeedUp = ParseValue.Parse(AttackSpeedUp);

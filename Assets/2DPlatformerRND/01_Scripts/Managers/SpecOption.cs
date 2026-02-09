@@ -8,7 +8,13 @@ namespace PahlBit
         public float HealthRegen;
         public Percent ManaUp;
         public float ManaRegen;
-        public Percent AttackUp;
+
+        public float BaseAttackAdd;
+        public Percent PhyAttackUp;
+        public Percent FireAttackUp;
+        public Percent IceAttackUp;
+        public Percent LightningAttackUp;
+
         public Percent DefenceUp;
         public Percent MoveSpeedUp;
         public Percent AttackSpeedUp;
@@ -34,7 +40,11 @@ namespace PahlBit
             HealthRegen += other.HealthRegen;
             ManaUp += other.ManaUp;
             ManaRegen += other.ManaRegen;
-            AttackUp += other.AttackUp;
+            BaseAttackAdd += other.BaseAttackAdd;
+            PhyAttackUp += other.PhyAttackUp;
+            FireAttackUp += other.FireAttackUp;
+            IceAttackUp += other.IceAttackUp;
+            LightningAttackUp += other.LightningAttackUp;
             DefenceUp += other.DefenceUp;
             MoveSpeedUp += other.MoveSpeedUp;
             AttackSpeedUp += other.AttackSpeedUp;
@@ -61,7 +71,11 @@ namespace PahlBit
             HealthRegen -= other.HealthRegen;
             ManaUp -= other.ManaUp;
             ManaRegen -= other.ManaRegen;
-            AttackUp -= other.AttackUp;
+            BaseAttackAdd -= other.BaseAttackAdd;
+            PhyAttackUp -= other.PhyAttackUp;
+            FireAttackUp -= other.FireAttackUp;
+            IceAttackUp -= other.IceAttackUp;
+            LightningAttackUp -= other.LightningAttackUp;
             DefenceUp -= other.DefenceUp;
             MoveSpeedUp -= other.MoveSpeedUp;
             AttackSpeedUp -= other.AttackSpeedUp;
@@ -89,7 +103,11 @@ namespace PahlBit
                 HealthRegen = a.HealthRegen + b.HealthRegen,
                 ManaUp = a.ManaUp + b.ManaUp,
                 ManaRegen = a.ManaRegen + b.ManaRegen,
-                AttackUp = a.AttackUp + b.AttackUp,
+                BaseAttackAdd = a.BaseAttackAdd + b.BaseAttackAdd,
+                PhyAttackUp = a.PhyAttackUp + b.PhyAttackUp,
+                FireAttackUp = a.FireAttackUp + b.FireAttackUp,
+                IceAttackUp = a.IceAttackUp + b.IceAttackUp,
+                LightningAttackUp = a.LightningAttackUp + b.LightningAttackUp,
                 DefenceUp = a.DefenceUp + b.DefenceUp,
                 MoveSpeedUp = a.MoveSpeedUp + b.MoveSpeedUp,
                 AttackSpeedUp = a.AttackSpeedUp + b.AttackSpeedUp,
@@ -117,7 +135,11 @@ namespace PahlBit
                 HealthRegen = a.HealthRegen - b.HealthRegen,
                 ManaUp = a.ManaUp - b.ManaUp,
                 ManaRegen = a.ManaRegen - b.ManaRegen,
-                AttackUp = a.AttackUp - b.AttackUp,
+                BaseAttackAdd = a.BaseAttackAdd - b.BaseAttackAdd,
+                PhyAttackUp = a.PhyAttackUp - b.PhyAttackUp,
+                FireAttackUp = a.FireAttackUp - b.FireAttackUp,
+                IceAttackUp = a.IceAttackUp - b.IceAttackUp,
+                LightningAttackUp = a.LightningAttackUp - b.LightningAttackUp,
                 DefenceUp = a.DefenceUp - b.DefenceUp,
                 MoveSpeedUp = a.MoveSpeedUp - b.MoveSpeedUp,
                 AttackSpeedUp = a.AttackSpeedUp - b.AttackSpeedUp,

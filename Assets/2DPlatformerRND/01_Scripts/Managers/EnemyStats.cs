@@ -20,7 +20,7 @@ namespace PahlBit
         {
             EnemyStats result = new EnemyStats();
             result.Health = stat.Health * option.HealthUp;
-            result.Attack = stat.Attack * option.AttackUp;
+            result.Attack = stat.Attack * option.PhyAttackUp;
             result.Defence = stat.Defence * option.DefenceUp;
             result.MoveSpeed = stat.MoveSpeed * option.MoveSpeedUp;
             result.AttackSpeed = stat.AttackSpeed * option.AttackSpeedUp;

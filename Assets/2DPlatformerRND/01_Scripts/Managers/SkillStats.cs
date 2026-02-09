@@ -16,5 +16,10 @@ namespace PahlBit
         public float SplashRange;
         public float Duration;
         public float Interval;
+
+        public Percent PhyAttackUp;
+        public Percent FireAttackUp;
+        public Percent IceAttackUp;
+        public Percent LightningAttackUp;
     }
 }
