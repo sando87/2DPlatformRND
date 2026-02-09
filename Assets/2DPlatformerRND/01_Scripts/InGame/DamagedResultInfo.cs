@@ -6,6 +6,7 @@ namespace PahlBit
     public struct DamagedResultInfo
     {
         public float OriDamage;
+        public float TotalDamage;
         public float ValidDamage;
 
         public float BeforeHealth;

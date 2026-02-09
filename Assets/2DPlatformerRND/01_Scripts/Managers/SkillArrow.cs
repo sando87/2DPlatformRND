@@ -14,9 +14,9 @@ public class SkillArrow : SkillBase
 
     private float mMotionSpeed = 0;
     private int mProjectileCount = 0;
-    private float mDamage = 0;
-    private Percent mCriticalRate = 0;
-    private Percent mCriticalAttack = 0;
+    private DamageInfo mDamageInfo = new DamageInfo();
+    private Percent mCriticalRate = new Percent();
+    private Percent mCriticalAttack = new Percent();
 
     public override bool IsCastable()
     {
@@ -39,7 +39,7 @@ public class SkillArrow : SkillBase
     {
         mMotionSpeed = mBaseObj.PlayerObj.Spec.Option.AttackSpeedUp.Multiplier;
         mProjectileCount = (int)Spec.ProjectileCount;
-        mDamage = Spec.Attack;
+        mDamageInfo = Spec.CalcCurrentDamages();
         mCriticalRate = mBaseObj.PlayerObj.Spec.Option.CriticalRate;
         mCriticalAttack = mBaseObj.PlayerObj.Spec.Option.CriticalAttack;
     }
@@ -92,13 +92,7 @@ public class SkillArrow : SkillBase
             Health health = col.ExGetBase().GetComponentInChildren<Health>();
             if (health != null)
             {
-                // 크리티컬 Hit시 크리티컬 공격 증가 추가 적용
-                float damage = mDamage;
-                bool isCriticalHit = MyUtils.IsPercentHit((int)mCriticalRate.PercentValue);
-                if (isCriticalHit)
-                    damage *= mCriticalAttack;
-
-                health.GetDamaged(new DamageInfo(damage, isCritical: isCriticalHit));
+                health.GetDamaged(mDamageInfo);
 
                 AttackResult result = new AttackResult()
                 {

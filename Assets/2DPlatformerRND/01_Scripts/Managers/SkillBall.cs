@@ -45,7 +45,7 @@ public class SkillBall : SkillBase
             Health health = col.ExGetBase().GetComponentInChildren<Health>();
             if (health != null)
             {
-                float damage = Spec.Attack;
+                DamageInfo damage = Spec.CalcCurrentDamages();
                 health.GetDamaged(damage);
 
                 AttackResult result = new AttackResult()

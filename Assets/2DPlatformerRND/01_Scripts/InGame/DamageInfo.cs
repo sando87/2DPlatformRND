@@ -5,7 +5,7 @@ namespace PahlBit
 {
     public enum DamageType
     {
-        Normal,
+        Physics,
         Fire,
         Ice,
         Lightning,
@@ -13,28 +13,27 @@ namespace PahlBit
     }
     public struct DamageInfo
     {
-        public float Amount;
+        public float PhyDamage;
+        public float FireDamage;
+        public float IceDamage;
+        public float LightningDamage;
         public bool IsCritical;
-        public DamageType Type;
+        public Percent CriticalAttackUp;
         public GameObject Attacker;
         public Vector3 HitPoint;       // 타격 위치
         public Vector3 HitDirection;   // 넉백 방향
 
-        public DamageInfo(
-            float amount,
-            bool isCritical = false,
-            DamageType type = DamageType.Normal,
-            GameObject attacker = null,
-            Vector3 hitPoint = default,
-            Vector3 hitDirection = default
-        )
+        public DamageInfo(float phyDamage)
         {
-            Amount = amount;
-            IsCritical = isCritical;
-            Type = type;
-            Attacker = attacker;
-            HitPoint = hitPoint;
-            HitDirection = hitDirection;
+            PhyDamage = phyDamage;
+            FireDamage = 0;
+            IceDamage = 0;
+            LightningDamage = 0;
+            IsCritical = false;
+            CriticalAttackUp = new Percent();
+            Attacker = null;
+            HitPoint = Vector3.zero;
+            HitDirection = Vector3.zero;
         }
         public static implicit operator DamageInfo(float value)
         {
@@ -42,34 +41,45 @@ namespace PahlBit
         }
         public static implicit operator float(DamageInfo damage)
         {
-            return damage.Amount;
+            return damage.PhyDamage;
         }
-        public static DamageInfo operator +(DamageInfo a, DamageInfo b)
+        // public static DamageInfo operator +(DamageInfo a, DamageInfo b)
+        // {
+        //     return new DamageInfo(
+        //         a.PhyDamage + b.PhyDamage,
+        //         a.FireDamage + b.FireDamage,
+        //         a.IceDamage + b.IceDamage,
+        //         a.LightningDamage + b.LightningDamage,
+        //         a.IsCritical,
+        //         a.Attacker,
+        //         a.HitPoint,
+        //         a.HitDirection
+        //     );
+        // }
+
+        public bool IsDamageType(DamageType _type)
         {
-            return new DamageInfo(
-                a.Amount + b.Amount,
-                a.IsCritical,
-                a.Type,
-                a.Attacker,
-                a.HitPoint,
-                a.HitDirection
-            );
-        }
-        public static DamageInfo operator *(DamageInfo damage, float multiplier)
-        {
-            damage.Amount *= multiplier;
-            return damage;
+            switch (_type)
+            {
+                case DamageType.Physics: return PhyDamage > 0;
+                case DamageType.Fire: return FireDamage > 0;
+                case DamageType.Ice: return IceDamage > 0;
+                case DamageType.Lightning: return LightningDamage > 0;
+                default: break;
+            }
+            return false;
         }
 
-        public static DamageInfo operator *(float multiplier, DamageInfo damage)
-        {
-            return damage * multiplier;
-        }
-        public static DamageInfo operator -(DamageInfo damage, float reduce)
-        {
-            damage.Amount = Mathf.Max(0, damage.Amount - reduce);
-            return damage;
-        }
+        // public static DamageInfo operator *(DamageInfo damage, float multiplier)
+        // {
+        //     damage.PhyDamage *= multiplier;
+        //     return damage;
+        // }
+
+        // public static DamageInfo operator *(float multiplier, DamageInfo damage)
+        // {
+        //     return damage * multiplier;
+        // }
 
 
     }

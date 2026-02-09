@@ -11,6 +11,9 @@ namespace PahlBit
     {
         public override float MaxHealth => TotalStats.Health;
 
+        public override float BaseAttack => BaseStats.Attack + Option.BaseAttackAdd;
+        public override float PhyDefence => BaseStats.Defence * Option.DefenceUp;
+
         public EnemyResourceData ResourceData { get; private set; } = null;
         public EnemyStats BaseStats { get; private set; } = null;
 
@@ -34,7 +37,7 @@ namespace PahlBit
             BaseStats.Cooltime = ResourceData._Cooltime.GetValue();
             BaseStats.DetectRange = ResourceData._DetectRange.GetValue();
             BaseStats.AttackRange = ResourceData._AttackRange.GetValue();
-            BaseStats.ItemDrop = ResourceData._ItemDrop.GetValue();
+            BaseStats.ItemDrop = (Percent)ResourceData._ItemDrop.GetValue();
             BaseStats.GoldOnDeath = (int)ResourceData._GoldOnDeath.GetValueInRange(MyUtils.RandomRate());
             BaseStats.ExpOnDeath = ResourceData._ExpOnDeath.GetValue();
         }

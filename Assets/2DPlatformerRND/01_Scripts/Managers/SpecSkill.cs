@@ -11,7 +11,6 @@ namespace PahlBit
 {
     public class SpecSkill : SpecBase
     {
-        public float Attack => BaseStats.Attack * mSpecPlayer.Option.PhyAttackUp;
         public float ManaUse => BaseStats.ManaUse;
         public float Cooltime => BaseStats.Cooltime * mSpecPlayer.Option.CooltimeDown;
         public float ProjectileCount => BaseStats.ProjectileCount + mSpecPlayer.Option.ProjectileCountUp;
@@ -58,10 +57,22 @@ namespace PahlBit
             BaseStats.SplashRange = ResourceData._SplashRange.GetValueByPoint(currentLevelIndex);
             BaseStats.Duration = ResourceData._Duration.GetValueByPoint(currentLevelIndex);
             BaseStats.Interval = ResourceData._Interval.GetValueByPoint(currentLevelIndex);
-            BaseStats.PhyAttackUp = ResourceData._PhyAttackUp.GetValueByPoint(currentLevelIndex);
-            BaseStats.FireAttackUp = ResourceData._FireAttackUp.GetValueByPoint(currentLevelIndex);
-            BaseStats.IceAttackUp = ResourceData._IceAttackUp.GetValueByPoint(currentLevelIndex);
-            BaseStats.LightningAttackUp = ResourceData._LightningAttackUp.GetValueByPoint(currentLevelIndex);
+            BaseStats.PhyAttackUp = (Percent)ResourceData._PhyAttackUp.GetValueByPoint(currentLevelIndex);
+            BaseStats.FireAttackUp = (Percent)ResourceData._FireAttackUp.GetValueByPoint(currentLevelIndex);
+            BaseStats.IceAttackUp = (Percent)ResourceData._IceAttackUp.GetValueByPoint(currentLevelIndex);
+            BaseStats.LightningAttackUp = (Percent)ResourceData._LightningAttackUp.GetValueByPoint(currentLevelIndex);
+        }
+
+        public DamageInfo CalcCurrentDamages()
+        {
+            DamageInfo damageInfo = new DamageInfo();
+            damageInfo.PhyDamage = mSpecPlayer.BaseAttack * PhyAttackUp;
+            damageInfo.FireDamage = mSpecPlayer.BaseAttack * FireAttackUp;
+            damageInfo.IceDamage = mSpecPlayer.BaseAttack * IceAttackUp;
+            damageInfo.LightningDamage = mSpecPlayer.BaseAttack * LightningAttackUp;
+            damageInfo.IsCritical = MyUtils.IsPercentHit((int)mSpecPlayer.Option.CriticalRate);
+            damageInfo.CriticalAttackUp = mSpecPlayer.Option.CriticalAttack;
+            return damageInfo;
         }
     }
 }

@@ -55,8 +55,8 @@ namespace PahlBit
         }
 
         // ---- 암시적 변환 ----
-        public static implicit operator float(Percent p) => p.mPercentVal;
-        public static implicit operator Percent(float v) => new Percent(v);
+        public static explicit operator float(Percent p) => p.mPercentVal;
+        public static explicit operator Percent(float v) => new Percent(v);
         // public static implicit operator Percent(float v) => new Percent(v);
         // public static implicit operator Percent(int v) => new Percent(v);
 

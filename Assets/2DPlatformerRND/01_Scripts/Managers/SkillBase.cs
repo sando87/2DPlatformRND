@@ -153,5 +153,4 @@ public class SkillBase : MonoBehaviour
         proj.Stats.Duration = Spec.Duration;
         proj.Stats.Interval = Spec.Interval;
     }
-
 }

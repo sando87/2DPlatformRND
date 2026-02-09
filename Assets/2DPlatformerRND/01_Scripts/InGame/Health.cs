@@ -30,41 +30,83 @@ namespace PahlBit
         public UnityEvent<DamagedResultInfo> OnDamaged = new UnityEvent<DamagedResultInfo>();
         public UnityEvent OnDied = new UnityEvent();
 
-        public void InitHealth(float maxHp, float maxMana, float maxShield)
+        SpecBase mSpec = null;
+
+        void Awake()
         {
-            mMaxCurrentHP = maxHp;
-            mMaxCurrentMana = maxMana;
-            mMaxCurrentShield = maxShield;
+            mSpec = this.ExGetBase().Spec;
+        }
+
+        void Start()
+        {
+            InitHealth();
+        }
+
+        void InitHealth()
+        {
+            mMaxCurrentHP = mSpec.MaxHealth;
+            mMaxCurrentMana = mSpec.MaxMana;
+            mMaxCurrentShield = mSpec.MaxShield;
 
             mCurrentHP = mMaxCurrentHP;
             mCurrentMana = mMaxCurrentMana;
             mCurrentShield = mMaxCurrentShield;
         }
 
+        DamagedResultInfo CalcHitResult(DamageInfo damageInfo)
+        {
+            DamagedResultInfo damageRetInfo = new DamagedResultInfo();
+            damageRetInfo.MaxHealth = mMaxCurrentHP;
+            damageRetInfo.BeforeHealth = mCurrentHP;
+            damageRetInfo.OriDamage = damageInfo.PhyDamage + damageInfo.FireDamage + damageInfo.IceDamage + damageInfo.LightningDamage;
+
+            // 물리 데미지 계산
+            float phyDamage = damageInfo.IsCritical ? damageInfo.PhyDamage * damageInfo.CriticalAttackUp : damageInfo.PhyDamage;
+            damageRetInfo.TotalDamage = phyDamage;
+
+            // 파이어 데미지 계산
+            float fireDamage = damageInfo.FireDamage - (damageInfo.FireDamage * mSpec.Option.FireResist);
+            fireDamage.ExSetMinimum(0);
+            damageRetInfo.TotalDamage += fireDamage;
+
+            // 아이스 데미지 계산
+            float iceDamage = damageInfo.IceDamage - (damageInfo.IceDamage * mSpec.Option.IceResist);
+            iceDamage.ExSetMinimum(0);
+            damageRetInfo.TotalDamage += iceDamage;
+
+            // 라이트닝 데미지 계산
+            float lightningDamage = damageInfo.LightningDamage - (damageInfo.LightningDamage * mSpec.Option.LightningResist);
+            lightningDamage.ExSetMinimum(0);
+            damageRetInfo.TotalDamage += lightningDamage;
+
+            return damageRetInfo;
+        }
+
         public void GetDamaged(DamageInfo damage)
         {
             if (IsDead || damage <= 0) return;
 
-            DamagedResultInfo damageRetInfo = new DamagedResultInfo();
-            damageRetInfo.MaxHealth = mMaxCurrentHP;
-            damageRetInfo.BeforeHealth = mCurrentHP;
-            damageRetInfo.OriDamage = damage;
+            DamagedResultInfo damageRetInfo = CalcHitResult(damage);
 
-            float remainDamage = damage;
+            float remainDamage = damageRetInfo.TotalDamage;
 
             if (mCurrentShield > 0)
             {
                 float usedShield = Mathf.Min(mCurrentShield, remainDamage);
                 mCurrentShield -= usedShield;
                 remainDamage -= usedShield;
+                damageRetInfo.ValidDamage += usedShield;
             }
 
             if (remainDamage > 0)
             {
+                remainDamage -= mSpec.PhyDefence;
+                remainDamage.ExSetMinimum(0);
+                damageRetInfo.ValidDamage += remainDamage;
+
                 mCurrentHP -= remainDamage;
                 mCurrentHP.ExSetMinimum(0);
 
-                damageRetInfo.ValidDamage = remainDamage;
                 damageRetInfo.AfterHealth = mCurrentHP;
                 OnDamaged.Invoke(damageRetInfo);
 

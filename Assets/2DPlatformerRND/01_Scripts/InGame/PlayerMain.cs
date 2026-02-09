@@ -40,11 +40,6 @@ namespace PahlBit
             SkillCtrl = GetComponentInChildren<SkillController>();
             SkillCtrl.InitSkills(CharacterID);
         }
-        void Start()
-        {
-            mBaseObj.Health.InitHealth(Spec.TotalStats.Health, Spec.TotalStats.Mana, Spec.TotalStats.Shield);
-        }
-
 
         int GetCharacterData()
         {

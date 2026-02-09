@@ -52,7 +52,7 @@ namespace PahlBit
         public ParseValue _ManaUp { get; private set; }
         public ParseValue _ManaRegen { get; private set; }
         public ParseValue _BaseAttackAdd { get; private set; }
-        public ParseValue _PhyAttackUp { get; private set; }
+        public ParseValue _AttackUp { get; private set; }
         public ParseValue _FireAttackUp { get; private set; }
         public ParseValue _IceAttackUp { get; private set; }
         public ParseValue _LightningAttackUp { get; private set; }
@@ -81,7 +81,7 @@ namespace PahlBit
             _ManaUp = ParseValue.Parse(ManaUp);
             _ManaRegen = ParseValue.Parse(ManaRegen);
             _BaseAttackAdd = ParseValue.Parse(BaseAttackAdd);
-            _PhyAttackUp = ParseValue.Parse(PhyAttackUp);
+            _AttackUp = ParseValue.Parse(PhyAttackUp);
             _FireAttackUp = ParseValue.Parse(FireAttackUp);
             _IceAttackUp = ParseValue.Parse(IceAttackUp);
             _LightningAttackUp = ParseValue.Parse(LightningAttackUp);

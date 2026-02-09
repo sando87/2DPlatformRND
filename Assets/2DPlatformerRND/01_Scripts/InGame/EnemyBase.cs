@@ -29,7 +29,6 @@ public class EnemyBase : MonoBehaviour
 
     void Start()
     {
-        mBase.Health.InitHealth(Spec.TotalStats.Health, 0, 0);
         mBase.Health.OnDied.AddListener(OnDeath);
     }
 

@@ -12,6 +12,9 @@ namespace PahlBit
         public virtual float MaxHealth { get; }
         public virtual float MaxMana { get; }
         public virtual float MaxShield { get; }
+        public virtual float BaseAttack { get; }
+
+        public virtual float PhyDefence { get; }
 
         public SpecOption Option { get; set; } = new SpecOption();
     }

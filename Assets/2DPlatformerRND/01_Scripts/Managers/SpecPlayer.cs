@@ -12,16 +12,16 @@ namespace PahlBit
         [SerializeField] float _MoveSpeed = 5f;
         [SerializeField] float _AttackSpeed = 1f;
 
-        public override float MaxHealth => TotalStats.Health;
-        public override float MaxMana => TotalStats.Mana;
-        public override float MaxShield => TotalStats.Shield;
+        public override float MaxHealth => BaseStats.Health * Option.HealthUp;
+        public override float MaxMana => BaseStats.Mana * Option.ManaUp;
+        public override float MaxShield => BaseStats.Shield + Option.ShieldAdd;
+
+        public override float BaseAttack => BaseStats.Attack + Option.BaseAttackAdd;
+        public override float PhyDefence => BaseStats.Defence * Option.DefenceUp;
 
         public CharSaveData SaveData { get; private set; } = null;
         public CharResourceData ResourceData { get; private set; } = null;
         public CharStats BaseStats { get; private set; } = null;
-
-        [field: SerializeField]
-        public CharStats TotalStats { get; private set; } = null;
 
         BaseObject mBaseObj = null;
 
