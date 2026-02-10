@@ -7,7 +7,7 @@ using PahlBit;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SkillBall : SkillBase
+public class SkillFireBall : SkillBase
 {
     [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase CirclePrefab;

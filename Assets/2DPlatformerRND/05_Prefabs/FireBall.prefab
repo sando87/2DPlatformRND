@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2727851830516482961}
   - component: {fileID: 6366504930240296974}
+  - component: {fileID: 3200741684909265932}
   m_Layer: 0
   m_Name: Renderer
   m_TagString: Untagged
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
+  m_Sprite: {fileID: -1042711282100462062, guid: 1f894d2c4188b574facb0dd2b5df366f,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -91,6 +92,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3200741684909265932
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4804462100776145455}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 05642302057ef77428040ad3a49f439d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8023231229581014257
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +192,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &5661865426065303790
 MonoBehaviour:
@@ -183,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d744c9de0ec7aa478e952774f915150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.ObjectBody
+  _ThinPlatform: {fileID: 0}
 --- !u!114 &4141279602610101249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +241,7 @@ GameObject:
   - component: {fileID: 165175909195909748}
   - component: {fileID: 4627083357526262411}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: FireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -305,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.ProjectileBase
   <Stats>k__BackingField:
     MoveSpeed: 10
-    MaxDistance: 0
+    FireAngle: 0
     AttackRange: 0
     SplashRange: 0
     Duration: 1
