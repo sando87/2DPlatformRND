@@ -1,0 +1,19 @@
+using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Triggers;
+using UnityEngine;
+
+namespace PahlBit
+{
+    public class Instantiator : MonoBehaviour
+    {
+        public void InstantiateVFX(Transform _transform)
+        {
+            ObjectPooling.Instance.Instantiate(gameObject, _transform.position, _transform.rotation).ReturnAfter(3);
+        }
+
+        public void LogTest()
+        {
+            LOG.trace();
+        }
+    }
+}
