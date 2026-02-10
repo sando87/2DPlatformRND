@@ -39,14 +39,15 @@ public class SkillFireBall : SkillBase
         // 스킬 오브젝트 생성
         Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
         ProjectileBase obj = ProjectileBase.Create(CirclePrefab, startPos, mBaseObj.transform.rotation, mBaseObj.gameObject.layer);
+        DamageInfo damageInfo = Spec.CalcCurrentDamages();
         obj.OnHit.AddListener((col) =>
         {
             // 충돌 시 처리할 내용
             Health health = col.ExGetBase().GetComponentInChildren<Health>();
             if (health != null)
             {
-                DamageInfo damage = Spec.CalcCurrentDamages();
-                health.GetDamaged(damage);
+
+                health.GetDamaged(damageInfo);
 
                 AttackResult result = new AttackResult()
                 {
@@ -56,6 +57,16 @@ public class SkillFireBall : SkillBase
                 mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
 
                 obj.DoEndProjectile();
+            }
+
+            BuffController buffCtrl = col.ExGetBase().Buffs;
+            if (buffCtrl != null)
+            {
+                BuffInfo buffInfo = new BuffInfo();
+                buffInfo.FireDamagePerSec = damageInfo.FireDamage * 0.3f;
+                buffInfo.Duration = Spec.Duration;
+
+                buffCtrl.ApplyBuff(buffInfo);
             }
         });
     }

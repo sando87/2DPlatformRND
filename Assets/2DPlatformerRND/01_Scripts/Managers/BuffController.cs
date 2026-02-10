@@ -16,16 +16,16 @@ namespace PahlBit
         {
         }
 
-        public void EquipItem(string itemID)
+        public void ApplyBuff(BuffInfo buffInfo)
         {
-
+            // TotalBuffOption.Add();
         }
+    }
 
-        public void UnEquipItem(string itemID)
-        {
-
-        }
-
-
+    public class BuffInfo
+    {
+        public int BuffID { get; set; } = -1;
+        public float FireDamagePerSec { get; set; } = 0;
+        public float Duration { get; set; } = 0;
     }
 }
