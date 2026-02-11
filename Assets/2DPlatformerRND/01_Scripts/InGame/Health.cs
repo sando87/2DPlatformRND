@@ -1,3 +1,4 @@
+using System.Collections;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,6 +17,8 @@ namespace PahlBit
         public float CurrentMana => mCurrentMana;
         public float CurrentShield => mCurrentShield;
 
+        public float CurrentTemputure { get; set; } = 0;
+
         float mMaxCurrentHP = 10;
         float mMaxCurrentMana = 0;
         float mMaxCurrentShield = 0;
@@ -30,16 +33,71 @@ namespace PahlBit
         public UnityEvent<DamagedResultInfo> OnDamaged = new UnityEvent<DamagedResultInfo>();
         public UnityEvent OnDied = new UnityEvent();
 
+        BaseObject mBaseObj = null;
         SpecBase mSpec = null;
 
         void Awake()
         {
-            mSpec = this.ExGetBase().Spec;
+            mBaseObj = this.ExGetBase();
+            mSpec = mBaseObj.Spec;
         }
 
         void Start()
         {
             InitHealth();
+
+            StartCoroutine(CoProcessBurnOrFreez());
+        }
+
+        IEnumerator CoProcessBurnOrFreez()
+        {
+            while (true)
+            {
+                yield return new WaitUntil(() => CurrentTemputure < -10 || 10 < CurrentTemputure);
+
+                if (CurrentTemputure > 10)
+                {
+                    while (CurrentTemputure > 0)
+                    {
+                        ApplyBurnEffect();
+                        yield return newWaitForSeconds.Cache(1);
+                        CurrentTemputure -= 4;
+                    }
+                    RemoveBurnEffect();
+                }
+                else if (CurrentTemputure < -10)
+                {
+                    while (CurrentTemputure < 0)
+                    {
+                        ApplySlowEffect();
+                        yield return newWaitForSeconds.Cache(1);
+                        CurrentTemputure += 4;
+                    }
+                    RemoveSlowEffect();
+                }
+            }
+        }
+
+        void ApplyBurnEffect()
+        {
+            // 데미지 감소 처리
+            // 온도에 따른 이펙트 크기 감소 처리
+        }
+        void RemoveBurnEffect()
+        {
+        }
+
+        void ApplySlowEffect()
+        {
+            // 이속 감소 처리
+            int buffID = mBaseObj.GetInstanceID();
+            float moveSpeedUp = CurrentTemputure * 4;
+            mBaseObj.Buffs.SetMoveSpeedBuff(buffID, new Percent(moveSpeedUp));
+        }
+        void RemoveSlowEffect()
+        {
+            int buffID = mBaseObj.GetInstanceID();
+            mBaseObj.Buffs.RemoveBuff(buffID);
         }
 
         void InitHealth()
@@ -87,6 +145,10 @@ namespace PahlBit
             if (IsDead || damage <= 0) return;
 
             DamagedResultInfo damageRetInfo = CalcHitResult(damage);
+
+            float fireTemputure = (damage.FireDamage / mMaxCurrentHP) * 100f;
+            float iceTemputure = (damage.IceDamage / mMaxCurrentHP) * 100f;
+            CurrentTemputure += (fireTemputure - iceTemputure);
 
             float remainDamage = damageRetInfo.TotalDamage;
 

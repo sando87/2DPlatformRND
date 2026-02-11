@@ -36,6 +36,8 @@ namespace PahlBit
 
             Spec = GetComponentInChildren<SpecPlayer>();
             Spec.Init(CharacterID, _ResourceID);
+            Spec.LinkOption(Inven.TotalItemOption);
+            Spec.LinkOption(mBaseObj.Buffs.TotalBuffOption);
 
             SkillCtrl = GetComponentInChildren<SkillController>();
             SkillCtrl.InitSkills(CharacterID);

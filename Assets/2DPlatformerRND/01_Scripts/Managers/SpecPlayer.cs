@@ -34,8 +34,6 @@ namespace PahlBit
             SaveData = userSaveData.Characters[characterID].Stats;
 
             UpdateBasicStat();
-
-            Option = mBaseObj.PlayerObj.Inven.TotalItemOption;
         }
 
         void UpdateBasicStat()

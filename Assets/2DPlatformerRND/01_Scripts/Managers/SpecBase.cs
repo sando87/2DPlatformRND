@@ -16,6 +16,38 @@ namespace PahlBit
 
         public virtual float PhyDefence { get; }
 
-        public SpecOption Option { get; set; } = new SpecOption();
+        SpecOption mTotalOption = new SpecOption();
+        List<SpecOption> mLinkedOptions = new List<SpecOption>();
+
+        public void LinkOption(SpecOption specOption)
+        {
+            mLinkedOptions.Add(specOption);
+        }
+
+        public SpecOption Option => GetTotalOption();
+        
+        SpecOption GetTotalOption()
+        {
+            if (IsDirty())
+                UpdateTotalOption();
+            return mTotalOption;
+        }
+        void UpdateTotalOption()
+        {
+            mTotalOption.SetAllZero();
+            foreach (SpecOption option in mLinkedOptions)
+            {
+                mTotalOption.Add(option);
+                option.IsDirty = false;
+            }
+            mTotalOption.IsDirty = false;
+        }
+        bool IsDirty()
+        {
+            foreach (SpecOption option in mLinkedOptions)
+                if (option.IsDirty)
+                    return true;
+            return false;
+        }
     }
 }

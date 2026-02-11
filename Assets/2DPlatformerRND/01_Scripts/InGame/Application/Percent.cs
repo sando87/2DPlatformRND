@@ -29,6 +29,10 @@ namespace PahlBit
         {
             mPercentVal = percent;
         }
+        public void SetZero()
+        {
+            mPercentVal = 0;
+        }
 
         public static Percent Parse(string str)
         {
