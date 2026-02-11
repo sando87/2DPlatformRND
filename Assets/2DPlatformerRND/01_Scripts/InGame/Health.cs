@@ -80,24 +80,62 @@ namespace PahlBit
 
         void ApplyBurnEffect()
         {
+            if (IsDead)
+                return;
+
             // 데미지 감소 처리
+            float curTemp = CurrentTemputure;
+            curTemp.ExSetMaximum(100);
+            float tempRate = curTemp / 100f;
+            float damage = tempRate * 10f;
+
             // 온도에 따른 이펙트 크기 감소 처리
+            mBaseObj.Renderer.SetColor(StringHashes.ColorBurn, Color.red);
+            mBaseObj.Renderer.SetBurnRate(tempRate);
+
+            DamagedResultInfo damagedResultInfo = new DamagedResultInfo();
+            damagedResultInfo.MaxHealth = mMaxCurrentHP;
+            damagedResultInfo.BeforeHealth = mCurrentHP;
+
+            mCurrentHP -= damage;
+            mCurrentHP.ExSetMinimum(0);
+
+            damagedResultInfo.OriDamage = damage;
+            damagedResultInfo.TotalDamage = damage;
+            damagedResultInfo.ValidDamage = damage;
+            damagedResultInfo.AfterHealth = mCurrentHP;
+
+            OnDamaged.Invoke(damagedResultInfo);
+
+            if (IsDead)
+            {
+                OnDied.Invoke();
+            }
         }
         void RemoveBurnEffect()
         {
+            mBaseObj.Renderer.UnSetColor(StringHashes.ColorBurn);
+            mBaseObj.Renderer.SetBurnRate(0);
         }
 
         void ApplySlowEffect()
         {
+            if (IsDead)
+                return;
+
             // 이속 감소 처리
             int buffID = mBaseObj.GetInstanceID();
             float moveSpeedUp = CurrentTemputure * 4;
             mBaseObj.Buffs.SetMoveSpeedBuff(buffID, new Percent(moveSpeedUp));
+
+            mBaseObj.Renderer.SetColor(StringHashes.ColorFreez, Color.blue);
         }
         void RemoveSlowEffect()
         {
             int buffID = mBaseObj.GetInstanceID();
             mBaseObj.Buffs.RemoveBuff(buffID);
+
+            mBaseObj.Renderer.UnSetColor(StringHashes.ColorFreez);
         }
 
         void InitHealth()

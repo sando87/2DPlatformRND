@@ -59,4 +59,9 @@ namespace PahlBit
     {
         public static readonly int Ground = 1 << LayerID.Terrain | 1 << LayerID.ThinPlatform;
     }
+    public class StringHashes
+    {
+        public static readonly int ColorBurn = "ColorBurn".GetHashCode();
+        public static readonly int ColorFreez = "ColorFreez".GetHashCode();
+    }
 }

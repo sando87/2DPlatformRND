@@ -8,7 +8,7 @@ namespace PahlBit
 {
     struct ColorEntry
     {
-        public long Token;
+        public int Token;
         public Color Color;
         public Coroutine Coroutine;
     }
@@ -28,7 +28,7 @@ namespace PahlBit
         {
             return mColorList.Count > 0 ? mColorList[^1].Color : Color.white;
         }
-        public void SetColor(long tokenID, Color color)
+        public void SetColor(int tokenID, Color color)
         {
             RemoveColor(tokenID);
             ColorEntry entry = new ColorEntry();
@@ -37,7 +37,7 @@ namespace PahlBit
             mColorList.Add(entry);
             ApplyColor();
         }
-        public void SetColor(long tokenID, Color color, float duration)
+        public void SetColor(int tokenID, Color color, float duration)
         {
             RemoveColor(tokenID);
             ColorEntry entry = new ColorEntry();
@@ -51,7 +51,7 @@ namespace PahlBit
         public void SetColor(Color color, float duration)
         {
             ColorEntry entry = new ColorEntry();
-            entry.Token = -1;
+            entry.Token = 0;
             entry.Color = color;
             entry.Coroutine = this.ExDelayedCoroutine(duration, () =>
             {
@@ -61,12 +61,12 @@ namespace PahlBit
             mColorList.Add(entry);
             ApplyColor();
         }
-        public void UnSetColor(long tokenID)
+        public void UnSetColor(int tokenID)
         {
             RemoveColor(tokenID);
             ApplyColor();
         }
-        void RemoveColor(long tokenID)
+        void RemoveColor(int tokenID)
         {
             for (int i = mColorList.Count - 1; i >= 0; --i)
             {

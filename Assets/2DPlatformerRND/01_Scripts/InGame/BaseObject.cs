@@ -5,6 +5,7 @@ namespace PahlBit
 {
     public class BaseObject : MonoBehaviour
     {
+        public RenderController Renderer => GetComponentInChildren<RenderController>();
         public FiniteStateMachine StateMachine { get => GetComponentInChildren<FiniteStateMachine>(); }
         public AnimatorHelper AnimHelper { get => GetComponentInChildren<AnimatorHelper>(); }
         public ObjectBody Body { get => GetComponentInChildren<ObjectBody>(); }
