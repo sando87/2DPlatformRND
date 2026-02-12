@@ -7,7 +7,6 @@ namespace PahlBit
     [System.Serializable]
     public class SkillStats
     {
-        public float Attack;
         public float ManaUse;
         public float Cooltime;
         public float ProjectileCount;

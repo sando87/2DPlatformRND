@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 662150947426525976}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -44,7 +44,7 @@ Transform:
   - {fileID: 7433823683924333284}
   - {fileID: 3096942146395274747}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8849159735124666502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,19 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43459b6858ca0da4ea1c5155f638e474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.EnemyDataMono
-  <TotalStats>k__BackingField:
-    Health: 0
-    Attack: 0
-    Defence: 0
-    MoveSpeed: 0
-    AttackSpeed: 0
-    Cooltime: 0
-    DetectRange: 0
-    AttackRange: 0
-    ItemDrop:
-      mPercentVal: 0
-    GoldOnDeath: 0
-    ExpOnDeath: 0
 --- !u!114 &4959186170716446665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,7 +418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3928320718382374778}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -439,7 +426,7 @@ Transform:
   - {fileID: 1911882243301889226}
   - {fileID: 5839365579031062102}
   m_Father: {fileID: 377658868513282421}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6801095627868694486
 MonoBehaviour:
   m_ObjectHideFlags: 0

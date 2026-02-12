@@ -9,16 +9,22 @@ namespace PahlBit
 {
     public class SpecEnemy : SpecBase
     {
-        public override float MaxHealth => TotalStats.Health;
+        public override float MaxHealth => BaseStats.Health * Option.HealthUp;
 
         public override float BaseAttack => BaseStats.Attack + Option.BaseAttackAdd;
         public override float PhyDefence => BaseStats.Defence * Option.DefenceUp;
 
+        public float MoveSpeed => BaseStats.MoveSpeed * Option.MoveSpeedUp;
+        public float DetectRange => BaseStats.DetectRange;
+        public float AttackRange => BaseStats.AttackRange;
+        public float DetectLossRange => DetectRange * 1.5f;
+        public Percent ItemDrop => BaseStats.ItemDrop;
+        public int GoldOnDeath => BaseStats.GoldOnDeath;
+        public float ExpOnDeath => BaseStats.ExpOnDeath;
+
+
         public EnemyResourceData ResourceData { get; private set; } = null;
         public EnemyStats BaseStats { get; private set; } = null;
-
-        [field: SerializeField]
-        public EnemyStats TotalStats { get; private set; } = null;
 
         public void InitData(string resourceID)
         {

@@ -85,8 +85,8 @@ namespace PahlBit
 
             // 데미지 감소 처리
             float curTemp = CurrentTemputure;
-            curTemp.ExSetMaximum(100);
-            float tempRate = curTemp / 100f;
+            curTemp.ExSetMaximum(40);
+            float tempRate = curTemp / 40f;
             float damage = tempRate * 10f;
 
             // 온도에 따른 이펙트 크기 감소 처리

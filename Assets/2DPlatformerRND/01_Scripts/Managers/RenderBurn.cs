@@ -15,7 +15,7 @@ namespace PahlBit
 
         void Awake()
         {
-            mStartPosY = transform.position.y;
+            mStartPosY = transform.localPosition.y;
             mBurnState = 0;
         }
 

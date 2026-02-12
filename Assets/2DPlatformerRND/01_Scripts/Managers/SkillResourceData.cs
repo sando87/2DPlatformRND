@@ -13,7 +13,6 @@ namespace PahlBit
         public readonly string DisplayName;
         public readonly string Desc;
 
-        public readonly string Attack;
         public readonly string ManaUse;
         public readonly string Cooltime;
         public readonly string ProjectileCount;
@@ -30,7 +29,6 @@ namespace PahlBit
         public int RowIndex { get; set; } // 데이터데이블상에 존재하는 순서
         public long ID { get { return ICSVFormat.ToID(SkillID); } } // 데이터 접근을 위한 id값
 
-        public ParseValue _Attack { get; private set; }
         public ParseValue _ManaUse { get; private set; }
         public ParseValue _Cooltime { get; private set; }
         public ParseValue _ProjectileCount { get; private set; }
@@ -47,7 +45,6 @@ namespace PahlBit
 
         void ICSVFormat.OnLoad()
         {
-            _Attack = ParseValue.Parse(Attack);
             _ManaUse = ParseValue.Parse(ManaUse);
             _Cooltime = ParseValue.Parse(Cooltime);
             _ProjectileCount = ParseValue.Parse(ProjectileCount);

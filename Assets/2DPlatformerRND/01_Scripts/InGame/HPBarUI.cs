@@ -25,5 +25,10 @@ namespace PahlBit
             float rate = Mathf.Clamp(_rate, 0, 1);
             _FillAmountBar.transform.localScale = new Vector3(rate, 1, 1);
         }
+
+        void Update()
+        {
+            transform.rotation = Quaternion.identity;
+        }
     }
 }

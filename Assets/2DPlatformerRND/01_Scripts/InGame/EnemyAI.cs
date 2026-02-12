@@ -21,7 +21,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     BaseObject mBase = null;
-    EnemyStats mStats = null;
+    SpecEnemy mSpec = null;
     BaseObject mPlayerTarget = null;
 
     CancellationTokenSource mAI_CTS;
@@ -35,11 +35,6 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] Tilemap _Tilemap;
     [SerializeField] Tilemap _ThinTilemap;
 
-    float DetectLossRange { get { return mStats.DetectRange * 1.5f; } }
-    float DetectRange { get { return mStats.DetectRange; } }
-    float AttackRange { get { return mStats.AttackRange; } }
-    float MoveSpeed { get { return mStats.MoveSpeed; } }
-
     PlatformerPathfinder mPathfinder = new PlatformerPathfinder();
 
     void Awake()
@@ -50,7 +45,7 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
-        mStats = mBase.EnemyObj.Spec.TotalStats;
+        mSpec = mBase.EnemyObj.Spec;
 
         mBase.Health.OnDamaged.AddListener(ChangeDamagedState);
         mBase.Health.OnDied.AddListener(ChangeDeathState);
@@ -173,7 +168,7 @@ public class EnemyAI : MonoBehaviour
             mPlayerTarget = await DetectTarget(ctx);
             if (mPlayerTarget != null)
             {
-                if (IsTargetInRange(AttackRange))
+                if (IsTargetInRange(mSpec.AttackRange))
                 {
                     return EnemyState.Attack;
                 }
@@ -230,9 +225,9 @@ public class EnemyAI : MonoBehaviour
 
             if (mPlayerTarget == null)
                 return EnemyState.Patrol;
-            else if (IsTargetInRange(AttackRange))
+            else if (IsTargetInRange(mSpec.AttackRange))
                 return EnemyState.Attack;
-            else if (IsTargetInRange(DetectLossRange))
+            else if (IsTargetInRange(mSpec.DetectLossRange))
                 return EnemyState.Chase;
             else
                 return EnemyState.Patrol;
@@ -277,7 +272,7 @@ public class EnemyAI : MonoBehaviour
     {
         while (!ct.IsCancellationRequested)
         {
-            BaseObject target = DetectPlayerAround(DetectRange);
+            BaseObject target = DetectPlayerAround(mSpec.DetectRange);
             if (target != null)
             {
                 return target;
@@ -301,7 +296,7 @@ public class EnemyAI : MonoBehaviour
     {
         while (!ct.IsCancellationRequested)
         {
-            if (IsTargetInRange(AttackRange))
+            if (IsTargetInRange(mSpec.AttackRange))
             {
                 break;
             }
@@ -319,7 +314,7 @@ public class EnemyAI : MonoBehaviour
             {
                 break;
             }
-            else if (!IsTargetInRange(DetectLossRange))
+            else if (!IsTargetInRange(mSpec.DetectLossRange))
             {
                 break;
             }
@@ -356,15 +351,15 @@ public class EnemyAI : MonoBehaviour
         if (!mBase.Phy.IsGrounded)
             return null;
 
-        PathInfo path = mPathfinder.FindPath(mBase.Body.Foot, MoveSpeed);
+        PathInfo path = mPathfinder.FindPath(mBase.Body.Foot, mSpec.MoveSpeed);
         if (path != null)
             return path;
 
-        path = mPathfinder.FindPath(mBase.Body.FootFront, MoveSpeed);
+        path = mPathfinder.FindPath(mBase.Body.FootFront, mSpec.MoveSpeed);
         if (path != null)
             return path;
 
-        path = mPathfinder.FindPath(mBase.Body.FootBack, MoveSpeed);
+        path = mPathfinder.FindPath(mBase.Body.FootBack, mSpec.MoveSpeed);
         if (path != null)
             return path;
 
@@ -385,7 +380,7 @@ public class EnemyAI : MonoBehaviour
                 else
                 {
                     Vector2 worldWayPos = path.Transition.StartNode.CenterTopPos;
-                    await MoveToDestPosition(MoveSpeed, worldWayPos);
+                    await MoveToDestPosition(mSpec.MoveSpeed, worldWayPos);
                     await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
                     await JustJumpUp(path.JumpForce);
                 }
@@ -399,7 +394,7 @@ public class EnemyAI : MonoBehaviour
                 else
                 {
                     Vector2 worldWayPos = path.Transition.StartNode.CenterTopPos;
-                    await MoveToDestPosition(MoveSpeed, worldWayPos);
+                    await MoveToDestPosition(mSpec.MoveSpeed, worldWayPos);
                     await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
                     await DropDown();
                 }
@@ -408,25 +403,25 @@ public class EnemyAI : MonoBehaviour
             {
                 Vector2 worldWayPos = path.Transition.StartNode.CenterTopPos;
                 Vector2 worldDestPos = path.Transition.EndNode.CenterTopPos;
-                await MoveToDestPosition(MoveSpeed, worldWayPos);
+                await MoveToDestPosition(mSpec.MoveSpeed, worldWayPos);
                 await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
-                await JumpMoving(path.JumpForce, MoveSpeed, worldDestPos);
+                await JumpMoving(path.JumpForce, mSpec.MoveSpeed, worldDestPos);
             }
             else if (path.Transition.TransitionType == NodeTransitionType.JumpAndMove)
             {
                 Vector2 worldWayPos = path.Transition.StartNode.CenterTopPos;
                 Vector2 worldDestPos = path.Transition.EndNode.CenterTopPos;
-                await MoveToDestPosition(MoveSpeed, worldWayPos);
+                await MoveToDestPosition(mSpec.MoveSpeed, worldWayPos);
                 await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
-                await JumpAndMove(path.JumpForce, MoveSpeed, worldDestPos);
+                await JumpAndMove(path.JumpForce, mSpec.MoveSpeed, worldDestPos);
             }
             else if (path.Transition.TransitionType == NodeTransitionType.WalkAndFall)
             {
                 Vector2 worldWayPos = path.Transition.StartNode.CenterTopPos;
                 Vector2 worldDestPos = path.Transition.EndNode.CenterTopPos;
-                await MoveToDestPosition(MoveSpeed, worldWayPos);
+                await MoveToDestPosition(mSpec.MoveSpeed, worldWayPos);
                 await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
-                await MoveAndFall(MoveSpeed, worldDestPos);
+                await MoveAndFall(mSpec.MoveSpeed, worldDestPos);
             }
             Stop();
         }
@@ -446,7 +441,7 @@ public class EnemyAI : MonoBehaviour
             {
                 int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
                 Turn(curDir);
-                StartMoving(curDir * MoveSpeed);
+                StartMoving(curDir * mSpec.MoveSpeed);
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 1.5f)), cancellationToken: ct);
             }
         }
@@ -673,7 +668,7 @@ public class EnemyAI : MonoBehaviour
             Health health = col.ExGetBase().GetComponentInChildren<Health>();
             if (health != null)
             {
-                float damage = mStats.Attack;
+                float damage = mSpec.BaseAttack;
                 health.GetDamaged(damage);
             }
         });

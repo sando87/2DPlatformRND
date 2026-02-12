@@ -25,6 +25,7 @@ public class EnemyBase : MonoBehaviour
 
         Spec = mBase.GetComponentInChildren<SpecEnemy>();
         Spec.InitData(_ResourceID);
+        Spec.LinkOption(mBase.Buffs.TotalBuffOption);
     }
 
     void Start()
@@ -34,7 +35,9 @@ public class EnemyBase : MonoBehaviour
 
     public void OnDeath()
     {
-        if (MyUtils.IsPercentHit((int)Spec.TotalStats.ItemDrop.PercentValue))
+        mBase.Body.LockBody = true;
+
+        if (MyUtils.IsPercentHit((int)Spec.ItemDrop.PercentValue))
             DropItem();
 
         if (MyUtils.IsPercentHit(GoldDropPercent))
@@ -48,6 +51,6 @@ public class EnemyBase : MonoBehaviour
     void DropGold()
     {
         Gold itemObj = Instantiate(GoldPrefab, mBase.Body.Center, Quaternion.identity);
-        itemObj.GoldAmount = Spec.TotalStats.GoldOnDeath;
+        itemObj.GoldAmount = Spec.GoldOnDeath;
     }
 }

@@ -30,7 +30,7 @@ namespace PahlBit
                         EnemyBase enemy = result.Target.ExGetBase().EnemyObj;
                         if (enemy != null)
                         {
-                            float gainedExp = enemy.Spec.TotalStats.ExpOnDeath;
+                            float gainedExp = enemy.Spec.ExpOnDeath;
                             AddExp(gainedExp);
                         }
                     }

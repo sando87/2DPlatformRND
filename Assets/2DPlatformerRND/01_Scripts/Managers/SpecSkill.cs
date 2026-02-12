@@ -48,7 +48,6 @@ namespace PahlBit
 
             BaseStats = new SkillStats();
 
-            BaseStats.Attack = ResourceData._Attack.GetValueByPoint(currentLevelIndex);
             BaseStats.ManaUse = ResourceData._ManaUse.GetValueByPoint(currentLevelIndex);
             BaseStats.Cooltime = ResourceData._Cooltime.GetValueByPoint(currentLevelIndex);
             BaseStats.ProjectileCount = ResourceData._ProjectileCount.GetValueByPoint(currentLevelIndex);
