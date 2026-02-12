@@ -20,10 +20,10 @@ namespace PahlBit
         public float Duration => BaseStats.Duration * mSpecPlayer.Option.DurationUp;
         public float Interval => BaseStats.Interval;
 
-        public Percent PhyAttackUp => BaseStats.PhyAttackUp + mSpecPlayer.Option.PhyAttackUp;
-        public Percent FireAttackUp => BaseStats.FireAttackUp + mSpecPlayer.Option.FireAttackUp;
-        public Percent IceAttackUp => BaseStats.IceAttackUp + mSpecPlayer.Option.IceAttackUp;
-        public Percent LightningAttackUp => BaseStats.LightningAttackUp + mSpecPlayer.Option.LightningAttackUp;
+        public Percent PhyAttack => BaseStats.PhyAttack + mSpecPlayer.Option.PhyAttack;
+        public Percent FireAttack => BaseStats.FireAttack + mSpecPlayer.Option.FireAttack;
+        public Percent IceAttack => BaseStats.IceAttack + mSpecPlayer.Option.IceAttack;
+        public Percent LightningAttack => BaseStats.LightningAttack + mSpecPlayer.Option.LightningAttack;
 
         public SkillSaveData SaveData { get; private set; } = null;
         public SkillResourceData ResourceData { get; private set; } = null;
@@ -56,19 +56,19 @@ namespace PahlBit
             BaseStats.SplashRange = ResourceData._SplashRange.GetValueByPoint(currentLevelIndex);
             BaseStats.Duration = ResourceData._Duration.GetValueByPoint(currentLevelIndex);
             BaseStats.Interval = ResourceData._Interval.GetValueByPoint(currentLevelIndex);
-            BaseStats.PhyAttackUp = (Percent)ResourceData._PhyAttackUp.GetValueByPoint(currentLevelIndex);
-            BaseStats.FireAttackUp = (Percent)ResourceData._FireAttackUp.GetValueByPoint(currentLevelIndex);
-            BaseStats.IceAttackUp = (Percent)ResourceData._IceAttackUp.GetValueByPoint(currentLevelIndex);
-            BaseStats.LightningAttackUp = (Percent)ResourceData._LightningAttackUp.GetValueByPoint(currentLevelIndex);
+            BaseStats.PhyAttack = (Percent)ResourceData._PhyAttack.GetValueByPoint(currentLevelIndex);
+            BaseStats.FireAttack = (Percent)ResourceData._FireAttack.GetValueByPoint(currentLevelIndex);
+            BaseStats.IceAttack = (Percent)ResourceData._IceAttack.GetValueByPoint(currentLevelIndex);
+            BaseStats.LightningAttack = (Percent)ResourceData._LightningAttack.GetValueByPoint(currentLevelIndex);
         }
 
         public DamageInfo CalcCurrentDamages()
         {
             DamageInfo damageInfo = new DamageInfo();
-            damageInfo.PhyDamage = mSpecPlayer.BaseAttack * PhyAttackUp;
-            damageInfo.FireDamage = mSpecPlayer.BaseAttack * FireAttackUp;
-            damageInfo.IceDamage = mSpecPlayer.BaseAttack * IceAttackUp;
-            damageInfo.LightningDamage = mSpecPlayer.BaseAttack * LightningAttackUp;
+            damageInfo.PhyDamage = mSpecPlayer.BaseAttack * PhyAttack;
+            damageInfo.FireDamage = mSpecPlayer.BaseAttack * FireAttack;
+            damageInfo.IceDamage = mSpecPlayer.BaseAttack * IceAttack;
+            damageInfo.LightningDamage = mSpecPlayer.BaseAttack * LightningAttack;
             damageInfo.IsCritical = MyUtils.IsPercentHit((int)mSpecPlayer.Option.CriticalRate);
             damageInfo.CriticalAttackUp = mSpecPlayer.Option.CriticalAttack;
             return damageInfo;

@@ -18,7 +18,7 @@ namespace PahlBit
         public float DetectRange => BaseStats.DetectRange;
         public float AttackRange => BaseStats.AttackRange;
         public float DetectLossRange => DetectRange * 1.5f;
-        public Percent ItemDrop => BaseStats.ItemDrop;
+        public PercentUp ItemDrop => BaseStats.ItemDrop;
         public int GoldOnDeath => BaseStats.GoldOnDeath;
         public float ExpOnDeath => BaseStats.ExpOnDeath;
 
@@ -43,7 +43,7 @@ namespace PahlBit
             BaseStats.Cooltime = ResourceData._Cooltime.GetValue();
             BaseStats.DetectRange = ResourceData._DetectRange.GetValue();
             BaseStats.AttackRange = ResourceData._AttackRange.GetValue();
-            BaseStats.ItemDrop = (Percent)ResourceData._ItemDrop.GetValue();
+            BaseStats.ItemDrop = (PercentUp)ResourceData._ItemDrop.GetValue();
             BaseStats.GoldOnDeath = (int)ResourceData._GoldOnDeath.GetValueInRange(MyUtils.RandomRate());
             BaseStats.ExpOnDeath = ResourceData._ExpOnDeath.GetValue();
         }

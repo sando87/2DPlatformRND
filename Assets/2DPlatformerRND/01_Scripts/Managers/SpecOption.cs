@@ -4,32 +4,32 @@ namespace PahlBit
     [System.Serializable]
     public class SpecOption
     {
-        public Percent HealthUp;
+        public PercentUp HealthUp;
         public float HealthRegen;
-        public Percent ManaUp;
+        public PercentUp ManaUp;
         public float ManaRegen;
         public float BaseAttackAdd;
-        public Percent PhyAttackUp;
-        public Percent FireAttackUp;
-        public Percent IceAttackUp;
-        public Percent LightningAttackUp;
-        public Percent DefenceUp;
-        public Percent MoveSpeedUp;
-        public Percent AttackSpeedUp;
-        public Percent CooltimeDown;
+        public Percent PhyAttack;
+        public Percent FireAttack;
+        public Percent IceAttack;
+        public Percent LightningAttack;
+        public PercentUp DefenceUp;
+        public PercentUp MoveSpeedUp;
+        public PercentUp AttackSpeedUp;
+        public PercentUp CooltimeDown;
         public float ShieldAdd;
         public float ShieldRegen;
-        public Percent CriticalRate;
-        public Percent CriticalAttack;
+        public PercentUp CriticalRate;
+        public PercentUp CriticalAttack;
         public float ProjectileCountUp;
-        public Percent ProjectileSpeedUp;
-        public Percent AttackRangeUp;
-        public Percent SplashRangeUp;
-        public Percent DurationUp;
-        public Percent FireResist;
-        public Percent IceResist;
-        public Percent LightningResist;
-        public Percent PosionResist;
+        public PercentUp ProjectileSpeedUp;
+        public PercentUp AttackRangeUp;
+        public PercentUp SplashRangeUp;
+        public PercentUp DurationUp;
+        public PercentUp FireResist;
+        public PercentUp IceResist;
+        public PercentUp LightningResist;
+        public PercentUp PosionResist;
 
         public bool IsDirty { get; set; } = true;
 
@@ -43,10 +43,10 @@ namespace PahlBit
             ManaUp += other.ManaUp;
             ManaRegen += other.ManaRegen;
             BaseAttackAdd += other.BaseAttackAdd;
-            PhyAttackUp += other.PhyAttackUp;
-            FireAttackUp += other.FireAttackUp;
-            IceAttackUp += other.IceAttackUp;
-            LightningAttackUp += other.LightningAttackUp;
+            PhyAttack += other.PhyAttack;
+            FireAttack += other.FireAttack;
+            IceAttack += other.IceAttack;
+            LightningAttack += other.LightningAttack;
             DefenceUp += other.DefenceUp;
             MoveSpeedUp += other.MoveSpeedUp;
             AttackSpeedUp += other.AttackSpeedUp;
@@ -70,16 +70,16 @@ namespace PahlBit
         public void Subtract(SpecOption other)
         {
             IsDirty = true;
-            
+
             HealthUp -= other.HealthUp;
             HealthRegen -= other.HealthRegen;
             ManaUp -= other.ManaUp;
             ManaRegen -= other.ManaRegen;
             BaseAttackAdd -= other.BaseAttackAdd;
-            PhyAttackUp -= other.PhyAttackUp;
-            FireAttackUp -= other.FireAttackUp;
-            IceAttackUp -= other.IceAttackUp;
-            LightningAttackUp -= other.LightningAttackUp;
+            PhyAttack -= other.PhyAttack;
+            FireAttack -= other.FireAttack;
+            IceAttack -= other.IceAttack;
+            LightningAttack -= other.LightningAttack;
             DefenceUp -= other.DefenceUp;
             MoveSpeedUp -= other.MoveSpeedUp;
             AttackSpeedUp -= other.AttackSpeedUp;
@@ -108,10 +108,10 @@ namespace PahlBit
             ManaUp.SetZero();
             ManaRegen = 0;
             BaseAttackAdd = 0;
-            PhyAttackUp.SetZero();
-            FireAttackUp.SetZero();
-            IceAttackUp.SetZero();
-            LightningAttackUp.SetZero();
+            PhyAttack.SetZero();
+            FireAttack.SetZero();
+            IceAttack.SetZero();
+            LightningAttack.SetZero();
             DefenceUp.SetZero();
             MoveSpeedUp.SetZero();
             AttackSpeedUp.SetZero();

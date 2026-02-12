@@ -21,7 +21,7 @@ namespace PahlBit
             result.Health = stat.Health * option.HealthUp;
             result.Mana = stat.Mana * option.ManaUp;
             result.Shield = option.ShieldAdd;
-            result.Attack = stat.Attack * option.PhyAttackUp;
+            result.Attack = stat.Attack * option.PhyAttack;
             result.Defence = stat.Defence * option.DefenceUp;
             result.MoveSpeed = stat.MoveSpeed * option.MoveSpeedUp;
             result.AttackSpeed = stat.AttackSpeed * option.AttackSpeedUp;

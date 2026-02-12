@@ -12,7 +12,7 @@ namespace PahlBit
         public float Cooltime;
         public float DetectRange;
         public float AttackRange;
-        public Percent ItemDrop;
+        public PercentUp ItemDrop;
         public int GoldOnDeath;
         public float ExpOnDeath;
 
@@ -20,7 +20,7 @@ namespace PahlBit
         {
             EnemyStats result = new EnemyStats();
             result.Health = stat.Health * option.HealthUp;
-            result.Attack = stat.Attack * option.PhyAttackUp;
+            result.Attack = stat.Attack * option.PhyAttack;
             result.Defence = stat.Defence * option.DefenceUp;
             result.MoveSpeed = stat.MoveSpeed * option.MoveSpeedUp;
             result.AttackSpeed = stat.AttackSpeed * option.AttackSpeedUp;

@@ -85,8 +85,8 @@ namespace PahlBit
 
             // 데미지 감소 처리
             float curTemp = CurrentTemputure;
-            curTemp.ExSetMaximum(40);
-            float tempRate = curTemp / 40f;
+            curTemp.ExSetMaximum(20);
+            float tempRate = curTemp / 20f;
             float damage = tempRate * 10f;
 
             // 온도에 따른 이펙트 크기 감소 처리
@@ -126,7 +126,7 @@ namespace PahlBit
             // 이속 감소 처리
             int buffID = mBaseObj.GetInstanceID();
             float moveSpeedUp = CurrentTemputure * 4;
-            mBaseObj.Buffs.SetMoveSpeedBuff(buffID, new Percent(moveSpeedUp));
+            mBaseObj.Buffs.SetMoveSpeedBuff(buffID, new PercentUp(moveSpeedUp));
 
             mBaseObj.Renderer.SetColor(StringHashes.ColorFreez, Color.blue);
         }

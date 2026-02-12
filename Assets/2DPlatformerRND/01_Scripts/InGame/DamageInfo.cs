@@ -18,7 +18,7 @@ namespace PahlBit
         public float IceDamage;
         public float LightningDamage;
         public bool IsCritical;
-        public Percent CriticalAttackUp;
+        public PercentUp CriticalAttackUp;
         public GameObject Attacker;
         public Vector3 HitPoint;       // 타격 위치
         public Vector3 HitDirection;   // 넉백 방향
@@ -30,7 +30,7 @@ namespace PahlBit
             IceDamage = 0;
             LightningDamage = 0;
             IsCritical = false;
-            CriticalAttackUp = new Percent();
+            CriticalAttackUp = new PercentUp();
             Attacker = null;
             HitPoint = Vector3.zero;
             HitDirection = Vector3.zero;

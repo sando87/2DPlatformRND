@@ -15,8 +15,8 @@ public class SkillArrow : SkillBase
     private float mMotionSpeed = 0;
     private int mProjectileCount = 0;
     private DamageInfo mDamageInfo = new DamageInfo();
-    private Percent mCriticalRate = new Percent();
-    private Percent mCriticalAttack = new Percent();
+    private PercentUp mCriticalRate = new PercentUp();
+    private PercentUp mCriticalAttack = new PercentUp();
 
     public override bool IsCastable()
     {

@@ -46,7 +46,7 @@ namespace PahlBit
 
         // 자주 호출되는 함수는 따로 전용 함수를 만들어서 최적화 시킨다.
         // 모션 속도 제어(감속 or 가속)는 프레임 단위로 자주 호출되는 함수라서 따로 분리시킴
-        public void SetMoveSpeedBuff(int buffID, Percent moveSpeedUp)
+        public void SetMoveSpeedBuff(int buffID, PercentUp moveSpeedUp)
         {
             if (mBuffs.ContainsKey(buffID))
             {

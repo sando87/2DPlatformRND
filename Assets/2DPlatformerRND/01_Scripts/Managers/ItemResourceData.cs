@@ -20,10 +20,10 @@ namespace PahlBit
         public readonly string ManaUp;
         public readonly string ManaRegen;
         public readonly string BaseAttackAdd;
-        public readonly string PhyAttackUp;
-        public readonly string FireAttackUp;
-        public readonly string IceAttackUp;
-        public readonly string LightningAttackUp;
+        public readonly string PhyAttack;
+        public readonly string FireAttack;
+        public readonly string IceAttack;
+        public readonly string LightningAttack;
         public readonly string DefenceUp;
         public readonly string MoveSpeedUp;
         public readonly string AttackSpeedUp;
@@ -52,10 +52,10 @@ namespace PahlBit
         public ParseValue _ManaUp { get; private set; }
         public ParseValue _ManaRegen { get; private set; }
         public ParseValue _BaseAttackAdd { get; private set; }
-        public ParseValue _AttackUp { get; private set; }
-        public ParseValue _FireAttackUp { get; private set; }
-        public ParseValue _IceAttackUp { get; private set; }
-        public ParseValue _LightningAttackUp { get; private set; }
+        public ParseValue _PhyAttack { get; private set; }
+        public ParseValue _FireAttack { get; private set; }
+        public ParseValue _IceAttack { get; private set; }
+        public ParseValue _LightningAttack { get; private set; }
         public ParseValue _DefenceUp { get; private set; }
         public ParseValue _MoveSpeedUp { get; private set; }
         public ParseValue _AttackSpeedUp { get; private set; }
@@ -81,10 +81,10 @@ namespace PahlBit
             _ManaUp = ParseValue.Parse(ManaUp);
             _ManaRegen = ParseValue.Parse(ManaRegen);
             _BaseAttackAdd = ParseValue.Parse(BaseAttackAdd);
-            _AttackUp = ParseValue.Parse(PhyAttackUp);
-            _FireAttackUp = ParseValue.Parse(FireAttackUp);
-            _IceAttackUp = ParseValue.Parse(IceAttackUp);
-            _LightningAttackUp = ParseValue.Parse(LightningAttackUp);
+            _PhyAttack = ParseValue.Parse(PhyAttack);
+            _FireAttack = ParseValue.Parse(FireAttack);
+            _IceAttack = ParseValue.Parse(IceAttack);
+            _LightningAttack = ParseValue.Parse(LightningAttack);
             _DefenceUp = ParseValue.Parse(DefenceUp);
             _MoveSpeedUp = ParseValue.Parse(MoveSpeedUp);
             _AttackSpeedUp = ParseValue.Parse(AttackSpeedUp);
