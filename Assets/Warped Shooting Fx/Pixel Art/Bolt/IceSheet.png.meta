@@ -49,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,10 +60,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -125,111 +125,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boltSheet_0
+      name: IceSheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 99
+        y: 96
         width: 48
-        height: 26
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d03e8f4f9c975f220800000000000000
-      internalID: 2519053474888999693
+      spriteID: 61c3645d2d661fd489eafe9657d1190b
+      internalID: -206705535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boltSheet_1
+      name: IceSheet_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 66
-        width: 47
-        height: 28
+        y: 64
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f4ae21fe81573ccc0800000000000000
-      internalID: -3691978519563015601
+      spriteID: d6b1e89bc88013e43914d750cfe62df6
+      internalID: -183507370
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boltSheet_2
+      name: IceSheet_2
       rect:
         serializedVersion: 2
-        x: 1
-        y: 38
-        width: 46
-        height: 23
+        x: 0
+        y: 32
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 371e241291a57d710800000000000000
-      internalID: 1717940846843847027
+      spriteID: ab861058dd5eeaa4ba02ae432e117209
+      internalID: -383647798
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boltSheet_3
+      name: IceSheet_3
       rect:
         serializedVersion: 2
-        x: 1
-        y: 8
-        width: 23
-        height: 14
+        x: 0
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 16446fb3b742d5b00800000000000000
-      internalID: 818850818956870753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: boltSheet_4
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 7
-        width: 30
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 62205d3c6968287a0800000000000000
-      internalID: -6376386140314467802
+      spriteID: 44eea1dc9b6e13d4d94563ca14b21872
+      internalID: -175916379
       vertices: []
       indices: 
       edges: []
@@ -238,7 +216,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c4118222baaa91143af86c0764d0114f
     internalID: 0
     vertices: []
     indices: 
@@ -246,13 +224,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":4.0},"gridSpriteSize":{"x":48.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      boltSheet_0: 2519053474888999693
-      boltSheet_1: -3691978519563015601
-      boltSheet_2: 1717940846843847027
-      boltSheet_3: 818850818956870753
-      boltSheet_4: -6376386140314467802
+      IceSheet_0: -206705535
+      IceSheet_1: -183507370
+      IceSheet_2: -383647798
+      IceSheet_3: -175916379
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

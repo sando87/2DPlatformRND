@@ -7,6 +7,8 @@ public class InteractableCollider : MonoBehaviour
     [SerializeField] InteractMask _MyProperty = InteractMask.Everything;
     [SerializeField] InteractMask _InteractableWith = InteractMask.Everything;
 
+    public InteractMask MyProperty => _MyProperty;
+
     public UnityEvent<Collider2D> OnInteractEnter;
     public UnityEvent<Collider2D> OnInteractLeave;
 

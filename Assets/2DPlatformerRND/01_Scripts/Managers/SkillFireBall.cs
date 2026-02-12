@@ -38,8 +38,11 @@ public class SkillFireBall : SkillBase
     {
         // 스킬 오브젝트 생성
         Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
-        ProjectileBase obj = ProjectileBase.Create(CirclePrefab, startPos, mBaseObj.transform.rotation, mBaseObj.gameObject.layer);
-        obj.OnHit.AddListener((col) =>
+        ProjectileBase proj = ProjectileBase.Create(CirclePrefab, startPos, mBaseObj.transform.rotation, mBaseObj.gameObject.layer);
+
+        ApplySkillStatsToProjectile(proj);
+
+        proj.OnHit.AddListener((col) =>
         {
             // 충돌 시 처리할 내용
             Health health = col.ExGetBase().GetComponentInChildren<Health>();
@@ -55,7 +58,7 @@ public class SkillFireBall : SkillBase
                 };
                 mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
 
-                obj.DoEndProjectile();
+                proj.DoEndProjectile();
             }
         });
     }

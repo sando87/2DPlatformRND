@@ -21,6 +21,14 @@ namespace PahlBit
         public UnityEvent<Collider2D> OnHit;
         public UnityEvent OnEnd;
 
+        public static ProjectileBase Create(ProjectileBase prefab, Vector2 position, Vector2 direction, int layer)
+        {
+            ProjectileBase obj = Instantiate(prefab, position, Quaternion.identity);
+            obj.transform.right = direction;
+            obj.mStartPos = position;
+            obj.gameObject.ExSetLayerAll(layer);
+            return obj;
+        }
         public static ProjectileBase Create(ProjectileBase prefab, Vector3 position, Quaternion rotation, int layer)
         {
             ProjectileBase obj = Instantiate(prefab, position, rotation);
