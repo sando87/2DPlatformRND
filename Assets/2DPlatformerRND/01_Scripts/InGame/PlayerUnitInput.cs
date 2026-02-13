@@ -18,9 +18,9 @@ namespace PahlBit
         private Dictionary<PlayerUnitInputType, PlayerUnitInputState> mInputStates = new Dictionary<PlayerUnitInputType, PlayerUnitInputState>();
 
         public bool JustPressed(PlayerUnitInputType type)
-            => GetInputAction(type).triggered || (_VirtualInput != null ? _VirtualInput.JustPressed(type) : false);
+            => _VirtualInput != null ? _VirtualInput.JustPressed(type) : GetInputAction(type).triggered;
         public bool IsPressing(PlayerUnitInputType type)
-            => GetInputAction(type).IsPressed() || (_VirtualInput != null ? _VirtualInput.IsPressed(type) : false);
+            => _VirtualInput != null ? _VirtualInput.IsPressed(type) : GetInputAction(type).IsPressed();
 
         // public bool JustPressed(PlayerUnitInputType type) { return mInputStates[type].justPressed; }
         // public bool IsPressing(PlayerUnitInputType type) { return mInputStates[type].isPressed; }
@@ -40,18 +40,20 @@ namespace PahlBit
                     if (v != Vector2.zero)
                         return (TValue)(object)v;
                 }
-
-                if (typeof(TValue) == typeof(float))
+                else if (typeof(TValue) == typeof(float))
                 {
                     float f = _VirtualInput.GetFloat(type);
                     if (Mathf.Abs(f) > 0.0001f)
                         return (TValue)(object)f;
                 }
             }
-
-            // 실제 입력
-            InputAction action = mInputStates[type].inputAction;
-            return action != null ? action.ReadValue<TValue>() : default;
+            else
+            {
+                // 실제 입력
+                InputAction action = mInputStates[type].inputAction;
+                return action != null ? action.ReadValue<TValue>() : default;
+            }
+            return default;
         }
 
         public UnityEvent<PlayerUnitInputType> EnterInput = new UnityEvent<PlayerUnitInputType>();

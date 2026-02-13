@@ -8,7 +8,7 @@ namespace PahlBit
         class VirtualState
         {
             public bool isPressed;
-            public bool isPressedPrev;
+            public bool isPressedJust;
             public float pressedTime;
             public Vector2 vector2Value;
             public float floatValue;
@@ -27,14 +27,6 @@ namespace PahlBit
             }
         }
 
-        void Update()
-        {
-            foreach (var state in mStates.Values)
-            {
-                state.isPressedPrev = state.isPressed;
-            }
-        }
-
         // ===== 버튼 입력 =====
         public void Press(PlayerUnitInputType type)
         {
@@ -42,7 +34,9 @@ namespace PahlBit
             if (!state.isPressed)
             {
                 state.isPressed = true;
+                state.isPressedJust = true;
                 state.pressedTime = Time.time;
+                this.ExAfterFrameCoroutine(() => state.isPressedJust = false);
             }
         }
 
@@ -97,7 +91,7 @@ namespace PahlBit
         public bool JustPressed(PlayerUnitInputType type)
         {
             var s = mStates[type];
-            return s.isPressed && !s.isPressedPrev;
+            return s.isPressedJust;
         }
 
         public float HeldTime(PlayerUnitInputType type)
