@@ -5,12 +5,16 @@ using DG.Tweening;
 using NaughtyAttributes;
 using PahlBit;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class SkillLightning : SkillBase
 {
     [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase ProjPrefab;
+    [SerializeField] float ChainInterval = 0.15f;
+
+    public UnityEvent<BaseObject> OnHit;
 
     public override bool IsCastable()
     {
@@ -31,10 +35,11 @@ public class SkillLightning : SkillBase
     {
         base.DoFire();
 
-        DoCastSkill();
+        List<BaseObject> alreadyHitTargets = new List<BaseObject>();
+        DoCastSkill(alreadyHitTargets);
     }
 
-    void DoCastSkill()
+    void DoCastSkill(List<BaseObject> alreadyHitTargets)
     {
         Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
         Vector2 dir = mBaseObj.transform.right;
@@ -44,12 +49,14 @@ public class SkillLightning : SkillBase
         BaseObject target = UtilitiesPhy2D.CircleCast(startPos, 0.5f, dir, Spec.AttackRange, targetLayerMask, interactMask);
         if (target != null)
         {
+            alreadyHitTargets.Add(target);
+
             Vector2 diff = target.Body.Center - startPos;
             ProjectileBase proj = ProjectileBase.Create(ProjPrefab, startPos, diff.normalized, mBaseObj.gameObject.layer);
             ApplySkillStatsToProjectile(proj);
 
             float scale = diff.magnitude / 4f; // 여기서 4는 라이트닝 기본 스케일의 이펙트 길이
-            proj.transform.localScale = new Vector3(scale, scale, 1);
+            proj.transform.localScale = new Vector3(scale, 1, 1);
 
             // 충돌 시 처리할 내용
             Health health = target.GetComponentInChildren<Health>();
@@ -65,7 +72,9 @@ public class SkillLightning : SkillBase
                 };
                 mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
 
-                this.ExDelayedCoroutine(0.1f, () => DoChainLightning(target.Body.Center, Spec.SplashRange));
+                OnHit?.Invoke(target);
+
+                this.ExDelayedCoroutine(ChainInterval, () => DoChainLightning(target.Body.Center, Spec.SplashRange, alreadyHitTargets));
             }
         }
         else
@@ -76,23 +85,28 @@ public class SkillLightning : SkillBase
         }
     }
 
-    void DoChainLightning(Vector2 cenPos, float radius)
+    void DoChainLightning(Vector2 cenPos, float radius, List<BaseObject> alreadyHitTargets)
     {
         Vector2 startPos = cenPos;
         Vector2 dir = mBaseObj.transform.right;
         int targetLayerMask = GameSystem.GetAttackableLayerMask(gameObject.layer);
         InteractMask interactMask = InteractMask.Unit;
 
-        BaseObject[] targets = UtilitiesPhy2D.OverlapCircleAll(startPos, radius, targetLayerMask, interactMask);
-        if (targets != null)
+        BaseObject[] allAroundTargets = UtilitiesPhy2D.OverlapCircleAll(startPos, radius, targetLayerMask, interactMask);
+        if (allAroundTargets != null)
         {
-            BaseObject target = FintMostCloseTarget(targets, startPos);
+            BaseObject target = FindNextTarget(allAroundTargets, startPos, alreadyHitTargets);
+            if (target == null)
+                return;
+
+            alreadyHitTargets.Add(target);
+
             Vector2 diff = target.Body.Center - startPos;
             ProjectileBase proj = ProjectileBase.Create(ProjPrefab, startPos, diff.normalized, mBaseObj.gameObject.layer);
             ApplySkillStatsToProjectile(proj);
 
             float scale = diff.magnitude / 4f; // 여기서 4는 라이트닝 기본 스케일의 이펙트 길이
-            proj.transform.localScale = new Vector3(scale, scale, 1);
+            proj.transform.localScale = new Vector3(scale, 1, 1);
 
             // 충돌 시 처리할 내용
             Health health = target.GetComponentInChildren<Health>();
@@ -108,17 +122,25 @@ public class SkillLightning : SkillBase
                 };
                 mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
 
-                this.ExDelayedCoroutine(0.1f, () => DoChainLightning(target.Body.Center, Spec.SplashRange));
+                OnHit?.Invoke(target);
+
+                this.ExDelayedCoroutine(ChainInterval, () => DoChainLightning(target.Body.Center, Spec.SplashRange, alreadyHitTargets));
             }
         }
     }
 
-    BaseObject FintMostCloseTarget(BaseObject[] targets, Vector2 cenPos)
+    BaseObject FindNextTarget(BaseObject[] targets, Vector2 cenPos, List<BaseObject> alreadyHitTargets)
     {
         BaseObject mostCloseTarget = null;
         float minDist = float.PositiveInfinity;
         foreach (BaseObject target in targets)
         {
+            if (alreadyHitTargets.Contains(target))
+                continue;
+
+            if (!target.Health.IsFreezed)
+                continue;
+
             float dist = (target.Body.Center - cenPos).sqrMagnitude;
             if (dist < minDist)
             {

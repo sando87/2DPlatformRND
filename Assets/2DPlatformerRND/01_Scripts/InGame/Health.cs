@@ -19,6 +19,9 @@ namespace PahlBit
 
         public float CurrentTemputure { get; set; } = 0;
 
+        public bool IsBurned { get; private set; }
+        public bool IsFreezed { get; private set; }
+
         float mMaxCurrentHP = 10;
         float mMaxCurrentMana = 0;
         float mMaxCurrentShield = 0;
@@ -107,13 +110,17 @@ namespace PahlBit
 
             OnDamaged.Invoke(damagedResultInfo);
 
+            IsBurned = true;
+
             if (IsDead)
             {
+                RemoveBurnEffect();
                 OnDied.Invoke();
             }
         }
         void RemoveBurnEffect()
         {
+            IsBurned = false;
             mBaseObj.Renderer.UnSetColor(StringHashes.ColorBurn);
             mBaseObj.Renderer.SetBurnRate(0);
         }
@@ -129,6 +136,8 @@ namespace PahlBit
             mBaseObj.Buffs.SetMoveSpeedBuff(buffID, new PercentUp(moveSpeedUp));
 
             mBaseObj.Renderer.SetColor(StringHashes.ColorFreez, Color.blue);
+
+            IsFreezed = true;
         }
         void RemoveSlowEffect()
         {
@@ -136,6 +145,8 @@ namespace PahlBit
             mBaseObj.Buffs.RemoveBuff(buffID);
 
             mBaseObj.Renderer.UnSetColor(StringHashes.ColorFreez);
+
+            IsFreezed = false;
         }
 
         void InitHealth()
@@ -161,17 +172,17 @@ namespace PahlBit
             damageRetInfo.TotalDamage = phyDamage;
 
             // 파이어 데미지 계산
-            float fireDamage = damageInfo.FireDamage - (damageInfo.FireDamage * mSpec.Option.FireResist);
+            float fireDamage = damageInfo.FireDamage * (Percent.One - mSpec.Option.FireResist);
             fireDamage.ExSetMinimum(0);
             damageRetInfo.TotalDamage += fireDamage;
 
             // 아이스 데미지 계산
-            float iceDamage = damageInfo.IceDamage - (damageInfo.IceDamage * mSpec.Option.IceResist);
+            float iceDamage = damageInfo.IceDamage * (Percent.One - mSpec.Option.IceResist);
             iceDamage.ExSetMinimum(0);
             damageRetInfo.TotalDamage += iceDamage;
 
             // 라이트닝 데미지 계산
-            float lightningDamage = damageInfo.LightningDamage - (damageInfo.LightningDamage * mSpec.Option.LightningResist);
+            float lightningDamage = damageInfo.LightningDamage * (Percent.One - mSpec.Option.LightningResist);
             lightningDamage.ExSetMinimum(0);
             damageRetInfo.TotalDamage += lightningDamage;
 

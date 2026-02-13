@@ -26,10 +26,10 @@ namespace PahlBit
         public PercentUp AttackRangeUp;
         public PercentUp SplashRangeUp;
         public PercentUp DurationUp;
-        public PercentUp FireResist;
-        public PercentUp IceResist;
-        public PercentUp LightningResist;
-        public PercentUp PosionResist;
+        public Percent FireResist;
+        public Percent IceResist;
+        public Percent LightningResist;
+        public Percent PosionResist;
 
         public bool IsDirty { get; set; } = true;
 
@@ -131,70 +131,6 @@ namespace PahlBit
             PosionResist.SetZero();
         }
 
-        // public static SpecOption operator +(SpecOption a, SpecOption b)
-        // {
-        //     return new SpecOption
-        //     {
-        //         HealthUp = a.HealthUp + b.HealthUp,
-        //         HealthRegen = a.HealthRegen + b.HealthRegen,
-        //         ManaUp = a.ManaUp + b.ManaUp,
-        //         ManaRegen = a.ManaRegen + b.ManaRegen,
-        //         BaseAttackAdd = a.BaseAttackAdd + b.BaseAttackAdd,
-        //         PhyAttackUp = a.PhyAttackUp + b.PhyAttackUp,
-        //         FireAttackUp = a.FireAttackUp + b.FireAttackUp,
-        //         IceAttackUp = a.IceAttackUp + b.IceAttackUp,
-        //         LightningAttackUp = a.LightningAttackUp + b.LightningAttackUp,
-        //         DefenceUp = a.DefenceUp + b.DefenceUp,
-        //         MoveSpeedUp = a.MoveSpeedUp + b.MoveSpeedUp,
-        //         AttackSpeedUp = a.AttackSpeedUp + b.AttackSpeedUp,
-        //         CooltimeDown = a.CooltimeDown + b.CooltimeDown,
-        //         ShieldAdd = a.ShieldAdd + b.ShieldAdd,
-        //         ShieldRegen = a.ShieldRegen + b.ShieldRegen,
-        //         CriticalRate = a.CriticalRate + b.CriticalRate,
-        //         CriticalAttack = a.CriticalAttack + b.CriticalAttack,
-        //         ProjectileCountUp = a.ProjectileCountUp + b.ProjectileCountUp,
-        //         ProjectileSpeedUp = a.ProjectileSpeedUp + b.ProjectileSpeedUp,
-        //         AttackRangeUp = a.AttackRangeUp + b.AttackRangeUp,
-        //         SplashRangeUp = a.SplashRangeUp + b.SplashRangeUp,
-        //         DurationUp = a.DurationUp + b.DurationUp,
-        //         FireResist = a.FireResist + b.FireResist,
-        //         IceResist = a.IceResist + b.IceResist,
-        //         LightningResist = a.LightningResist + b.LightningResist,
-        //         PosionResist = a.PosionResist + b.PosionResist,
-        //     };
-        // }
-        // public static SpecOption operator -(SpecOption a, SpecOption b)
-        // {
-        //     return new SpecOption
-        //     {
-        //         HealthUp = a.HealthUp - b.HealthUp,
-        //         HealthRegen = a.HealthRegen - b.HealthRegen,
-        //         ManaUp = a.ManaUp - b.ManaUp,
-        //         ManaRegen = a.ManaRegen - b.ManaRegen,
-        //         BaseAttackAdd = a.BaseAttackAdd - b.BaseAttackAdd,
-        //         PhyAttackUp = a.PhyAttackUp - b.PhyAttackUp,
-        //         FireAttackUp = a.FireAttackUp - b.FireAttackUp,
-        //         IceAttackUp = a.IceAttackUp - b.IceAttackUp,
-        //         LightningAttackUp = a.LightningAttackUp - b.LightningAttackUp,
-        //         DefenceUp = a.DefenceUp - b.DefenceUp,
-        //         MoveSpeedUp = a.MoveSpeedUp - b.MoveSpeedUp,
-        //         AttackSpeedUp = a.AttackSpeedUp - b.AttackSpeedUp,
-        //         CooltimeDown = a.CooltimeDown - b.CooltimeDown,
-        //         ShieldAdd = a.ShieldAdd - b.ShieldAdd,
-        //         ShieldRegen = a.ShieldRegen - b.ShieldRegen,
-        //         CriticalRate = a.CriticalRate - b.CriticalRate,
-        //         CriticalAttack = a.CriticalAttack - b.CriticalAttack,
-        //         ProjectileCountUp = a.ProjectileCountUp - b.ProjectileCountUp,
-        //         ProjectileSpeedUp = a.ProjectileSpeedUp - b.ProjectileSpeedUp,
-        //         AttackRangeUp = a.AttackRangeUp - b.AttackRangeUp,
-        //         SplashRangeUp = a.SplashRangeUp - b.SplashRangeUp,
-        //         DurationUp = a.DurationUp - b.DurationUp,
-        //         FireResist = a.FireResist - b.FireResist,
-        //         IceResist = a.IceResist - b.IceResist,
-        //         LightningResist = a.LightningResist - b.LightningResist,
-        //         PosionResist = a.PosionResist - b.PosionResist,
-        //     };
-        // }
     }
 
 }

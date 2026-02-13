@@ -41,7 +41,7 @@ namespace PahlBit
         }
         public static implicit operator float(DamageInfo damage)
         {
-            return damage.PhyDamage;
+            return damage.PhyDamage + damage.FireDamage + damage.IceDamage + damage.LightningDamage;
         }
         // public static DamageInfo operator +(DamageInfo a, DamageInfo b)
         // {

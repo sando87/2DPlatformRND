@@ -72,9 +72,9 @@ public class ItemInfo
         Option.AttackRangeUp = (PercentUp)ResourceData._AttackRangeUp.GetValue();
         Option.SplashRangeUp = (PercentUp)ResourceData._SplashRangeUp.GetValue();
         Option.DurationUp = (PercentUp)ResourceData._DurationUp.GetValue();
-        Option.FireResist = (PercentUp)ResourceData._FireResist.GetValue();
-        Option.IceResist = (PercentUp)ResourceData._IceResist.GetValue();
-        Option.LightningResist = (PercentUp)ResourceData._LightningResist.GetValue();
-        Option.PosionResist = (PercentUp)ResourceData._PosionResist.GetValue();
+        Option.FireResist = (Percent)ResourceData._FireResist.GetValue();
+        Option.IceResist = (Percent)ResourceData._IceResist.GetValue();
+        Option.LightningResist = (Percent)ResourceData._LightningResist.GetValue();
+        Option.PosionResist = (Percent)ResourceData._PosionResist.GetValue();
     }
 }

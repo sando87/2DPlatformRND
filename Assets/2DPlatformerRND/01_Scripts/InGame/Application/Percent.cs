@@ -21,6 +21,9 @@ namespace PahlBit
 
         public float Multiplier => mPercentVal * 0.01f;
 
+        public static Percent Zero => new Percent(0);
+        public static Percent One => new Percent(100);
+
         public Percent(float percent)
         {
             mPercentVal = percent;
