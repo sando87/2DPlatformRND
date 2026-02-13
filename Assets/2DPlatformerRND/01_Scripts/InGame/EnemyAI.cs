@@ -348,7 +348,7 @@ public class EnemyAI : MonoBehaviour
     PathInfo FindPath()
     {
         NodeNav node = GetCurrentNodeNav(mBase);
-        if (node != null)
+        if (node == null)
             return null;
 
         PathInfo path = PlatformerPathfinder.Instance.FindPath(node, mSpec.MoveSpeed);
