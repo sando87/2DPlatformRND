@@ -39,7 +39,6 @@ namespace PahlBit
             if (_Player != null)
             {
                 UpdatePlayerDepth(_Player.GetComponent<BaseObject>().Body.Center);
-                // DebugDrawDepthInfo();
             }
         }
 
@@ -112,15 +111,30 @@ namespace PahlBit
             return null;
         }
 
+#if UNITY_EDITOR
+        void OnGUI()
+        {
+            // DebugDrawDepthInfo();
+        }
+#endif
+
         void DebugDrawDepthInfo()
         {
+            Camera mainCam = Camera.main;
             foreach (var kvp in mPlayerDepthInfo)
             {
                 Vector2Int pos = kvp.Key;
                 PlayerDepthInfo info = kvp.Value;
 
-                Vector3 worldPos = _Tilemap.CellToWorld(new Vector3Int(pos.x, pos.y, 0)) + new Vector3(0.5f, 0.5f, 0f);
-                Debug.DrawLine(worldPos, worldPos + Vector3.up * 0.5f, Color.Lerp(Color.green, Color.red, info.GetDepth() / 30f), 0.1f);
+                Vector2 centerPos = pos + new Vector2(0.5f, 0.5f);
+                Vector3 screenPos = mainCam.WorldToScreenPoint(centerPos);
+                if (screenPos.z > 0)
+                {
+                    GUI.Label(new Rect(screenPos.x, Screen.height - screenPos.y, 20, 20), info.GetDepth().ToString());
+                }
+
+                // Vector3 worldPos = _Tilemap.CellToWorld(new Vector3Int(pos.x, pos.y, 0)) + new Vector3(0.5f, 0.5f, 0f);
+                // Debug.DrawLine(worldPos, worldPos + Vector3.up * 0.5f, Color.Lerp(Color.green, Color.red, info.GetDepth() / 30f), 0.1f);
             }
         }
 

@@ -9,10 +9,20 @@ using System.IO;
 
 namespace PahlBit
 {
-    public class PlatformerPathfinder
+    public class PlatformerPathfinder : SingletonMono<PlatformerPathfinder>
     {
+        [SerializeField] Tilemap GroundTilemap;
+        [SerializeField] Tilemap ThinPlatformTilemap;
+
         Dictionary<Vector2Int, NodeNav> mGroundNodes = new Dictionary<Vector2Int, NodeNav>();
         List<NodeNavGroup> mNodeGroups = new List<NodeNavGroup>();
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            Init(GroundTilemap, ThinPlatformTilemap);
+        }
 
         public void Init(Tilemap tilemap, Tilemap thinTilemap)
         {

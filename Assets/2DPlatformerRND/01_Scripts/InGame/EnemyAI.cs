@@ -32,15 +32,10 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] ProjectileBase MeleePrefab;
     [SerializeField] float _ThinkInterval = 0.5f;
-    [SerializeField] Tilemap _Tilemap;
-    [SerializeField] Tilemap _ThinTilemap;
-
-    PlatformerPathfinder mPathfinder = new PlatformerPathfinder();
 
     void Awake()
     {
         mBase = this.ExGetBase();
-        mPathfinder.Init(_Tilemap, _ThinTilemap);
     }
 
     void Start()
@@ -351,15 +346,15 @@ public class EnemyAI : MonoBehaviour
         if (!mBase.Phy.IsGrounded)
             return null;
 
-        PathInfo path = mPathfinder.FindPath(mBase.Body.Foot, mSpec.MoveSpeed);
+        PathInfo path = PlatformerPathfinder.Instance.FindPath(mBase.Body.Foot, mSpec.MoveSpeed);
         if (path != null)
             return path;
 
-        path = mPathfinder.FindPath(mBase.Body.FootFront, mSpec.MoveSpeed);
+        path = PlatformerPathfinder.Instance.FindPath(mBase.Body.FootFront, mSpec.MoveSpeed);
         if (path != null)
             return path;
 
-        path = mPathfinder.FindPath(mBase.Body.FootBack, mSpec.MoveSpeed);
+        path = PlatformerPathfinder.Instance.FindPath(mBase.Body.FootBack, mSpec.MoveSpeed);
         if (path != null)
             return path;
 
