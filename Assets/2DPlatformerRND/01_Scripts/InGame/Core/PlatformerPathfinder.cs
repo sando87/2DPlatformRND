@@ -121,9 +121,9 @@ namespace PahlBit
             }
         }
 
-        public PathInfo FindPath(Vector2 worldPos, float moveSpeed)
+        public PathInfo FindPath(NodeNav startNode, float moveSpeed)
         {
-            NodeNav currentNode = GetCurrentGroundNode(worldPos);
+            NodeNav currentNode = startNode;
             if (currentNode == null)
                 return null;
 
@@ -185,13 +185,7 @@ namespace PahlBit
             int minDepth = int.MaxValue;
             foreach (var path in possiblePaths)
             {
-                Vector2Int startPos = path.Transition.StartNode.Position;
-                Vector2Int endPos = path.Transition.EndNode.Position;
-                PlayerDepthInfo depthInfo = PlayerDepthManager.Instance.GetPlayerDepthInfoAtPos(endPos + new Vector2Int(0, 1));
-                if (depthInfo == null || depthInfo.IsOld)
-                    continue;
-
-                int curDepth = depthInfo.GetDepth();
+                int curDepth = GetMinDepth(path.Transition.EndNode.ParentGroup);
                 if (curDepth < minDepth)
                 {
                     minDepth = curDepth;
@@ -207,6 +201,42 @@ namespace PahlBit
             if (mGroundNodes.ContainsKey(nodePos))
                 return mGroundNodes[nodePos];
             return null;
+        }
+        public NodeNav GetCurrentGroundNode(Rect worldArea)
+        {
+            Vector2 centerBottom = new Vector2(worldArea.center.x, worldArea.yMin);
+            NodeNav node = GetCurrentGroundNode(centerBottom);
+            if (node != null)
+                return node;
+
+            Vector2 rightBottom = new Vector2(worldArea.xMax, worldArea.yMin);
+            node = GetCurrentGroundNode(rightBottom);
+            if (node != null)
+                return node;
+
+            Vector2 leftBottom = new Vector2(worldArea.xMin, worldArea.yMin);
+            node = GetCurrentGroundNode(leftBottom);
+            if (node != null)
+                return node;
+
+            return null;
+        }
+        public int GetMinDepth(NodeNavGroup nodeGroup)
+        {
+            int minDepth = int.MaxValue;
+            foreach (var node in nodeGroup.GroundNodes)
+            {
+                Vector2Int nodeUpPos = node.Position + new Vector2Int(0, 1);
+                PlayerDepthInfo depthInfo = PlayerDepthManager.Instance.GetPlayerDepthInfoAtPos(nodeUpPos);
+                if (depthInfo == null || depthInfo.IsOld)
+                    continue;
+
+                int curDepth = depthInfo.GetDepth();
+                if (curDepth < minDepth)
+                    minDepth = curDepth;
+            }
+
+            return minDepth;
         }
     }
 

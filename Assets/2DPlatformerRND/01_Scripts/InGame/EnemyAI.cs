@@ -328,11 +328,15 @@ public class EnemyAI : MonoBehaviour
             int curDir = mBase.Body.FrontDirInt;
             while (!ct.IsCancellationRequested)
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
-                PathInfo path = FindPath();
-                if (path != null)
-                    await GotoPathDestPosition(path, ct);
-                // await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
+                NodeNav node = GetCurrentNodeNav(mBase);
+                if (node != null)
+                {
+                    NodeNavGroup nodeNavGroup = node.ParentGroup;
+                    curDir *= -1;
+                    Vector2 desPos = curDir > 0 ? nodeNavGroup.MostRightNode.CenterTopPos : nodeNavGroup.MostLeftNode.CenterTopPos;
+                    MoveToDestPosition(mSpec.MoveSpeed, desPos).Forget();
+                }
+                await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(2f, 5f)), cancellationToken: ct);
             }
         }
         catch (OperationCanceledException)
@@ -343,20 +347,22 @@ public class EnemyAI : MonoBehaviour
 
     PathInfo FindPath()
     {
-        if (!mBase.Phy.IsGrounded)
+        NodeNav node = GetCurrentNodeNav(mBase);
+        if (node != null)
             return null;
 
-        PathInfo path = PlatformerPathfinder.Instance.FindPath(mBase.Body.Foot, mSpec.MoveSpeed);
-        if (path != null)
-            return path;
+        PathInfo path = PlatformerPathfinder.Instance.FindPath(node, mSpec.MoveSpeed);
+        return path;
+    }
 
-        path = PlatformerPathfinder.Instance.FindPath(mBase.Body.FootFront, mSpec.MoveSpeed);
-        if (path != null)
-            return path;
+    NodeNav GetCurrentNodeNav(BaseObject baseObject)
+    {
+        if (!baseObject.Phy.IsGrounded)
+            return null;
 
-        path = PlatformerPathfinder.Instance.FindPath(mBase.Body.FootBack, mSpec.MoveSpeed);
-        if (path != null)
-            return path;
+        NodeNav node = PlatformerPathfinder.Instance.GetCurrentGroundNode(baseObject.Body.Rect);
+        if (node != null)
+            return node;
 
         return null;
     }
@@ -434,10 +440,21 @@ public class EnemyAI : MonoBehaviour
             Stop();
             while (!ct.IsCancellationRequested && mPlayerTarget != null)
             {
-                int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
-                Turn(curDir);
-                StartMoving(curDir * mSpec.MoveSpeed);
-                await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 1.5f)), cancellationToken: ct);
+                if (IsSameNodeGroupWithPlayer())
+                {
+                    int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
+                    Turn(curDir);
+                    StartMoving(curDir * mSpec.MoveSpeed);
+                    await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 3.5f)), cancellationToken: ct);
+                }
+                else
+                {
+                    PathInfo path = FindPath();
+                    if (path != null)
+                        await GotoPathDestPosition(path, ct);
+
+                    await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
+                }
             }
         }
         catch (OperationCanceledException)
@@ -446,13 +463,32 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    bool IsSameNodeGroupWithPlayer()
+    {
+        if (mPlayerTarget == null)
+            return false;
+
+        NodeNav playerNode = GetCurrentNodeNav(mPlayerTarget);
+        if (playerNode == null)
+            return false;
+
+        NodeNav baseNode = GetCurrentNodeNav(mBase);
+        if (baseNode == null)
+            return false;
+
+        if (playerNode.ParentGroup == baseNode.ParentGroup)
+            return true;
+
+        return false;
+    }
+
     BaseObject DetectPlayerAround(float range)
     {
-        // Collider2D col = Physics2D.OverlapCircle(mBase.Body.Center, range, 1 << LayerID.Player);
-        // if (col != null)
-        // {
-        //     return col.ExGetBase();
-        // }
+        Collider2D col = Physics2D.OverlapCircle(mBase.Body.Center, range, 1 << LayerID.Player);
+        if (col != null)
+        {
+            return col.ExGetBase();
+        }
         return null;
     }
 
