@@ -451,7 +451,9 @@ public class EnemyAI : MonoBehaviour
                 {
                     PathInfo path = FindPath();
                     if (path != null)
+                    {
                         await GotoPathDestPosition(path, ct);
+                    }
 
                     await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
                 }
@@ -608,7 +610,7 @@ public class EnemyAI : MonoBehaviour
         mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Jump);
 
         mBase.Body.LockThinPlatformMomentarily();
-        await UniTask.WaitUntil(() => mBase.Phy.IsGrounded, cancellationToken: mMoveCTS.Token);
+        await UniTask.WaitUntil(() => !mBase.Body.LockThinPlatform && mBase.Phy.IsGrounded, cancellationToken: mMoveCTS.Token);
 
         mBase.Phy.Velocity = Vector2.zero;
         mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
