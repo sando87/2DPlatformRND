@@ -238,14 +238,14 @@ namespace PahlBit
         public AnimStateNameHash CurrentAnim = 0;
         public bool IsFired = false;
         public bool IsEnd = false;
-        public int FireIndex = 0;
+        public int FireIndex = -1;
 
         public void ResetEventState(AnimStateNameHash animStateNameHash)
         {
             CurrentAnim = animStateNameHash;
             IsFired = false;
             IsEnd = false;
-            FireIndex = 0;
+            FireIndex = -1;
         }
     }
 }

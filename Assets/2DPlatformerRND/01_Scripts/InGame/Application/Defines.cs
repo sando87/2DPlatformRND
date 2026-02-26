@@ -32,6 +32,9 @@ namespace PahlBit
         public static readonly int UpperIdle = Animator.StringToHash("UpperIdle");
         public static readonly int UpperAttack = Animator.StringToHash("UpperAttack");
 
+        // Anims For Enemy
+        public static readonly int Sleep = Animator.StringToHash("Sleep");
+
     }
 
     public static class AnimatorParams

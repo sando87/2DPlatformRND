@@ -10,7 +10,7 @@ public class EnemyAIMushroom : EnemyAI
 {
     [SerializeField] GameObject AttackArea = null;
 
-    bool IsAwaked = false;
+    bool IsAwaked = true;
 
     protected override async UniTask<EnemyState> PatrolMode(CancellationToken ctx)
     {
@@ -20,16 +20,22 @@ public class EnemyAIMushroom : EnemyAI
 
         try
         {
+            AnimEventState animEventState = null;
             if (IsAwaked)
             {
-                // Play Sleep Anim
-                // Wait
+                IsAwaked = false;
+                animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.Sleep);
+                await UniTask.WaitUntil(() => animEventState.IsEnd, cancellationToken: ctx);
             }
 
             mPlayerTarget = await DetectTarget(ctx);
             if (mPlayerTarget != null)
             {
-                if (IsTargetInRange(mSpec.AttackRange))
+                animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.WakeUp);
+                await UniTask.WaitUntil(() => animEventState.IsEnd, cancellationToken: ctx);
+                IsAwaked = true;
+
+                if (IsAttackable())
                 {
                     return EnemyState.Attack;
                 }
@@ -42,15 +48,28 @@ public class EnemyAIMushroom : EnemyAI
         finally
         {
             // ===== EXIT =====
+            IsAwaked = true;
             Stop();
         }
 
         return EnemyState.Patrol;
     }
 
-    protected override UniTask<EnemyState> ChaseMode(CancellationToken ctx)
+    protected override async UniTask<EnemyState> ChaseMode(CancellationToken ctx)
     {
-        return base.ChaseMode(ctx);
+        try
+        {
+            DoChaseMoving(ctx).Forget();
+            int returnIdx = await UniTask.WhenAny(IsAttackableTarget(ctx), IsLostTarget(ctx));
+            if (returnIdx == 0)
+                return EnemyState.Attack;
+            else if (returnIdx == 1)
+                return EnemyState.Patrol;
+        }
+        finally
+        {
+        }
+        return EnemyState.Patrol;
     }
 
     protected override async UniTask<EnemyState> AttackMode(CancellationToken ctx)
@@ -61,10 +80,10 @@ public class EnemyAIMushroom : EnemyAI
             TurnToPlayer();
 
             AnimEventState animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.Attack);
-            await UniTask.WaitUntil(() => animEventState.IsFired, cancellationToken: ctx);
+            await UniTask.WaitUntil(() => animEventState.FireIndex == 0, cancellationToken: ctx);
             mBase.Phy.SetMoveSpeedOnly(mSpec.MoveSpeed * 2);
             AttackArea.SetActive(true);
-            await UniTask.WaitUntil(() => animEventState.IsFired, cancellationToken: ctx);
+            await UniTask.WaitUntil(() => animEventState.FireIndex == 1, cancellationToken: ctx);
             mBase.Phy.SetMoveSpeedOnly(0);
             AttackArea.SetActive(false);
             await UniTask.WaitUntil(() => animEventState.IsEnd, cancellationToken: ctx);

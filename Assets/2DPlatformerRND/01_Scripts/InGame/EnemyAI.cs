@@ -164,7 +164,7 @@ public class EnemyAI : MonoBehaviour
             mPlayerTarget = await DetectTarget(ctx);
             if (mPlayerTarget != null)
             {
-                if (IsTargetInRange(mSpec.AttackRange))
+                if (IsAttackable())
                 {
                     return EnemyState.Attack;
                 }
@@ -225,7 +225,7 @@ public class EnemyAI : MonoBehaviour
 
             if (mPlayerTarget == null)
                 return EnemyState.Patrol;
-            else if (IsTargetInRange(mSpec.AttackRange))
+            else if (IsAttackable())
                 return EnemyState.Attack;
             else if (IsTargetInRange(mSpec.DetectLossRange))
                 return EnemyState.Chase;
@@ -294,11 +294,17 @@ public class EnemyAI : MonoBehaviour
         float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - mPlayerTarget.Body.Center);
         return distSqr <= range * range;
     }
-    async UniTask IsAttackableTarget(CancellationToken ct)
+    protected bool IsAttackable()
+    {
+        return IsTargetInRange(mSpec.AttackRange)
+                && mBase.Phy.IsGrounded
+                && IsSameNodeGroupWithPlayer();
+    }
+    protected async UniTask IsAttackableTarget(CancellationToken ct)
     {
         while (!ct.IsCancellationRequested)
         {
-            if (IsTargetInRange(mSpec.AttackRange))
+            if (IsAttackable())
             {
                 break;
             }
@@ -308,7 +314,7 @@ public class EnemyAI : MonoBehaviour
             }
         }
     }
-    async UniTask IsLostTarget(CancellationToken ct)
+    protected async UniTask IsLostTarget(CancellationToken ct)
     {
         while (!ct.IsCancellationRequested)
         {
@@ -454,7 +460,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    async UniTask DoChaseMoving(CancellationToken ct)
+    protected async UniTask DoChaseMoving(CancellationToken ct)
     {
         try
         {
