@@ -72,8 +72,7 @@ public class EnemyAI : MonoBehaviour
     }
     public void StopAI()
     {
-        mMoveCTS?.Cancel();
-        mMoveCTS?.Dispose();
+        Stop();
 
         mStateCTS?.Cancel();
         mStateCTS?.Dispose();
@@ -133,6 +132,8 @@ public class EnemyAI : MonoBehaviour
     }
     public void ChangeState(EnemyState enemyState)
     {
+        Stop();
+
         mStateCTS?.Cancel();
         mStateCTS?.Dispose();
         mStateCTS = CancellationTokenSource.CreateLinkedTokenSource(mAI_CTS.Token);
@@ -509,17 +510,25 @@ public class EnemyAI : MonoBehaviour
         return null;
     }
 
+
+    void CancelMoveCTS()
+    {
+        if (mMoveCTS != null)
+        {
+            mMoveCTS.Cancel();
+            mMoveCTS.Dispose();
+            mMoveCTS = null;
+        }
+    }
     void Stop()
     {
+        CancelMoveCTS();
+
         if (mBase != null)
         {
             mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
             mBase.Phy.Velocity = Vector2.zero;
         }
-
-        mMoveCTS?.Cancel();
-        mMoveCTS?.Dispose();
-        mMoveCTS = null;
     }
     void Turn(float worldDir)
     {
@@ -530,8 +539,7 @@ public class EnemyAI : MonoBehaviour
     }
     void StartMoving(float velocity)
     {
-        mMoveCTS?.Cancel();
-        mMoveCTS?.Dispose();
+        CancelMoveCTS();
         mMoveCTS = new CancellationTokenSource();
 
         MoveToEnd(mMoveCTS.Token, velocity).Forget();
@@ -555,8 +563,7 @@ public class EnemyAI : MonoBehaviour
 
     async UniTask MoveToDestPosition(float velocityX, Vector2 destPos)
     {
-        mMoveCTS?.Cancel();
-        mMoveCTS?.Dispose();
+        CancelMoveCTS();
         mMoveCTS = new CancellationTokenSource();
 
         mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Run);
@@ -579,8 +586,7 @@ public class EnemyAI : MonoBehaviour
 
     async UniTask MoveAndFall(float velocityX, Vector2 destPos)
     {
-        mMoveCTS?.Cancel();
-        mMoveCTS?.Dispose();
+        CancelMoveCTS();
         mMoveCTS = new CancellationTokenSource();
 
         mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Run);
@@ -608,8 +614,7 @@ public class EnemyAI : MonoBehaviour
 
     async UniTask JustJumpUp(float jumpForce)
     {
-        mMoveCTS?.Cancel();
-        mMoveCTS?.Dispose();
+        CancelMoveCTS();
         mMoveCTS = new CancellationTokenSource();
 
         mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Jump);
@@ -621,8 +626,7 @@ public class EnemyAI : MonoBehaviour
     }
     async UniTask DropDown()
     {
-        mMoveCTS?.Cancel();
-        mMoveCTS?.Dispose();
+        CancelMoveCTS();
         mMoveCTS = new CancellationTokenSource();
 
         mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Jump);
@@ -635,8 +639,7 @@ public class EnemyAI : MonoBehaviour
     }
     async UniTask JumpMoving(float jumpForce, float velocityX, Vector2 destPos)
     {
-        mMoveCTS?.Cancel();
-        mMoveCTS?.Dispose();
+        CancelMoveCTS();
         mMoveCTS = new CancellationTokenSource();
 
         mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Jump);
@@ -660,8 +663,7 @@ public class EnemyAI : MonoBehaviour
 
     async UniTask JumpAndMove(float jumpForce, float velocityX, Vector2 destPos)
     {
-        mMoveCTS?.Cancel();
-        mMoveCTS?.Dispose();
+        CancelMoveCTS();
         mMoveCTS = new CancellationTokenSource();
 
         mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Jump);
