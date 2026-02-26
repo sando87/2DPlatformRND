@@ -127,8 +127,6 @@ MonoBehaviour:
   MeleePrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
     type: 3}
   _ThinkInterval: 0.1
-  _Tilemap: {fileID: 0}
-  _ThinTilemap: {fileID: 0}
 --- !u!114 &8536736938578584811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -761,7 +759,7 @@ GameObject:
   - component: {fileID: 3460205728032922258}
   - component: {fileID: 5587972109261293361}
   m_Layer: 0
-  m_Name: Skeleton
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
