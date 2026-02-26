@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 300443737900092221}
   - component: {fileID: 7996635295318006703}
   - component: {fileID: 12515916217043827}
-  - component: {fileID: 8391774183680255402}
+  - component: {fileID: 7883822228904628104}
   - component: {fileID: 8536736938578584811}
   - component: {fileID: 4959186170716446665}
   - component: {fileID: 6612556377838412465}
   m_Layer: 8
-  m_Name: Wolf
+  m_Name: Crow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &8391774183680255402
+--- !u!114 &7883822228904628104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,9 +121,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 662150947426525976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22b47cc91083f5346bccf431011944b5, type: 3}
+  m_Script: {fileID: 11500000, guid: a1d19ea43c5ef5d40b31da4aa9d974c7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAIFlying
   MeleePrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
     type: 3}
   _ThinkInterval: 0.1
@@ -454,7 +454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7433823683924333284
 Transform:
   m_ObjectHideFlags: 0
@@ -514,7 +514,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 0.2}
+  m_Size: {x: 1, y: 0.2}
   m_EdgeRadius: 0
 --- !u!1 &5289879915696240298
 GameObject:
@@ -774,7 +774,7 @@ Transform:
   m_GameObject: {fileID: 8281876496363671915}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.84, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -828,7 +828,7 @@ SpriteRenderer:
   m_SortingLayerID: 346245127
   m_SortingLayer: -4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3112195067975180470, guid: afb7602f2ec99fd4ba19c0fd8a9641fb,
+  m_Sprite: {fileID: -4503963100562443241, guid: 812be1d8af7298f468ca67aaeb530efe,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -850,7 +850,7 @@ Animator:
   m_GameObject: {fileID: 8281876496363671915}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 24923be883e51a349afc760a56048b44, type: 2}
+  m_Controller: {fileID: 9100000, guid: e440e6331b260ae41b318349c6e6780a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -977,7 +977,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 1.5}
+  m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &775721688083464361
 MonoBehaviour:

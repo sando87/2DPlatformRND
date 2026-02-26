@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 300443737900092221}
   - component: {fileID: 7996635295318006703}
   - component: {fileID: 12515916217043827}
-  - component: {fileID: 8391774183680255402}
+  - component: {fileID: 2733915440675445650}
   - component: {fileID: 8536736938578584811}
   - component: {fileID: 4959186170716446665}
   - component: {fileID: 6612556377838412465}
   m_Layer: 8
-  m_Name: Wolf
+  m_Name: Mushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   GoldDropPercent: 30
   GoldPrefab: {fileID: 5461417893251240980, guid: 5dd89691a4a14614aba050b3c09ae3bf,
     type: 3}
-  _ResourceID: Enemy02
+  _ResourceID: Enemy03
 --- !u!114 &7996635295318006703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &8391774183680255402
+--- !u!114 &2733915440675445650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,9 +121,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 662150947426525976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22b47cc91083f5346bccf431011944b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 28b101ea319eb2a4d898818443e655aa, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAIMushroom
   MeleePrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
     type: 3}
   _ThinkInterval: 0.1
@@ -514,7 +514,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 0.2}
+  m_Size: {x: 1, y: 0.2}
   m_EdgeRadius: 0
 --- !u!1 &5289879915696240298
 GameObject:
@@ -828,7 +828,7 @@ SpriteRenderer:
   m_SortingLayerID: 346245127
   m_SortingLayer: -4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3112195067975180470, guid: afb7602f2ec99fd4ba19c0fd8a9641fb,
+  m_Sprite: {fileID: 5869428084727078703, guid: 28fda1c58c989354aa82a0c2aaeb67e2,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -850,7 +850,7 @@ Animator:
   m_GameObject: {fileID: 8281876496363671915}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 24923be883e51a349afc760a56048b44, type: 2}
+  m_Controller: {fileID: 9100000, guid: e6bb8c10d20f55a4c8596e1efd2a18b4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -977,7 +977,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 1.5}
+  m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &775721688083464361
 MonoBehaviour:

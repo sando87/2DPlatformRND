@@ -80,22 +80,13 @@ namespace PahlBit
         }
 
 
-        Action<int> _onFire;
-        async public UniTask PlayAnim(int stateHashName, CancellationToken ct, Action<int> onFire = null, int layer = 0)
+        AnimEventState _animEventState = new AnimEventState();
+        public AnimEventState PlayAnim(AnimStateNameHash stateNameHash)
         {
-            try
-            {
-                _onFire = onFire;
-                mAnimator.CrossFade(stateHashName, 0, layer, 0);
-                await UniTask.WaitUntil(() => mAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash != stateHashName, cancellationToken: ct);
-            }
-            finally
-            {
-                _onFire = null;
-            }
+            _animEventState.ResetEventState(stateNameHash);
+            mAnimator.CrossFade(stateNameHash, 0, 0, 0);
+            return _animEventState;
         }
-
-
 
         public void Fire()
         {
@@ -153,11 +144,15 @@ namespace PahlBit
         }
         public void InvokeEventMiddle(AnimStateNameHash stateNameHash, int index)
         {
-            _onFire?.Invoke(index);
-
             if (mAnimatorEvents.ContainsKey(stateNameHash))
             {
                 mAnimatorEvents[stateNameHash].EventMiddle.Invoke(index);
+            }
+
+            if (_animEventState.CurrentAnim == stateNameHash)
+            {
+                _animEventState.IsFired = true;
+                _animEventState.FireIndex = index;
             }
         }
         public void InvokeEventLeave(AnimStateNameHash stateNameHash)
@@ -165,6 +160,11 @@ namespace PahlBit
             if (mAnimatorEvents.ContainsKey(stateNameHash))
             {
                 mAnimatorEvents[stateNameHash].EventLeave.Invoke();
+            }
+
+            if (_animEventState.CurrentAnim == stateNameHash)
+            {
+                _animEventState.IsEnd = true;
             }
         }
 
@@ -230,6 +230,22 @@ namespace PahlBit
         public AnimatorStateEventSet(int stateNameHash)
         {
             StateNameHash = stateNameHash;
+        }
+    }
+
+    public class AnimEventState
+    {
+        public AnimStateNameHash CurrentAnim = 0;
+        public bool IsFired = false;
+        public bool IsEnd = false;
+        public int FireIndex = 0;
+
+        public void ResetEventState(AnimStateNameHash animStateNameHash)
+        {
+            CurrentAnim = animStateNameHash;
+            IsFired = false;
+            IsEnd = false;
+            FireIndex = 0;
         }
     }
 }

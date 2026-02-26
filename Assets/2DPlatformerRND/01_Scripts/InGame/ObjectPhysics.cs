@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -44,6 +45,11 @@ namespace PahlBit
         {
             TurnToInput(moveHoriVelocity);
             VelocityX = moveHoriVelocity;
+        }
+        public void SetMoveSpeedOnly(float moveSpeedX)
+        {
+            float curDir = mBase.transform.right.x > 0 ? 1 : -1;
+            VelocityX = curDir * Mathf.Abs(moveSpeedX);
         }
         public void StopMoving()
         {

@@ -20,15 +20,15 @@ public class EnemyAI : MonoBehaviour
         Death,
     }
 
-    BaseObject mBase = null;
-    SpecEnemy mSpec = null;
-    BaseObject mPlayerTarget = null;
+    protected BaseObject mBase = null;
+    protected SpecEnemy mSpec = null;
+    protected BaseObject mPlayerTarget = null;
 
-    CancellationTokenSource mAI_CTS;
-    CancellationTokenSource mStateCTS;
-    CancellationTokenSource mMoveCTS = null;
+    protected CancellationTokenSource mAI_CTS;
+    protected CancellationTokenSource mStateCTS;
+    protected CancellationTokenSource mMoveCTS = null;
 
-    EnemyState mState = EnemyState.Idle;
+    protected EnemyState mState = EnemyState.Idle;
 
     [SerializeField] ProjectileBase MeleePrefab;
     [SerializeField] float _ThinkInterval = 0.5f;
@@ -140,7 +140,8 @@ public class EnemyAI : MonoBehaviour
 
         mState = enemyState;
     }
-    async UniTask<EnemyState> IdleMode(CancellationToken ctx)
+
+    protected virtual async UniTask<EnemyState> IdleMode(CancellationToken ctx)
     {
         try
         {
@@ -151,8 +152,7 @@ public class EnemyAI : MonoBehaviour
         {
         }
     }
-
-    async UniTask<EnemyState> PatrolMode(CancellationToken ctx)
+    protected virtual async UniTask<EnemyState> PatrolMode(CancellationToken ctx)
     {
         // ===== ENTER =====
         Stop();
@@ -182,7 +182,7 @@ public class EnemyAI : MonoBehaviour
 
         return EnemyState.Patrol;
     }
-    async UniTask<EnemyState> ChaseMode(CancellationToken ctx)
+    protected virtual async UniTask<EnemyState> ChaseMode(CancellationToken ctx)
     {
         try
         {
@@ -198,12 +198,16 @@ public class EnemyAI : MonoBehaviour
         }
         return EnemyState.Patrol;
     }
-    async UniTask<EnemyState> AttackMode(CancellationToken ctx)
+    protected virtual async UniTask<EnemyState> AttackMode(CancellationToken ctx)
     {
         try
         {
             Stop();
-            await mBase.AnimHelper.PlayAnim(AnimStateNameHash.Attack, ctx, OnFireAttack);
+
+            AnimEventState animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.Attack);
+            await UniTask.WaitUntil(() => animEventState.IsFired, cancellationToken: ctx);
+            DoFireAttack();
+            await UniTask.WaitUntil(() => animEventState.IsEnd, cancellationToken: ctx);
             OnEndAttack();
             return EnemyState.Recover;
         }
@@ -213,7 +217,7 @@ public class EnemyAI : MonoBehaviour
             // 공격 후 정리 (히트박스 off 등)
         }
     }
-    async UniTask<EnemyState> RecoverMode(CancellationToken ctx)
+    protected virtual async UniTask<EnemyState> RecoverMode(CancellationToken ctx)
     {
         try
         {
@@ -236,11 +240,12 @@ public class EnemyAI : MonoBehaviour
     {
         ChangeState(EnemyState.Damaged);
     }
-    async UniTask<EnemyState> DamagedMode(CancellationToken ctx)
+    protected virtual async UniTask<EnemyState> DamagedMode(CancellationToken ctx)
     {
         try
         {
-            await mBase.AnimHelper.PlayAnim(AnimStateNameHash.Hit, ctx);
+            AnimEventState animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.Hit);
+            await UniTask.WaitUntil(() => animEventState.IsEnd, cancellationToken: ctx);
             return EnemyState.Recover;
         }
         finally
@@ -251,11 +256,12 @@ public class EnemyAI : MonoBehaviour
     {
         ChangeState(EnemyState.Death);
     }
-    async UniTask<EnemyState> DeathMode(CancellationToken ctx)
+    protected virtual async UniTask<EnemyState> DeathMode(CancellationToken ctx)
     {
         try
         {
-            await mBase.AnimHelper.PlayAnim(AnimStateNameHash.Death, ctx);
+            AnimEventState animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.Death);
+            await UniTask.WaitUntil(() => animEventState.IsEnd, cancellationToken: ctx);
             return EnemyState.None;
         }
         finally
@@ -264,7 +270,7 @@ public class EnemyAI : MonoBehaviour
     }
 
 
-    async UniTask<BaseObject> DetectTarget(CancellationToken ct)
+    protected async UniTask<BaseObject> DetectTarget(CancellationToken ct)
     {
         while (!ct.IsCancellationRequested)
         {
@@ -280,7 +286,7 @@ public class EnemyAI : MonoBehaviour
         }
         return null;
     }
-    bool IsTargetInRange(float range)
+    protected bool IsTargetInRange(float range)
     {
         if (mPlayerTarget == null)
             return false;
@@ -520,7 +526,7 @@ public class EnemyAI : MonoBehaviour
             mMoveCTS = null;
         }
     }
-    void Stop()
+    protected void Stop()
     {
         CancelMoveCTS();
 
@@ -530,14 +536,22 @@ public class EnemyAI : MonoBehaviour
             mBase.Phy.Velocity = Vector2.zero;
         }
     }
-    void Turn(float worldDir)
+    protected void Turn(float worldDir)
     {
         if (worldDir == 0) return;
 
         Vector3 front = worldDir > 0 ? Vector3.forward : Vector3.back;
         transform.rotation = Quaternion.LookRotation(front, transform.up);
     }
-    void StartMoving(float velocity)
+    protected void TurnToPlayer()
+    {
+        if (mPlayerTarget == null)
+            return;
+
+        int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
+        Turn(curDir);
+    }
+    protected void StartMoving(float velocity)
     {
         CancelMoveCTS();
         mMoveCTS = new CancellationTokenSource();
@@ -702,15 +716,11 @@ public class EnemyAI : MonoBehaviour
         return startDir != currentDir;
     }
 
-    void OnFireAttack(int idx)
-    {
-        DoFireAttack();
-    }
-    void OnEndAttack()
+    protected void OnEndAttack()
     {
     }
 
-    public void DoFireAttack()
+    protected void DoFireAttack()
     {
         // 스킬 오브젝트 생성
         Vector2 startPos = mBase.Body.Center + new Vector2(transform.right.x, 0);
