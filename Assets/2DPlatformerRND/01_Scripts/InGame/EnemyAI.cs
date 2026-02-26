@@ -367,6 +367,21 @@ public class EnemyAI : MonoBehaviour
         return null;
     }
 
+    bool IsNoWayToMove()
+    {
+        Vector2 pos = mBase.Body.FootFront + new Vector2(mBase.transform.right.x * 0.2f, 0);
+        NodeNav frontNode = PlatformerPathfinder.Instance.GetNode(pos);
+        if (frontNode != null && !frontNode.IsThin) // IsObstacled
+            return true;
+
+        pos.y -= 0.2f;
+        NodeNav frontGroundNode = PlatformerPathfinder.Instance.GetNode(pos);
+        if (frontGroundNode == null) // No ground ahead
+            return true;
+
+        return false;
+    }
+
     async UniTask GotoPathDestPosition(PathInfo path, CancellationToken ct)
     {
         try
@@ -519,10 +534,10 @@ public class EnemyAI : MonoBehaviour
         mMoveCTS?.Dispose();
         mMoveCTS = new CancellationTokenSource();
 
-        MoveLoop(mMoveCTS.Token, velocity).Forget();
+        MoveToEnd(mMoveCTS.Token, velocity).Forget();
     }
 
-    async UniTask MoveLoop(CancellationToken ct, float v)
+    async UniTask MoveToEnd(CancellationToken ct, float v)
     {
         mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Run);
 
@@ -530,9 +545,12 @@ public class EnemyAI : MonoBehaviour
         {
             mBase.Phy.VelocityX = v;
             await UniTask.Yield(ct);
+            if (IsNoWayToMove())
+                break;
         }
 
         mBase.Phy.Velocity = Vector2.zero;
+        mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
     }
 
     async UniTask MoveToDestPosition(float velocityX, Vector2 destPos)

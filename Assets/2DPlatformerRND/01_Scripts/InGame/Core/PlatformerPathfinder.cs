@@ -221,6 +221,13 @@ namespace PahlBit
 
             return null;
         }
+        public NodeNav GetNode(Vector2 worldPos)
+        {
+            Vector2Int nodePos = new Vector2Int(Mathf.FloorToInt(worldPos.x), Mathf.FloorToInt(worldPos.y));
+            if (mGroundNodes.ContainsKey(nodePos))
+                return mGroundNodes[nodePos];
+            return null;
+        }
         public int GetMinDepth(NodeNavGroup nodeGroup)
         {
             int minDepth = int.MaxValue;
