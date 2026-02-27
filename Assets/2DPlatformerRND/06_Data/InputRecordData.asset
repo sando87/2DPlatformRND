@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb784fec15604074d9b865244a18956f, type: 3}
+  m_Name: InputRecordData
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.InputRecordData
+  inputs:
+  - delayTime: 3.3515549
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: -1, y: 0}
+  - delayTime: 0.50457
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.02027893
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.6570053
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.10897064
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: -1, y: 0}
+  - delayTime: 0.4843521
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.093299866
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.3447113
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.67611694
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.4253006
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.37420654
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: -1, y: 0}
+  - delayTime: 0.29464722
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.035240173
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.11577606
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.016342163
+    buttonType: 4
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.13453674
+    buttonType: 4
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.3112564
+    buttonType: 5
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.14170837
+    buttonType: 5
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.34897614
+    buttonType: 6
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.18964386
+    buttonType: 6
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}

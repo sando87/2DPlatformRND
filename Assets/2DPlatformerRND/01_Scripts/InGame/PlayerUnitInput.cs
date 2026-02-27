@@ -28,6 +28,7 @@ namespace PahlBit
 
         public float MoveX { get => GetInputValue<Vector2>(PlayerUnitInputType.Move).x; }
         public float MoveY { get => GetInputValue<Vector2>(PlayerUnitInputType.Move).y; }
+        public Vector2 MoveXY { get => GetInputValue<Vector2>(PlayerUnitInputType.Move); }
 
         public TValue GetInputValue<TValue>(PlayerUnitInputType type) where TValue : struct
         {
