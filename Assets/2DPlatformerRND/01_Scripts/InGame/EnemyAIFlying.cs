@@ -101,7 +101,7 @@ public class EnemyAIFlying : EnemyAI
             Vector2 startPos = mBase.Body.Center;
             Vector2 attackPos = mPlayerTarget.Body.Center;
             TurnTo(attackPos);
-            Vector2 vel = (attackPos - mBase.Body.Center).normalized * mSpec.MoveSpeed * 2;
+            Vector2 vel = (attackPos - mBase.Body.Center).normalized * mSpec.MoveSpeed * 3;
             mBase.Phy.Velocity = vel;
             await UniTask.WaitUntil(() => mBase.Body.Foot.y <= attackPos.y, cancellationToken: ctx);
             DoFireAttack();
