@@ -1,0 +1,679 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb784fec15604074d9b865244a18956f, type: 3}
+  m_Name: InputRecordDataB
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.InputRecordData
+  inputs:
+  - delayTime: 1.7529116
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: -1, y: 0}
+  - delayTime: 0.40794754
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.12987089
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.27848053
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.18264103
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.14232779
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.38663054
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.61389256
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.053811073
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: -1}
+  - delayTime: 0.12091541
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.107378006
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.1109457
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09607506
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.35276318
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.08441353
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.36808777
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.22712898
+    buttonType: 5
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.3763609
+    buttonType: 5
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.50062084
+    buttonType: 4
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.30195713
+    buttonType: 4
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.40165234
+    buttonType: 6
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 1.4201937
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.03318882
+    buttonType: 6
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 1.108818
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09741497
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.6019707
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.18017387
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.11530781
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.02201271
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.6898565
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.010354042
+    buttonType: 6
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.5282593
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.05438423
+    buttonType: 6
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.3562603
+    buttonType: 5
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.014631271
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.8443012
+    buttonType: 5
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.06471062
+    buttonType: 5
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.10036659
+    buttonType: 5
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.08628464
+    buttonType: 5
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.08151245
+    buttonType: 5
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.092315674
+    buttonType: 5
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09574127
+    buttonType: 5
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.07530403
+    buttonType: 5
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.08602142
+    buttonType: 5
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.0863781
+    buttonType: 5
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.08317757
+    buttonType: 5
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.11655235
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.36244774
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.00951767
+    buttonType: 4
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.11344147
+    buttonType: 4
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.057826996
+    buttonType: 4
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09812355
+    buttonType: 4
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.0671978
+    buttonType: 4
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.11758995
+    buttonType: 4
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.062498093
+    buttonType: 4
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.097372055
+    buttonType: 4
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.078121185
+    buttonType: 4
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09647751
+    buttonType: 4
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.07413864
+    buttonType: 4
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.10208702
+    buttonType: 4
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.070632935
+    buttonType: 4
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09430885
+    buttonType: 4
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.07687569
+    buttonType: 4
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.08903313
+    buttonType: 4
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.13448334
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.539505
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.013916016
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: -1, y: 0}
+  - delayTime: 0.08684158
+    buttonType: 6
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.021793365
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.06933403
+    buttonType: 6
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.07119942
+    buttonType: 6
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.08618736
+    buttonType: 6
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.0759182
+    buttonType: 6
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.080667496
+    buttonType: 6
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09310722
+    buttonType: 6
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.075330734
+    buttonType: 6
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.07344818
+    buttonType: 6
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09400749
+    buttonType: 6
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.27823448
+    buttonType: 7
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09814072
+    buttonType: 7
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.074481964
+    buttonType: 7
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09420204
+    buttonType: 7
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.0984211
+    buttonType: 7
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.05873871
+    buttonType: 7
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.10280037
+    buttonType: 7
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.0734005
+    buttonType: 7
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.07510185
+    buttonType: 7
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09342384
+    buttonType: 7
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.08210945
+    buttonType: 7
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09465599
+    buttonType: 7
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.10021782
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.4575901
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.03587532
+    buttonType: 5
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.1079483
+    buttonType: 5
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.0661087
+    buttonType: 5
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09564972
+    buttonType: 5
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.07670975
+    buttonType: 5
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.097335815
+    buttonType: 5
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.16929054
+    buttonType: 6
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.10154152
+    buttonType: 6
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.071157455
+    buttonType: 6
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.09569931
+    buttonType: 6
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.06562805
+    buttonType: 6
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.094566345
+    buttonType: 6
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.07971001
+    buttonType: 6
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.080488205
+    buttonType: 6
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.23659325
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 2.5007
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.08972359
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.56368065
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.08197212
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 1.7941914
+    buttonType: 3
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.393219
+    buttonType: 3
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.30716324
+    buttonType: 3
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.30294418
+    buttonType: 3
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.18304253
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.15011978
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.652153
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.20491028
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.69355774
+    buttonType: 3
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.13745117
+    buttonType: 3
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.95835876
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.19286728
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.26428986
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.038414
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.2788658
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.049373627
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.53357315
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.13533783
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: -1, y: 0}
+  - delayTime: 0.17865372
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.10363388
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.39684677
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.10454178
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.120895386
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.13486099
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: -1, y: 0}
+  - delayTime: 0.15649033
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.10499573
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.05115509
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.32020187
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: -1, y: 0}
+  - delayTime: 0.19112778
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.18166733
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.11432648
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.197155
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.24734879
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.098480225
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.2380104
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.11278534
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.35308838
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.14821625
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.1116333
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.0774765
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 0.29917145
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.18395233
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.7885208
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.119319916
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.6455345
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.12695312
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.06457138
+    buttonType: 3
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.19997787
+    buttonType: 3
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.33758545
+    buttonType: 3
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.17823029
+    buttonType: 3
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.120952606
+    buttonType: 1
+    isPressed: 1
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.1653595
+    buttonType: 1
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.36675262
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
+  - delayTime: 0.4888153
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 1, y: 0}
+  - delayTime: 2.0523148
+    buttonType: 2
+    isPressed: 0
+    MoveValue: {x: 0, y: 0}
