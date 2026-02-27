@@ -10,7 +10,7 @@ public class EnemyAIMushroom : EnemyAI
 {
     [SerializeField] GameObject AttackArea = null;
 
-    bool IsAwaked = true;
+    bool mIsAwaked = true;
 
     protected override async UniTask<EnemyState> PatrolMode(CancellationToken ctx)
     {
@@ -21,9 +21,9 @@ public class EnemyAIMushroom : EnemyAI
         try
         {
             AnimEventState animEventState = null;
-            if (IsAwaked)
+            if (mIsAwaked)
             {
-                IsAwaked = false;
+                mIsAwaked = false;
                 animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.Sleep);
                 await UniTask.WaitUntil(() => animEventState.IsEnd, cancellationToken: ctx);
             }
@@ -33,7 +33,7 @@ public class EnemyAIMushroom : EnemyAI
             {
                 animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.WakeUp);
                 await UniTask.WaitUntil(() => animEventState.IsEnd, cancellationToken: ctx);
-                IsAwaked = true;
+                mIsAwaked = true;
 
                 if (IsAttackable())
                 {
@@ -48,7 +48,7 @@ public class EnemyAIMushroom : EnemyAI
         finally
         {
             // ===== EXIT =====
-            IsAwaked = true;
+            mIsAwaked = true;
             Stop();
         }
 
@@ -77,7 +77,7 @@ public class EnemyAIMushroom : EnemyAI
         try
         {
             Stop();
-            TurnToPlayer();
+            TurnTo(mPlayerTarget.Body.Center);
 
             AnimEventState animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.Attack);
             await UniTask.WaitUntil(() => animEventState.FireIndex == 0, cancellationToken: ctx);

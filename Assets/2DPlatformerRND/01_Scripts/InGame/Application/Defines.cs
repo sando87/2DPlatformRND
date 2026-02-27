@@ -34,6 +34,7 @@ namespace PahlBit
 
         // Anims For Enemy
         public static readonly int Sleep = Animator.StringToHash("Sleep");
+        public static readonly int Fly = Animator.StringToHash("Fly");
 
     }
 

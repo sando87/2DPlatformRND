@@ -38,7 +38,7 @@ public class EnemyAI : MonoBehaviour
         mBase = this.ExGetBase();
     }
 
-    void Start()
+    protected virtual void Start()
     {
         mSpec = mBase.EnemyObj.Spec;
 
@@ -523,7 +523,7 @@ public class EnemyAI : MonoBehaviour
     }
 
 
-    void CancelMoveCTS()
+    protected void CancelMoveCTS()
     {
         if (mMoveCTS != null)
         {
@@ -538,7 +538,7 @@ public class EnemyAI : MonoBehaviour
 
         if (mBase != null)
         {
-            mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
+            // mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
             mBase.Phy.Velocity = Vector2.zero;
         }
     }
@@ -549,12 +549,9 @@ public class EnemyAI : MonoBehaviour
         Vector3 front = worldDir > 0 ? Vector3.forward : Vector3.back;
         transform.rotation = Quaternion.LookRotation(front, transform.up);
     }
-    protected void TurnToPlayer()
+    protected void TurnTo(Vector2 targetPos)
     {
-        if (mPlayerTarget == null)
-            return;
-
-        int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
+        int curDir = mBase.Body.Center.x < targetPos.x ? 1 : -1;
         Turn(curDir);
     }
     protected void StartMoving(float velocity)
