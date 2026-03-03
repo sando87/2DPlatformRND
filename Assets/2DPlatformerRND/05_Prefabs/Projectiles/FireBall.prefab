@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2727851830516482961}
   - component: {fileID: 6366504930240296974}
-  - component: {fileID: 3200741684909265932}
+  - component: {fileID: 7214095662242643223}
   m_Layer: 0
   m_Name: Renderer
   m_TagString: Untagged
@@ -80,8 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1042711282100462062, guid: 1f894d2c4188b574facb0dd2b5df366f,
-    type: 3}
+  m_Sprite: {fileID: 264609720, guid: b32aeb4306085d7478ea707f0749917a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,28 +91,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3200741684909265932
-Animator:
-  serializedVersion: 7
+--- !u!114 &7214095662242643223
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4804462100776145455}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 05642302057ef77428040ad3a49f439d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5894b9ffbe80d479167748c3171bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimation
+  _Renderer: {fileID: 6366504930240296974}
+  _Sprites:
+  - {fileID: 264609720, guid: b32aeb4306085d7478ea707f0749917a, type: 3}
+  - {fileID: 1129783380, guid: b32aeb4306085d7478ea707f0749917a, type: 3}
+  - {fileID: -1437463371, guid: b32aeb4306085d7478ea707f0749917a, type: 3}
+  - {fileID: 362591165, guid: b32aeb4306085d7478ea707f0749917a, type: 3}
+  _Loop: 1
+  _Interval: 0.05
 --- !u!1 &8023231229581014257
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +349,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5742710665991326275, guid: 771c7316a417c194185a111fb6b62f19,
+      - m_Target: {fileID: 5742710665991326275, guid: b4270e669752272468980209b3c703e3,
           type: 3}
         m_TargetAssemblyTypeName: PahlBit.Instantiator, Assembly-CSharp
         m_MethodName: InstantiateVFX

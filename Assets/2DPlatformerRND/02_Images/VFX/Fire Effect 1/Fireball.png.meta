@@ -146,265 +146,243 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Firebolt SpriteSheet_0
+      name: Fireball_0
       rect:
         serializedVersion: 2
-        x: 257
+        x: 0
         y: 0
-        width: 29
-        height: 39
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4604ae6694582c860800000000000000
-      internalID: 7548742475732107364
+      spriteID: 752cae3692032b24cb9f813f6908da57
+      internalID: 264609720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Firebolt SpriteSheet_1
+      name: Fireball_1
       rect:
         serializedVersion: 2
-        x: 301
+        x: 48
         y: 0
-        width: 34
-        height: 41
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 041aa6d50b8ef3400800000000000000
-      internalID: 306219143863640384
+      spriteID: 2f2ad1a9e999a4c48b1343df81d02748
+      internalID: 1129783380
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Firebolt SpriteSheet_2
+      name: Fireball_2
       rect:
         serializedVersion: 2
-        x: 348
+        x: 96
         y: 0
-        width: 34
-        height: 41
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cf10dd4e982f70cc0800000000000000
-      internalID: -3744757891071147524
+      spriteID: e937fc6822b36e8458e401b68259381b
+      internalID: -1437463371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Firebolt SpriteSheet_3
+      name: Fireball_3
       rect:
         serializedVersion: 2
-        x: 407
-        y: 26
-        width: 9
-        height: 7
+        x: 144
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 181f2389529871ac0800000000000000
-      internalID: -3884485359023492735
+      spriteID: 0007de34f39ead542a17942e0e67ab6a
+      internalID: 362591165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Firebolt SpriteSheet_4
+      name: Fireball_4
       rect:
         serializedVersion: 2
-        x: 408
-        y: 4
-        width: 112
-        height: 37
+        x: 240
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fb6bfa1e2a3f13c80800000000000000
-      internalID: -8344620753644177729
+      spriteID: c5fdad0095c130e41bff3462cc89ce7f
+      internalID: -804910452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Firebolt SpriteSheet_5
+      name: Fireball_5
       rect:
         serializedVersion: 2
-        x: 412
-        y: 21
-        width: 9
-        height: 6
+        x: 288
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 391802a18bba57970800000000000000
-      internalID: 8752090258065097107
+      spriteID: ae5dbf2d7634e3e449b35b2ac9ce1795
+      internalID: 470839245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Firebolt SpriteSheet_6
+      name: Fireball_6
       rect:
         serializedVersion: 2
-        x: 13
-        y: 11
-        width: 34
-        height: 13
+        x: 336
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d0927369c3343a910800000000000000
-      internalID: 1847394199649331469
+      spriteID: d5abe1c4b0a844042b119f4b4650082f
+      internalID: -402706500
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Firebolt SpriteSheet_7
+      name: Fireball_7
       rect:
         serializedVersion: 2
-        x: 58
-        y: 12
-        width: 37
-        height: 13
+        x: 384
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 475d04edee40bb280800000000000000
-      internalID: -9026615604156508812
+      spriteID: ac49c5432e9526e4fb92df94763d32aa
+      internalID: 570426612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Firebolt SpriteSheet_8
+      name: Fireball_8
       rect:
         serializedVersion: 2
-        x: 103
-        y: 12
-        width: 40
-        height: 13
+        x: 432
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4bbfca5be533d6c70800000000000000
-      internalID: 8965878915032480692
+      spriteID: 69ad3591f80e3b947b045d670c31c5b9
+      internalID: 26522914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Firebolt SpriteSheet_9
+      name: Fireball_9
       rect:
         serializedVersion: 2
-        x: 149
-        y: 15
-        width: 11
-        height: 6
+        x: 480
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1b9dc5a22a0882080800000000000000
-      internalID: -9211971603802564175
+      spriteID: b6c90cb810f8eda47baca65bb693c480
+      internalID: -220156986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Firebolt SpriteSheet_10
+      name: Fireball_10
       rect:
         serializedVersion: 2
-        x: 159
-        y: 11
-        width: 32
-        height: 14
+        x: 192
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fec6dbe6201235b30800000000000000
-      internalID: 4274796765636291823
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Firebolt SpriteSheet_11
-      rect:
-        serializedVersion: 2
-        x: 407
-        y: 16
-        width: 10
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1ae0513884817c8c0800000000000000
-      internalID: -3979185046042636639
+      spriteID: 583cb08c76e680a49852296a20ba3fd2
+      internalID: -1498005319
       vertices: []
       indices: 
       edges: []
@@ -413,7 +391,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 624d4e16f5d844c49aa05af90ea9632b
     internalID: 0
     vertices: []
     indices: 
@@ -421,20 +399,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":11.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Firebolt SpriteSheet_0: 7548742475732107364
-      Firebolt SpriteSheet_1: 306219143863640384
-      Firebolt SpriteSheet_10: 4274796765636291823
-      Firebolt SpriteSheet_11: -3979185046042636639
-      Firebolt SpriteSheet_2: -3744757891071147524
-      Firebolt SpriteSheet_3: -3884485359023492735
-      Firebolt SpriteSheet_4: -8344620753644177729
-      Firebolt SpriteSheet_5: 8752090258065097107
-      Firebolt SpriteSheet_6: 1847394199649331469
-      Firebolt SpriteSheet_7: -9026615604156508812
-      Firebolt SpriteSheet_8: 8965878915032480692
-      Firebolt SpriteSheet_9: -9211971603802564175
+      Fireball_0: 264609720
+      Fireball_1: 1129783380
+      Fireball_10: -1498005319
+      Fireball_2: -1437463371
+      Fireball_3: 362591165
+      Fireball_4: -804910452
+      Fireball_5: 470839245
+      Fireball_6: -402706500
+      Fireball_7: 570426612
+      Fireball_8: 26522914
+      Fireball_9: -220156986
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -212,6 +212,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: FireBreathHit_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dddfabd2817340408821a62ecf91a2f
+      internalID: 2035979460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -232,6 +254,7 @@ TextureImporter:
       FireBreathHit_1: -239100966
       FireBreathHit_2: 1541193630
       FireBreathHit_3: -1944174823
+      FireBreathHit_4: 2035979460
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
