@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2779684897935270072}
   - component: {fileID: 8905660450350003587}
-  - component: {fileID: 7786878868560778953}
+  - component: {fileID: 9100531030638818332}
   m_Layer: 0
   m_Name: Renderer
   m_TagString: Untagged
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -206705535, guid: 07e09802e17cae44fa52c9a4c4f88497, type: 3}
+  m_Sprite: {fileID: 1222684967, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -91,28 +91,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7786878868560778953
-Animator:
-  serializedVersion: 7
+--- !u!114 &9100531030638818332
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410333114021500497}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4f6a63e5c386c6d468da77ae0fe5d18a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5894b9ffbe80d479167748c3171bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimation
+  _Renderer: {fileID: 8905660450350003587}
+  _Sprites:
+  - {fileID: 1222684967, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: -1168007549, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: 709323747, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: -1437553945, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: -925809371, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: -1122929997, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: -1810894577, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: 812850787, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: 2042735626, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: 654684279, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  _Loop: 1
+  _Interval: 0.05
+  _OnEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8023231229581014257
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +353,19 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5742710665991326275, guid: 232517e09a9d48f40959d2a511c7bb73,
+          type: 3}
+        m_TargetAssemblyTypeName: PahlBit.Instantiator, Assembly-CSharp
+        m_MethodName: InstantiateVFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2779684897935270072}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

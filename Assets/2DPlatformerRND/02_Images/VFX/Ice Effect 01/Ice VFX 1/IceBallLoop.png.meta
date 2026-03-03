@@ -70,7 +70,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -84,7 +84,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -146,265 +146,221 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IceVFX 1 Repeatable_0
+      name: IceBallLoop_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 8
-        width: 32
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.41666666, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8b39617f1807a37d0800000000000000
-      internalID: -2937912103407283272
+      spriteID: 039e29bb390c6c942a9fb69d6c07986a
+      internalID: 1222684967
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IceVFX 1 Repeatable_1
+      name: IceBallLoop_1
       rect:
         serializedVersion: 2
         x: 48
-        y: 9
-        width: 36
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.41666666, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7ff805305d9280bb0800000000000000
-      internalID: -4969676193942958089
+      spriteID: cd0d3dfda4a15784ebc666113d626b6f
+      internalID: -1168007549
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IceVFX 1 Repeatable_2
-      rect:
-        serializedVersion: 2
-        x: 75
-        y: 17
-        width: 9
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 824c966477c6cc9d0800000000000000
-      internalID: -2752706012691971032
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IceVFX 1 Repeatable_3
+      name: IceBallLoop_2
       rect:
         serializedVersion: 2
         x: 96
-        y: 9
-        width: 40
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.41666666, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f5e8d528cc0df6d30800000000000000
-      internalID: 4426986535507562079
+      spriteID: 76758e24c8d88ca4995fb93e94dacc13
+      internalID: 709323747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IceVFX 1 Repeatable_4
+      name: IceBallLoop_3
       rect:
         serializedVersion: 2
-        x: 143
-        y: 9
-        width: 41
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 144
+        y: 0
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.41666666, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 70fd4e073e8872a90800000000000000
-      internalID: -7338746557343932665
+      spriteID: 7df969f72cf032b4390f322092e74acf
+      internalID: -1437553945
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IceVFX 1 Repeatable_5
+      name: IceBallLoop_4
       rect:
         serializedVersion: 2
         x: 192
-        y: 5
-        width: 40
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.41666666, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3c955277974707d10800000000000000
-      internalID: 2121323489530304963
+      spriteID: e2820d8dfda817d43a25ad94bf36ee94
+      internalID: -925809371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IceVFX 1 Repeatable_6
+      name: IceBallLoop_5
       rect:
         serializedVersion: 2
-        x: 244
-        y: 8
-        width: 32
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 240
+        y: 0
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.41666666, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 965005c65ea215d00800000000000000
-      internalID: 959595360459687273
+      spriteID: 19407b2c1b198af468b4bd7a1083c82c
+      internalID: -1122929997
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IceVFX 1 Repeatable_7
+      name: IceBallLoop_6
       rect:
         serializedVersion: 2
         x: 288
-        y: 8
-        width: 36
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.41666666, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 87d68bb648f512d70800000000000000
-      internalID: 9016592951320014200
+      spriteID: f35e3a6b9b9d4204fb29bbc169b14b37
+      internalID: -1810894577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IceVFX 1 Repeatable_8
+      name: IceBallLoop_7
       rect:
         serializedVersion: 2
         x: 336
-        y: 9
-        width: 36
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.41666666, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: df544961c4d417bd0800000000000000
-      internalID: -2634239317843360259
+      spriteID: 534a8b90575928a47b76288740777309
+      internalID: 812850787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IceVFX 1 Repeatable_9
+      name: IceBallLoop_8
       rect:
         serializedVersion: 2
-        x: 383
-        y: 9
-        width: 37
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 384
+        y: 0
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.41666666, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3d6caf41dd85a4c90800000000000000
-      internalID: -7184832548953209133
+      spriteID: 533092deda3b6874dbd462d379fcb661
+      internalID: 2042735626
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IceVFX 1 Repeatable_10
+      name: IceBallLoop_9
       rect:
         serializedVersion: 2
         x: 432
-        y: 9
-        width: 36
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.41666666, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 70cc665aee5d87d50800000000000000
-      internalID: 6735368463686487047
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IceVFX 1 Repeatable_11
-      rect:
-        serializedVersion: 2
-        x: 167
-        y: 7
-        width: 9
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f667d24a2697e72d0800000000000000
-      internalID: -3279050014110943633
+      spriteID: d8539ae0c7a487c458a98ab43b144e82
+      internalID: 654684279
       vertices: []
       indices: 
       edges: []
@@ -413,7 +369,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1434732b10c3b2f4db2365468adc3aad
     internalID: 0
     vertices: []
     indices: 
@@ -421,20 +377,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":10.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.4166666567325592,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      IceVFX 1 Repeatable_0: -2937912103407283272
-      IceVFX 1 Repeatable_1: -4969676193942958089
-      IceVFX 1 Repeatable_10: 6735368463686487047
-      IceVFX 1 Repeatable_11: -3279050014110943633
-      IceVFX 1 Repeatable_2: -2752706012691971032
-      IceVFX 1 Repeatable_3: 4426986535507562079
-      IceVFX 1 Repeatable_4: -7338746557343932665
-      IceVFX 1 Repeatable_5: 2121323489530304963
-      IceVFX 1 Repeatable_6: 959595360459687273
-      IceVFX 1 Repeatable_7: 9016592951320014200
-      IceVFX 1 Repeatable_8: -2634239317843360259
-      IceVFX 1 Repeatable_9: -7184832548953209133
+      IceBallLoop_0: 1222684967
+      IceBallLoop_1: -1168007549
+      IceBallLoop_2: 709323747
+      IceBallLoop_3: -1437553945
+      IceBallLoop_4: -925809371
+      IceBallLoop_5: -1122929997
+      IceBallLoop_6: -1810894577
+      IceBallLoop_7: 812850787
+      IceBallLoop_8: 2042735626
+      IceBallLoop_9: 654684279
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

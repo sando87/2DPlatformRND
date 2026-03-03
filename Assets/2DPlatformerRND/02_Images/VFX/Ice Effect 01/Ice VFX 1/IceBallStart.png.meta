@@ -43,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -57,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,67 +119,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ice VFX 1 Start_0
+      name: IceBallStart_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 11
-        width: 15
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fc68dd8e0f55f6930800000000000000
-      internalID: 4138621075764119247
+      spriteID: e8e7f91a58448154b8fdefea0c3a1d84
+      internalID: 548082860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice VFX 1 Start_1
+      name: IceBallStart_1
       rect:
         serializedVersion: 2
-        x: 57
-        y: 10
-        width: 20
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 48
+        y: 0
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 08a09326b2570c430800000000000000
-      internalID: 3801166914692647552
+      spriteID: 06601fa921b9ba546809e47dec75266a
+      internalID: 1906315154
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice VFX 1 Start_2
+      name: IceBallStart_2
       rect:
         serializedVersion: 2
-        x: 105
-        y: 10
-        width: 21
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 96
+        y: 0
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 12d95e1434ba602b0800000000000000
-      internalID: -5618615179741389535
+      spriteID: b46b150bf9464e441b712fcd1acc4cae
+      internalID: 2132259468
       vertices: []
       indices: 
       edges: []
@@ -188,7 +188,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 018ed0dda1d33434d90362d628e303c1
     internalID: 0
     vertices: []
     indices: 
@@ -196,11 +196,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.3333333432674408,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Ice VFX 1 Start_0: 4138621075764119247
-      Ice VFX 1 Start_1: 3801166914692647552
-      Ice VFX 1 Start_2: -5618615179741389535
+      IceBallStart_0: 548082860
+      IceBallStart_1: 1906315154
+      IceBallStart_2: 2132259468
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
