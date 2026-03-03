@@ -244,7 +244,7 @@ public class EnemyAI : MonoBehaviour
     {
         try
         {
-            AnimEventState animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.Hit);
+            AnimEventState animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.Hert);
             await UniTask.WaitUntil(() => animEventState.IsEnd, cancellationToken: ctx);
             return EnemyState.Recover;
         }
