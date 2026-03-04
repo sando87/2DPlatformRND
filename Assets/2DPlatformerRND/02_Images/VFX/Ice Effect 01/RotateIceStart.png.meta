@@ -1,0 +1,1820 @@
+fileFormatVersion: 2
+guid: 3076b6b40b17d3c44bd353ac07f7a599
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7453035429634878959
+    second: RotateIceStart_0
+  - first:
+      213: -9202992554810443407
+    second: RotateIceStart_1
+  - first:
+      213: 8989416948545236137
+    second: RotateIceStart_2
+  - first:
+      213: 2755057109200409657
+    second: RotateIceStart_3
+  - first:
+      213: 5374004329507539183
+    second: RotateIceStart_4
+  - first:
+      213: 8725738237670877884
+    second: RotateIceStart_5
+  - first:
+      213: -3026276398585773361
+    second: RotateIceStart_6
+  - first:
+      213: -7283968150825211104
+    second: RotateIceStart_7
+  - first:
+      213: -8863323688141339644
+    second: RotateIceStart_8
+  - first:
+      213: -5244422400122415174
+    second: RotateIceStart_9
+  - first:
+      213: -3585936262029715421
+    second: RotateIceStart_10
+  - first:
+      213: 2654131147353593055
+    second: RotateIceStart_11
+  - first:
+      213: -8154235459193267457
+    second: RotateIceStart_12
+  - first:
+      213: -5845527952135845097
+    second: RotateIceStart_13
+  - first:
+      213: 2259166445834101457
+    second: RotateIceStart_14
+  - first:
+      213: 4972054497743776529
+    second: RotateIceStart_15
+  - first:
+      213: 8859145578149149893
+    second: RotateIceStart_16
+  - first:
+      213: 8083865736025903754
+    second: RotateIceStart_17
+  - first:
+      213: -340823292768630561
+    second: RotateIceStart_18
+  - first:
+      213: -8126236198902502017
+    second: RotateIceStart_19
+  - first:
+      213: -8521688409651944668
+    second: RotateIceStart_20
+  - first:
+      213: -1767696528720002013
+    second: RotateIceStart_21
+  - first:
+      213: -7300548385287556916
+    second: RotateIceStart_22
+  - first:
+      213: -1314433978386772496
+    second: RotateIceStart_23
+  - first:
+      213: 8110540317001290879
+    second: RotateIceStart_24
+  - first:
+      213: -2374165159558840035
+    second: RotateIceStart_25
+  - first:
+      213: -2062409836885979830
+    second: RotateIceStart_26
+  - first:
+      213: 4387689516244943953
+    second: RotateIceStart_27
+  - first:
+      213: -1479275516158712473
+    second: RotateIceStart_28
+  - first:
+      213: -5456845280681228667
+    second: RotateIceStart_29
+  - first:
+      213: -6934240302009235663
+    second: RotateIceStart_30
+  - first:
+      213: -1997501041305910580
+    second: RotateIceStart_31
+  - first:
+      213: -8917714543574694440
+    second: RotateIceStart_32
+  - first:
+      213: 5077476825672037579
+    second: RotateIceStart_33
+  - first:
+      213: 2658549076220009462
+    second: RotateIceStart_34
+  - first:
+      213: 5212848542232429803
+    second: RotateIceStart_35
+  - first:
+      213: 4648029175919553437
+    second: RotateIceStart_36
+  - first:
+      213: -6992670960840576821
+    second: RotateIceStart_37
+  - first:
+      213: 1435713164198495553
+    second: RotateIceStart_38
+  - first:
+      213: -2457341222112965287
+    second: RotateIceStart_39
+  - first:
+      213: 2606844579995760920
+    second: RotateIceStart_40
+  - first:
+      213: -1988611858523406634
+    second: RotateIceStart_41
+  - first:
+      213: -776221309007420438
+    second: RotateIceStart_42
+  - first:
+      213: 2287777497632187861
+    second: RotateIceStart_43
+  - first:
+      213: 4190721707968573200
+    second: RotateIceStart_44
+  - first:
+      213: 5202538087873099424
+    second: RotateIceStart_45
+  - first:
+      213: 6960543981497157274
+    second: RotateIceStart_46
+  - first:
+      213: -1946590607499603066
+    second: RotateIceStart_47
+  - first:
+      213: -8535763027414990593
+    second: RotateIceStart_48
+  - first:
+      213: -7522159983903394294
+    second: RotateIceStart_49
+  - first:
+      213: 4362667762206525859
+    second: RotateIceStart_50
+  - first:
+      213: 4411767993793090043
+    second: RotateIceStart_51
+  - first:
+      213: -6724299675655976684
+    second: RotateIceStart_52
+  - first:
+      213: -197855780807118923
+    second: RotateIceStart_53
+  - first:
+      213: -7474402546370253826
+    second: RotateIceStart_54
+  - first:
+      213: 7717281276408857717
+    second: RotateIceStart_55
+  - first:
+      213: 1897195961034383536
+    second: RotateIceStart_56
+  - first:
+      213: 8799088230420990903
+    second: RotateIceStart_57
+  - first:
+      213: 3140244781697391205
+    second: RotateIceStart_58
+  - first:
+      213: -5629903390057882301
+    second: RotateIceStart_59
+  - first:
+      213: 1680151092158880582
+    second: RotateIceStart_60
+  - first:
+      213: 4556104313086488868
+    second: RotateIceStart_61
+  - first:
+      213: -6333926998389702641
+    second: RotateIceStart_62
+  - first:
+      213: 8369196882389132116
+    second: RotateIceStart_63
+  - first:
+      213: 3399456229302993247
+    second: RotateIceStart_64
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RotateIceStart_0
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 461
+        width: 29
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 112563eb3cf719890800000000000000
+      internalID: -7453035429634878959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_1
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 458
+        width: 86
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17975fbe707684080800000000000000
+      internalID: -9202992554810443407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_2
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 464
+        width: 41
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ac2ae33613d0cc70800000000000000
+      internalID: 8989416948545236137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_3
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 458
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9341ec908ddeb3620800000000000000
+      internalID: 2755057109200409657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_4
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 458
+        width: 56
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe845b9077c449a40800000000000000
+      internalID: 5374004329507539183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_5
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 437
+        width: 47
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cba6a6b32bc081970800000000000000
+      internalID: 8725738237670877884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_6
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 389
+        width: 80
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc2852e36a18006d0800000000000000
+      internalID: -3026276398585773361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_7
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 455
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02bedc61f852aea90800000000000000
+      internalID: -7283968150825211104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_8
+      rect:
+        serializedVersion: 2
+        x: 763
+        y: 446
+        width: 20
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 404c707c0162ff480800000000000000
+      internalID: -8863323688141339644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_9
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 440
+        width: 53
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab71a9cfc911837b0800000000000000
+      internalID: -5244422400122415174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_10
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 428
+        width: 32
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 328d68208f13c3ec0800000000000000
+      internalID: -3585936262029715421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_11
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 437
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd49f41673e55d420800000000000000
+      internalID: 2654131147353593055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_12
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 437
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffa14e78d0656de80800000000000000
+      internalID: -8154235459193267457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_13
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 410
+        width: 26
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71b83586c4380eea0800000000000000
+      internalID: -5845527952135845097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_14
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 437
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d26c64b9eb2a5f10800000000000000
+      internalID: 2259166445834101457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_15
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 437
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11ba6edf839400540800000000000000
+      internalID: 4972054497743776529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_16
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 437
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cc7d0f27f102fa70800000000000000
+      internalID: 8859145578149149893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_17
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 437
+        width: 23
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8296c78e09af2070800000000000000
+      internalID: 8083865736025903754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_18
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 434
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd8c85f5507254bf0800000000000000
+      internalID: -340823292768630561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_19
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 437
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7dee735b3fc93f80800000000000000
+      internalID: -8126236198902502017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_20
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 401
+        width: 29
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 423e1209a81ecb980800000000000000
+      internalID: -8521688409651944668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_21
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 389
+        width: 80
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32404fe6f51e777e0800000000000000
+      internalID: -1767696528720002013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_22
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 431
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc0326d6ced3faa90800000000000000
+      internalID: -7300548385287556916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_23
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 431
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fd8d85c24132cde0800000000000000
+      internalID: -1314433978386772496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_24
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 419
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f749853627d6e8070800000000000000
+      internalID: 8110540317001290879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_25
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 422
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d110362cd554d0fd0800000000000000
+      internalID: -2374165159558840035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_26
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 419
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4dc3233e29d063e0800000000000000
+      internalID: -2062409836885979830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_27
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 419
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1544c783e5434ec30800000000000000
+      internalID: 4387689516244943953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_28
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 419
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7656d6e61ce887be0800000000000000
+      internalID: -1479275516158712473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_29
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 410
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5868abaf0246544b0800000000000000
+      internalID: -5456845280681228667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_30
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 389
+        width: 146
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 137ca8b3f21a4cf90800000000000000
+      internalID: -6934240302009235663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_31
+      rect:
+        serializedVersion: 2
+        x: 763
+        y: 404
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc20d7ad2637744e0800000000000000
+      internalID: -1997501041305910580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_32
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 407
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d545e5eed9ed3480800000000000000
+      internalID: -8917714543574694440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_33
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 404
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc4b5757542d67640800000000000000
+      internalID: 5077476825672037579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_34
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 389
+        width: 44
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fb590a9c4015e420800000000000000
+      internalID: 2658549076220009462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_35
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 389
+        width: 44
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be44dab5122c75840800000000000000
+      internalID: 5212848542232429803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_36
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 389
+        width: 92
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9b2650c8ed118040800000000000000
+      internalID: 4648029175919553437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_37
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 401
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc078e35fca05fe90800000000000000
+      internalID: -6992670960840576821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_38
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 194
+        width: 47
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 145476f148dace310800000000000000
+      internalID: 1435713164198495553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_39
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 350
+        width: 14
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95d48049d25c5edd0800000000000000
+      internalID: -2457341222112965287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_40
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 362
+        width: 8
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 819bc47755f5d2420800000000000000
+      internalID: 2606844579995760920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_41
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 314
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6de35900d080764e0800000000000000
+      internalID: -1988611858523406634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_42
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 326
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae3268105de4a35f0800000000000000
+      internalID: -776221309007420438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_43
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 260
+        width: 20
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d5af7f4381dfbf10800000000000000
+      internalID: 2287777497632187861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_44
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 194
+        width: 182
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01f2cf3a03f682a30800000000000000
+      internalID: 4190721707968573200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_45
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 194
+        width: 89
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a6bd12a3d0233840800000000000000
+      internalID: 5202538087873099424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_46
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 212
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a960f946fd1d89060800000000000000
+      internalID: 6960543981497157274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_47
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 203
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 683dfdce7225cf4e0800000000000000
+      internalID: -1946590607499603066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_48
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 209
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff0440040c0ea8980800000000000000
+      internalID: -8535763027414990593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_49
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 194
+        width: 62
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a06b7c7495beb9790800000000000000
+      internalID: -7522159983903394294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_50
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 194
+        width: 122
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a94e5f173f4b8c30800000000000000
+      internalID: 4362667762206525859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_51
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 17
+        width: 38
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf19975ad9fb93d30800000000000000
+      internalID: 4411767993793090043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_52
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 0
+        width: 92
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4194045621d7ea2a0800000000000000
+      internalID: -6724299675655976684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_53
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 17
+        width: 38
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bfeb343733114df0800000000000000
+      internalID: -197855780807118923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_54
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 26
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efb63533c76954890800000000000000
+      internalID: -7474402546370253826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_55
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 2
+        width: 92
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5748f18de6a491b60800000000000000
+      internalID: 7717281276408857717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_56
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 26
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b0a2cebca1345a10800000000000000
+      internalID: 1897195961034383536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_57
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 0
+        width: 191
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bb40914024ac1a70800000000000000
+      internalID: 8799088230420990903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_58
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 8
+        width: 92
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56ad8d0cdf3649b20800000000000000
+      internalID: 3140244781697391205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_59
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 0
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34d15dbf1b09ed1b0800000000000000
+      internalID: -5629903390057882301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_60
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 0
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64b5d193488115710800000000000000
+      internalID: 1680151092158880582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_61
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 8
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4213525cbb88a3f30800000000000000
+      internalID: 4556104313086488868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_62
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 8
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f00c9bb14fe5918a0800000000000000
+      internalID: -6333926998389702641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_63
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 0
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4536c1ef83c552470800000000000000
+      internalID: 8369196882389132116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotateIceStart_64
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 0
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f510811fd6b4d2f20800000000000000
+      internalID: 3399456229302993247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RotateIceStart_0: -7453035429634878959
+      RotateIceStart_1: -9202992554810443407
+      RotateIceStart_10: -3585936262029715421
+      RotateIceStart_11: 2654131147353593055
+      RotateIceStart_12: -8154235459193267457
+      RotateIceStart_13: -5845527952135845097
+      RotateIceStart_14: 2259166445834101457
+      RotateIceStart_15: 4972054497743776529
+      RotateIceStart_16: 8859145578149149893
+      RotateIceStart_17: 8083865736025903754
+      RotateIceStart_18: -340823292768630561
+      RotateIceStart_19: -8126236198902502017
+      RotateIceStart_2: 8989416948545236137
+      RotateIceStart_20: -8521688409651944668
+      RotateIceStart_21: -1767696528720002013
+      RotateIceStart_22: -7300548385287556916
+      RotateIceStart_23: -1314433978386772496
+      RotateIceStart_24: 8110540317001290879
+      RotateIceStart_25: -2374165159558840035
+      RotateIceStart_26: -2062409836885979830
+      RotateIceStart_27: 4387689516244943953
+      RotateIceStart_28: -1479275516158712473
+      RotateIceStart_29: -5456845280681228667
+      RotateIceStart_3: 2755057109200409657
+      RotateIceStart_30: -6934240302009235663
+      RotateIceStart_31: -1997501041305910580
+      RotateIceStart_32: -8917714543574694440
+      RotateIceStart_33: 5077476825672037579
+      RotateIceStart_34: 2658549076220009462
+      RotateIceStart_35: 5212848542232429803
+      RotateIceStart_36: 4648029175919553437
+      RotateIceStart_37: -6992670960840576821
+      RotateIceStart_38: 1435713164198495553
+      RotateIceStart_39: -2457341222112965287
+      RotateIceStart_4: 5374004329507539183
+      RotateIceStart_40: 2606844579995760920
+      RotateIceStart_41: -1988611858523406634
+      RotateIceStart_42: -776221309007420438
+      RotateIceStart_43: 2287777497632187861
+      RotateIceStart_44: 4190721707968573200
+      RotateIceStart_45: 5202538087873099424
+      RotateIceStart_46: 6960543981497157274
+      RotateIceStart_47: -1946590607499603066
+      RotateIceStart_48: -8535763027414990593
+      RotateIceStart_49: -7522159983903394294
+      RotateIceStart_5: 8725738237670877884
+      RotateIceStart_50: 4362667762206525859
+      RotateIceStart_51: 4411767993793090043
+      RotateIceStart_52: -6724299675655976684
+      RotateIceStart_53: -197855780807118923
+      RotateIceStart_54: -7474402546370253826
+      RotateIceStart_55: 7717281276408857717
+      RotateIceStart_56: 1897195961034383536
+      RotateIceStart_57: 8799088230420990903
+      RotateIceStart_58: 3140244781697391205
+      RotateIceStart_59: -5629903390057882301
+      RotateIceStart_6: -3026276398585773361
+      RotateIceStart_60: 1680151092158880582
+      RotateIceStart_61: 4556104313086488868
+      RotateIceStart_62: -6333926998389702641
+      RotateIceStart_63: 8369196882389132116
+      RotateIceStart_64: 3399456229302993247
+      RotateIceStart_7: -7283968150825211104
+      RotateIceStart_8: -8863323688141339644
+      RotateIceStart_9: -5244422400122415174
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
