@@ -1,0 +1,1118 @@
+fileFormatVersion: 2
+guid: 4f5debf160d63b64c8f4a86e429f3de3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7480655563770340163
+    second: WaterSphereStart_0
+  - first:
+      213: -4560689869111138874
+    second: WaterSphereStart_1
+  - first:
+      213: -4359280490756316277
+    second: WaterSphereStart_2
+  - first:
+      213: -1942316422581193934
+    second: WaterSphereStart_3
+  - first:
+      213: 2151216777339254613
+    second: WaterSphereStart_4
+  - first:
+      213: -2972734378450680551
+    second: WaterSphereStart_5
+  - first:
+      213: 4438948786811639559
+    second: WaterSphereStart_6
+  - first:
+      213: 8864179245098064341
+    second: WaterSphereStart_7
+  - first:
+      213: 1859164251523788729
+    second: WaterSphereStart_8
+  - first:
+      213: 4858660837743384793
+    second: WaterSphereStart_9
+  - first:
+      213: 5460503623754984600
+    second: WaterSphereStart_10
+  - first:
+      213: 6053409364292022090
+    second: WaterSphereStart_11
+  - first:
+      213: -7252696859399472321
+    second: WaterSphereStart_12
+  - first:
+      213: -8308170446819240632
+    second: WaterSphereStart_13
+  - first:
+      213: -6827245617984900396
+    second: WaterSphereStart_14
+  - first:
+      213: -4584042997787109379
+    second: WaterSphereStart_15
+  - first:
+      213: -3712198331549568606
+    second: WaterSphereStart_16
+  - first:
+      213: -6651661065044010273
+    second: WaterSphereStart_17
+  - first:
+      213: -524230619431499604
+    second: WaterSphereStart_18
+  - first:
+      213: -6067149418449834965
+    second: WaterSphereStart_19
+  - first:
+      213: 5371038144997679867
+    second: WaterSphereStart_20
+  - first:
+      213: -3536914659464490901
+    second: WaterSphereStart_21
+  - first:
+      213: -6855662234742774647
+    second: WaterSphereStart_22
+  - first:
+      213: 3319166750141108176
+    second: WaterSphereStart_23
+  - first:
+      213: -808045582154549483
+    second: WaterSphereStart_24
+  - first:
+      213: -7332775273587854042
+    second: WaterSphereStart_25
+  - first:
+      213: 8194423671123122162
+    second: WaterSphereStart_26
+  - first:
+      213: -2237396774202241456
+    second: WaterSphereStart_27
+  - first:
+      213: -4713412024701186447
+    second: WaterSphereStart_28
+  - first:
+      213: 7014375407813196288
+    second: WaterSphereStart_29
+  - first:
+      213: -7743841698795355273
+    second: WaterSphereStart_30
+  - first:
+      213: 7649323963180217701
+    second: WaterSphereStart_31
+  - first:
+      213: -8367137215427969089
+    second: WaterSphereStart_32
+  - first:
+      213: 4986668205312745178
+    second: WaterSphereStart_33
+  - first:
+      213: 1335464099783052400
+    second: WaterSphereStart_34
+  - first:
+      213: 7302244209619971076
+    second: WaterSphereStart_35
+  - first:
+      213: 6131641397716702808
+    second: WaterSphereStart_36
+  - first:
+      213: -2338097965319257353
+    second: WaterSphereStart_37
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WaterSphereStart_0
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 89
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 343a49dd990a0d760800000000000000
+      internalID: 7480655563770340163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_1
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 87
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c568e44abc25b0c0800000000000000
+      internalID: -4560689869111138874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_2
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 83
+        width: 36
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b83ed287d79b083c0800000000000000
+      internalID: -4359280490756316277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_3
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 59
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 233f3a621818b05e0800000000000000
+      internalID: -1942316422581193934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_4
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 85
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 557ba28e248aadd10800000000000000
+      internalID: 2151216777339254613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_5
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 81
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9150bd045d9beb6d0800000000000000
+      internalID: -2972734378450680551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_6
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 75
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7071f0e27605a9d30800000000000000
+      internalID: 4438948786811639559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_7
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 73
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d9d5791f04e30b70800000000000000
+      internalID: 8864179245098064341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_8
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 77
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bf2e2759041dc910800000000000000
+      internalID: 1859164251523788729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_9
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 71
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d8dbc52a4e6d6340800000000000000
+      internalID: 4858660837743384793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_10
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 49
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89c26a46d1b97cb40800000000000000
+      internalID: 5460503623754984600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_11
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 15
+        width: 52
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4f26a69eb7020450800000000000000
+      internalID: 6053409364292022090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_12
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 77
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3b37eff1ae395b90800000000000000
+      internalID: -7252696859399472321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_13
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 73
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 845d0f74ff273bc80800000000000000
+      internalID: -8308170446819240632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_14
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 19
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d2faa16840c041a0800000000000000
+      internalID: -6827245617984900396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_15
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 67
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df758c94e253260c0800000000000000
+      internalID: -4584042997787109379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_16
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 47
+        width: 34
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a1b038194f9b7cc0800000000000000
+      internalID: -3712198331549568606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_17
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 35
+        width: 36
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fda51cbd08d80b3a0800000000000000
+      internalID: -6651661065044010273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_18
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 69
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca80764770f89b8f0800000000000000
+      internalID: -524230619431499604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_19
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 33
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2c6412cfb72dcba0800000000000000
+      internalID: -6067149418449834965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_20
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 33
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf2e8a36cb2c98a40800000000000000
+      internalID: 5371038144997679867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_21
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 37
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b605fb94bda5aeec0800000000000000
+      internalID: -3536914659464490901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_22
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 39
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 984a816358bcbd0a0800000000000000
+      internalID: -6855662234742774647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_23
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 23
+        width: 58
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dfc274d29c001e20800000000000000
+      internalID: 3319166750141108176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_24
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 23
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 517ba5103de39c4f0800000000000000
+      internalID: -808045582154549483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_25
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 27
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62537084dbfbc3a90800000000000000
+      internalID: -7332775273587854042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_26
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 31
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f79858b9e078b170800000000000000
+      internalID: 8194423671123122162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_27
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 19
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05e0214fc7b23f0e0800000000000000
+      internalID: -2237396774202241456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 17
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17e81ab7cb8969eb0800000000000000
+      internalID: -4713412024701186447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_29
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 17
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00af0f70541185160800000000000000
+      internalID: 7014375407813196288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_30
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 21
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 773027ae009588490800000000000000
+      internalID: -7743841698795355273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_31
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 21
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5657d3ddd9bd72a60800000000000000
+      internalID: 7649323963180217701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_32
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 9
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbff6779805f1eb80800000000000000
+      internalID: -8367137215427969089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_33
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 13
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ade966eef44343540800000000000000
+      internalID: 4986668205312745178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_34
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 17
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07c0bdde585888210800000000000000
+      internalID: 1335464099783052400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_35
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 21
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40c2d817b68c65560800000000000000
+      internalID: 7302244209619971076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_36
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 7
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 856dbf84d57f71550800000000000000
+      internalID: 6131641397716702808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterSphereStart_37
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 11
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f2051fc9486d8fd0800000000000000
+      internalID: -2338097965319257353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      WaterSphereStart_0: 7480655563770340163
+      WaterSphereStart_1: -4560689869111138874
+      WaterSphereStart_10: 5460503623754984600
+      WaterSphereStart_11: 6053409364292022090
+      WaterSphereStart_12: -7252696859399472321
+      WaterSphereStart_13: -8308170446819240632
+      WaterSphereStart_14: -6827245617984900396
+      WaterSphereStart_15: -4584042997787109379
+      WaterSphereStart_16: -3712198331549568606
+      WaterSphereStart_17: -6651661065044010273
+      WaterSphereStart_18: -524230619431499604
+      WaterSphereStart_19: -6067149418449834965
+      WaterSphereStart_2: -4359280490756316277
+      WaterSphereStart_20: 5371038144997679867
+      WaterSphereStart_21: -3536914659464490901
+      WaterSphereStart_22: -6855662234742774647
+      WaterSphereStart_23: 3319166750141108176
+      WaterSphereStart_24: -808045582154549483
+      WaterSphereStart_25: -7332775273587854042
+      WaterSphereStart_26: 8194423671123122162
+      WaterSphereStart_27: -2237396774202241456
+      WaterSphereStart_28: -4713412024701186447
+      WaterSphereStart_29: 7014375407813196288
+      WaterSphereStart_3: -1942316422581193934
+      WaterSphereStart_30: -7743841698795355273
+      WaterSphereStart_31: 7649323963180217701
+      WaterSphereStart_32: -8367137215427969089
+      WaterSphereStart_33: 4986668205312745178
+      WaterSphereStart_34: 1335464099783052400
+      WaterSphereStart_35: 7302244209619971076
+      WaterSphereStart_36: 6131641397716702808
+      WaterSphereStart_37: -2338097965319257353
+      WaterSphereStart_4: 2151216777339254613
+      WaterSphereStart_5: -2972734378450680551
+      WaterSphereStart_6: 4438948786811639559
+      WaterSphereStart_7: 8864179245098064341
+      WaterSphereStart_8: 1859164251523788729
+      WaterSphereStart_9: 4858660837743384793
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

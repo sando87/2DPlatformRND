@@ -1,0 +1,910 @@
+fileFormatVersion: 2
+guid: cb15f2acfe007414abe00e0543c29b00
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3469067119388258510
+    second: ChainLightning_0
+  - first:
+      213: 2171777871114399653
+    second: ChainLightning_1
+  - first:
+      213: 771166376786319095
+    second: ChainLightning_2
+  - first:
+      213: -5277820843285985391
+    second: ChainLightning_3
+  - first:
+      213: 2099869453310149314
+    second: ChainLightning_4
+  - first:
+      213: 1439682325841475727
+    second: ChainLightning_5
+  - first:
+      213: -1534557464058762531
+    second: ChainLightning_6
+  - first:
+      213: 307107527980717095
+    second: ChainLightning_7
+  - first:
+      213: 399614621054276043
+    second: ChainLightning_8
+  - first:
+      213: 6593395008533703225
+    second: ChainLightning_9
+  - first:
+      213: -2534629928416098036
+    second: ChainLightning_10
+  - first:
+      213: 4704112152807255794
+    second: ChainLightning_11
+  - first:
+      213: 185004093042415389
+    second: ChainLightning_12
+  - first:
+      213: 4071274470596305195
+    second: ChainLightning_13
+  - first:
+      213: 7230608254230457777
+    second: ChainLightning_14
+  - first:
+      213: -5016760175089734889
+    second: ChainLightning_15
+  - first:
+      213: 9189833535582379640
+    second: ChainLightning_16
+  - first:
+      213: 5333655524488583308
+    second: ChainLightning_17
+  - first:
+      213: 8360665746775120202
+    second: ChainLightning_18
+  - first:
+      213: -1818042609863931492
+    second: ChainLightning_19
+  - first:
+      213: 2587970729632526275
+    second: ChainLightning_20
+  - first:
+      213: 7043391517358040986
+    second: ChainLightning_21
+  - first:
+      213: -6253909090036238837
+    second: ChainLightning_22
+  - first:
+      213: -2558941301591329649
+    second: ChainLightning_23
+  - first:
+      213: -2542980593322784043
+    second: ChainLightning_24
+  - first:
+      213: 1342001409946791789
+    second: ChainLightning_25
+  - first:
+      213: -5959322516083602668
+    second: ChainLightning_26
+  - first:
+      213: -390294292397048669
+    second: ChainLightning_27
+  - first:
+      213: -1113662665993842104
+    second: ChainLightning_28
+  - first:
+      213: -3588963953800493514
+    second: ChainLightning_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ChainLightning_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 588
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23f00e6b5d56bdfc0800000000000000
+      internalID: -3469067119388258510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 519
+        width: 34
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5afe3da9774b32e10800000000000000
+      internalID: 2171777871114399653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 447
+        width: 51
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f6d21fdbbbb3ba00800000000000000
+      internalID: 771166376786319095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 389
+        width: 121
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19749c7f7e961c6b0800000000000000
+      internalID: -5277820843285985391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 330
+        width: 123
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c2ce37642c342d10800000000000000
+      internalID: 2099869453310149314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_5
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 266
+        width: 118
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8870359277caf310800000000000000
+      internalID: 1439682325841475727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_6
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 219
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dda6a5bed1824bae0800000000000000
+      internalID: -1534557464058762531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_7
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 201
+        width: 48
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72493296ba0134400800000000000000
+      internalID: 307107527980717095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_8
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 217
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc11efe6167bb8500800000000000000
+      internalID: 399614621054276043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_9
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 201
+        width: 30
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93a2c73b3d1708b50800000000000000
+      internalID: 6593395008533703225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_10
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 209
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c094fa7528f23dcd0800000000000000
+      internalID: -2534629928416098036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_11
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 159
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2feacab541d584140800000000000000
+      internalID: 4704112152807255794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_12
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 153
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1759cf0e34419200800000000000000
+      internalID: 185004093042415389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_13
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 145
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b21620b7f82108830800000000000000
+      internalID: 4071274470596305195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_14
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 161
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bde967d5e7485460800000000000000
+      internalID: 7230608254230457777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_15
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 159
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71b23706333e06ab0800000000000000
+      internalID: -5016760175089734889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_16
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 144
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87e1c5929e8d88f70800000000000000
+      internalID: 9189833535582379640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_17
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 135
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c88117bc073f40a40800000000000000
+      internalID: 5333655524488583308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_18
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 145
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a499e42333d070470800000000000000
+      internalID: 8360665746775120202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_19
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 135
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c994984f0e305c6e0800000000000000
+      internalID: -1818042609863931492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_20
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 105
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cfeadcbaa15ae320800000000000000
+      internalID: 2587970729632526275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_21
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 81
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a97202e74472fb160800000000000000
+      internalID: 7043391517358040986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_22
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 89
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b06bdc631d6a539a0800000000000000
+      internalID: -6253909090036238837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_23
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 79
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f84b29da170dc7cd0800000000000000
+      internalID: -2558941301591329649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_24
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 7
+        width: 14
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5da8848af9485bcd0800000000000000
+      internalID: -2542980593322784043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_25
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 77
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6fa3ff0c2fbf9210800000000000000
+      internalID: 1342001409946791789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_26
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 69
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41b89d6debb3c4da0800000000000000
+      internalID: -5959322516083602668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_27
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 39
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3acbfcfa865659af0800000000000000
+      internalID: -390294292397048669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_28
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 15
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84292d9a4b97b80f0800000000000000
+      internalID: -1113662665993842104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChainLightning_29
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 3
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6364a069c40713ec0800000000000000
+      internalID: -3588963953800493514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ChainLightning_0: -3469067119388258510
+      ChainLightning_1: 2171777871114399653
+      ChainLightning_10: -2534629928416098036
+      ChainLightning_11: 4704112152807255794
+      ChainLightning_12: 185004093042415389
+      ChainLightning_13: 4071274470596305195
+      ChainLightning_14: 7230608254230457777
+      ChainLightning_15: -5016760175089734889
+      ChainLightning_16: 9189833535582379640
+      ChainLightning_17: 5333655524488583308
+      ChainLightning_18: 8360665746775120202
+      ChainLightning_19: -1818042609863931492
+      ChainLightning_2: 771166376786319095
+      ChainLightning_20: 2587970729632526275
+      ChainLightning_21: 7043391517358040986
+      ChainLightning_22: -6253909090036238837
+      ChainLightning_23: -2558941301591329649
+      ChainLightning_24: -2542980593322784043
+      ChainLightning_25: 1342001409946791789
+      ChainLightning_26: -5959322516083602668
+      ChainLightning_27: -390294292397048669
+      ChainLightning_28: -1113662665993842104
+      ChainLightning_29: -3588963953800493514
+      ChainLightning_3: -5277820843285985391
+      ChainLightning_4: 2099869453310149314
+      ChainLightning_5: 1439682325841475727
+      ChainLightning_6: -1534557464058762531
+      ChainLightning_7: 307107527980717095
+      ChainLightning_8: 399614621054276043
+      ChainLightning_9: 6593395008533703225
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
