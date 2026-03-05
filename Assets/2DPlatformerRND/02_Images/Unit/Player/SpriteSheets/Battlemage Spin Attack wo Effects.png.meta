@@ -1,0 +1,416 @@
+fileFormatVersion: 2
+guid: 716b056ee638f714bbe3faecff4cbfc1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6645064196856927140
+    second: Battlemage Spin Attack wo Effects_0
+  - first:
+      213: 3490089357726733106
+    second: Battlemage Spin Attack wo Effects_1
+  - first:
+      213: 5786264194574390758
+    second: Battlemage Spin Attack wo Effects_2
+  - first:
+      213: 6589631437140884139
+    second: Battlemage Spin Attack wo Effects_3
+  - first:
+      213: -7454594414534016235
+    second: Battlemage Spin Attack wo Effects_4
+  - first:
+      213: 3542617661195280883
+    second: Battlemage Spin Attack wo Effects_5
+  - first:
+      213: 1699845897790548592
+    second: Battlemage Spin Attack wo Effects_6
+  - first:
+      213: -619959322553968315
+    second: Battlemage Spin Attack wo Effects_7
+  - first:
+      213: 2000665860153046625
+    second: Battlemage Spin Attack wo Effects_8
+  - first:
+      213: 1760136143107675011
+    second: Battlemage Spin Attack wo Effects_9
+  - first:
+      213: -3292061551294428671
+    second: Battlemage Spin Attack wo Effects_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Battlemage Spin Attack wo Effects_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 479
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a3d2531ea2083c50800000000000000
+      internalID: 6645064196856927140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battlemage Spin Attack wo Effects_1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 431
+        width: 18
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2335ca197c94f6030800000000000000
+      internalID: 3490089357726733106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battlemage Spin Attack wo Effects_2
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 383
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e51b26c0a0fc4050800000000000000
+      internalID: 5786264194574390758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battlemage Spin Attack wo Effects_3
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 335
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baa7783f0e2137b50800000000000000
+      internalID: 6589631437140884139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battlemage Spin Attack wo Effects_4
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 287
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 513c61940e5fb8890800000000000000
+      internalID: -7454594414534016235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battlemage Spin Attack wo Effects_5
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 239
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f1e1964ef7e92130800000000000000
+      internalID: 3542617661195280883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battlemage Spin Attack wo Effects_6
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 191
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07ae5be76d0179710800000000000000
+      internalID: 1699845897790548592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battlemage Spin Attack wo Effects_7
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 143
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5499af3e7467567f0800000000000000
+      internalID: -619959322553968315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battlemage Spin Attack wo Effects_8
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 95
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1667ca4fffac3cb10800000000000000
+      internalID: 2000665860153046625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battlemage Spin Attack wo Effects_9
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 47
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 383524e1f724d6810800000000000000
+      internalID: 1760136143107675011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battlemage Spin Attack wo Effects_10
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 0
+        width: 17
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10acf50167f3052d0800000000000000
+      internalID: -3292061551294428671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Battlemage Spin Attack wo Effects_0: 6645064196856927140
+      Battlemage Spin Attack wo Effects_1: 3490089357726733106
+      Battlemage Spin Attack wo Effects_10: -3292061551294428671
+      Battlemage Spin Attack wo Effects_2: 5786264194574390758
+      Battlemage Spin Attack wo Effects_3: 6589631437140884139
+      Battlemage Spin Attack wo Effects_4: -7454594414534016235
+      Battlemage Spin Attack wo Effects_5: 3542617661195280883
+      Battlemage Spin Attack wo Effects_6: 1699845897790548592
+      Battlemage Spin Attack wo Effects_7: -619959322553968315
+      Battlemage Spin Attack wo Effects_8: 2000665860153046625
+      Battlemage Spin Attack wo Effects_9: 1760136143107675011
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
