@@ -1,0 +1,988 @@
+fileFormatVersion: 2
+guid: f691515f3e7d3f2458618cacb8be80b0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8210630916228361408
+    second: Sustain Arcane fire_0
+  - first:
+      213: 8547528311211468423
+    second: Sustain Arcane fire_1
+  - first:
+      213: -1557578922450582593
+    second: Sustain Arcane fire_2
+  - first:
+      213: 8450438201655595093
+    second: Sustain Arcane fire_3
+  - first:
+      213: 1630521896992575750
+    second: Sustain Arcane fire_4
+  - first:
+      213: 3823044824109173791
+    second: Sustain Arcane fire_5
+  - first:
+      213: -8057260162763172006
+    second: Sustain Arcane fire_6
+  - first:
+      213: -8474394877552384503
+    second: Sustain Arcane fire_7
+  - first:
+      213: -8625467103579841645
+    second: Sustain Arcane fire_8
+  - first:
+      213: -924407786508683804
+    second: Sustain Arcane fire_9
+  - first:
+      213: -346406918936119092
+    second: Sustain Arcane fire_10
+  - first:
+      213: -1921645159881175521
+    second: Sustain Arcane fire_11
+  - first:
+      213: -6908538486488889984
+    second: Sustain Arcane fire_12
+  - first:
+      213: -1974556633387039196
+    second: Sustain Arcane fire_13
+  - first:
+      213: 3086379752746192314
+    second: Sustain Arcane fire_14
+  - first:
+      213: -8976455909405322456
+    second: Sustain Arcane fire_15
+  - first:
+      213: 9164428403442897402
+    second: Sustain Arcane fire_16
+  - first:
+      213: 4025088894226674502
+    second: Sustain Arcane fire_17
+  - first:
+      213: -5692854024281299695
+    second: Sustain Arcane fire_18
+  - first:
+      213: -6920476343390856991
+    second: Sustain Arcane fire_19
+  - first:
+      213: 8865987770700623963
+    second: Sustain Arcane fire_20
+  - first:
+      213: 1733423947509085079
+    second: Sustain Arcane fire_21
+  - first:
+      213: -8721954650881506069
+    second: Sustain Arcane fire_22
+  - first:
+      213: 5583434696964355558
+    second: Sustain Arcane fire_23
+  - first:
+      213: -8052081197132560427
+    second: Sustain Arcane fire_24
+  - first:
+      213: -4953348587387940384
+    second: Sustain Arcane fire_25
+  - first:
+      213: -6754932537663442596
+    second: Sustain Arcane fire_26
+  - first:
+      213: -4014765025040615744
+    second: Sustain Arcane fire_27
+  - first:
+      213: -8956185174255011590
+    second: Sustain Arcane fire_28
+  - first:
+      213: 7679947716286581352
+    second: Sustain Arcane fire_29
+  - first:
+      213: 6566752150121619398
+    second: Sustain Arcane fire_30
+  - first:
+      213: 9084543018952509055
+    second: Sustain Arcane fire_31
+  - first:
+      213: -8393071809279198912
+    second: Sustain Arcane fire_32
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sustain Arcane fire_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 554
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cca1a7015502f170800000000000000
+      internalID: 8210630916228361408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 483
+        width: 35
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 786aa5956bbee9670800000000000000
+      internalID: 8547528311211468423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 453
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb382b1f83e526ae0800000000000000
+      internalID: -1557578922450582593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 457
+        width: 43
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5509216a5ccf54570800000000000000
+      internalID: 8450438201655595093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_4
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 451
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6011db4c607c0a610800000000000000
+      internalID: 1630521896992575750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 419
+        width: 49
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1c4c6d130f2e0530800000000000000
+      internalID: 3823044824109173791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_6
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 391
+        width: 45
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a575897329cde2090800000000000000
+      internalID: -8057260162763172006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_7
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 384
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 906a91512c6e46a80800000000000000
+      internalID: -8474394877552384503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_8
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 358
+        width: 44
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39b5e457e5f2c4880800000000000000
+      internalID: -8625467103579841645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_9
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 352
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e57b811408db23f0800000000000000
+      internalID: -924407786508683804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_10
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 320
+        width: 48
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc833191eb0513bf0800000000000000
+      internalID: -346406918936119092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_11
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 340
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1e0fec88e1f455e0800000000000000
+      internalID: -1921645159881175521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_12
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 333
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08507bb79d0ff10a0800000000000000
+      internalID: -6908538486488889984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_13
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 288
+        width: 48
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 426031e1437f894e0800000000000000
+      internalID: -1974556633387039196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_14
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 309
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abd0564680605da20800000000000000
+      internalID: 3086379752746192314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_15
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 303
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82390f1e8e83d6380800000000000000
+      internalID: -8976455909405322456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_16
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 256
+        width: 56
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af1d6b4e3179e2f70800000000000000
+      internalID: 9164428403442897402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_17
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 279
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64330c1060dfbd730800000000000000
+      internalID: 4025088894226674502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_18
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 225
+        width: 57
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1156f8c4d6beef0b0800000000000000
+      internalID: -5692854024281299695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_19
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 249
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e891b39e6785ff90800000000000000
+      internalID: -6920476343390856991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_20
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 199
+        width: 58
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b50719747e05a0b70800000000000000
+      internalID: 8865987770700623963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_21
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 193
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7933f6c65eb5e0810800000000000000
+      internalID: 1733423947509085079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_22
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 167
+        width: 45
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be44427b47465f680800000000000000
+      internalID: -8721954650881506069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_23
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 136
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e5b62b46485c7d40800000000000000
+      internalID: 5583434696964355558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_24
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 135
+        width: 24
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d7cf4e10d2414090800000000000000
+      internalID: -8052081197132560427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_25
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 145
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e11f0824bb224bb0800000000000000
+      internalID: -4953348587387940384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_26
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 146
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c51b7da65a8a142a0800000000000000
+      internalID: -6754932537663442596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_27
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 115
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c6bac91b70b848c0800000000000000
+      internalID: -4014765025040615744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_28
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 118
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af8f8e1390d35b380800000000000000
+      internalID: -8956185174255011590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_29
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 40
+        width: 47
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86a85d202c7a49a60800000000000000
+      internalID: 7679947716286581352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_30
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 104
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cf1804d94ac12b50800000000000000
+      internalID: 6566752150121619398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_31
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 83
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f764b676eb7c21e70800000000000000
+      internalID: 9084543018952509055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sustain Arcane fire_32
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 72
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 049719968a1d58b80800000000000000
+      internalID: -8393071809279198912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Sustain Arcane fire_0: 8210630916228361408
+      Sustain Arcane fire_1: 8547528311211468423
+      Sustain Arcane fire_10: -346406918936119092
+      Sustain Arcane fire_11: -1921645159881175521
+      Sustain Arcane fire_12: -6908538486488889984
+      Sustain Arcane fire_13: -1974556633387039196
+      Sustain Arcane fire_14: 3086379752746192314
+      Sustain Arcane fire_15: -8976455909405322456
+      Sustain Arcane fire_16: 9164428403442897402
+      Sustain Arcane fire_17: 4025088894226674502
+      Sustain Arcane fire_18: -5692854024281299695
+      Sustain Arcane fire_19: -6920476343390856991
+      Sustain Arcane fire_2: -1557578922450582593
+      Sustain Arcane fire_20: 8865987770700623963
+      Sustain Arcane fire_21: 1733423947509085079
+      Sustain Arcane fire_22: -8721954650881506069
+      Sustain Arcane fire_23: 5583434696964355558
+      Sustain Arcane fire_24: -8052081197132560427
+      Sustain Arcane fire_25: -4953348587387940384
+      Sustain Arcane fire_26: -6754932537663442596
+      Sustain Arcane fire_27: -4014765025040615744
+      Sustain Arcane fire_28: -8956185174255011590
+      Sustain Arcane fire_29: 7679947716286581352
+      Sustain Arcane fire_3: 8450438201655595093
+      Sustain Arcane fire_30: 6566752150121619398
+      Sustain Arcane fire_31: 9084543018952509055
+      Sustain Arcane fire_32: -8393071809279198912
+      Sustain Arcane fire_4: 1630521896992575750
+      Sustain Arcane fire_5: 3823044824109173791
+      Sustain Arcane fire_6: -8057260162763172006
+      Sustain Arcane fire_7: -8474394877552384503
+      Sustain Arcane fire_8: -8625467103579841645
+      Sustain Arcane fire_9: -924407786508683804
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
