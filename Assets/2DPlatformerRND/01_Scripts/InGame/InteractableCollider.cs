@@ -8,6 +8,7 @@ public class InteractableCollider : MonoBehaviour
     [SerializeField] InteractMask _InteractableWith = InteractMask.Everything;
 
     public InteractMask MyProperty => _MyProperty;
+    public bool LockInteract { get; set; } = false;
 
     public UnityEvent<Collider2D> OnInteractEnter;
     public UnityEvent<Collider2D> OnInteractLeave;
@@ -67,6 +68,9 @@ public class InteractableCollider : MonoBehaviour
 
     private bool IsInteractable(Collider2D other)
     {
+        if (LockInteract)
+            return false;
+
         // 콜라이더 이벤트는 콜라이더가 붙어있는 객체에게만 이벤트가 전달 되도록 하기 위함
         if (gameObject != mCollider.gameObject)
             return false;

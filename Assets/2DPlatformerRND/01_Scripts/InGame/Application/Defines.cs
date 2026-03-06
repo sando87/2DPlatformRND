@@ -43,6 +43,7 @@ namespace PahlBit
     {
         public static readonly int MotionSpeed = Animator.StringToHash("MotionSpeed");
         public static readonly int DoNextCombo = Animator.StringToHash("DoNextCombo");
+        public static readonly int StopLoop = Animator.StringToHash("StopLoop");
         // public static readonly int IsGround = Animator.StringToHash("IsGround");
         // public static readonly int IsMoving = Animator.StringToHash("IsMoving");
     }

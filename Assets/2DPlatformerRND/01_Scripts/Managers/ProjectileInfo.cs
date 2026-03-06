@@ -12,5 +12,6 @@ namespace PahlBit
         public float SplashRange;
         public float Duration;
         public float Interval;
+        public float StartDelay;
     }
 }

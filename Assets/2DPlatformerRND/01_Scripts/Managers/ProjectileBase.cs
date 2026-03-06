@@ -59,6 +59,25 @@ namespace PahlBit
 
         void Start()
         {
+            if (Stats.StartDelay > 0)
+            {
+                enabled = false;
+                this.ExDelayedCoroutine(Stats.StartDelay, StartProjectile);
+            }
+            else if (Stats.StartDelay == 0)
+            {
+                StartProjectile();
+            }
+            else
+            {
+                enabled = false;
+            }
+        }
+
+        public void StartProjectile()
+        {
+            enabled = true;
+
             if (Stats.Duration > 0)
                 EndAfterDuration();
 
@@ -106,6 +125,13 @@ namespace PahlBit
             mBaseObj.Phy.LockGravity = true;
             mBaseObj.Body.LockBody = true;
             OnEnd?.Invoke();
+        }
+
+        public void DestroyNow()
+        {
+            mInteractCollider.LockInteract = true;
+            mHitColliders.Clear();
+            Destroy(gameObject);
         }
 
         void HitEventEveryInterval()
