@@ -32,5 +32,9 @@ namespace PahlBit
         {
             Destroy(gameObject);
         }
+        public void DestroyObj(float delay)
+        {
+            Destroy(gameObject, delay);
+        }
     }
 }
