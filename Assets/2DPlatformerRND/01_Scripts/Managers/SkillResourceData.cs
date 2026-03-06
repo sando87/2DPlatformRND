@@ -21,6 +21,7 @@ namespace PahlBit
         public readonly string SplashRange;
         public readonly string Duration;
         public readonly string Interval;
+        public readonly string StartDelay;
         public readonly string PhyAttack;
         public readonly string FireAttack;
         public readonly string IceAttack;
@@ -37,6 +38,7 @@ namespace PahlBit
         public ParseValue _SplashRange { get; private set; }
         public ParseValue _Duration { get; private set; }
         public ParseValue _Interval { get; private set; }
+        public ParseValue _StartDelay { get; private set; }
         public ParseValue _PhyAttack { get; private set; }
         public ParseValue _FireAttack { get; private set; }
         public ParseValue _IceAttack { get; private set; }
@@ -53,6 +55,7 @@ namespace PahlBit
             _SplashRange = ParseValue.Parse(SplashRange);
             _Duration = ParseValue.Parse(Duration);
             _Interval = ParseValue.Parse(Interval);
+            _StartDelay = ParseValue.Parse(StartDelay);
             _PhyAttack = ParseValue.Parse(PhyAttack);
             _FireAttack = ParseValue.Parse(FireAttack);
             _IceAttack = ParseValue.Parse(IceAttack);

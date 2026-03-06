@@ -41,7 +41,6 @@ public class SkillFireBall : SkillBase
         ProjectileBase proj = ProjectileBase.Create(CirclePrefab, startPos, mBaseObj.transform.rotation, mBaseObj.gameObject.layer);
 
         ApplySkillStatsToProjectile(proj);
-        proj.Stats.StartDelay = -1;
 
         proj.OnHit.AddListener((col) =>
         {

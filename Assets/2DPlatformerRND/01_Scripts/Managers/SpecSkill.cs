@@ -19,6 +19,7 @@ namespace PahlBit
         public float SplashRange => BaseStats.SplashRange * mSpecPlayer.Option.SplashRangeUp;
         public float Duration => BaseStats.Duration * mSpecPlayer.Option.DurationUp;
         public float Interval => BaseStats.Interval;
+        public float StartDelay => BaseStats.StartDelay;
 
         public Percent PhyAttack => BaseStats.PhyAttack + mSpecPlayer.Option.PhyAttack;
         public Percent FireAttack => BaseStats.FireAttack + mSpecPlayer.Option.FireAttack;
@@ -56,6 +57,7 @@ namespace PahlBit
             BaseStats.SplashRange = ResourceData._SplashRange.GetValueByPoint(currentLevelIndex);
             BaseStats.Duration = ResourceData._Duration.GetValueByPoint(currentLevelIndex);
             BaseStats.Interval = ResourceData._Interval.GetValueByPoint(currentLevelIndex);
+            BaseStats.StartDelay = ResourceData._StartDelay.GetValueByPoint(currentLevelIndex);
             BaseStats.PhyAttack = (Percent)ResourceData._PhyAttack.GetValueByPoint(currentLevelIndex);
             BaseStats.FireAttack = (Percent)ResourceData._FireAttack.GetValueByPoint(currentLevelIndex);
             BaseStats.IceAttack = (Percent)ResourceData._IceAttack.GetValueByPoint(currentLevelIndex);
