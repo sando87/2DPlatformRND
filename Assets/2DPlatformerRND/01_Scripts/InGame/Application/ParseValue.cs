@@ -10,6 +10,8 @@ namespace PahlBit
     /// </summary>
     public class ParseValue
     {
+        static readonly char[] StepOperators = { '+', '-' };
+
         public float mBaseMin;
         public float mBaseMax;
         public Ease mEase = Ease.Linear;
@@ -25,7 +27,7 @@ namespace PahlBit
             mEase = _ease;
         }
 
-        // 입력 string 예시: "3~5@InOutQuad+0.2+0.3L"
+        // 입력 string 예시: "3~5@InOutQuad+0.2P+0.3L"
         public static ParseValue Parse(string str)
         {
             float min = 0f, max = 0f, stepByPoint = 0f, stepByLevel = 0f;
@@ -34,40 +36,31 @@ namespace PahlBit
             string work = str;
 
             // -------------------------------
-            // 1) STEP 파싱: "+0.2" or "-0.2"
+            // 1) Step Per Point 파싱: "+0.2P" or "-0.2P"
             // -------------------------------
-            while (true)
+            int pointIdx = work.LastIndexOf('P');
+            if (pointIdx > 0)
             {
-                int plusIdx = work.LastIndexOf('+');
-                if (plusIdx >= 0)
-                {
-                    string stepStr = work.Substring(plusIdx + 1);
-                    if (stepStr.Contains("L"))
-                        stepByLevel = float.Parse(stepStr.Replace("L", "").Trim(), CultureInfo.InvariantCulture);
-                    else
-                        stepByPoint = float.Parse(stepStr, CultureInfo.InvariantCulture);
-
-                    work = work.Substring(0, plusIdx); // 나머지 부분만 유지
-                    continue;
-                }
-                int minusIdx = work.LastIndexOf('-');
-                if (minusIdx >= 0)
-                {
-                    string stepStr = work.Substring(minusIdx + 1);
-                    if (stepStr.Contains("L"))
-                        stepByLevel = -float.Parse(stepStr.Replace("L", "").Trim(), CultureInfo.InvariantCulture);
-                    else
-                        stepByPoint = -float.Parse(stepStr, CultureInfo.InvariantCulture);
-
-                    work = work.Substring(0, minusIdx); // 나머지 부분만 유지
-                    continue;
-                }
-
-                break;
+                int stepIdx = work.LastIndexOfAny(StepOperators);
+                string stepStr = work.Substring(stepIdx, pointIdx - stepIdx);
+                stepByPoint = float.Parse(stepStr, CultureInfo.InvariantCulture);
+                work = work.Substring(0, stepIdx); // 나머지 부분만 유지
             }
 
             // -------------------------------
-            // 2) EASE 파싱: "@InOutQuad"
+            // 2) Step Per Level 파싱: "+0.2L" or "-0.2L"
+            // -------------------------------
+            int levelIdx = work.LastIndexOf('L');
+            if (levelIdx > 0)
+            {
+                int stepIdx = work.LastIndexOfAny(StepOperators);
+                string stepStr = work.Substring(stepIdx, levelIdx - stepIdx);
+                stepByLevel = float.Parse(stepStr, CultureInfo.InvariantCulture);
+                work = work.Substring(0, stepIdx); // 나머지 부분만 유지
+            }
+
+            // -------------------------------
+            // 3) EASE 파싱: "@InOutQuad"
             // -------------------------------
             int atIdx = work.IndexOf('@');
             if (atIdx >= 0)
@@ -80,7 +73,7 @@ namespace PahlBit
             }
 
             // -------------------------------
-            // 3) RANGE / SINGLE VALUE 파싱
+            // 4) RANGE / SINGLE VALUE 파싱
             // -------------------------------
             if (work.Contains("~"))
             {
@@ -88,8 +81,10 @@ namespace PahlBit
                 if (parts.Length != 2)
                     throw new FormatException("잘못된 범위 형식입니다.");
 
-                min = float.Parse(parts[0], CultureInfo.InvariantCulture);
-                max = float.Parse(parts[1], CultureInfo.InvariantCulture);
+                float from = float.Parse(parts[0], CultureInfo.InvariantCulture);
+                float to = float.Parse(parts[1], CultureInfo.InvariantCulture);
+                min = Math.Min(from, to);
+                max = Math.Max(from, to);
             }
             else
             {
