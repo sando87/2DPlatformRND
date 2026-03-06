@@ -146,12 +146,12 @@ TextureImporter:
       name: Battlemage Attack 2_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 335
-        width: 20
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 336
+        width: 56
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: Battlemage Attack 2_1
       rect:
         serializedVersion: 2
-        x: 19
-        y: 287
-        width: 21
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 288
+        width: 56
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -190,12 +190,12 @@ TextureImporter:
       name: Battlemage Attack 2_2
       rect:
         serializedVersion: 2
-        x: 19
-        y: 239
-        width: 37
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 240
+        width: 56
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -212,12 +212,12 @@ TextureImporter:
       name: Battlemage Attack 2_3
       rect:
         serializedVersion: 2
-        x: 2
-        y: 191
-        width: 54
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 192
+        width: 56
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -234,12 +234,12 @@ TextureImporter:
       name: Battlemage Attack 2_4
       rect:
         serializedVersion: 2
-        x: 2
-        y: 143
-        width: 54
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 144
+        width: 56
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -256,12 +256,12 @@ TextureImporter:
       name: Battlemage Attack 2_5
       rect:
         serializedVersion: 2
-        x: 2
-        y: 95
-        width: 42
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 96
+        width: 56
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -278,12 +278,12 @@ TextureImporter:
       name: Battlemage Attack 2_6
       rect:
         serializedVersion: 2
-        x: 6
-        y: 107
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 48
+        width: 56
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -300,12 +300,12 @@ TextureImporter:
       name: Battlemage Attack 2_7
       rect:
         serializedVersion: 2
-        x: 43
-        y: 102
-        width: 13
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 56
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -318,77 +318,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Battlemage Attack 2_8
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 108
-        width: 8
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d2b7e3659d8d91470800000000000000
-      internalID: 8365956210783845165
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Battlemage Attack 2_9
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 47
-        width: 54
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: db226f711c4c06550800000000000000
-      internalID: 6152133424597836477
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Battlemage Attack 2_10
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 0
-        width: 47
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5f170a2a081e99e90800000000000000
-      internalID: -7018330601679719947
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 128f96a4311502b44864d0f06a78f057
     internalID: 0
     vertices: []
     indices: 
@@ -396,19 +330,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":8.0},"gridSpriteSize":{"x":56.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Battlemage Attack 2_0: -3085323876652852587
       Battlemage Attack 2_1: 679727128655655900
-      Battlemage Attack 2_10: -7018330601679719947
       Battlemage Attack 2_2: 5957860767159253503
       Battlemage Attack 2_3: 4847729643366720332
       Battlemage Attack 2_4: -1439180818605691807
       Battlemage Attack 2_5: 336035207316390269
       Battlemage Attack 2_6: -7391754035907598814
       Battlemage Attack 2_7: -6228137762171173218
-      Battlemage Attack 2_8: 8365956210783845165
-      Battlemage Attack 2_9: 6152133424597836477
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

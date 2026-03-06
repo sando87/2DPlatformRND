@@ -9,13 +9,13 @@ using UnityEngine.InputSystem;
 
 public class SkillMeleeCombo : SkillBase
 {
-    [SerializeField] PlayerStateGeneral SkillMotion;
+    [SerializeField] PlayerStateCombo SkillMotion;
     [SerializeField] ProjectileBase MeleePrefab;
 
     public override bool IsCastable()
     {
         // 나중에 추가로 쿨타임이나 스턴같은 경우에 대한 조건 추가
-        return SkillMotion.IsChangable();
+        return SkillMotion.Priority >= mBaseObj.StateMachine.GetCurrentState().Priority;
     }
 
     public override void UpdateSkill()
@@ -24,22 +24,18 @@ public class SkillMeleeCombo : SkillBase
 
         if (mInput.JustPressed(GetCurrentInputType()) && IsCastable())
         {
-            // mBaseObj.StateMachine.ChangeState(SkillMotion, (Action)DoFire);
-
-            AnimEventState animInfo = mBaseObj.AnimHelper.PlayAnim(AnimStateNameHash.MeleeA);
-            this.ExConditionCoroutine(() => animInfo.IsFired, () => LOG.trace());
-
-            // 이방식은 어떤 스킬 하나가 여러 모션이나 State를 가지고 있으면 문제가 될 가능성 크다..ㅠㅠ
-            this.ExConditionCoroutine(() => animInfo.IsEnd, () => OnEndSkill());
+            if (mBaseObj.StateMachine.GetCurrentState() == SkillMotion)
+            {
+                SkillMotion.DoNextCombo();
+            }
+            else
+            {
+                mBaseObj.StateMachine.ChangeState(SkillMotion, (Action<int>)DoFireIndex);
+            }
         }
     }
 
-    void OnEndSkill()
-    {
-
-    }
-
-    public override void DoFire()
+    public void DoFireIndex(int comboIndex)
     {
         base.DoFire();
 

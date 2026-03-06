@@ -65,6 +65,19 @@ namespace PahlBit
             mAnimator.SetTrigger(paramNameHash);
         }
 
+        public float GetParamFloat(int paramNameHash)
+        {
+            return mAnimator.GetFloat(paramNameHash);
+        }
+        public int GetParamInt(int paramNameHash)
+        {
+            return mAnimator.GetInteger(paramNameHash);
+        }
+        public bool GetParamBool(int paramNameHash)
+        {
+            return mAnimator.GetBool(paramNameHash);
+        }
+
         public void CrossFadeToState(string stateName, int layer = 0)
         {
             mAnimator.CrossFade(stateName, 0, layer, 0);
