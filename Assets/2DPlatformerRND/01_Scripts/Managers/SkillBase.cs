@@ -152,5 +152,6 @@ public class SkillBase : MonoBehaviour
         proj.Stats.SplashRange = Spec.SplashRange;
         proj.Stats.Duration = Spec.Duration;
         proj.Stats.Interval = Spec.Interval;
+        proj.Stats.StartDelay = Spec.StartDelay;
     }
 }
