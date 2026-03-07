@@ -84,7 +84,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -150,11 +150,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 65
-        width: 91
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 64
+        width: 96
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -171,12 +171,12 @@ TextureImporter:
       name: LaserStart_1
       rect:
         serializedVersion: 2
-        x: 1
-        y: 51
-        width: 94
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 48
+        width: 96
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -194,11 +194,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 37
-        width: 19
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 32
+        width: 96
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -215,12 +215,12 @@ TextureImporter:
       name: LaserStart_3
       rect:
         serializedVersion: 2
-        x: 25
-        y: 37
-        width: 12
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 16
+        width: 96
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -237,12 +237,12 @@ TextureImporter:
       name: LaserStart_4
       rect:
         serializedVersion: 2
-        x: 37
-        y: 37
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 96
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -255,165 +255,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: LaserStart_5
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 37
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3459d0be7235d00b0800000000000000
-      internalID: -5760856917424630461
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LaserStart_6
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 37
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1fd50002f41d30b00800000000000000
-      internalID: 793708097116855793
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LaserStart_7
-      rect:
-        serializedVersion: 2
-        x: 73
-        y: 37
-        width: 23
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9b9b50e5de6c0afd0800000000000000
-      internalID: -2332645884190934599
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LaserStart_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 5
-        width: 11
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 99f38cfdf5952b190800000000000000
-      internalID: -7948192124044296295
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LaserStart_9
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 5
-        width: 18
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 407020ffd114c3ab0800000000000000
-      internalID: -5027071486964136188
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LaserStart_10
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 5
-        width: 30
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac9fbdabf7d0108c0800000000000000
-      internalID: -4034928948900267574
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LaserStart_11
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 21
-        width: 5
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aa51b50cdd246bde0800000000000000
-      internalID: -1317792320776890966
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0aa9a14e79617104982f651da9f07e2a
     internalID: 0
     vertices: []
     indices: 
@@ -421,20 +267,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":5.0},"gridSpriteSize":{"x":96.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":4,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       LaserStart_0: 3631201192161443062
       LaserStart_1: 2768499947647667029
-      LaserStart_10: -4034928948900267574
-      LaserStart_11: -1317792320776890966
       LaserStart_2: -13959831462694203
       LaserStart_3: 2014201864192681608
       LaserStart_4: 8694666100407319440
-      LaserStart_5: -5760856917424630461
-      LaserStart_6: 793708097116855793
-      LaserStart_7: -2332645884190934599
-      LaserStart_8: -7948192124044296295
-      LaserStart_9: -5027071486964136188
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
