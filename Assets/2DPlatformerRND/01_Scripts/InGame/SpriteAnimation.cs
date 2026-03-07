@@ -28,7 +28,13 @@ public class SpriteAnimation : MonoBehaviour
         if (!_Loop)
         {
             float delay = _Interval * repeatCount;
-            this.ExDelayedCoroutine(delay, () => _OnAnimEnd?.Invoke());
+            this.ExDelayedCoroutine(delay, OnEndAnimation);
         }
+    }
+
+    void OnEndAnimation()
+    {
+        _Renderer.sprite = null;
+        _OnAnimEnd?.Invoke();
     }
 }

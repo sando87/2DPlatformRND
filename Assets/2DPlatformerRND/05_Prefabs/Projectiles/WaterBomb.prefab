@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 165175909195909748}
   - component: {fileID: 4627083357526262411}
   m_Layer: 0
-  m_Name: WaterBall
+  m_Name: WaterBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
