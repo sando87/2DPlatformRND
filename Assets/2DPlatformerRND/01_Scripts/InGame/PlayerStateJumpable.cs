@@ -12,7 +12,7 @@ namespace PahlBit
             if (PlayerInput.JustPressed(PlayerUnitInputType.Jump))
             {
                 if (GetCurrentState().IsStateCancelable)
-                    Base.StateMachine.ChangeState(this, null, true);
+                    Base.StateMachine.TryChangeState(this, null, true);
                 else
                     ChangeStateToThis();
             }
@@ -23,7 +23,7 @@ namespace PahlBit
             base.EnterState(param);
 
             Base.Phy.DoJump(jumpForce);
-            Base.StateMachine.ChangeState<PlayerStateFloating>(null, true);
+            Base.StateMachine.TryChangeState<PlayerStateFloating>(null, true);
         }
 
     }

@@ -21,7 +21,7 @@ namespace PahlBit
         {
             if (PlayerInput.JustPressed(PlayerUnitInputType.SkillSlotB))
             {
-                Base.StateMachine.ChangeState(this);
+                Base.StateMachine.TryChangeState(this);
             }
         }
 
@@ -121,9 +121,9 @@ namespace PahlBit
         void ChangeNextState()
         {
             if (mNextActionInput == PlayerUnitInputType.Jump)
-                Base.StateMachine.ChangeState<PlayerStateJumpable>(null, true);
+                Base.StateMachine.TryChangeState<PlayerStateJumpable>(null, true);
             else if (mNextActionInput == PlayerUnitInputType.Dash)
-                Base.StateMachine.ChangeState<PlayerStateDash>(null, true);
+                Base.StateMachine.TryChangeState<PlayerStateDash>(null, true);
             else
                 DoLeaveCurrentState();
         }

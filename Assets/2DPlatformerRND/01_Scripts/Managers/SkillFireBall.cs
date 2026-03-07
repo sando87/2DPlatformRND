@@ -23,7 +23,7 @@ public class SkillFireBall : SkillBase
 
         if (mInput.JustPressed(GetCurrentInputType()) && IsCastable())
         {
-            mBaseObj.StateMachine.ChangeState(SkillMotion, (Action)DoFire);
+            mBaseObj.StateMachine.TryChangeState(SkillMotion, (Action)DoFire);
         }
     }
 

@@ -79,11 +79,11 @@ namespace PahlBit
 
         protected void ChangeStateToIdle()
         {
-            Base.StateMachine.ChangeStateToIdle(Layer);
+            Base.StateMachine.TryChangeStateToIdle(Layer);
         }
         protected void ChangeStateToThis()
         {
-            Base.StateMachine.ChangeState(this);
+            Base.StateMachine.TryChangeState(this);
         }
         protected void PlayAnim(string stateName)
         {

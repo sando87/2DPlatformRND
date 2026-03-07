@@ -27,18 +27,18 @@ namespace PahlBit
         {
             if (!Base.Ctrl.IsGrounded)
             {
-                Base.StateMachine.ChangeState<PlayerStateFloating>();
+                Base.StateMachine.TryChangeState<PlayerStateFloating>();
             }
             else
             {
                 float moveX = PlayerInput.MoveX;
                 if (moveX.ExIsAlmostZero())
                 {
-                    Base.StateMachine.ChangeState<PlayerStateIdle>();
+                    Base.StateMachine.TryChangeState<PlayerStateIdle>();
                 }
                 else
                 {
-                    Base.StateMachine.ChangeState<PlayerStateWalk>();
+                    Base.StateMachine.TryChangeState<PlayerStateWalk>();
                 }
             }
         }

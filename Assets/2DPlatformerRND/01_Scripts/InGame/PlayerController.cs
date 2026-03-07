@@ -69,16 +69,16 @@ namespace PahlBit
                 float moveX = mPlayerInput.MoveX;
                 if (!moveX.ExIsAlmostZero())
                 {
-                    mFSM.ChangeState(mFsmWalk);
+                    mFSM.TryChangeState(mFsmWalk);
                 }
                 else
                 {
-                    mFSM.ChangeState(mFsmIdle);
+                    mFSM.TryChangeState(mFsmIdle);
                 }
             }
             else
             {
-                mFSM.ChangeState(mFsmFloat);
+                mFSM.TryChangeState(mFsmFloat);
             }
 
         }
@@ -92,7 +92,7 @@ namespace PahlBit
             {
                 // SimulateJumpPoints();
                 mBaseObj.Phy.DoJump(_JumpForce);
-                mFSM.ChangeStateForce(mFsmFloat);
+                mFSM.ForceChangeState(mFsmFloat);
             }
         }
         void DropDown()
@@ -115,7 +115,7 @@ namespace PahlBit
 
             if (mPlayerInput.JustPressed(PlayerUnitInputType.Dash))
             {
-                mFSM.ChangeState<PlayerStateDash>();
+                mFSM.TryChangeState<PlayerStateDash>();
             }
         }
 

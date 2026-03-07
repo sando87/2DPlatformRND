@@ -26,7 +26,7 @@ public class SkillIceBall : SkillBase
         if (mInput.JustPressed(GetCurrentInputType()) && IsCastable())
         {
             mTargets.Clear();
-            mBaseObj.StateMachine.ChangeState(SkillMotion, (Action)DoFire);
+            mBaseObj.StateMachine.TryChangeState(SkillMotion, (Action)DoFire);
         }
     }
 

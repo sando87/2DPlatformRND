@@ -30,7 +30,7 @@ public class SkillMeleeCombo : SkillBase
             }
             else
             {
-                mBaseObj.StateMachine.ChangeState(SkillMotion, (Action<int>)DoFireIndex);
+                mBaseObj.StateMachine.TryChangeState(SkillMotion, (Action<int>)DoFireIndex);
             }
         }
     }

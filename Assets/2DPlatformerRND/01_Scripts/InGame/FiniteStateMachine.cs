@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -60,8 +61,9 @@ namespace PahlBit
             FixedUpdateState();
         }
 
-        public void ChangeState(FiniteStateBase newState, object param = null, bool ignorePriority = false)
+        public void TryChangeState(FiniteStateBase newState, object param = null, bool ignorePriority = false)
         {
+            // 현재 상태와 바꾸려는 상태가 동일하면 전환시키지 않음
             StateMachineLayer currentLayer = mLayers[newState.Layer];
             if (currentLayer.CurrentState == newState)
                 return;
@@ -72,22 +74,19 @@ namespace PahlBit
             //         return;
             // }
 
-            // 상태 전환 로직 구현
-            currentLayer.CurrentState.LeaveState();
-            currentLayer.PreviousState = currentLayer.CurrentState;
-            currentLayer.CurrentState = newState;
-            currentLayer.CurrentState.IsJustEntered = true;
-            currentLayer.CurrentState.EnterState(param);
-
-            if (newState.Layer == 0)
-            {
-                CurrentStateForDebug = newState;
-            }
+            ChangeState(newState, param);
         }
 
-        public void ChangeStateForce(FiniteStateBase newState, object param = null)
+        public void ForceChangeState(FiniteStateBase newState, object param = null)
         {
             // 강제로 상태 전환 로직 구현
+            ChangeState(newState, param);
+        }
+
+
+        private void ChangeState(FiniteStateBase newState, object param = null)
+        {
+            // 상태 전환 로직 구현
             StateMachineLayer currentLayer = mLayers[newState.Layer];
             currentLayer.CurrentState.LeaveState();
             currentLayer.PreviousState = currentLayer.CurrentState;
@@ -101,27 +100,27 @@ namespace PahlBit
             }
         }
 
-        public void ChangeState<T>(object param = null, bool ignorePriority = false) where T : FiniteStateBase
+        public void TryChangeState<T>(object param = null, bool ignorePriority = false) where T : FiniteStateBase
         {
             FiniteStateBase state = FindState<T>();
             if (state != null)
             {
-                ChangeState(state, param, ignorePriority);
+                TryChangeState(state, param, ignorePriority);
             }
         }
-        public void ChangeStateForce<T>(object param = null) where T : FiniteStateBase
+        public void ForceChangeState<T>(object param = null) where T : FiniteStateBase
         {
             FiniteStateBase state = FindState<T>();
             if (state != null)
             {
-                ChangeStateForce(state, param);
+                ForceChangeState(state, param);
             }
         }
 
-        public void ChangeStateToIdle(int layerIndex)
+        public void TryChangeStateToIdle(int layerIndex)
         {
             StateMachineLayer currentLayer = mLayers[layerIndex];
-            ChangeState(currentLayer.IdleState, null, true);
+            TryChangeState(currentLayer.IdleState, null, true);
         }
 
         public T FindState<T>() where T : FiniteStateBase

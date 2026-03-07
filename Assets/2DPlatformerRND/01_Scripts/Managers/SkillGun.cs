@@ -25,7 +25,7 @@ public class SkillGun : SkillBase
 
         if (mInput.IsPressing(GetCurrentInputType()) && IsCastable())
         {
-            mBaseObj.StateMachine.ChangeState(SkillMotion, (Action)DoFire);
+            mBaseObj.StateMachine.TryChangeState(SkillMotion, (Action)DoFire);
         }
     }
 

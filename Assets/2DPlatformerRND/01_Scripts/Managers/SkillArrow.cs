@@ -31,7 +31,7 @@ public class SkillArrow : SkillBase
         {
             UpdateSpec();
             mBaseObj.AnimHelper.SetParamFloat(AnimatorParams.MotionSpeed, mMotionSpeed);
-            mBaseObj.StateMachine.ChangeState(SkillMotion, (Action)DoFire);
+            mBaseObj.StateMachine.TryChangeState(SkillMotion, (Action)DoFire);
         }
     }
 
