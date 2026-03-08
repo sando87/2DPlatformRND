@@ -7,10 +7,10 @@ using PahlBit;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SkillFireBall : SkillBase
+public class SkillStoneBall : SkillBase
 {
     [SerializeField] PlayerStateGeneral SkillMotion;
-    [SerializeField] ProjectileBase CirclePrefab;
+    [SerializeField] ProjectileBase ProjPrefab;
 
     public override bool IsCastable()
     {
@@ -38,7 +38,7 @@ public class SkillFireBall : SkillBase
     {
         // 스킬 오브젝트 생성
         Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
-        ProjectileBase proj = ProjectileBase.Create(CirclePrefab, startPos, mBaseObj.transform.rotation, mBaseObj.gameObject.layer);
+        ProjectileBase proj = ProjectileBase.Create(ProjPrefab, startPos, mBaseObj.transform.rotation, mBaseObj.gameObject.layer);
 
         ApplySkillStatsToProjectile(proj);
 

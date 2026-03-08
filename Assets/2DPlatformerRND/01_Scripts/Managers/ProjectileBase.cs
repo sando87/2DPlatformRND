@@ -121,16 +121,19 @@ namespace PahlBit
 
         public void DoEndProjectile()
         {
+            StopAllCoroutines();
             mBaseObj.Phy.Velocity = Vector2.zero;
             mBaseObj.Phy.LockGravity = true;
             mBaseObj.Body.LockBody = true;
+            
             OnEnd?.Invoke();
+            mInteractCollider.LockInteract = true;
+            mHitColliders.Clear();
+            enabled = false;
         }
 
         public void DestroyNow()
         {
-            mInteractCollider.LockInteract = true;
-            mHitColliders.Clear();
             Destroy(gameObject);
         }
 

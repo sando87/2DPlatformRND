@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2727851830516482961}
   - component: {fileID: 6366504930240296974}
-  - component: {fileID: 7214095662242643223}
+  - component: {fileID: 8703203420459543654}
   m_Layer: 0
   m_Name: Renderer
   m_TagString: Untagged
@@ -80,7 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 264609720, guid: b32aeb4306085d7478ea707f0749917a, type: 3}
+  m_Sprite: {fileID: 2664034816732244463, guid: 564a09f36350b2a4199ae730b93ca918,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -91,7 +92,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7214095662242643223
+--- !u!114 &8703203420459543654
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,17 +101,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 4804462100776145455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b5894b9ffbe80d479167748c3171bb5, type: 3}
+  m_Script: {fileID: 11500000, guid: c8e3bf1c5c5523f459667db230333f8f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimation
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimationEx
   _Renderer: {fileID: 6366504930240296974}
-  _Sprites:
-  - {fileID: 264609720, guid: b32aeb4306085d7478ea707f0749917a, type: 3}
-  - {fileID: 1129783380, guid: b32aeb4306085d7478ea707f0749917a, type: 3}
-  - {fileID: -1437463371, guid: b32aeb4306085d7478ea707f0749917a, type: 3}
-  - {fileID: 362591165, guid: b32aeb4306085d7478ea707f0749917a, type: 3}
-  _Loop: 1
+  _SpritesStart: []
+  _SpritesLoop:
+  - {fileID: 2664034816732244463, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: 1279018572601672484, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: -2629452178397611748, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: 988816738255452008, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: -1214280125648815233, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: 3151722276261932013, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  _SpritesEnd:
+  - {fileID: 3748984529419647200, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: -2293581906619314321, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: -6999293549885896216, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: -7049932291587765833, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
   _Interval: 0.05
+  _OnStartLoop:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8023231229581014257
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 8023231229581014257}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -189,7 +200,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &5661865426065303790
 MonoBehaviour:
@@ -238,7 +249,7 @@ GameObject:
   - component: {fileID: 165175909195909748}
   - component: {fileID: 4627083357526262411}
   m_Layer: 0
-  m_Name: FireBall
+  m_Name: StoneBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -331,6 +342,7 @@ MonoBehaviour:
     SplashRange: 0
     Duration: 1
     Interval: 0
+    StartDelay: 0
   OnHit:
     m_PersistentCalls:
       m_Calls: []
@@ -340,23 +352,22 @@ MonoBehaviour:
       - m_Target: {fileID: 1200170532658568389}
         m_TargetAssemblyTypeName: PahlBit.BaseObject, Assembly-CSharp
         m_MethodName: DestroyObj
-        m_Mode: 1
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 2
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5742710665991326275, guid: b4270e669752272468980209b3c703e3,
-          type: 3}
-        m_TargetAssemblyTypeName: PahlBit.Instantiator, Assembly-CSharp
-        m_MethodName: InstantiateVFX
-        m_Mode: 2
+      - m_Target: {fileID: 8703203420459543654}
+        m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
+        m_MethodName: StopAnimation
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 7328068818676922576}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -23,11 +23,19 @@ public class SpriteAnimationEx : MonoBehaviour
     public void StartAnimation()
     {
         StopAllCoroutines();
-        mIndex = 0;
-        this.ExRepeatCoroutine(_Interval, () => _Renderer.sprite = _SpritesStart[mIndex++ % _SpritesStart.Length], _SpritesStart.Length);
 
-        float delay = _Interval * _SpritesStart.Length;
-        this.ExDelayedCoroutine(delay, OnStartLoopAnimation);
+        if (_SpritesStart != null && _SpritesStart.Length > 0)
+        {
+            mIndex = 0;
+            this.ExRepeatCoroutine(_Interval, () => _Renderer.sprite = _SpritesStart[mIndex++ % _SpritesStart.Length], _SpritesStart.Length);
+
+            float delay = _Interval * _SpritesStart.Length;
+            this.ExDelayedCoroutine(delay, OnStartLoopAnimation);
+        }
+        else
+        {
+            OnStartLoopAnimation();
+        }
     }
     void OnStartLoopAnimation()
     {
