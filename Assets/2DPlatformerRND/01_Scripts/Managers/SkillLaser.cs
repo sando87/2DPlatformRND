@@ -21,9 +21,10 @@ public class SkillLaser : SkillBase
         if (mInput.JustPressed(GetCurrentInputType()) && IsCastable())
         {
             mBaseObj.StateMachine.TryChangeState(SkillMotion, (Action)DoFire);
+            DoCastSkill();
             // Create Muzzle Effect
             this.ExConditionCoroutine(() => !mInput.IsPressing(GetCurrentInputType()), OnReleaseSkill);
-            this.ExConditionCoroutine(() => mBaseObj.StateMachine.GetCurrentState() != SkillMotion, OnLeaveStateMotion);
+            this.ExConditionCoroutine(() => !SkillMotion.IsCurrentThisState(), OnLeaveStateMotion);
         }
     }
 
@@ -61,7 +62,10 @@ public class SkillLaser : SkillBase
     {
         base.DoFire();
 
-        DoCastSkill();
+        if (mLaser != null)
+        {
+            mLaser.StartProjectile();
+        }
     }
 
     public void DoCastSkill()

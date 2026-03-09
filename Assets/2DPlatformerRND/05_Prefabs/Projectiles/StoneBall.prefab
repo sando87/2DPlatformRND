@@ -105,7 +105,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimationEx
   _Renderer: {fileID: 6366504930240296974}
-  _SpritesStart: []
+  _SpritesIntro: []
+  _IntervalIntro: 0.1
+  _OnEndIntro:
+    m_PersistentCalls:
+      m_Calls: []
   _SpritesLoop:
   - {fileID: 2664034816732244463, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
   - {fileID: 1279018572601672484, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
@@ -113,13 +117,14 @@ MonoBehaviour:
   - {fileID: 988816738255452008, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
   - {fileID: -1214280125648815233, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
   - {fileID: 3151722276261932013, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
-  _SpritesEnd:
+  _IntervalLoop: 0.1
+  _SpritesOutro:
   - {fileID: 3748984529419647200, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
   - {fileID: -2293581906619314321, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
   - {fileID: -6999293549885896216, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
   - {fileID: -7049932291587765833, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
-  _Interval: 0.05
-  _OnStartLoop:
+  _IntervalOutro: 0.1
+  _OnEndOutro:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8023231229581014257
@@ -343,6 +348,9 @@ MonoBehaviour:
     Duration: 1
     Interval: 0
     StartDelay: 0
+  OnStart:
+    m_PersistentCalls:
+      m_Calls: []
   OnHit:
     m_PersistentCalls:
       m_Calls: []
@@ -363,7 +371,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8703203420459543654}
         m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
-        m_MethodName: StopAnimation
+        m_MethodName: PlayAnimOutro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

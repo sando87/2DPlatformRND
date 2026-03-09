@@ -105,24 +105,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimationEx
   _Renderer: {fileID: 4105147927918969787}
-  _SpritesStart:
+  _SpritesIntro:
+  - {fileID: 8694666100407319440, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
   - {fileID: 2014201864192681608, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
   - {fileID: -13959831462694203, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
   - {fileID: 2768499947647667029, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
   - {fileID: 3631201192161443062, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
+  _IntervalIntro: 0.1
+  _OnEndIntro:
+    m_PersistentCalls:
+      m_Calls: []
   _SpritesLoop:
   - {fileID: 8117616903480516750, guid: ccd3d94e2fb6cac419b17d46d92d465f, type: 3}
   - {fileID: 1162426137529154808, guid: ccd3d94e2fb6cac419b17d46d92d465f, type: 3}
   - {fileID: -9175423953443254631, guid: ccd3d94e2fb6cac419b17d46d92d465f, type: 3}
   - {fileID: -457235523540266988, guid: ccd3d94e2fb6cac419b17d46d92d465f, type: 3}
-  _SpritesEnd:
+  _IntervalLoop: 0.1
+  _SpritesOutro:
   - {fileID: 3631201192161443062, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
   - {fileID: 2768499947647667029, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
   - {fileID: -13959831462694203, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
   - {fileID: 2014201864192681608, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
   - {fileID: 8694666100407319440, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
-  _Interval: 0.05
-  _OnStartLoop:
+  _IntervalOutro: 0.1
+  _OnEndOutro:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &4804462100776145455
@@ -230,23 +236,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimationEx
   _Renderer: {fileID: 6366504930240296974}
-  _SpritesStart:
+  _SpritesIntro:
   - {fileID: 1706812075607033118, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
-  - {fileID: -522276406, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
   - {fileID: 5925863363772142491, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
   - {fileID: -5522930298373800185, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
+  - {fileID: -2851369872648772353, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
+  - {fileID: 5162916409635039504, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
+  _IntervalIntro: 0.1
+  _OnEndIntro:
+    m_PersistentCalls:
+      m_Calls: []
   _SpritesLoop:
   - {fileID: -2851369872648772353, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
   - {fileID: 5162916409635039504, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
   - {fileID: -5094869859196190076, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
   - {fileID: 1392801081742389001, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
-  _SpritesEnd:
+  _IntervalLoop: 0.1
+  _SpritesOutro:
   - {fileID: -522276406, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
   - {fileID: 862000527, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
   - {fileID: 443077733, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
   - {fileID: 256178454, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
-  _Interval: 0.05
-  _OnStartLoop:
+  _IntervalOutro: 0.1
+  _OnEndOutro:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8023231229581014257
@@ -471,6 +483,33 @@ MonoBehaviour:
     Duration: 1
     Interval: 0
     StartDelay: 0
+  OnStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7775819640186766349}
+        m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
+        m_MethodName: PlayAnimLoop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6885250564910948394}
+        m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
+        m_MethodName: PlayAnimLoop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHit:
     m_PersistentCalls:
       m_Calls: []
@@ -491,7 +530,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 7775819640186766349}
         m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
-        m_MethodName: StopAnimation
+        m_MethodName: PlayAnimOutro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -503,7 +542,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 6885250564910948394}
         m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
-        m_MethodName: StopAnimation
+        m_MethodName: PlayAnimOutro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
