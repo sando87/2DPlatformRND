@@ -36,6 +36,9 @@ public class SpriteAnimationEx : MonoBehaviour
 
     public void PlayAnimIntro()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
         StopAllCoroutines();
 
         mIndex = 0;
@@ -47,6 +50,9 @@ public class SpriteAnimationEx : MonoBehaviour
     }
     public void PlayAnimLoop()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
         StopAllCoroutines();
 
         mIndex = 0;
@@ -56,6 +62,9 @@ public class SpriteAnimationEx : MonoBehaviour
     }
     public void PlayAnimOutro()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
         StopAllCoroutines();
 
         mIndex = 0;
