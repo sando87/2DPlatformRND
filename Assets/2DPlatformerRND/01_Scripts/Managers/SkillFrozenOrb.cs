@@ -2,14 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using NaughtyAttributes;
 using PahlBit;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SkillFireWall : SkillBase
+public class SkillFrozenOrb : SkillBase
 {
     [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase ProjPrefab;
@@ -73,7 +72,6 @@ public class SkillFireWall : SkillBase
                 proj.DoEndProjectile();
             }
         });
-
         return proj;
     }
 

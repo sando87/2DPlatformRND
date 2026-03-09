@@ -17,6 +17,8 @@ namespace PahlBit
         private Action mEventFire;
         private Action<int> mEventFireIdx;
 
+        public int FireIndex { get; private set; } = -1;
+
         public override void EnterState(object param)
         {
             base.EnterState(param);
@@ -37,6 +39,7 @@ namespace PahlBit
 
         void InvokeFireEvent(int fireIndex)
         {
+            FireIndex = fireIndex;
             OnFireIndex?.Invoke(fireIndex);
 
             mEventFire?.Invoke();
@@ -50,6 +53,7 @@ namespace PahlBit
             Base.Ctrl.LockMove = false;
             mEventFire = null;
             mEventFireIdx = null;
+            FireIndex = -1;
         }
     }
 }

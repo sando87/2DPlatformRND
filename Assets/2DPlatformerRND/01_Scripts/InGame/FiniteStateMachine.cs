@@ -61,12 +61,12 @@ namespace PahlBit
             FixedUpdateState();
         }
 
-        public void TryChangeState(FiniteStateBase newState, object param = null, bool ignorePriority = false)
+        public bool TryChangeState(FiniteStateBase newState, object param = null, bool ignorePriority = false)
         {
             // 현재 상태와 바꾸려는 상태가 동일하면 전환시키지 않음
             StateMachineLayer currentLayer = mLayers[newState.Layer];
             if (currentLayer.CurrentState == newState)
-                return;
+                return false;
 
             // if (!ignorePriority)
             // {
@@ -75,6 +75,7 @@ namespace PahlBit
             // }
 
             ChangeState(newState, param);
+            return true;
         }
 
         public void ForceChangeState(FiniteStateBase newState, object param = null)
@@ -100,13 +101,14 @@ namespace PahlBit
             }
         }
 
-        public void TryChangeState<T>(object param = null, bool ignorePriority = false) where T : FiniteStateBase
+        public bool TryChangeState<T>(object param = null, bool ignorePriority = false) where T : FiniteStateBase
         {
             FiniteStateBase state = FindState<T>();
             if (state != null)
             {
-                TryChangeState(state, param, ignorePriority);
+                return TryChangeState(state, param, ignorePriority);
             }
+            return false;
         }
         public void ForceChangeState<T>(object param = null) where T : FiniteStateBase
         {

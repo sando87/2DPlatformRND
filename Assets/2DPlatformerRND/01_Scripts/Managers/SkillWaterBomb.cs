@@ -2,14 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using NaughtyAttributes;
 using PahlBit;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SkillFireWall : SkillBase
+public class SkillWaterBomb : SkillBase
 {
     [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase ProjPrefab;
@@ -46,10 +45,10 @@ public class SkillFireWall : SkillBase
         }
     }
 
-    public ProjectileBase CreateSkillProj()
+    ProjectileBase CreateSkillProj()
     {
         // 스킬 오브젝트 생성
-        Vector2 startPos = mBaseObj.Body.Foot + new Vector2(transform.right.x, 0);
+        Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
         ProjectileBase proj = ProjectileBase.Create(ProjPrefab, startPos, mBaseObj.transform.rotation, mBaseObj.gameObject.layer);
 
         ApplySkillStatsToProjectile(proj);
@@ -73,7 +72,6 @@ public class SkillFireWall : SkillBase
                 proj.DoEndProjectile();
             }
         });
-
         return proj;
     }
 

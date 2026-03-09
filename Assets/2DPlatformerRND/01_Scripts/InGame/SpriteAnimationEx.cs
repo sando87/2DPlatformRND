@@ -1,4 +1,5 @@
 using System.Collections;
+using NaughtyAttributes;
 using PahlBit;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,55 +8,61 @@ using UnityEngine.InputSystem;
 public class SpriteAnimationEx : MonoBehaviour
 {
     [SerializeField] SpriteRenderer _Renderer = null;
-    [SerializeField] Sprite[] _SpritesStart = null;
-    [SerializeField] Sprite[] _SpritesLoop = null;
-    [SerializeField] Sprite[] _SpritesEnd = null;
-    [SerializeField] float _Interval = 0.1f;
-    [SerializeField] UnityEvent _OnStartLoop = null;
+
+    [Foldout("Intro")][SerializeField] Sprite[] _SpritesIntro = null;
+    [Foldout("Intro")][SerializeField] float _IntervalIntro = 0.1f;
+    [Foldout("Intro")][SerializeField] UnityEvent _OnEndIntro = null;
+
+    [Foldout("Loop")][SerializeField] Sprite[] _SpritesLoop = null;
+    [Foldout("Loop")][SerializeField] float _IntervalLoop = 0.1f;
+
+    [Foldout("Outro")][SerializeField] Sprite[] _SpritesOutro = null;
+    [Foldout("Outro")][SerializeField] float _IntervalOutro = 0.1f;
+    [Foldout("Outro")][SerializeField] UnityEvent _OnEndOutro = null;
 
     int mIndex = 0;
 
     void OnEnable()
     {
-        StartAnimation();
+        PlayAnimIntro();
     }
 
-    public void StartAnimation()
+    public void PlayAnimIntro()
     {
         StopAllCoroutines();
 
-        if (_SpritesStart != null && _SpritesStart.Length > 0)
-        {
-            mIndex = 0;
-            this.ExRepeatCoroutine(_Interval, () => _Renderer.sprite = _SpritesStart[mIndex++ % _SpritesStart.Length], _SpritesStart.Length);
-
-            float delay = _Interval * _SpritesStart.Length;
-            this.ExDelayedCoroutine(delay, OnStartLoopAnimation);
-        }
-        else
-        {
-            OnStartLoopAnimation();
-        }
-    }
-    void OnStartLoopAnimation()
-    {
-        _OnStartLoop?.Invoke();
         mIndex = 0;
-        this.ExRepeatCoroutine(_Interval, () => _Renderer.sprite = _SpritesLoop[mIndex++ % _SpritesLoop.Length], -1);
+        this.ExRepeatCoroutine(
+            _IntervalIntro,
+            () => _Renderer.sprite = _SpritesIntro[mIndex++ % _SpritesIntro.Length],
+            _SpritesIntro.Length,
+            () => { _Renderer.sprite = null; _OnEndIntro?.Invoke(); });
+    }
+    public void PlayAnimLoop()
+    {
+        StopAllCoroutines();
+
+        mIndex = 0;
+        this.ExRepeatCoroutine(
+            _IntervalLoop,
+            () => _Renderer.sprite = _SpritesLoop[mIndex++ % _SpritesLoop.Length]);
+    }
+    public void PlayAnimOutro()
+    {
+        StopAllCoroutines();
+
+        mIndex = 0;
+        this.ExRepeatCoroutine(
+            _IntervalOutro,
+            () => _Renderer.sprite = _SpritesOutro[mIndex++ % _SpritesOutro.Length],
+            _SpritesOutro.Length,
+            () => { _Renderer.sprite = null; _OnEndOutro?.Invoke(); });
     }
 
-    public void StopAnimation()
+    public void HideAnimation()
     {
         StopAllCoroutines();
         mIndex = 0;
-        this.ExRepeatCoroutine(_Interval, () => _Renderer.sprite = _SpritesEnd[mIndex++ % _SpritesEnd.Length], _SpritesEnd.Length);
-
-        float delay = _Interval * _SpritesEnd.Length;
-        this.ExDelayedCoroutine(delay, OnEndAnimation);
-    }
-
-    void OnEndAnimation()
-    {
         _Renderer.sprite = null;
     }
 }

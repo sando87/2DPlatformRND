@@ -18,6 +18,7 @@ namespace PahlBit
 
         private Vector2 mStartPos = Vector2.zero;
 
+        public UnityEvent OnStart;
         public UnityEvent<Collider2D> OnHit;
         public UnityEvent OnEnd;
 
@@ -89,6 +90,8 @@ namespace PahlBit
                 Quaternion newRotation = transform.rotation * Quaternion.Euler(0f, 0f, Stats.FireAngle);
                 transform.rotation = newRotation;
             }
+
+            OnStart?.Invoke();
         }
 
         void Update()
@@ -125,7 +128,7 @@ namespace PahlBit
             mBaseObj.Phy.Velocity = Vector2.zero;
             mBaseObj.Phy.LockGravity = true;
             mBaseObj.Body.LockBody = true;
-            
+
             OnEnd?.Invoke();
             mInteractCollider.LockInteract = true;
             mHitColliders.Clear();
