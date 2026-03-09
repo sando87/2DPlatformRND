@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2779684897935270072}
   - component: {fileID: 8905660450350003587}
-  - component: {fileID: 53298132194138961}
+  - component: {fileID: 9100531030638818332}
   m_Layer: 0
-  m_Name: OrbAnim
+  m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4511425243197006813}
@@ -80,8 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5845527952135845097, guid: 3076b6b40b17d3c44bd353ac07f7a599,
-    type: 3}
+  m_Sprite: {fileID: 1222684967, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,7 +91,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &53298132194138961
+--- !u!114 &9100531030638818332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,59 +100,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 410333114021500497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8e3bf1c5c5523f459667db230333f8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b5894b9ffbe80d479167748c3171bb5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimationEx
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimation
   _Renderer: {fileID: 8905660450350003587}
-  _SpritesIntro:
-  - {fileID: -7453035429634878959, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  - {fileID: -9202992554810443407, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  - {fileID: 8989416948545236137, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  - {fileID: 2755057109200409657, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  - {fileID: 5374004329507539183, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  - {fileID: 8725738237670877884, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  - {fileID: -3026276398585773361, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  - {fileID: -7283968150825211104, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  - {fileID: -8863323688141339644, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  - {fileID: -5244422400122415174, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  - {fileID: -3585936262029715421, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  - {fileID: 2654131147353593055, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  - {fileID: -8154235459193267457, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  - {fileID: -5845527952135845097, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
-  _IntervalIntro: 0.05
-  _OnEndIntro:
-    m_PersistentCalls:
-      m_Calls: []
-  _SpritesLoop:
-  - {fileID: -5715890546243879970, guid: feb59a044f960484cbce077cc33a1cd6, type: 3}
-  - {fileID: 2537302168364454827, guid: feb59a044f960484cbce077cc33a1cd6, type: 3}
-  - {fileID: 6580465464144158561, guid: feb59a044f960484cbce077cc33a1cd6, type: 3}
-  - {fileID: -3249859461566245967, guid: feb59a044f960484cbce077cc33a1cd6, type: 3}
-  - {fileID: 5976177391032844857, guid: feb59a044f960484cbce077cc33a1cd6, type: 3}
-  - {fileID: 1711640955236703085, guid: feb59a044f960484cbce077cc33a1cd6, type: 3}
-  - {fileID: 1090443994671195729, guid: feb59a044f960484cbce077cc33a1cd6, type: 3}
-  - {fileID: 3052132979109753534, guid: feb59a044f960484cbce077cc33a1cd6, type: 3}
-  _IntervalLoop: 0.05
-  _SpritesOutro:
-  - {fileID: 4580095208013344602, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: 8191567737669643508, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: -5620660349946750669, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: 4619368894747310713, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: 8655433217120824196, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: -9044517424865007459, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: 4519093241850924568, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: -7639190266329130061, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: -6131804975973305321, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: 8472081860599931286, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: -8257887204189280756, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: 3998080174977311331, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: 1850352619286056093, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: -6861043244798534353, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: 3620483910194519102, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: -1973210254849446663, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  - {fileID: -8892950442388302962, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
-  _IntervalOutro: 0.05
-  _OnEndOutro:
+  _Sprites:
+  - {fileID: 1222684967, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: -1168007549, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: 709323747, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: -1437553945, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: -925809371, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: -1122929997, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: -1810894577, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: 812850787, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: 2042735626, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  - {fileID: 654684279, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  _Loop: 1
+  _Interval: 0.05
+  _OnAnimEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8023231229581014257
@@ -184,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 8023231229581014257}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -234,7 +198,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.5, y: 0.3}
   m_EdgeRadius: 0
 --- !u!114 &5661865426065303790
 MonoBehaviour:
@@ -281,9 +245,9 @@ GameObject:
   - component: {fileID: 1200170532658568389}
   - component: {fileID: 2349651423454617547}
   - component: {fileID: 165175909195909748}
-  - component: {fileID: 5696730104938166540}
+  - component: {fileID: 4627083357526262411}
   m_Layer: 0
-  m_Name: FrozenOrb
+  m_Name: IceShard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +268,6 @@ Transform:
   m_Children:
   - {fileID: 2779684897935270072}
   - {fileID: 7328068818676922576}
-  - {fileID: 886067440087641528}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1200170532658568389
@@ -358,7 +321,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &5696730104938166540
+--- !u!114 &4627083357526262411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -367,32 +330,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8246397898442698589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd2de466222cb8448a56ce377147fa7, type: 3}
+  m_Script: {fileID: 11500000, guid: ed08aaa428101ad4498334da7bc8ad08, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.ProjFrozenOrb
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.ProjectileBase
   <Stats>k__BackingField:
-    MoveSpeed: 0
+    MoveSpeed: 15
     FireAngle: 0
     AttackRange: 0
     SplashRange: 0
-    Duration: 0
+    Duration: 1
     Interval: 0
     StartDelay: 0
   OnStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 53298132194138961}
-        m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
-        m_MethodName: PlayAnimLoop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnHit:
     m_PersistentCalls:
       m_Calls: []
@@ -402,18 +353,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1200170532658568389}
         m_TargetAssemblyTypeName: PahlBit.BaseObject, Assembly-CSharp
         m_MethodName: DestroyObj
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 2
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 53298132194138961}
-        m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
-        m_MethodName: PlayAnimOutro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -423,39 +362,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _IceShard: {fileID: 4627083357526262411, guid: 9672aa2a39d713944ace29e757a27a1f,
-    type: 3}
-  _RotatePivot: {fileID: 886067440087641528}
-  _RotateSpeed: 700
-  _FireInterval: 0.1
---- !u!1 &8403284791062050522
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 886067440087641528}
-  m_Layer: 0
-  m_Name: RoatePivot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &886067440087641528
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8403284791062050522}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4511425243197006813}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+      - m_Target: {fileID: 5742710665991326275, guid: 232517e09a9d48f40959d2a511c7bb73,
+          type: 3}
+        m_TargetAssemblyTypeName: PahlBit.Instantiator, Assembly-CSharp
+        m_MethodName: InstantiateVFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2779684897935270072}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

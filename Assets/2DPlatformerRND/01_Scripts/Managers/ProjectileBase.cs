@@ -12,11 +12,10 @@ namespace PahlBit
         [field: SerializeField]
         public ProjectileInfo Stats { get; set; }
 
-        private BaseObject mBaseObj = null;
-        private InteractableCollider mInteractCollider = null;
-        private Dictionary<Collider2D, float> mHitColliders = new Dictionary<Collider2D, float>();
-
-        private Vector2 mStartPos = Vector2.zero;
+        protected BaseObject mBaseObj = null;
+        protected InteractableCollider mInteractCollider = null;
+        protected Dictionary<Collider2D, float> mHitColliders = new Dictionary<Collider2D, float>();
+        protected Vector2 mStartPos = Vector2.zero;
 
         public UnityEvent OnStart;
         public UnityEvent<Collider2D> OnHit;
@@ -38,7 +37,7 @@ namespace PahlBit
             return obj;
         }
 
-        void Awake()
+        protected virtual void Awake()
         {
             mBaseObj = this.ExGetBase();
             mInteractCollider = GetComponentInChildren<InteractableCollider>();
@@ -58,7 +57,7 @@ namespace PahlBit
             });
         }
 
-        void Start()
+        protected virtual void Start()
         {
             if (Stats.StartDelay > 0)
             {
@@ -75,7 +74,7 @@ namespace PahlBit
             }
         }
 
-        public void StartProjectile()
+        public virtual void StartProjectile()
         {
             enabled = true;
 
@@ -94,7 +93,7 @@ namespace PahlBit
             OnStart?.Invoke();
         }
 
-        void Update()
+        protected virtual void Update()
         {
             if (Stats.Interval > 0)
                 HitEventEveryInterval();
@@ -122,7 +121,7 @@ namespace PahlBit
             this.ExDelayedCoroutine(Stats.Duration, DoEndProjectile);
         }
 
-        public void DoEndProjectile()
+        public virtual void DoEndProjectile()
         {
             StopAllCoroutines();
             mBaseObj.Phy.Velocity = Vector2.zero;

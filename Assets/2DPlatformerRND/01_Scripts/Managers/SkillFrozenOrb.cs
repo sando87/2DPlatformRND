@@ -69,7 +69,7 @@ public class SkillFrozenOrb : SkillBase
                 };
                 mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
 
-                proj.DoEndProjectile();
+                // proj.DoEndProjectile();
             }
         });
         return proj;
