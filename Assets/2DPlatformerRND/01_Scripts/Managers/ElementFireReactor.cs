@@ -1,3 +1,4 @@
+using PahlBit;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,7 +8,7 @@ public class ElementFireReactor : MonoBehaviour, IReactableFire
 
     bool mIsReacted = false;
 
-    void IReactableFire.OnReactFire(ElementAffector affector)
+    void IReactableFire.OnReactFire(ElementFireAffector affector)
     {
         if (!mIsReacted)
         {

@@ -15,6 +15,9 @@ public class SpriteAnimation : MonoBehaviour
 
     void OnEnable()
     {
+        if (_Renderer == null)
+            return;
+
         StartAnimation();
     }
 

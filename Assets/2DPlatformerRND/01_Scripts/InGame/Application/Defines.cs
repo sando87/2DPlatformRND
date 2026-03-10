@@ -71,4 +71,17 @@ namespace PahlBit
         public static readonly int ColorBurn = "ColorBurn".GetHashCode();
         public static readonly int ColorFreez = "ColorFreez".GetHashCode();
     }
+
+    public interface IReactableFire
+    {
+        void OnReactFire(ElementFireAffector affector);
+    }
+    public interface IReactableLaser
+    {
+        Vector2 ReflectPos { get; }
+        Vector2 ReflectDir { get; }
+
+        void OnReactLaserReflection(ProjectileBase affectorLaser);
+    }
+
 }

@@ -24,6 +24,9 @@ public class SpriteAnimationEx : MonoBehaviour
 
     void OnEnable()
     {
+        if (_Renderer == null)
+            return;
+
         if (_SpritesIntro != null && _SpritesIntro.Length > 0)
         {
             PlayAnimIntro();
