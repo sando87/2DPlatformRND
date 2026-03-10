@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace PahlBit
@@ -7,6 +8,15 @@ namespace PahlBit
         public static BaseObject ExGetBase(this MonoBehaviour mono)
         {
             return mono.GetComponentInParent<BaseObject>();
+        }
+        public static T ExGetCompInBase<T>(this MonoBehaviour mono) where T : MonoBehaviour
+        {
+            BaseObject baseObj = mono.GetComponentInParent<BaseObject>();
+            if (baseObj != null)
+            {
+                return baseObj.GetComponentInChildren<T>();
+            }
+            return null;
         }
         public static BaseObject ExGetBase(this Collider2D col)
         {
@@ -28,5 +38,20 @@ namespace PahlBit
             return (float)value / (int.MaxValue - 1); // 0 ~ 1 포함
         }
 
+        public static void ExGetComponentsInChildrenAppend<T>(
+            this Transform t,
+            List<T> results,
+            bool includeInactive = false)
+        {
+            List<T> temp = CustomListTemp<T>.Temp;
+            temp.Clear();
+            t.GetComponentsInChildren(includeInactive, temp);
+            results.AddRange(temp);
+        }
+    }
+
+    public static class CustomListTemp<T>
+    {
+        public static readonly List<T> Temp = new List<T>();
     }
 }

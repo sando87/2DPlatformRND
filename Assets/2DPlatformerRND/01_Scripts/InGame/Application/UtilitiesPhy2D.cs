@@ -8,6 +8,29 @@ namespace PahlBit
         private static Collider2D[] _results = new Collider2D[32];
         private static RaycastHit2D[] _hits = new RaycastHit2D[32];
 
+        public static void OverlapBox<T>(Rect area, int layerMask, List<T> rets)
+        {
+            rets.Clear();
+
+            ContactFilter2D contactFilter = new ContactFilter2D();
+            contactFilter.layerMask = layerMask;
+            contactFilter.useLayerMask = true;
+            contactFilter.useTriggers = true;
+            int ret = Physics2D.OverlapBox(area.center, area.size, 0, contactFilter, _results);
+            if (ret > 0)
+            {
+                for (int i = 0; i < ret; ++i)
+                {
+                    Collider2D col = _results[i];
+                    BaseObject baseObj = col.GetComponentInParent<BaseObject>();
+                    if (baseObj != null)
+                    {
+                        baseObj.transform.ExGetComponentsInChildrenAppend(rets);
+                    }
+                }
+            }
+        }
+
         public static BaseObject[] OverlapCircleAll(Vector2 center, float radius, int layerMask, InteractMask interactMask)
         {
             ContactFilter2D filter2D = new ContactFilter2D();
