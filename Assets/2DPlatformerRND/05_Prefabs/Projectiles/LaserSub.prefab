@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &744549121535107218
 Transform:
   m_ObjectHideFlags: 0
@@ -4945,12 +4945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimationEx
   _Renderer: {fileID: 4105147927918969787}
-  _SpritesIntro:
-  - {fileID: 8694666100407319440, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
-  - {fileID: 2014201864192681608, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
-  - {fileID: -13959831462694203, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
-  - {fileID: 2768499947647667029, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
-  - {fileID: 3631201192161443062, guid: 4e8bfa02a20b8174898781253b66498a, type: 3}
+  _SpritesIntro: []
   _IntervalIntro: 0.1
   _OnEndIntro:
     m_PersistentCalls:
@@ -14776,7 +14771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2727851830516482961
 Transform:
   m_ObjectHideFlags: 0
@@ -24804,7 +24799,7 @@ GameObject:
   - component: {fileID: 165175909195909748}
   - component: {fileID: 8145529192335980096}
   m_Layer: 0
-  m_Name: Laser
+  m_Name: LaserSub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24898,23 +24893,11 @@ MonoBehaviour:
     AttackRange: 0
     SplashRange: 0
     Duration: 0
-    Interval: 0
+    Interval: 0.1
     StartDelay: 0
   OnStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7775819640186766349}
-        m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
-        m_MethodName: PlayAnimLoop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 6885250564910948394}
         m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
         m_MethodName: PlayAnimLoop
@@ -24945,18 +24928,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7775819640186766349}
-        m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
-        m_MethodName: PlayAnimOutro
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 6885250564910948394}
         m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
         m_MethodName: PlayAnimOutro
@@ -24969,17 +24940,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2366497614575074449}
-        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-        m_MethodName: Stop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _ReflectLaser: {fileID: 8145529192335980096, guid: 93cc1f06443994d43a5f5367b3245117,
-    type: 3}
+  _ReflectLaser: {fileID: 8145529192335980096}

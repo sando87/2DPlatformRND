@@ -9,7 +9,6 @@ public class Twinkler : MonoBehaviour
 
     public void StartTwinkle(float duration)
     {
-        LOG.trace();
     }
 
 }
