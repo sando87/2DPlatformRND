@@ -654,6 +654,72 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: WolfHert0
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 40
+        height: 24
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 619ceb86bef2aaa42a9a66e4d2e3ed39
+      internalID: -338572134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfHert1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 40
+        height: 24
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6a232c8a229d8347a0871b5483fb12d
+      internalID: 1646634401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfHert2
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 72
+        width: 40
+        height: 24
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bf617cfa5d210047924eb31e41ee9a4
+      internalID: -2139114369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -679,6 +745,9 @@ TextureImporter:
       WolfDeath3: -7301354884331706780
       WolfDeath4: -2594674251864920846
       WolfDeath5: 7909793306663388568
+      WolfHert0: -338572134
+      WolfHert1: 1646634401
+      WolfHert2: -2139114369
       WolfIdle1: -3112195067975180470
       WolfIdle2: 6257932743403368881
       WolfIdle3: -646909099640243086

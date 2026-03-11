@@ -42,7 +42,7 @@ public class EnemyAI : MonoBehaviour
     {
         mSpec = mBase.EnemyObj.Spec;
 
-        // mBase.Health.OnDamaged.AddListener(ChangeDamagedState);
+        mBase.Health.OnDamaged.AddListener(ChangeDamagedState);
         mBase.Health.OnDied.AddListener(ChangeDeathState);
     }
 
