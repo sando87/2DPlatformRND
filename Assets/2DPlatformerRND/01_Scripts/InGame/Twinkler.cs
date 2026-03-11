@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 
 public class Twinkler : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer _Renderer = null;
+    [SerializeField] SpriteFlashController _SFCtrl = null;
 
-    public void StartTwinkle(float duration)
+    public void StartTwinkle()
     {
+        _SFCtrl.HitFlash();
     }
 
 }

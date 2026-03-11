@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2779684897935270072}
   - component: {fileID: 8905660450350003587}
   - component: {fileID: 53298132194138961}
+  - component: {fileID: 4954103066163298048}
   m_Layer: 0
   m_Name: OrbAnim
   m_TagString: Untagged
@@ -58,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: 93008bc5737c9794b9642e5976a52ba8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -156,6 +157,18 @@ MonoBehaviour:
   _OnEndOutro:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4954103066163298048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410333114021500497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c840ee072397246ae232190b401ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.SpriteFlashController
 --- !u!1 &8023231229581014257
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,7 +483,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7423873840118566152}
   - component: {fileID: 4899301743548095227}
-  - component: {fileID: 2070428785131591904}
   m_Layer: 0
   m_Name: Reflection
   m_TagString: Untagged
@@ -508,10 +520,10 @@ MonoBehaviour:
   _OnReflected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2070428785131591904}
-        m_TargetAssemblyTypeName: Twinkler, Assembly-CSharp
-        m_MethodName: StartTwinkle
-        m_Mode: 4
+      - m_Target: {fileID: 4954103066163298048}
+        m_TargetAssemblyTypeName: PahlBit.SpriteFlashController, Assembly-CSharp
+        m_MethodName: HitFlash
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -520,16 +532,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2070428785131591904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8565731415828678563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29eb56f61781a60458a599c1cfb0e21e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Twinkler
-  _Renderer: {fileID: 0}
