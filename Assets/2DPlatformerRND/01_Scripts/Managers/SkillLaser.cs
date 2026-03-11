@@ -71,7 +71,7 @@ public class SkillLaser : SkillBase
     public void DoCastSkill()
     {
         // 스킬 오브젝트 생성
-        Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
+        Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0.2f);
         mLaser = ProjectileBase.Create(LaserPrefab, startPos, mBaseObj.transform.rotation, mBaseObj.gameObject.layer);
 
         ApplySkillStatsToProjectile(mLaser);

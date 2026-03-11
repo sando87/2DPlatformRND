@@ -25,7 +25,15 @@ namespace PahlBit
         {
             base.StartProjectile();
 
-            _RotatePivot.DORotate(new Vector3(0, 0, _RotateSpeed), 1, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
+            float rotateSpeed = _RotateSpeed;
+            float duration = 1;
+            if (_RotateSpeed < 360)
+            {
+                int count = (int)(360 / _RotateSpeed) + 1;
+                rotateSpeed = _RotateSpeed * count;
+                duration = count;
+            }
+            _RotatePivot.DORotate(new Vector3(0, 0, rotateSpeed), duration, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
 
             this.ExRepeatCoroutine(_FireInterval, DoFireIceShard);
         }

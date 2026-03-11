@@ -134,7 +134,7 @@ MonoBehaviour:
   - {fileID: 1711640955236703085, guid: feb59a044f960484cbce077cc33a1cd6, type: 3}
   - {fileID: 1090443994671195729, guid: feb59a044f960484cbce077cc33a1cd6, type: 3}
   - {fileID: 3052132979109753534, guid: feb59a044f960484cbce077cc33a1cd6, type: 3}
-  _IntervalLoop: 0.05
+  _IntervalLoop: 0.1
   _SpritesOutro:
   - {fileID: 4580095208013344602, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
   - {fileID: 8191567737669643508, guid: 6659319b5e45e274fbdca67cf16d3aec, type: 3}
@@ -312,7 +312,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2779684897935270072}

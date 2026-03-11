@@ -11,6 +11,9 @@ namespace PahlBit
     public class ProjLaser : ProjectileBase
     {
         [SerializeField] ProjLaser _ReflectLaser = null;
+        [SerializeField] SpriteRenderer _LaserLoop = null;
+        [SerializeField] BoxCollider2D _LaserBody = null;
+        [SerializeField] float _StartLength = 12;
 
         public int UpdateIndex { get; private set; } = 0;
         public IReactableLaser ReflectedFrom { get; private set; } = null;
@@ -20,6 +23,12 @@ namespace PahlBit
         List<IReactableLaser> mTempReactors = new List<IReactableLaser>();
         List<IReactableLaser> mRemoveKeys = new List<IReactableLaser>();
         private int mCurrentUpdateIndex = 0;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            SetLaserLength(_StartLength);
+        }
 
         protected override void Update()
         {
@@ -41,9 +50,10 @@ namespace PahlBit
             mReflectionPair.Clear();
         }
 
-        void UpdateReflection(Vector2 pos, Vector2 dir, int updateIndex, IReactableLaser reflectedFrom)
+        void UpdateReflection(Vector2 pos, Vector2 dir, float length, int updateIndex, IReactableLaser reflectedFrom)
         {
-            mBaseObj.transform.position = pos;
+            SetLaserLength(length);
+            mBaseObj.transform.ExSetWorldPositionXY(pos);
             mBaseObj.transform.right = dir;
             UpdateIndex = updateIndex;
             ReflectedFrom = reflectedFrom;
@@ -62,15 +72,18 @@ namespace PahlBit
                 Vector2 pos = laserRector.ReflectPos;
                 Vector2 dir = laserRector.ReflectDir;
 
+                float newLength = (mBaseObj.transform.position.ExToVector2() - pos).magnitude;
+                SetLaserLength(newLength);
+
                 if (mReflectionPair.ContainsKey(laserRector))
                 {
-                    mReflectionPair[laserRector].UpdateReflection(pos, dir, mCurrentUpdateIndex, laserRector);
+                    mReflectionPair[laserRector].UpdateReflection(pos, dir, _StartLength - newLength, mCurrentUpdateIndex, laserRector);
                 }
                 else
                 {
                     ProjLaser newLaser = CreateReflectLaser(pos, dir);
                     mReflectionPair[laserRector] = newLaser;
-                    newLaser.UpdateReflection(pos, dir, mCurrentUpdateIndex, laserRector);
+                    newLaser.UpdateReflection(pos, dir, _StartLength - newLength, mCurrentUpdateIndex, laserRector);
                 }
             }
         }
@@ -96,12 +109,27 @@ namespace PahlBit
         public ProjLaser CreateReflectLaser(Vector2 pos, Vector2 dir)
         {
             // 스킬 오브젝트 생성
-            ProjectileBase proj = Create(_ReflectLaser, pos, dir, mBaseObj.gameObject.layer);
+            ProjLaser proj = Create(_ReflectLaser, pos, dir, mBaseObj.gameObject.layer) as ProjLaser;
             proj.OnHit.AddListener((col) =>
             {
                 OnHit?.Invoke(col);
             });
-            return proj as ProjLaser;
+            return proj;
+        }
+
+        public void SetLaserLength(float length)
+        {
+            Vector2 imgSize = _LaserLoop.size;
+            imgSize.x = length - 0.3f; // 0.3f를 살짝 빼줘야 비쥬얼적으로 더 자연스럽게 보임.
+            _LaserLoop.size = imgSize;
+
+            Vector2 colSize = _LaserBody.size;
+            colSize.x = length;
+            _LaserBody.size = colSize;
+
+            Vector3 pos = _LaserBody.transform.localPosition;
+            pos.x = length * 0.5f;
+            _LaserBody.transform.localPosition = pos;
         }
     }
 }
