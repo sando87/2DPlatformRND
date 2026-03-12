@@ -57,7 +57,7 @@ public class SkillFireWall : SkillBase
         proj.OnHit.AddListener((col) =>
         {
             // 충돌 시 처리할 내용
-            Health health = col.ExGetBase().GetComponentInChildren<Health>();
+            Health health = col.ExGetCompInBase<Health>();
             if (health != null)
             {
                 DamageInfo damageInfo = Spec.CalcCurrentDamages();
@@ -69,8 +69,6 @@ public class SkillFireWall : SkillBase
                     IsKilled = health.IsDead,
                 };
                 mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
-
-                proj.DoEndProjectile();
             }
         });
 

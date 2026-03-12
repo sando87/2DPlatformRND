@@ -89,7 +89,7 @@ public class SkillArrow : SkillBase
         proj.OnHit.AddListener((col) =>
         {
             // 충돌 시 처리할 내용
-            Health health = col.ExGetBase().GetComponentInChildren<Health>();
+            Health health = col.ExGetCompInBase<Health>();
             if (health != null)
             {
                 health.GetDamaged(mDamageInfo);
@@ -100,9 +100,9 @@ public class SkillArrow : SkillBase
                     IsKilled = health.IsDead,
                 };
                 mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
-
-                proj.DoEndProjectile();
             }
+
+            proj.DoEndProjectile();
         });
     }
 

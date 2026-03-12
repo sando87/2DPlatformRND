@@ -142,11 +142,14 @@ namespace PahlBit
         void HitEventEveryInterval()
         {
             // 현재 Hit된 콜라이더들을 interval마다 OnHit콜백 호출해줌
+            List<Collider2D> tmpList = TemporaryList<Collider2D>.StaticTempList;
+            tmpList.Clear();
+            tmpList.AddRange(mHitColliders.Keys);
+
             double interval = Stats.Interval;
-            foreach (var kvp in mHitColliders)
+            foreach (Collider2D col in tmpList)
             {
-                Collider2D col = kvp.Key;
-                float lastHitTime = kvp.Value;
+                float lastHitTime = mHitColliders[col];
                 if (Time.time - lastHitTime >= interval)
                 {
                     mHitColliders[col] = Time.time;

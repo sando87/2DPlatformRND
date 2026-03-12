@@ -68,8 +68,6 @@ public class SkillFrozenOrb : SkillBase
                     IsKilled = health.IsDead,
                 };
                 mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
-
-                // proj.DoEndProjectile();
             }
         });
         return proj;

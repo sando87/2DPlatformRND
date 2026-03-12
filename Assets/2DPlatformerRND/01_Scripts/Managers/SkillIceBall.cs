@@ -54,7 +54,7 @@ public class SkillIceBall : SkillBase
 
             mTargets.Add(target);
 
-            Health health = col.ExGetBase().GetComponentInChildren<Health>();
+            Health health = col.ExGetCompInBase<Health>();
             if (health != null)
             {
                 DamageInfo damageInfo = Spec.CalcCurrentDamages();
@@ -66,8 +66,6 @@ public class SkillIceBall : SkillBase
                     IsKilled = health.IsDead,
                 };
                 mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
-
-                // obj.DoEndProjectile();
             }
         });
     }
