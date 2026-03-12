@@ -67,6 +67,8 @@ public class SkillIceBall : SkillBase
                 };
                 mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
             }
+
+            proj.DoEndProjectile();
         });
     }
 

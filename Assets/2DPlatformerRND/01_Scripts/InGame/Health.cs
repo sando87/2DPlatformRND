@@ -93,7 +93,7 @@ namespace PahlBit
             float damage = tempRate * 10f;
 
             // 온도에 따른 이펙트 크기 감소 처리
-            mBaseObj.Renderer.SetColor(StringHashes.ColorBurn, Color.red);
+            mBaseObj.Renderer.SetColor(StringHashes.ColorBurn, new Color(0.5f, 0.25f, 0));
             mBaseObj.Renderer.SetBurnRate(tempRate);
 
             DamagedResultInfo damagedResultInfo = new DamagedResultInfo();
