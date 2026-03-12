@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PahlBit;
@@ -514,12 +515,21 @@ public class EnemyAI : MonoBehaviour
 
     BaseObject DetectPlayerAround(float range)
     {
-        Collider2D col = Physics2D.OverlapCircle(mBase.Body.Center, range, 1 << LayerID.Player);
-        if (col != null)
+        List<BaseObject> rets = TemporaryList<BaseObject>.StaticTempList;
+        rets.Clear();
+        UtilitiesPhy2D.OverlapCircleAll(mBase.Body.Center, range, 1 << LayerID.Player, InteractMask.Unit, rets);
+        float minDistSqr = float.PositiveInfinity;
+        BaseObject closestPlayer = null;
+        foreach (BaseObject player in rets)
         {
-            return col.ExGetBase();
+            float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - player.Body.Center);
+            if (distSqr < minDistSqr)
+            {
+                minDistSqr = distSqr;
+                closestPlayer = player;
+            }
         }
-        return null;
+        return closestPlayer;
     }
 
 

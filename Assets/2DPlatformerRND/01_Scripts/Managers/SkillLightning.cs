@@ -92,10 +92,12 @@ public class SkillLightning : SkillBase
         int targetLayerMask = GameSystem.GetAttackableLayerMask(gameObject.layer);
         InteractMask interactMask = InteractMask.Unit;
 
-        BaseObject[] allAroundTargets = UtilitiesPhy2D.OverlapCircleAll(startPos, radius, targetLayerMask, interactMask);
-        if (allAroundTargets != null)
+        List<BaseObject> rets = TemporaryList<BaseObject>.StaticTempList;
+        rets.Clear();
+        int retCount = UtilitiesPhy2D.OverlapCircleAll(startPos, radius, targetLayerMask, interactMask, rets);
+        if (retCount > 0)
         {
-            BaseObject target = FindNextTarget(allAroundTargets, startPos, alreadyHitTargets);
+            BaseObject target = FindNextTarget(rets, startPos, alreadyHitTargets);
             if (target == null)
                 return;
 
@@ -129,7 +131,7 @@ public class SkillLightning : SkillBase
         }
     }
 
-    BaseObject FindNextTarget(BaseObject[] targets, Vector2 cenPos, List<BaseObject> alreadyHitTargets)
+    BaseObject FindNextTarget(List<BaseObject> targets, Vector2 cenPos, List<BaseObject> alreadyHitTargets)
     {
         BaseObject mostCloseTarget = null;
         float minDist = float.PositiveInfinity;

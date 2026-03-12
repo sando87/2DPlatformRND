@@ -31,7 +31,7 @@ namespace PahlBit
             }
         }
 
-        public static BaseObject[] OverlapCircleAll(Vector2 center, float radius, int layerMask, InteractMask interactMask)
+        public static int OverlapCircleAll(Vector2 center, float radius, int layerMask, InteractMask interactMask, List<BaseObject> rets)
         {
             ContactFilter2D filter2D = new ContactFilter2D();
             filter2D.useLayerMask = true;
@@ -40,9 +40,9 @@ namespace PahlBit
 
             int count = Physics2D.OverlapCircle(center, radius, filter2D, _results);
             if (count <= 0)
-                return null;
+                return 0;
 
-            List<BaseObject> rets = new List<BaseObject>();
+            int retCount = 0;
             for (int i = 0; i < count; i++)
             {
                 Collider2D col = _results[i];
@@ -53,11 +53,16 @@ namespace PahlBit
                 InteractMask mask = interactMask & interCol.MyProperty;
                 if (mask != InteractMask.Nothing)
                 {
-                    rets.Add(col.ExGetBase());
+                    BaseObject baseObj = col.ExGetBase();
+                    if (baseObj != null)
+                    {
+                        retCount++;
+                        rets.Add(baseObj);
+                    }
                 }
             }
 
-            return rets.ToArray();
+            return retCount;
         }
 
         public static BaseObject CircleCast(Vector2 center, float radius, Vector2 direction, float distance, int layerMask, InteractMask interactMask)
