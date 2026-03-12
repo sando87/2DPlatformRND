@@ -288,7 +288,7 @@ namespace PahlBit
                 }
             }
             // case 5: 타겟이 내 안에 포함된 있는 경우
-            else if (myRect.xMin < targetRect.xMin && targetRect.xMax < myRect.xMax)
+            else if (myRect.xMin <= targetRect.xMin && targetRect.xMax <= myRect.xMax)
             {
                 if (myRect.center.y < targetRect.center.y)
                 {
@@ -397,7 +397,7 @@ namespace PahlBit
                 }
             }
             // case 6: 타겟안에 내가 포함된 경우
-            else if (targetRect.xMin < myRect.xMin && myRect.xMax < targetRect.xMax)
+            else if (targetRect.xMin <= myRect.xMin && myRect.xMax <= targetRect.xMax)
             {
                 if (myRect.center.y > targetRect.center.y) // 타겟지형이 아래쪽일 경우 좌우로 떨어지는 경우만 처리
                 {
@@ -446,64 +446,6 @@ namespace PahlBit
                             transition.StartNode = MostRightNode;
                             transition.EndNode = endRightNode;
                             transition.TransitionType = NodeTransitionType.WalkAndFall;
-                            transitions.Add(transition);
-                        }
-                    }
-                }
-                else
-                {
-                    if (targetGroup.IsThinPlatform)
-                    {
-                        int myMostLeftNodeWorldPosX = MostLeftNode.Position.x;
-                        NodeNav endLeftNode = targetGroup.GetNodeAtWorldPosX(myMostLeftNodeWorldPosX);
-                        if (endLeftNode != null)
-                        {
-                            NodeTransition transition = new NodeTransition();
-                            transition.StartNode = MostLeftNode;
-                            transition.EndNode = endLeftNode;
-                            transition.TransitionType = NodeTransitionType.JustJumpUp;
-                            transitions.Add(transition);
-                        }
-
-                        int myMostRightNodeWorldPosX = MostRightNode.Position.x;
-                        NodeNav endRightNode = targetGroup.GetNodeAtWorldPosX(myMostRightNodeWorldPosX);
-                        if (endRightNode != null)
-                        {
-                            NodeTransition transition = new NodeTransition();
-                            transition.StartNode = MostRightNode;
-                            transition.EndNode = endRightNode;
-                            transition.TransitionType = NodeTransitionType.JustJumpUp;
-                            transitions.Add(transition);
-                        }
-                    }
-                }
-            }
-            // case 7: 완전히 동일한 경우
-            else if (targetRect.xMin == myRect.xMin && myRect.xMax == targetRect.xMax)
-            {
-                if (myRect.center.y > targetRect.center.y) // 타겟지형이 아래쪽일 경우 좌우로 떨어지는 경우만 처리
-                {
-                    if (IsThinPlatform)
-                    {
-                        int myMostLeftNodeWorldPosX = MostLeftNode.Position.x;
-                        NodeNav endLeftNode = targetGroup.GetNodeAtWorldPosX(myMostLeftNodeWorldPosX);
-                        if (endLeftNode != null)
-                        {
-                            NodeTransition transition = new NodeTransition();
-                            transition.StartNode = MostLeftNode;
-                            transition.EndNode = endLeftNode;
-                            transition.TransitionType = NodeTransitionType.DropDown;
-                            transitions.Add(transition);
-                        }
-
-                        int myMostRightNodeWorldPosX = MostRightNode.Position.x;
-                        NodeNav endRightNode = targetGroup.GetNodeAtWorldPosX(myMostRightNodeWorldPosX);
-                        if (endRightNode != null)
-                        {
-                            NodeTransition transition = new NodeTransition();
-                            transition.StartNode = MostRightNode;
-                            transition.EndNode = endRightNode;
-                            transition.TransitionType = NodeTransitionType.DropDown;
                             transitions.Add(transition);
                         }
                     }
