@@ -94,29 +94,29 @@ public class EnemyAIFlying : EnemyAI
         return EnemyState.Patrol;
     }
 
-    protected override async UniTask<EnemyState> AttackMode(CancellationToken ctx)
-    {
-        try
-        {
-            Vector2 startPos = mBase.Body.Center;
-            Vector2 attackPos = mPlayerTarget.Body.Center;
-            TurnTo(attackPos);
-            Vector2 vel = (attackPos - mBase.Body.Center).normalized * mSpec.MoveSpeed * 3;
-            mBase.Phy.Velocity = vel;
-            await UniTask.WaitUntil(() => mBase.Body.Foot.y <= attackPos.y, cancellationToken: ctx);
-            DoFireAttack();
-            mBase.Phy.Velocity = -vel;
-            await UniTask.WaitUntil(() => mBase.Body.Center.y >= startPos.y, cancellationToken: ctx);
-            mBase.Phy.Velocity = Vector2.zero;
-            OnEndAttack();
-            return EnemyState.Recover;
-        }
-        finally
-        {
-            // EXIT
-            // 공격 후 정리 (히트박스 off 등)
-        }
-    }
+    // protected override async UniTask<EnemyState> AttackMode(CancellationToken ctx)
+    // {
+    //     try
+    //     {
+    //         Vector2 startPos = mBase.Body.Center;
+    //         Vector2 attackPos = mPlayerTarget.Body.Center;
+    //         TurnTo(attackPos);
+    //         Vector2 vel = (attackPos - mBase.Body.Center).normalized * mSpec.MoveSpeed * 3;
+    //         mBase.Phy.Velocity = vel;
+    //         await UniTask.WaitUntil(() => mBase.Body.Foot.y <= attackPos.y, cancellationToken: ctx);
+    //         DoFireAttack();
+    //         mBase.Phy.Velocity = -vel;
+    //         await UniTask.WaitUntil(() => mBase.Body.Center.y >= startPos.y, cancellationToken: ctx);
+    //         mBase.Phy.Velocity = Vector2.zero;
+    //         OnEndAttack();
+    //         return EnemyState.Recover;
+    //     }
+    //     finally
+    //     {
+    //         // EXIT
+    //         // 공격 후 정리 (히트박스 off 등)
+    //     }
+    // }
 
     async UniTask FlyingToDestPosition(Vector2 destPos)
     {

@@ -723,7 +723,7 @@ public class EnemyAI : MonoBehaviour
     {
     }
 
-    protected void DoFireAttack()
+    protected virtual void DoFireAttack()
     {
         // 스킬 오브젝트 생성
         Vector2 startPos = mBase.Body.Center + new Vector2(transform.right.x, 0);
