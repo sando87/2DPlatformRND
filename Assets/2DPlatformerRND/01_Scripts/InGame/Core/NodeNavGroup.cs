@@ -38,11 +38,11 @@ namespace PahlBit
         // 주변 지형의 복잡도에 따라 구현 난이도 상승..
         bool CreateTransitions(NodeNavGroup targetGroup, List<NodeTransition> transitions)
         {
-            Rect targetRect = targetGroup.GetRect();
-            Rect myRect = GetRect();
+            RectInt targetRect = targetGroup.GetRectInt();
+            RectInt myRect = GetRectInt();
 
             // case 1: 타겟이 완전히 왼쪽으로 나가 있는 경우
-            if (targetRect.xMax < myRect.xMin)
+            if (targetRect.xMax <= myRect.xMin)
             {
                 NodeNav startNode = MostLeftNode;
                 NodeNav endNode = targetGroup.MostRightNode;
@@ -90,7 +90,7 @@ namespace PahlBit
                 }
             }
             // case 2: 타겟이 완전히 오른쪽으로 나가 있는 경우
-            else if (myRect.xMax < targetRect.xMin)
+            else if (myRect.xMax <= targetRect.xMin)
             {
                 NodeNav startNode = MostRightNode;
                 NodeNav endNode = targetGroup.MostLeftNode;
@@ -138,7 +138,7 @@ namespace PahlBit
                 }
             }
             // case 3: 타겟이 나의 왼쪽만 겹치는 경우
-            else if (targetRect.xMin <= myRect.xMin && myRect.xMin <= targetRect.xMax && targetRect.xMax < myRect.xMax)
+            else if (targetRect.xMin < myRect.xMin && myRect.xMin < targetRect.xMax && targetRect.xMax <= myRect.xMax)
             {
                 if (targetRect.center.y > myRect.center.y) // 타겟지형이 위쪽일 경우
                 {
@@ -213,7 +213,7 @@ namespace PahlBit
                 }
             }
             // case 4: 타겟이 나의 오른쪽만 겹치는 경우
-            else if (myRect.xMin < targetRect.xMin && targetRect.xMin <= myRect.xMax && myRect.xMax <= targetRect.xMax)
+            else if (myRect.xMin <= targetRect.xMin && targetRect.xMin < myRect.xMax && myRect.xMax < targetRect.xMax)
             {
                 if (targetRect.center.y > myRect.center.y) // 타겟지형이 위쪽일 경우
                 {
@@ -478,6 +478,64 @@ namespace PahlBit
                     }
                 }
             }
+            // case 7: 완전히 동일한 경우
+            else if (targetRect.xMin == myRect.xMin && myRect.xMax == targetRect.xMax)
+            {
+                if (myRect.center.y > targetRect.center.y) // 타겟지형이 아래쪽일 경우 좌우로 떨어지는 경우만 처리
+                {
+                    if (IsThinPlatform)
+                    {
+                        int myMostLeftNodeWorldPosX = MostLeftNode.Position.x;
+                        NodeNav endLeftNode = targetGroup.GetNodeAtWorldPosX(myMostLeftNodeWorldPosX);
+                        if (endLeftNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = MostLeftNode;
+                            transition.EndNode = endLeftNode;
+                            transition.TransitionType = NodeTransitionType.DropDown;
+                            transitions.Add(transition);
+                        }
+
+                        int myMostRightNodeWorldPosX = MostRightNode.Position.x;
+                        NodeNav endRightNode = targetGroup.GetNodeAtWorldPosX(myMostRightNodeWorldPosX);
+                        if (endRightNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = MostRightNode;
+                            transition.EndNode = endRightNode;
+                            transition.TransitionType = NodeTransitionType.DropDown;
+                            transitions.Add(transition);
+                        }
+                    }
+                }
+                else
+                {
+                    if (targetGroup.IsThinPlatform)
+                    {
+                        int myMostLeftNodeWorldPosX = MostLeftNode.Position.x;
+                        NodeNav endLeftNode = targetGroup.GetNodeAtWorldPosX(myMostLeftNodeWorldPosX);
+                        if (endLeftNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = MostLeftNode;
+                            transition.EndNode = endLeftNode;
+                            transition.TransitionType = NodeTransitionType.JustJumpUp;
+                            transitions.Add(transition);
+                        }
+
+                        int myMostRightNodeWorldPosX = MostRightNode.Position.x;
+                        NodeNav endRightNode = targetGroup.GetNodeAtWorldPosX(myMostRightNodeWorldPosX);
+                        if (endRightNode != null)
+                        {
+                            NodeTransition transition = new NodeTransition();
+                            transition.StartNode = MostRightNode;
+                            transition.EndNode = endRightNode;
+                            transition.TransitionType = NodeTransitionType.JustJumpUp;
+                            transitions.Add(transition);
+                        }
+                    }
+                }
+            }
             else
             {
                 LOG.warn("플랫폼 라우팅 초기화 경고 : 예상치 못한 지형 케이스 발생");
@@ -492,6 +550,13 @@ namespace PahlBit
             Rect rect = new Rect();
             rect.min = GroundNodes[0].MinPos;
             rect.max = GroundNodes[GroundNodes.Count - 1].MaxPos;
+            return rect;
+        }
+        public RectInt GetRectInt()
+        {
+            RectInt rect = new RectInt();
+            rect.min = GroundNodes[0].MinPosInt;
+            rect.max = GroundNodes[GroundNodes.Count - 1].MaxPosInt;
             return rect;
         }
 
