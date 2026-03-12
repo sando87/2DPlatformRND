@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b47cc91083f5346bccf431011944b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  MeleePrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
+  MeleePrefab: {fileID: 4627083357526262411, guid: c6313280de354134ba377f2673be0b98,
     type: 3}
   _ThinkInterval: 0.1
 --- !u!114 &8536736938578584811

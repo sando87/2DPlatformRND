@@ -58,10 +58,13 @@ public class SpriteAnimationEx : MonoBehaviour
 
         StopAllCoroutines();
 
-        mIndex = 0;
-        this.ExRepeatCoroutine(
-            _IntervalLoop,
-            () => _Renderer.sprite = _SpritesLoop[mIndex++ % _SpritesLoop.Length]);
+        if (_SpritesLoop != null && _SpritesLoop.Length > 0)
+        {
+            mIndex = 0;
+            this.ExRepeatCoroutine(
+                _IntervalLoop,
+                () => _Renderer.sprite = _SpritesLoop[mIndex++ % _SpritesLoop.Length]);
+        }
     }
     public void PlayAnimOutro()
     {
