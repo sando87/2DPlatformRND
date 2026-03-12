@@ -310,7 +310,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 0.5
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -335,13 +335,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.ProjectileBase
   <Stats>k__BackingField:
-    MoveSpeed: 10
-    FireAngle: 45
+    MoveSpeed: 15
+    FireAngle: 70
     AttackRange: 0
     SplashRange: 0
-    Duration: 1
+    Duration: 5
     Interval: 0
     StartDelay: 0
+    RotateSpeed: 700
+    AimToVelocity: 0
   OnStart:
     m_PersistentCalls:
       m_Calls: []

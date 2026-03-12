@@ -13,5 +13,7 @@ namespace PahlBit
         public float Duration;
         public float Interval;
         public float StartDelay;
+        public float RotateSpeed;
+        public bool AimToVelocity;
     }
 }

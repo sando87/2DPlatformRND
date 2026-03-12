@@ -84,12 +84,6 @@ namespace PahlBit
             if (Stats.MoveSpeed > 0)
                 LaunchProjectile();
 
-            if (Stats.FireAngle != 0)
-            {
-                Quaternion newRotation = transform.rotation * Quaternion.Euler(0f, 0f, Stats.FireAngle);
-                transform.rotation = newRotation;
-            }
-
             OnStart?.Invoke();
         }
 
@@ -100,11 +94,17 @@ namespace PahlBit
 
             if (Stats.AttackRange > 0)
                 EndAfterDistance();
+
+            if (Stats.AimToVelocity)
+                transform.right = mBaseObj.Phy.Velocity.normalized;
+            else if (Stats.RotateSpeed != 0)
+                transform.Rotate(0, 0, Stats.RotateSpeed * Time.deltaTime);
         }
 
         void LaunchProjectile()
         {
-            Vector2 vel = transform.right * Stats.MoveSpeed;
+            Vector2 dir = Quaternion.AngleAxis(Stats.FireAngle, transform.forward) * transform.right;
+            Vector2 vel = dir * Stats.MoveSpeed;
             mBaseObj.Phy.VelocityX = vel.x;
             mBaseObj.Phy.VelocityY = vel.y;
         }
