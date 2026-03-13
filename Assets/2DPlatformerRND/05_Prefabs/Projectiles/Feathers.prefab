@@ -336,7 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.ProjectileBase
   <Stats>k__BackingField:
     MoveSpeed: 10
-    FireAngle: -60
+    FireAngle: 0
     AttackRange: 0
     SplashRange: 0
     Duration: 1

@@ -103,10 +103,20 @@ namespace PahlBit
 
         void LaunchProjectile()
         {
-            Vector2 dir = Quaternion.AngleAxis(Stats.FireAngle, transform.forward) * transform.right;
-            Vector2 vel = dir * Stats.MoveSpeed;
-            mBaseObj.Phy.VelocityX = vel.x;
-            mBaseObj.Phy.VelocityY = vel.y;
+            if (Stats.FireAngle != 0)
+            {
+                Vector2 dir = Quaternion.AngleAxis(Stats.FireAngle, transform.forward) * transform.right;
+                Vector2 vel = dir * Stats.MoveSpeed;
+                mBaseObj.Phy.VelocityX = vel.x;
+                mBaseObj.Phy.VelocityY = vel.y;
+            }
+            else
+            {
+                Vector2 dir = transform.right;
+                Vector2 vel = dir * Stats.MoveSpeed;
+                mBaseObj.Phy.VelocityX = vel.x;
+                mBaseObj.Phy.VelocityY = vel.y;
+            }
         }
         void EndAfterDistance()
         {

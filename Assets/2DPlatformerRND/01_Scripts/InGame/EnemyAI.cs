@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using PahlBit;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
 public class EnemyAI : MonoBehaviour
@@ -31,8 +32,9 @@ public class EnemyAI : MonoBehaviour
 
     protected EnemyState mState = EnemyState.Idle;
 
-    [SerializeField] ProjectileBase MeleePrefab;
+    [SerializeField] float _AttackDegree = 0;
     [SerializeField] float _ThinkInterval = 0.5f;
+    [SerializeField] UnityEvent<BaseObject> OnAttackFire = null;
 
     void Awake()
     {
@@ -297,9 +299,26 @@ public class EnemyAI : MonoBehaviour
     }
     protected bool IsAttackable()
     {
-        return IsTargetInRange(mSpec.AttackRange)
-                && mBase.Phy.IsGrounded
-                && IsSameNodeGroupWithPlayer();
+        if (mPlayerTarget == null || !mBase.Phy.IsGrounded)
+            return false;
+
+        // if (!IsSameNodeGroupWithPlayer())
+        //     return false;
+
+        float range = mSpec.AttackRange;
+        float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - mPlayerTarget.Body.Center);
+        if (distSqr > range * range)
+            return false;
+
+        if (_AttackDegree > 0)
+        {
+            Vector2 dirToPlayer = mPlayerTarget.Body.Center - mBase.Body.Center;
+            float dot = Vector2.Dot(mBase.transform.right, dirToPlayer.normalized);
+            if (dot <= 0 || dot < Mathf.Cos(_AttackDegree * Mathf.Deg2Rad))
+                return false;
+        }
+
+        return true;
     }
     protected async UniTask IsAttackableTarget(CancellationToken ct)
     {
@@ -735,19 +754,7 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual void DoFireAttack()
     {
-        // 스킬 오브젝트 생성
-        Vector2 startPos = mBase.Body.Center + new Vector2(transform.right.x, 0);
-        ProjectileBase obj = ProjectileBase.Create(MeleePrefab, startPos, mBase.transform.rotation, mBase.gameObject.layer);
-        obj.OnHit.AddListener((col) =>
-        {
-            // 충돌 시 처리할 내용
-            Health health = col.ExGetBase().GetComponentInChildren<Health>();
-            if (health != null)
-            {
-                float damage = mSpec.BaseAttack;
-                health.GetDamaged(damage);
-            }
-        });
+        OnAttackFire?.Invoke(mPlayerTarget);
     }
 
 }

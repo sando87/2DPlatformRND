@@ -72,6 +72,8 @@ MonoBehaviour:
   GoldDropPercent: 30
   GoldPrefab: {fileID: 5461417893251240980, guid: 5dd89691a4a14614aba050b3c09ae3bf,
     type: 3}
+  ProjPrefab: {fileID: 4627083357526262411, guid: c6313280de354134ba377f2673be0b98,
+    type: 3}
   _ResourceID: Enemy06
 --- !u!114 &7996635295318006703
 MonoBehaviour:
@@ -124,9 +126,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b47cc91083f5346bccf431011944b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  MeleePrefab: {fileID: 4627083357526262411, guid: c6313280de354134ba377f2673be0b98,
-    type: 3}
+  _AttackDegree: 90
   _ThinkInterval: 0.1
+  OnAttackFire:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 300443737900092221}
+        m_TargetAssemblyTypeName: EnemyBase, Assembly-CSharp
+        m_MethodName: DoAttackShotToPlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8536736938578584811
 MonoBehaviour:
   m_ObjectHideFlags: 0
