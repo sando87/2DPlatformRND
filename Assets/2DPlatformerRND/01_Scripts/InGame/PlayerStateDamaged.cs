@@ -9,11 +9,10 @@ namespace PahlBit
         {
             base.InitState();
 
-            Base.Health.OnDamaged.AddListener((retInfo) =>
-            {
-                if (MyUtils.RandomRate() < 0.2f)
-                    ChangeStateToThis();
-            });
+            // Base.Health.OnDamaged.AddListener((retInfo) =>
+            // {
+            //     ChangeStateToThis();
+            // });
         }
 
         public override void EnterState(object param)
