@@ -11,7 +11,8 @@ namespace PahlBit
 
             Base.Health.OnDamaged.AddListener((retInfo) =>
             {
-                ChangeStateToThis();
+                if (MyUtils.RandomRate() < 0.2f)
+                    ChangeStateToThis();
             });
         }
 

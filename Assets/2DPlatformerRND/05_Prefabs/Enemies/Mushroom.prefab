@@ -73,6 +73,7 @@ MonoBehaviour:
   GoldDropPercent: 30
   GoldPrefab: {fileID: 5461417893251240980, guid: 5dd89691a4a14614aba050b3c09ae3bf,
     type: 3}
+  ProjPrefab: {fileID: 0}
   _ResourceID: Enemy03
 --- !u!114 &7996635295318006703
 MonoBehaviour:
@@ -125,8 +126,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b101ea319eb2a4d898818443e655aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAIMushroom
-  MeleePrefab: {fileID: 0}
+  _AttackDegree: 0
   _ThinkInterval: 0.1
+  OnAttackFire:
+    m_PersistentCalls:
+      m_Calls: []
   AttackArea: {fileID: 3055361945125596269}
 --- !u!114 &8536736938578584811
 MonoBehaviour:
@@ -162,6 +166,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PahlBit.HPBarUI, Assembly-CSharp
         m_MethodName: OnDamaged
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5865851842448341656}
+        m_TargetAssemblyTypeName: PahlBit.SpriteFlashController, Assembly-CSharp
+        m_MethodName: HitFlash
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -276,7 +292,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 346245127
-  m_SortingLayer: -4
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8ffd8bc99d4108d47b6ae4fcf1316fd8, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -639,7 +655,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1991203615
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 7cc882dca353beb44b38ddb447953d7f,
     type: 3}
@@ -731,7 +747,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1991203615
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 7cc882dca353beb44b38ddb447953d7f,
     type: 3}
@@ -759,6 +775,7 @@ GameObject:
   - component: {fileID: 3067460448443611681}
   - component: {fileID: 3460205728032922258}
   - component: {fileID: 5587972109261293361}
+  - component: {fileID: 5865851842448341656}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -807,7 +824,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 93008bc5737c9794b9642e5976a52ba8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -827,7 +844,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 346245127
-  m_SortingLayer: -4
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: 5869428084727078703, guid: 28fda1c58c989354aa82a0c2aaeb67e2,
     type: 3}
@@ -900,6 +917,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc0c27de0288de4a8bc8cb555d055eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.RenderSprite
+--- !u!114 &5865851842448341656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8281876496363671915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c840ee072397246ae232190b401ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.SpriteFlashController
 --- !u!1 &8665637032548324498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,7 +1119,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1991203615
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 7cc882dca353beb44b38ddb447953d7f,
     type: 3}
