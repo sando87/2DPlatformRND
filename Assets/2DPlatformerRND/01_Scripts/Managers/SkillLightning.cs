@@ -13,6 +13,7 @@ public class SkillLightning : SkillBase
     [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase ProjPrefab;
     [SerializeField] float ChainInterval = 0.15f;
+    [SerializeField] int ChainCount = 2;
 
     public UnityEvent<BaseObject> OnHit;
 
@@ -46,7 +47,7 @@ public class SkillLightning : SkillBase
         int targetLayerMask = GameSystem.GetAttackableLayerMask(gameObject.layer);
         InteractMask interactMask = InteractMask.Unit;
 
-        BaseObject target = UtilitiesPhy2D.CircleCast(startPos, 0.5f, dir, Spec.AttackRange, targetLayerMask, interactMask);
+        BaseObject target = UtilitiesPhy2D.CircleCast(startPos, 1.5f, dir, Spec.AttackRange, targetLayerMask, interactMask);
         if (target != null)
         {
             alreadyHitTargets.Add(target);
@@ -74,7 +75,7 @@ public class SkillLightning : SkillBase
 
                 OnHit?.Invoke(target);
 
-                this.ExDelayedCoroutine(ChainInterval, () => DoChainLightning(target.Body.Center, Spec.SplashRange, alreadyHitTargets));
+                this.ExDelayedCoroutine(ChainInterval, () => DoChainLightning(target.Body.Center, Spec.SplashRange, ChainCount, alreadyHitTargets));
             }
         }
         else
@@ -85,8 +86,11 @@ public class SkillLightning : SkillBase
         }
     }
 
-    void DoChainLightning(Vector2 cenPos, float radius, List<BaseObject> alreadyHitTargets)
+    void DoChainLightning(Vector2 cenPos, float radius, int remainChainCount, List<BaseObject> alreadyHitTargets)
     {
+        if (remainChainCount <= 0)
+            return;
+
         Vector2 startPos = cenPos;
         Vector2 dir = mBaseObj.transform.right;
         int targetLayerMask = GameSystem.GetAttackableLayerMask(gameObject.layer);
@@ -126,31 +130,39 @@ public class SkillLightning : SkillBase
 
                 OnHit?.Invoke(target);
 
-                this.ExDelayedCoroutine(ChainInterval, () => DoChainLightning(target.Body.Center, Spec.SplashRange, alreadyHitTargets));
+                this.ExDelayedCoroutine(ChainInterval, () => DoChainLightning(target.Body.Center, Spec.SplashRange, remainChainCount - 1, alreadyHitTargets));
             }
         }
     }
 
     BaseObject FindNextTarget(List<BaseObject> targets, Vector2 cenPos, List<BaseObject> alreadyHitTargets)
     {
-        BaseObject mostCloseTarget = null;
-        float minDist = float.PositiveInfinity;
-        foreach (BaseObject target in targets)
+        // 다음 체인 라이트닝 타겟 찾는 로직
+        // 너무 가까이 있는 적은 스킵
+        // 일정 거리 안에 있는 적들 중 랜덤하게 한명 선택
+        // 일정 거리 안에 타겟이 없으면 그냥 제일 가까웠던 적을 타겟으로 한다
+        int startIndex = MyUtils.RandomInt(0, targets.Count);
+        BaseObject closeTarget = null;
+        for (int i = 0; i < targets.Count; i++)
         {
+            BaseObject target = targets[(startIndex + i) % targets.Count];
             if (alreadyHitTargets.Contains(target))
                 continue;
 
-            if (!target.Health.IsFreezed)
-                continue;
+            // if (!target.Health.IsFreezed)
+            //     continue;
 
-            float dist = (target.Body.Center - cenPos).sqrMagnitude;
-            if (dist < minDist)
+            float dist = (target.Body.Center - cenPos).magnitude;
+            if (dist < 1)
             {
-                minDist = dist;
-                mostCloseTarget = target;
+                closeTarget = target;
+                continue;
             }
+
+            return target;
         }
-        return mostCloseTarget;
+
+        return closeTarget;
     }
 
 

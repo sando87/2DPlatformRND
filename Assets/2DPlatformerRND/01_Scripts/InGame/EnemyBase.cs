@@ -38,11 +38,11 @@ public class EnemyBase : MonoBehaviour
     {
         mBase.Body.LockBody = true;
 
-        if (MyUtils.IsPercentHit((int)Spec.ItemDrop.PercentValue))
-            DropItem();
+        // if (MyUtils.IsPercentHit((int)Spec.ItemDrop.PercentValue))
+        //     DropItem();
 
-        if (MyUtils.IsPercentHit(GoldDropPercent))
-            DropGold();
+        // if (MyUtils.IsPercentHit(GoldDropPercent))
+        //     DropGold();
     }
 
     void DropItem()

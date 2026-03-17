@@ -106,9 +106,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimation
   _Renderer: {fileID: 8905660450350003587}
   _Sprites:
-  - {fileID: -3469067119388258510, guid: cb15f2acfe007414abe00e0543c29b00, type: 3}
-  - {fileID: 2171777871114399653, guid: cb15f2acfe007414abe00e0543c29b00, type: 3}
-  - {fileID: 771166376786319095, guid: cb15f2acfe007414abe00e0543c29b00, type: 3}
   - {fileID: -5277820843285985391, guid: cb15f2acfe007414abe00e0543c29b00, type: 3}
   - {fileID: 2099869453310149314, guid: cb15f2acfe007414abe00e0543c29b00, type: 3}
   - {fileID: 1439682325841475727, guid: cb15f2acfe007414abe00e0543c29b00, type: 3}
@@ -342,6 +339,11 @@ MonoBehaviour:
     Duration: 0
     Interval: 0
     StartDelay: 0
+    RotateSpeed: 0
+    AimToVelocity: 0
+  OnStart:
+    m_PersistentCalls:
+      m_Calls: []
   OnHit:
     m_PersistentCalls:
       m_Calls: []
