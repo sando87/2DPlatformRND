@@ -95,6 +95,7 @@ public class SkillLightning : SkillBase
         Vector2 dir = mBaseObj.transform.right;
         int targetLayerMask = GameSystem.GetAttackableLayerMask(gameObject.layer);
         InteractMask interactMask = InteractMask.Unit;
+        Percent chainDamageReduction = new Percent(remainChainCount == 2 ? 60 : (remainChainCount == 1 ? 30 : 0));
 
         List<BaseObject> rets = TemporaryList<BaseObject>.StaticTempList;
         rets.Clear();
@@ -119,6 +120,7 @@ public class SkillLightning : SkillBase
             if (health != null)
             {
                 DamageInfo damageInfo = Spec.CalcCurrentDamages();
+                damageInfo.LightningDamage *= chainDamageReduction;
                 health.GetDamaged(damageInfo);
 
                 AttackResult result = new AttackResult()
