@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1905390888729911201}
   - component: {fileID: 7213626843471353730}
+  - component: {fileID: 5204335964609401799}
   - component: {fileID: 5742710665991326275}
   - component: {fileID: 5442161278066080803}
-  - component: {fileID: 3064727782219531830}
   m_Layer: 0
-  m_Name: LightningHit
+  m_Name: LaserBeamHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3263653343902223344, guid: 8a89e81e4a763f74598129525fa6b88c,
+  m_Sprite: {fileID: 1392801081742389001, guid: 5104a46420c613a4383f18fbaf83ebb7,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,6 +94,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5204335964609401799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6824774759468540333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5894b9ffbe80d479167748c3171bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimation
+  _Renderer: {fileID: 7213626843471353730}
+  _Sprites:
+  - {fileID: 1392801081742389001, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
+  - {fileID: 443077733, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
+  - {fileID: 256178454, guid: 5104a46420c613a4383f18fbaf83ebb7, type: 3}
+  _Loop: 0
+  _Interval: 0.1
+  _OnAnimEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5742710665991326275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,27 +140,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546666416eef1534fbd584819a4045bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPoolable
---- !u!114 &3064727782219531830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6824774759468540333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b5894b9ffbe80d479167748c3171bb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimation
-  _Renderer: {fileID: 7213626843471353730}
-  _Sprites:
-  - {fileID: -3263653343902223344, guid: 8a89e81e4a763f74598129525fa6b88c, type: 3}
-  - {fileID: 8219282339543974511, guid: 8a89e81e4a763f74598129525fa6b88c, type: 3}
-  - {fileID: 5554414204076018764, guid: 8a89e81e4a763f74598129525fa6b88c, type: 3}
-  - {fileID: -6384987531560189125, guid: 8a89e81e4a763f74598129525fa6b88c, type: 3}
-  - {fileID: 1670040759625267941, guid: 8a89e81e4a763f74598129525fa6b88c, type: 3}
-  _Loop: 0
-  _Interval: 0.05
-  _OnAnimEnd:
-    m_PersistentCalls:
-      m_Calls: []

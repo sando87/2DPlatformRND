@@ -24900,6 +24900,8 @@ MonoBehaviour:
     Duration: 0
     Interval: 0
     StartDelay: 0
+    RotateSpeed: 0
+    AimToVelocity: 0
   OnStart:
     m_PersistentCalls:
       m_Calls:
@@ -24985,4 +24987,4 @@ MonoBehaviour:
     type: 3}
   _LaserLoop: {fileID: 4105147927918969787}
   _LaserBody: {fileID: 2545465253989025082}
-  _StartLength: 12
+  _StartLength: 15

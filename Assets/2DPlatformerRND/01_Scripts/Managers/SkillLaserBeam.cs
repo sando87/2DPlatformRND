@@ -8,10 +8,11 @@ using PahlBit;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SkillFrozenOrb : SkillBase
+public class SkillLaserBeam : SkillBase
 {
-    [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase ProjPrefab;
+    [SerializeField] GameObject BeamMuzzle;
+    [SerializeField] float _FireInterval = 0.1f;
 
     IEnumerator Start()
     {
@@ -19,47 +20,38 @@ public class SkillFrozenOrb : SkillBase
         {
             yield return new WaitUntil(() => mInput.IsPressing(GetCurrentInputType()) && !IsCooltime);
             mBaseObj.AnimHelper.SetParamBool(AnimatorParams.IsAttacking, true);
+            BeamMuzzle.SetActive(true);
 
-            ProjectileBase proj = null;
-            Coroutine delayForFireProj = null;
-            while (mInput.IsPressing(GetCurrentInputType()))
-            {
-                if (!IsCooltime && delayForFireProj == null)
-                {
-                    proj = CreateSkillProj();
-                    proj.transform.SetParent(transform);
-                    delayForFireProj = this.ExDelayedCoroutine(0.4f, () =>
-                    {
-                        StartCooltime();
-                        proj.transform.SetParent(null);
-                        proj.StartProjectile();
-                        proj = null;
-                        delayForFireProj = null;
-                    });
-                }
-                yield return null;
-            }
-
-            if (proj != null)
-                proj.DestroyNow();
+            Coroutine delayForFireProj = this.ExRepeatCoroutine(_FireInterval, () => CreateSkillProj());
+            yield return new WaitUntil(() => !mInput.IsPressing(GetCurrentInputType()));
 
             if (delayForFireProj != null)
                 StopCoroutine(delayForFireProj);
 
+            StartCooltime();
             mBaseObj.AnimHelper.SetParamBool(AnimatorParams.IsAttacking, false);
+            BeamMuzzle.SetActive(false);
         }
     }
 
     public ProjectileBase CreateSkillProj()
     {
         // 스킬 오브젝트 생성
-        Vector2 startPos = mBaseObj.Body.Foot + new Vector2(transform.right.x, 0);
+        Vector2 startPos = BeamMuzzle.transform.position;
+        startPos = MyUtils.Random(startPos, 0.2f);
         ProjectileBase proj = ProjectileBase.Create(ProjPrefab, startPos, mBaseObj.transform.rotation, mBaseObj.gameObject.layer);
 
         ApplySkillStatsToProjectile(proj);
 
         proj.OnHit.AddListener((col) =>
         {
+            InteractableCollider ic = col.ExGetCompInBase<InteractableCollider>();
+            if (ic != null && ic.MyProperty.HasFlag(InteractMask.Terrain))
+            {
+                proj.DoEndProjectile();
+                return;
+            }
+
             // 충돌 시 처리할 내용
             Health health = col.ExGetBase().GetComponentInChildren<Health>();
             if (health != null)
