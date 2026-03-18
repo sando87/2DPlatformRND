@@ -391,6 +391,8 @@ MonoBehaviour:
     Duration: 0
     Interval: 0
     StartDelay: 0
+    RotateSpeed: 0
+    AimToVelocity: 0
   OnStart:
     m_PersistentCalls:
       m_Calls:
@@ -439,8 +441,8 @@ MonoBehaviour:
   _IceShard: {fileID: 4627083357526262411, guid: 9672aa2a39d713944ace29e757a27a1f,
     type: 3}
   _RotatePivot: {fileID: 886067440087641528}
-  _RotateSpeed: 700
-  _FireInterval: 0.1
+  _RotateSpeed: 1100
+  _FireInterval: 0.05
 --- !u!1 &8403284791062050522
 GameObject:
   m_ObjectHideFlags: 0

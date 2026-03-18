@@ -11,8 +11,8 @@ namespace PahlBit
     {
         [SerializeField] ProjectileBase _IceShard = null;
         [SerializeField] Transform _RotatePivot = null;
-        [SerializeField] float _RotateSpeed = 700;
-        [SerializeField] float _FireInterval = 0.2f;
+        [SerializeField] float _RotateSpeed = 1100;
+        [SerializeField] float _FireInterval = 0.05f;
 
         protected override void Awake()
         {
