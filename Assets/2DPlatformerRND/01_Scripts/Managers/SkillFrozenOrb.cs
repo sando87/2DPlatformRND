@@ -13,35 +13,40 @@ public class SkillFrozenOrb : SkillBase
     [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase ProjPrefab;
 
-    public override bool IsCastable()
+    IEnumerator Start()
     {
-        return SkillMotion.IsChangable();
-    }
-
-    public override void UpdateSkill()
-    {
-        base.UpdateSkill();
-
-        if (mInput.JustPressed(GetCurrentInputType()) && IsCastable())
+        while (true)
         {
-            if (mBaseObj.StateMachine.TryChangeState(SkillMotion))
+            yield return new WaitUntil(() => mInput.IsPressing(GetCurrentInputType()) && !IsCooltime);
+            mBaseObj.AnimHelper.SetParamBool(AnimatorParams.IsAttacking, true);
+
+            ProjectileBase proj = null;
+            Coroutine delayForFireProj = null;
+            while (mInput.IsPressing(GetCurrentInputType()))
             {
-                StartCoroutine(CoSkillCastingSeq());
+                if (!IsCooltime && delayForFireProj == null)
+                {
+                    proj = CreateSkillProj();
+                    proj.transform.SetParent(transform);
+                    delayForFireProj = this.ExDelayedCoroutine(0.2f, () =>
+                    {
+                        StartCooltime();
+                        proj.transform.SetParent(null);
+                        proj.StartProjectile();
+                        proj = null;
+                        delayForFireProj = null;
+                    });
+                }
+                yield return null;
             }
-        }
-    }
 
-    IEnumerator CoSkillCastingSeq()
-    {
-        ProjectileBase proj = CreateSkillProj();
-        yield return new WaitUntil(() => !SkillMotion.IsCurrentThisState() || SkillMotion.FireIndex >= 0);
-        if (!SkillMotion.IsCurrentThisState())
-        {
-            proj.DestroyNow();
-        }
-        else
-        {
-            proj.StartProjectile();
+            if (proj != null)
+                proj.DestroyNow();
+
+            if (delayForFireProj != null)
+                StopCoroutine(delayForFireProj);
+
+            mBaseObj.AnimHelper.SetParamBool(AnimatorParams.IsAttacking, false);
         }
     }
 

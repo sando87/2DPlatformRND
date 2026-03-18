@@ -59,13 +59,16 @@ public class SkillBase : MonoBehaviour
     public bool IsLearned => mSkillSaveData != null && mSkillSaveData.IsLearned;
     public int PositionIndex => mSkillSaveData.PositionIndex;
     public int Level => mSkillSaveData.Level;
+    public bool IsCooltime => Time.time - mCooltime < Spec.Cooltime;
 
     protected BaseObject mBaseObj = null;
     protected PlayerUnitInput mInput = null;
 
     private SkillSaveData mSkillSaveData = null;
+    private float mCooltime = 0;
 
     public SpecSkill Spec { get; private set; } = null;
+    protected void StartCooltime() { mCooltime = Time.time; }
 
     void Awake()
     {
