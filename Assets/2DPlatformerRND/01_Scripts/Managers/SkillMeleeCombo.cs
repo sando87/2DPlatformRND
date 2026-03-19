@@ -11,6 +11,7 @@ public class SkillMeleeCombo : SkillBase
 {
     [SerializeField] PlayerStateCombo SkillMotion;
     [SerializeField] ProjectileBase MeleePrefab;
+    [SerializeField] AudioClip[] _Clips = null;
 
     public override bool IsCastable()
     {
@@ -38,6 +39,8 @@ public class SkillMeleeCombo : SkillBase
     public void DoFireIndex(int comboIndex)
     {
         base.DoFire();
+
+        SoundPlayManager.Instance.PlaySFXClip(_Clips[comboIndex % _Clips.Length]);
 
         DoCastSkill();
     }

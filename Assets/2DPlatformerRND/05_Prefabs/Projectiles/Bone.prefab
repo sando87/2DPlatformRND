@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 2349651423454617547}
   - component: {fileID: 165175909195909748}
   - component: {fileID: 4627083357526262411}
+  - component: {fileID: 8300356410167720073}
   m_Layer: 0
   m_Name: Bone
   m_TagString: Untagged
@@ -389,3 +390,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8300356410167720073}
+        m_TargetAssemblyTypeName: SoundFXPlayer, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 66955bb1e9bd6f64382b5a0163e1db45,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8300356410167720073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8246397898442698589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 632bd108bdbc1ce47beac7c344218d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundFXPlayer

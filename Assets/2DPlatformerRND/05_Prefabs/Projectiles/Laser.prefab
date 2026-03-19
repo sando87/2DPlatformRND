@@ -24803,6 +24803,7 @@ GameObject:
   - component: {fileID: 2349651423454617547}
   - component: {fileID: 165175909195909748}
   - component: {fileID: 8145529192335980096}
+  - component: {fileID: 6614073879302190832}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -24929,6 +24930,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6614073879302190832}
+        m_TargetAssemblyTypeName: SoundFXPlayer, Assembly-CSharp
+        m_MethodName: PlaySFXLoop
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: b93f7ea30408ebe4690dfde27107d76a,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHit:
     m_PersistentCalls:
       m_Calls: []
@@ -24983,8 +24997,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6614073879302190832}
+        m_TargetAssemblyTypeName: SoundFXPlayer, Assembly-CSharp
+        m_MethodName: StopSFXLoop
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: b93f7ea30408ebe4690dfde27107d76a,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _ReflectLaser: {fileID: 8145529192335980096, guid: 93cc1f06443994d43a5f5367b3245117,
     type: 3}
   _LaserLoop: {fileID: 4105147927918969787}
   _LaserBody: {fileID: 2545465253989025082}
   _StartLength: 15
+--- !u!114 &6614073879302190832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8246397898442698589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 632bd108bdbc1ce47beac7c344218d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundFXPlayer
+  AutoPlayOnEnabled: 0
+  _Clip: {fileID: 0}

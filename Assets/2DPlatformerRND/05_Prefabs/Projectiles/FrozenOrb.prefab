@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 2349651423454617547}
   - component: {fileID: 165175909195909748}
   - component: {fileID: 5696730104938166540}
+  - component: {fileID: 2802219773839267756}
   m_Layer: 0
   m_Name: FrozenOrb
   m_TagString: Untagged
@@ -402,6 +403,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2802219773839267756}
+        m_TargetAssemblyTypeName: SoundFXPlayer, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: efe1c76ff98243b43a0a3f432ffdb928,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHit:
     m_PersistentCalls:
       m_Calls: []
@@ -437,6 +451,20 @@ MonoBehaviour:
   _RotatePivot: {fileID: 886067440087641528}
   _RotateSpeed: 1100
   _FireInterval: 0.05
+--- !u!114 &2802219773839267756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8246397898442698589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 632bd108bdbc1ce47beac7c344218d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundFXPlayer
+  AutoPlayOnEnabled: 1
+  _Clip: {fileID: 8300000, guid: f7c313d07ce723b43a43cf58391a833f, type: 3}
 --- !u!1 &8403284791062050522
 GameObject:
   m_ObjectHideFlags: 0
