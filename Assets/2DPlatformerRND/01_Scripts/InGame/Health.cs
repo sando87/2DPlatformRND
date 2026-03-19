@@ -223,6 +223,7 @@ namespace PahlBit
 
                 if (IsDead)
                 {
+                    RemoveSlowEffect();
                     OnDied.Invoke();
                 }
             }
@@ -230,6 +231,8 @@ namespace PahlBit
         public void GetDied()
         {
             if (IsDead) return;
+
+            RemoveSlowEffect();
             mCurrentHP = 0;
             OnDied.Invoke();
         }

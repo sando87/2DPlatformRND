@@ -69,7 +69,7 @@ public class EnemyAI : MonoBehaviour
         mStateCTS?.Dispose();
         mStateCTS = CancellationTokenSource.CreateLinkedTokenSource(mAI_CTS.Token);
 
-        mState = EnemyState.Patrol;
+        mState = EnemyState.Idle;
 
         MainLoop(mAI_CTS.Token).Forget();
     }
@@ -146,14 +146,30 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual async UniTask<EnemyState> IdleMode(CancellationToken ctx)
     {
+        Stop();
+        mPlayerTarget = null;
+
         try
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: ctx);
-            return EnemyState.Patrol;
+            mPlayerTarget = await DetectTarget(ctx);
+            if (mPlayerTarget != null)
+            {
+                if (IsAttackable())
+                {
+                    return EnemyState.Attack;
+                }
+                else
+                {
+                    return EnemyState.Chase;
+                }
+            }
         }
         finally
         {
+            // ===== EXIT =====
+            Stop();
         }
+        return EnemyState.Idle;
     }
     protected virtual async UniTask<EnemyState> PatrolMode(CancellationToken ctx)
     {

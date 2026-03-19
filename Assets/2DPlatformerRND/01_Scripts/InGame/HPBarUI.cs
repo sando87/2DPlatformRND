@@ -9,14 +9,23 @@ namespace PahlBit
     {
         [SerializeField] Transform _FillAmountBar = null;
 
+        void Start()
+        {
+            gameObject.SetActive(false);
+        }
+
         public void OnDamaged(DamagedResultInfo resultInfo)
         {
+            gameObject.SetActive(true);
+            this.ExDelayedCoroutine(5, () => gameObject.SetActive(false));
+
             SetHealthBarRate(resultInfo.CurrentHealthRate);
         }
 
         public void OnDied()
         {
             SetHealthBarRate(0);
+            StopAllCoroutines();
             gameObject.SetActive(false);
         }
 
