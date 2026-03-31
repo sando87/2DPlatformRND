@@ -17,6 +17,18 @@ namespace PahlBit
         private PlayerInputActions mInputActions;
         private Dictionary<PlayerUnitInputType, PlayerUnitInputState> mInputStates = new Dictionary<PlayerUnitInputType, PlayerUnitInputState>();
 
+        public bool LockPlayerInput 
+        { 
+            get => mInputActions.Player.enabled; 
+            set 
+            { 
+                if (value) 
+                    mInputActions.Player.Disable(); 
+                else 
+                    mInputActions.Player.Enable(); 
+            } 
+        }
+
         public bool JustPressed(PlayerUnitInputType type)
             => _VirtualInput != null ? _VirtualInput.JustPressed(type) : GetInputAction(type).triggered;
         public bool IsPressing(PlayerUnitInputType type)
