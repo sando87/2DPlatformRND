@@ -23,7 +23,7 @@ namespace PahlBit
         [Dropdown(nameof(ListInvenItems))]
         [OnValueChanged(nameof(SelectInvenItem))]
         public ItemInfo mSelectedInvenItem = null;
-        ItemInfo[] ListInvenItems() { return mInvenItems.Values.ToArray(); }
+        public ItemInfo[] ListInvenItems() { return mInvenItems.Values.ToArray(); }
 
         [SerializeField]
         [ShowIf(nameof(ShowInvenItems))]
@@ -34,7 +34,7 @@ namespace PahlBit
         [Dropdown(nameof(ListEquipItems))]
         [OnValueChanged(nameof(SelectEquipItem))]
         public ItemInfo mSelectEquipItem = null;
-        ItemInfo[] ListEquipItems() { return mEquipItems.Values.ToArray(); }
+        public ItemInfo[] ListEquipItems() { return mEquipItems.Values.ToArray(); }
 
         [SerializeField]
         [ShowIf(nameof(ShowEquipItems))]

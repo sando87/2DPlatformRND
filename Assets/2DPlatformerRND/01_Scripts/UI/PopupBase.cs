@@ -9,6 +9,7 @@ namespace PahlBit
     {
         public UIPartsHandler[] mUIParts;
         public PlayerUnitInput PlayerInput { get; set; }
+        public int CharacterID { get => PlayerInput.ExGetBase().PlayerObj.CharacterID; }
 
         public void UpdateUIParts()
         {
@@ -32,7 +33,7 @@ namespace PahlBit
         {
             if (mUIParts == null || mUIParts.Length == 0)
                 return;
-                
+
             GameObject current = EventSystem.current.currentSelectedGameObject;
             if (current == null)
             {
@@ -72,5 +73,5 @@ namespace PahlBit
         }
     }
 
-    
+
 }

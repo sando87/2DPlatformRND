@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class InGameEngine : MonoBehaviour
 {
     [SerializeField] AudioClip _BGM = null;
-    [SerializeField] PlayerUnitInput _PlayerInput = null;
+    [SerializeField] BaseObject _PlayerUnit = null;
 
     PopupStats mPopupStats;
     PopupInven mPopupInven;
@@ -21,17 +21,21 @@ public class InGameEngine : MonoBehaviour
 
     void Update()
     {
-        if (_PlayerInput.JustPressed(PlayerUnitInputType.ShowPopupStats))
+        if (_PlayerUnit.Input.JustPressed(PlayerUnitInputType.ShowPopupStats))
         {
             mPopupStats = PopupManager.Instance.Toggle<PopupStats>();
             UpdatePlayerInputState();
         }
-        if (_PlayerInput.JustPressed(PlayerUnitInputType.ShowPopupInven))
+        if (_PlayerUnit.Input.JustPressed(PlayerUnitInputType.ShowPopupInven))
         {
             mPopupInven = PopupManager.Instance.Toggle<PopupInven>();
+            if (mPopupInven != null)
+            {
+                mPopupInven.ItemInven = _PlayerUnit.GetComponentInChildren<ItemInventory>();
+            }
             UpdatePlayerInputState();
         }
-        if (_PlayerInput.JustPressed(PlayerUnitInputType.ShowPopupSkill))
+        if (_PlayerUnit.Input.JustPressed(PlayerUnitInputType.ShowPopupSkill))
         {
             mPopupSkill = PopupManager.Instance.Toggle<PopupSkill>();
             UpdatePlayerInputState();
@@ -40,15 +44,15 @@ public class InGameEngine : MonoBehaviour
 
     void UpdatePlayerInputState()
     {
-        _PlayerInput.LockPlayerInput = true;
+        _PlayerUnit.Input.LockPlayerInput = true;
         if (mPopupStats != null)
-            mPopupStats.PlayerInput = _PlayerInput;
+            mPopupStats.PlayerInput = _PlayerUnit.Input;
         else if (mPopupInven != null)
-            mPopupInven.PlayerInput = _PlayerInput;
+            mPopupInven.PlayerInput = _PlayerUnit.Input;
         else if (mPopupSkill != null)
-            mPopupSkill.PlayerInput = _PlayerInput;
+            mPopupSkill.PlayerInput = _PlayerUnit.Input;
         else
-            _PlayerInput.LockPlayerInput = false;
+            _PlayerUnit.Input.LockPlayerInput = false;
     }
 
 }

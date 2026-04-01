@@ -13,7 +13,6 @@ namespace PahlBit
         public readonly string ItemID;
         public readonly string DisplayName;
         public readonly string Desc;
-        public readonly string PrefabName;
 
         public readonly string HealthUp;
         public readonly string HealthRegen;
@@ -47,6 +46,8 @@ namespace PahlBit
         public int RowIndex { get; set; } // 데이터데이블상에 존재하는 순서
         public long ID { get { return ICSVFormat.ToID(ItemID); } } // 데이터 접근을 위한 id값
 
+        public ItemAssetData AssetData { get; private set; }
+
         public ParseValue _HealthUp { get; private set; }
         public ParseValue _HealthRegen { get; private set; }
         public ParseValue _ManaUp { get; private set; }
@@ -76,6 +77,8 @@ namespace PahlBit
 
         void ICSVFormat.OnLoad()
         {
+            AssetData = Resources.Load<ItemAssetData>("ScriptableObjects/" + ItemID);
+
             _HealthUp = ParseValue.Parse(HealthUp);
             _HealthRegen = ParseValue.Parse(HealthRegen);
             _ManaUp = ParseValue.Parse(ManaUp);
