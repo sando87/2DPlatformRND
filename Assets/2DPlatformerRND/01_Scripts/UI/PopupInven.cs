@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ namespace PahlBit
     {
         [SerializeField] Transform EquipSlotRoot;
         [SerializeField] Transform InvenSlotRoot;
+        [SerializeField] Transform OptionContentRoot;
+        [SerializeField] UIPartsFieldRow FieldRow;
 
         public ItemInventory ItemInven { get; set; }
 
@@ -62,6 +65,12 @@ namespace PahlBit
                 ItemInfo itemInfo = equipItems[i];
                 itemSlot.SetItemInfo(itemInfo);
             }
+        }
+
+        void InitOptionField()
+        {
+            // List<FieldData> fields = ReflectionFieldExtractor.GetFields(ItemInven.TotalItemOption);
+
         }
 
         void OnSelectSlot(UIPartsItemSlot slot, bool isEquipSlot)
