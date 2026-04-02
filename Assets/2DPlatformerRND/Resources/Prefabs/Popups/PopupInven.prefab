@@ -61,6 +61,9 @@ MonoBehaviour:
   mUIParts: []
   EquipSlotRoot: {fileID: 4507524439924183542}
   InvenSlotRoot: {fileID: 8072295643941841161}
+  OptionContentRoot: {fileID: 3113503647938775844}
+  FieldRow: {fileID: 6517435839170586758, guid: 0f8d3e8b50d122440b6a5bfcbd7ac24b,
+    type: 3}
 --- !u!1 &618550339734343696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,6 +1717,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FieldRow
       objectReference: {fileID: 0}
+    - target: {fileID: 3732954546727594544, guid: 0f8d3e8b50d122440b6a5bfcbd7ac24b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5236581702888648883, guid: 0f8d3e8b50d122440b6a5bfcbd7ac24b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2185,6 +2193,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FieldRow (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3732954546727594544, guid: 0f8d3e8b50d122440b6a5bfcbd7ac24b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5236581702888648883, guid: 0f8d3e8b50d122440b6a5bfcbd7ac24b,
         type: 3}

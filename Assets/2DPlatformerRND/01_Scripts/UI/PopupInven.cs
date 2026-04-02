@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,8 @@ namespace PahlBit
             InitSlots();
 
             InitItemInfo();
+
+            UpdateDisplayInfo(null);
 
             UpdateUIParts();
         }
@@ -67,15 +70,42 @@ namespace PahlBit
             }
         }
 
-        void InitOptionField()
+        void UpdateDisplayInfo(UIPartsItemSlot selectedSlot)
         {
-            // List<FieldData> fields = ReflectionFieldExtractor.GetFields(ItemInven.TotalItemOption);
+            OptionContentRoot.ExDestroyAllChildren();
 
+            if (selectedSlot != null)
+            {
+                if (!selectedSlot.IsEmpty)
+                {
+                    var displayInfo = selectedSlot.ItemInfo.DisplayInfo;
+                    foreach (var kvp in displayInfo)
+                    {
+                        UIPartsFieldRow row = Instantiate(FieldRow, OptionContentRoot);
+                        row.SetField(kvp.Key, kvp.Value);
+                    }
+                }
+            }
+            else
+            {
+                List<FieldData> fields = ReflectionFieldExtractor.GetFields(ItemInven.TotalItemOption);
+                foreach (var field in fields)
+                {
+                    string val = field.Value;
+                    if (val.Equals("0") || val.Equals("0%"))
+                        continue;
+
+                    UIPartsFieldRow row = Instantiate(FieldRow, OptionContentRoot);
+                    row.SetField(field.Name, field.Value);
+                }
+            }
         }
 
         void OnSelectSlot(UIPartsItemSlot slot, bool isEquipSlot)
         {
             slot.GetComponent<Image>().color = Color.green;
+
+            UpdateDisplayInfo(slot);
 
             if (slot.IsEmpty) return;
 
@@ -97,10 +127,12 @@ namespace PahlBit
             if (isEquipSlot)
             {
                 UnEquipItem(slot);
+                UpdateDisplayInfo(null);
             }
             else
             {
                 EquipItem(slot);
+                UpdateDisplayInfo(null);
             }
 
         }
@@ -134,7 +166,7 @@ namespace PahlBit
                 emptySlot.SetItemInfo(itemInfo);
                 slot.SetEmpty();
 
-                // ItemInven.EquipItem(itemInfo.InstanceID);
+                ItemInven.EquipItem(itemInfo.InstanceID);
             }
             else
             {
@@ -150,7 +182,7 @@ namespace PahlBit
                 emptySlot.SetItemInfo(itemInfo);
                 slot.SetEmpty();
 
-                // ItemInven.UnEquipItem(itemInfo.InstanceID);
+                ItemInven.UnEquipItem(itemInfo.InstanceID);
             }
             else
             {

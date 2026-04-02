@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using PahlBit;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class ItemInfo
     public ItemSaveData SaveData { get; private set; } = null;
     public ItemResourceData ResourceData { get; private set; } = null;
     public SpecOption Option { get; private set; } = null;
+    public Dictionary<string, string> DisplayInfo { get; private set; } = new Dictionary<string, string>();
 
     public string InstanceID => SaveData.InstanceID;
     public long ResourceID => ResourceData.ID;
@@ -76,5 +78,23 @@ public class ItemInfo
         Option.IceResist = (Percent)ResourceData._IceResist.GetValue();
         Option.LightningResist = (Percent)ResourceData._LightningResist.GetValue();
         Option.PosionResist = (Percent)ResourceData._PosionResist.GetValue();
+
+        UpdateDisplayInfo();
+    }
+
+    public void UpdateDisplayInfo()
+    {
+        DisplayInfo.Clear();
+        if (Option == null)
+            return;
+
+        List<FieldData> fields = ReflectionFieldExtractor.GetFields(Option);
+        foreach (var field in fields)
+        {
+            if (field.Value.Equals("0") || field.Value.Equals("0%"))
+                continue;
+
+            DisplayInfo[field.Name] = field.Value;
+        }
     }
 }

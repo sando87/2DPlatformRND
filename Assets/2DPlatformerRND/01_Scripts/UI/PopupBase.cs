@@ -11,6 +11,8 @@ namespace PahlBit
         public PlayerUnitInput PlayerInput { get; set; }
         public int CharacterID { get => PlayerInput.ExGetBase().PlayerObj.CharacterID; }
 
+        public UIPartsHandler CurrentSelectedPart { get; private set; }
+
         public void UpdateUIParts()
         {
             mUIParts = GetComponentsInChildren<UIPartsHandler>();
@@ -28,7 +30,6 @@ namespace PahlBit
             }
         }
 
-
         void Move(Vector2 dir)
         {
             if (mUIParts == null || mUIParts.Length == 0)
@@ -37,6 +38,7 @@ namespace PahlBit
             GameObject current = EventSystem.current.currentSelectedGameObject;
             if (current == null)
             {
+                CurrentSelectedPart = mUIParts[0];
                 EventSystem.current.SetSelectedGameObject(mUIParts[0].gameObject);
                 return;
             }
@@ -68,6 +70,7 @@ namespace PahlBit
 
             if (best != null)
             {
+                CurrentSelectedPart = best;
                 EventSystem.current.SetSelectedGameObject(best.gameObject);
             }
         }
