@@ -8,9 +8,6 @@ namespace PahlBit
 {
     public class UIPartsItemSlot : UIPartsHandler
     {
-        [SerializeField] bool _IsEquipSlot = false;
-
-        public bool IsEquipSlot { get => _IsEquipSlot; }
         public ItemInfo ItemInfo { get; private set; }
         public bool IsEmpty { get => ItemInfo == null; }
 

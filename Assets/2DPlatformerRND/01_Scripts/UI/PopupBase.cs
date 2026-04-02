@@ -13,20 +13,14 @@ namespace PahlBit
         void Awake()
         {
             InputHandler = GetComponent<UIInputHandler>();
-            InputHandler.EventSelect = OnSelect;
-            InputHandler.EventDeselect = OnDeselect;
-            InputHandler.EventSubmit = OnSubmit;
+            InputHandler.EventCancel = OnCancel;
         }
 
-        protected virtual void OnSelect(UIPartsHandler part)
+        protected virtual void OnCancel()
         {
+            PopupManager.Instance.Close(this);
         }
-        protected virtual void OnDeselect(UIPartsHandler part)
-        {
-        }
-        protected virtual void OnSubmit(UIPartsHandler part)
-        {
-        }
+
 
     }
 

@@ -8,23 +8,31 @@ using UnityEngine.UI;
 
 namespace PahlBit
 {
-    public class UIPartsHandler : MonoBehaviour, ISelectHandler, IDeselectHandler, ISubmitHandler
+    public class UIPartsHandler : MonoBehaviour, ISelectHandler, IDeselectHandler, ISubmitHandler// , ICancelHandler
     {
-        public UIInputHandler InputHandler { get; set; }
+        public Action<UIPartsHandler> EventSelect { get; set; }
+        public Action<UIPartsHandler> EventDeselect { get; set; }
+        public Action<UIPartsHandler> EventSubmit { get; set; }
+        // public Action<UIPartsHandler> EventCancel { get; set; }
 
         public void OnSelect(BaseEventData eventData)
         {
-            InputHandler.DispatchEventSelect(this);
+            EventSelect?.Invoke(this);
         }
 
         public void OnDeselect(BaseEventData eventData)
         {
-            InputHandler.DispatchEventDeselect(this);
+            EventDeselect?.Invoke(this);
         }
 
         public void OnSubmit(BaseEventData eventData)
         {
-            InputHandler.DispatchEventSubmit(this);
+            EventSubmit?.Invoke(this);
         }
+
+        // public void OnCancel(BaseEventData eventData)
+        // {
+        //     EventCancel?.Invoke(this);
+        // }
     }
 }

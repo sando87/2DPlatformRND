@@ -29,7 +29,22 @@ namespace PahlBit
         void InitSlots()
         {
             mInvenSlots = InvenSlotRoot.GetComponentsInChildren<UIPartsItemSlot>();
+            foreach (UIPartsItemSlot slot in mInvenSlots)
+            {
+                slot.SetEmpty();
+                slot.EventSelect = (btn) => OnSelectSlot(btn, false);
+                slot.EventDeselect = (btn) => OnDeselectSlot(btn, false);
+                slot.EventSubmit = (btn) => OnSubmitSlot(btn, false);
+            }
+
             mEquipSlots = EquipSlotRoot.GetComponentsInChildren<UIPartsItemSlot>();
+            foreach (UIPartsItemSlot slot in mEquipSlots)
+            {
+                slot.SetEmpty();
+                slot.EventSelect = (btn) => OnSelectSlot(btn, true);
+                slot.EventDeselect = (btn) => OnDeselectSlot(btn, true);
+                slot.EventSubmit = (btn) => OnSubmitSlot(btn, true);
+            }
         }
 
         void InitItemInfo()
@@ -84,7 +99,7 @@ namespace PahlBit
             }
         }
 
-        protected override void OnSelect(UIPartsHandler part)
+        void OnSelectSlot(UIPartsHandler part, bool isEquipSlot)
         {
             UIPartsItemSlot slot = part as UIPartsItemSlot;
             slot.GetComponent<Image>().color = Color.green;
@@ -94,7 +109,7 @@ namespace PahlBit
             if (slot.IsEmpty) return;
 
         }
-        protected override void OnDeselect(UIPartsHandler part)
+        void OnDeselectSlot(UIPartsHandler part, bool isEquipSlot)
         {
             UIPartsItemSlot slot = part as UIPartsItemSlot;
             slot.GetComponent<Image>().color = Color.white;
@@ -102,7 +117,7 @@ namespace PahlBit
             if (slot.IsEmpty) return;
 
         }
-        protected override void OnSubmit(UIPartsHandler part)
+        void OnSubmitSlot(UIPartsHandler part, bool isEquipSlot)
         {
             UIPartsItemSlot slot = part as UIPartsItemSlot;
             slot.GetComponent<Image>().color = Color.red;
@@ -110,7 +125,7 @@ namespace PahlBit
 
             if (slot.IsEmpty) return;
 
-            if (slot.IsEquipSlot)
+            if (isEquipSlot)
             {
                 UnEquipItem(slot);
                 UpdateDisplayInfo(null);

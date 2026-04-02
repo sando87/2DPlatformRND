@@ -10,43 +10,20 @@ namespace PahlBit
     {
         [SerializeField] UIPartsHandler[] _UIParts;
 
-        public Action<UIPartsHandler> EventSelect { get; set; }
-        public Action<UIPartsHandler> EventDeselect { get; set; }
-        public Action<UIPartsHandler> EventSubmit { get; set; }
-
-        public void DispatchEventSelect(UIPartsHandler part)
-        {
-            EventSelect?.Invoke(part);
-        }
-        public void DispatchEventDeselect(UIPartsHandler part)
-        {
-            EventDeselect?.Invoke(part);
-        }
-        public void DispatchEventSubmit(UIPartsHandler part)
-        {
-            EventSubmit?.Invoke(part);
-        }
+        public Action EventCancel { get; set; }
 
         public UIPartsHandler CurrentSelectedPart { get; private set; }
+        public UIPartsHandler[] UIParts { get => _UIParts; }
 
         void Awake()
         {
             if (_UIParts == null || _UIParts.Length == 0)
                 _UIParts = GetComponentsInChildren<UIPartsHandler>();
-
-            foreach (var btn in _UIParts)
-            {
-                btn.InputHandler = this;
-            }
         }
 
         public void UpdateUIParts()
         {
             _UIParts = GetComponentsInChildren<UIPartsHandler>();
-            foreach (var btn in _UIParts)
-            {
-                btn.InputHandler = this;
-            }
         }
 
         public void OnInputUpdate(InputSystemManager inputManager)
@@ -58,6 +35,10 @@ namespace PahlBit
                 {
                     Move(moveDir.normalized);
                 }
+            }
+            else if (inputManager.JustPressed(PlayerUnitInputType.UIBack))
+            {
+                EventCancel?.Invoke();
             }
         }
 
@@ -83,6 +64,7 @@ namespace PahlBit
             foreach (var btn in _UIParts)
             {
                 if (btn.gameObject == current) continue;
+                if (!btn.gameObject.activeInHierarchy) continue;
 
                 Vector3 dirToTarget = btn.transform.position - currentPos;
 
