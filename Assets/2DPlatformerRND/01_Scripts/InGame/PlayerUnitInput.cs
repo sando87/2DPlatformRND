@@ -8,168 +8,56 @@ using UnityEngine.InputSystem;
 
 namespace PahlBit
 {
-    public enum PlayerUnitInputType { None, Jump, Move, Dash, SkillSlotA, SkillSlotB, SkillSlotC, SkillSlotD, ShowPopupStats, ShowPopupInven, ShowPopupSkill, UIMove, UIEnter, UIBack }
-
-    public class PlayerUnitInput : MonoBehaviour
+    public class PlayerUnitInput : MonoBehaviour, IInputHandler
     {
-        [SerializeField] VirtualInput _VirtualInput = null;
+        // public UnityEvent<PlayerUnitInputType> EnterInput = new UnityEvent<PlayerUnitInputType>();
+        // public UnityEvent<PlayerUnitInputType> LeaveInput = new UnityEvent<PlayerUnitInputType>();
 
-        private PlayerInputActions mInputActions;
-        private Dictionary<PlayerUnitInputType, PlayerUnitInputState> mInputStates = new Dictionary<PlayerUnitInputType, PlayerUnitInputState>();
+        private InputSystemManager mInputManager = null;
+
+        public void OnInputEnter(InputSystemManager inputManager)
+        {
+            mInputManager = inputManager;
+        }
+
+        public void OnInputExit(InputSystemManager inputManager)
+        {
+            mInputManager = null;
+        }
+
+        public void OnInputUpdate(InputSystemManager inputManager)
+        {
+        }
 
         public bool LockPlayerInput 
         { 
-            get => mInputActions.Player.enabled; 
+            get => mInputManager != null ? mInputManager.LockPlayerInput : false; 
             set 
-            { 
-                if (value) 
-                    mInputActions.Player.Disable(); 
-                else 
-                    mInputActions.Player.Enable(); 
+            {
+                if (mInputManager != null)
+                {
+                    mInputManager.LockPlayerInput = value;
+                }
             } 
         }
 
-        public bool JustPressed(PlayerUnitInputType type)
-            => _VirtualInput != null ? _VirtualInput.JustPressed(type) : GetInputAction(type).triggered;
-        public bool IsPressing(PlayerUnitInputType type)
-            => _VirtualInput != null ? _VirtualInput.IsPressed(type) : GetInputAction(type).IsPressed();
+        public bool JustPressed(PlayerUnitInputType type) => mInputManager != null ? mInputManager.JustPressed(type) : false;
+        public bool IsPressing(PlayerUnitInputType type) => mInputManager != null ? mInputManager.IsPressing(type) : false;
 
-        // public bool JustPressed(PlayerUnitInputType type) { return mInputStates[type].justPressed; }
-        // public bool IsPressing(PlayerUnitInputType type) { return mInputStates[type].isPressed; }
-        // public float HeldTime(PlayerUnitInputType type) { return mInputStates[type].HeldTime; }
-
-        public float MoveX { get => GetInputValue<Vector2>(PlayerUnitInputType.Move).x; }
-        public float MoveY { get => GetInputValue<Vector2>(PlayerUnitInputType.Move).y; }
-        public Vector2 MoveXY { get => GetInputValue<Vector2>(PlayerUnitInputType.Move); }
+        public float MoveX { get => mInputManager != null ? mInputManager.GetInputValue<Vector2>(PlayerUnitInputType.Move).x : 0f; }
+        public float MoveY { get => mInputManager != null ? mInputManager.GetInputValue<Vector2>(PlayerUnitInputType.Move).y : 0f; }
+        public Vector2 MoveXY { get => mInputManager != null ? mInputManager.GetInputValue<Vector2>(PlayerUnitInputType.Move) : Vector2.zero; }
 
         public TValue GetInputValue<TValue>(PlayerUnitInputType type) where TValue : struct
         {
-            // Virtual Input 우선
-            if (_VirtualInput != null)
+            if (mInputManager != null)
             {
-                if (typeof(TValue) == typeof(Vector2))
-                {
-                    Vector2 v = _VirtualInput.GetVector2(type);
-                    if (v != Vector2.zero)
-                        return (TValue)(object)v;
-                }
-                else if (typeof(TValue) == typeof(float))
-                {
-                    float f = _VirtualInput.GetFloat(type);
-                    if (Mathf.Abs(f) > 0.0001f)
-                        return (TValue)(object)f;
-                }
+                return mInputManager.GetInputValue<TValue>(type);
             }
             else
             {
-                // 실제 입력
-                InputAction action = mInputStates[type].inputAction;
-                return action != null ? action.ReadValue<TValue>() : default;
-            }
-            return default;
-        }
-
-        public UnityEvent<PlayerUnitInputType> EnterInput = new UnityEvent<PlayerUnitInputType>();
-        public UnityEvent<PlayerUnitInputType> LeaveInput = new UnityEvent<PlayerUnitInputType>();
-
-        private void Awake()
-        {
-            mInputActions = new PlayerInputActions();
-
-            InitEnumKeys();
-        }
-
-        void InitEnumKeys()
-        {
-            foreach (PlayerUnitInputType type in MyUtils.EnumForeach<PlayerUnitInputType>())
-            {
-                if (type == PlayerUnitInputType.None)
-                    continue;
-
-                mInputStates[type] = new PlayerUnitInputState();
-                mInputStates[type].inputAction = GetInputAction(type);
-
-                mInputStates[type].inputAction.started += ctx => OnStarted(type);
-                mInputStates[type].inputAction.performed += ctx => OnPerformed(type);
-                mInputStates[type].inputAction.canceled += ctx => OnCanceled(type);
-            }
-
-        }
-
-        private void OnStarted(PlayerUnitInputType type)
-        {
-            // EnterInput.Invoke(type);
-
-            // mInputStates[type].isPressed = true;
-        }
-        private void OnPerformed(PlayerUnitInputType type)
-        {
-            // UpdateInput.Invoke(type);
-            mInputStates[type].isPressedPreState = mInputStates[type].isPressed;
-            mInputStates[type].isPressed = true;
-
-            if (mInputStates[type].justPressed)
-            {
-                mInputStates[type].pressedTime = Time.time;
-                EnterInput.Invoke(type);
+                return default;
             }
         }
-        private void OnCanceled(PlayerUnitInputType type)
-        {
-            mInputStates[type].isPressedPreState = false;
-            mInputStates[type].isPressed = false;
-            mInputStates[type].pressedTime = 0;
-
-            LeaveInput.Invoke(type);
-        }
-
-        private void OnEnable() => mInputActions.Enable();
-        private void OnDisable() => mInputActions.Disable();
-
-        private InputAction GetInputAction(PlayerUnitInputType type)
-        {
-            switch (type)
-            {
-                case PlayerUnitInputType.Jump:
-                    return mInputActions.Player.Jump;
-                case PlayerUnitInputType.Move:
-                    return mInputActions.Player.Move;
-                case PlayerUnitInputType.Dash:
-                    return mInputActions.Player.Dash;
-                case PlayerUnitInputType.SkillSlotA:
-                    return mInputActions.Player.SkillSlotA;
-                case PlayerUnitInputType.SkillSlotB:
-                    return mInputActions.Player.SkillSlotB;
-                case PlayerUnitInputType.SkillSlotC:
-                    return mInputActions.Player.SkillSlotC;
-                case PlayerUnitInputType.SkillSlotD:
-                    return mInputActions.Player.SkillSlotD;
-                case PlayerUnitInputType.ShowPopupStats:
-                    return mInputActions.UI.PopupStats;
-                case PlayerUnitInputType.ShowPopupInven:
-                    return mInputActions.UI.PopupInven;
-                case PlayerUnitInputType.ShowPopupSkill:
-                    return mInputActions.UI.PopupSkill;
-                case PlayerUnitInputType.UIMove:
-                    return mInputActions.UI.Move;
-                case PlayerUnitInputType.UIEnter:
-                    return mInputActions.UI.Enter;
-                case PlayerUnitInputType.UIBack:
-                    return mInputActions.UI.Back;
-                default:
-                    return null;
-            }
-        }
-    }
-
-    public class PlayerUnitInputState
-    {
-        public bool isPressed = false;
-        public bool isPressedPreState = false;
-        public float pressedTime = 0f;
-        public InputAction inputAction = null;
-
-        public bool justPressed => isPressed && !isPressedPreState;
-        public float HeldTime => isPressed ? Time.time - pressedTime : 0f;
     }
 }

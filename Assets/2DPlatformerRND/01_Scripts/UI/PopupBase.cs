@@ -5,11 +5,9 @@ using UnityEngine.UI;
 
 namespace PahlBit
 {
-    public class PopupBase : MonoBehaviour
+    public class PopupBase : MonoBehaviour, IInputHandler
     {
         public UIPartsHandler[] mUIParts;
-        public PlayerUnitInput PlayerInput { get; set; }
-        public int CharacterID { get => PlayerInput.ExGetBase().PlayerObj.CharacterID; }
 
         public UIPartsHandler CurrentSelectedPart { get; private set; }
 
@@ -18,11 +16,11 @@ namespace PahlBit
             mUIParts = GetComponentsInChildren<UIPartsHandler>();
         }
 
-        void Update()
+        public void OnInputUpdate(InputSystemManager inputManager)
         {
-            if (PlayerInput != null && PlayerInput.JustPressed(PlayerUnitInputType.UIMove))
+            if (inputManager.JustPressed(PlayerUnitInputType.UIMove))
             {
-                Vector2 moveDir = PlayerInput.GetInputValue<Vector2>(PlayerUnitInputType.UIMove);
+                Vector2 moveDir = inputManager.GetInputValue<Vector2>(PlayerUnitInputType.UIMove);
                 if (moveDir.magnitude > 0.1f)
                 {
                     Move(moveDir.normalized);
