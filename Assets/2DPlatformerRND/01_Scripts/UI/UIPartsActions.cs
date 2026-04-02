@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace PahlBit
 {
-    public enum UIActionType { Learn, Use, UnUse, Enforce, Equip, UnEquip, Sell, Buy }
+    public enum UIActionType { Learn, Use, UnUse, Enforce, Equip, UnEquip, Sell, Buy, Dump }
 
     public class UIPartsActions : MonoBehaviour
     {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,11 +10,43 @@ namespace PahlBit
     {
         [SerializeField] UIPartsHandler[] _UIParts;
 
+        public Action<UIPartsHandler> EventSelect { get; set; }
+        public Action<UIPartsHandler> EventDeselect { get; set; }
+        public Action<UIPartsHandler> EventSubmit { get; set; }
+
+        public void DispatchEventSelect(UIPartsHandler part)
+        {
+            EventSelect?.Invoke(part);
+        }
+        public void DispatchEventDeselect(UIPartsHandler part)
+        {
+            EventDeselect?.Invoke(part);
+        }
+        public void DispatchEventSubmit(UIPartsHandler part)
+        {
+            EventSubmit?.Invoke(part);
+        }
+
         public UIPartsHandler CurrentSelectedPart { get; private set; }
+
+        void Awake()
+        {
+            if (_UIParts == null || _UIParts.Length == 0)
+                _UIParts = GetComponentsInChildren<UIPartsHandler>();
+
+            foreach (var btn in _UIParts)
+            {
+                btn.InputHandler = this;
+            }
+        }
 
         public void UpdateUIParts()
         {
             _UIParts = GetComponentsInChildren<UIPartsHandler>();
+            foreach (var btn in _UIParts)
+            {
+                btn.InputHandler = this;
+            }
         }
 
         public void OnInputUpdate(InputSystemManager inputManager)

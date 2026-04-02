@@ -29,7 +29,7 @@ public class InGameEngine : SingletonMono<InGameEngine>
             mPopupStats = PopupManager.Instance.Toggle<PopupStats>();
             if (mPopupStats != null)
             {
-                SetInputHandler(mPopupStats);
+                SetInputHandler(mPopupStats.InputHandler);
             }
             else
             {
@@ -41,7 +41,7 @@ public class InGameEngine : SingletonMono<InGameEngine>
             mPopupInven = PopupManager.Instance.Toggle<PopupInven>();
             if (mPopupInven != null)
             {
-                SetInputHandler(mPopupInven);
+                SetInputHandler(mPopupInven.InputHandler);
                 mPopupInven.ItemInven = _PlayerUnit.GetComponentInChildren<ItemInventory>();
             }
             else
@@ -54,7 +54,7 @@ public class InGameEngine : SingletonMono<InGameEngine>
             mPopupSkill = PopupManager.Instance.Toggle<PopupSkill>();
             if (mPopupSkill != null)
             {
-                SetInputHandler(mPopupSkill);
+                SetInputHandler(mPopupSkill.InputHandler);
             }
             else
             {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -9,23 +10,21 @@ namespace PahlBit
 {
     public class UIPartsHandler : MonoBehaviour, ISelectHandler, IDeselectHandler, ISubmitHandler
     {
-        [Foldout("Events")] public UnityEvent EventSelect = new UnityEvent();
-        [Foldout("Events")] public UnityEvent EventDeselect = new UnityEvent();
-        [Foldout("Events")] public UnityEvent EventSubmit = new UnityEvent();
-
-        public void OnDeselect(BaseEventData eventData)
-        {
-            EventDeselect.Invoke();
-        }
+        public UIInputHandler InputHandler { get; set; }
 
         public void OnSelect(BaseEventData eventData)
         {
-            EventSelect.Invoke();
+            InputHandler.DispatchEventSelect(this);
+        }
+
+        public void OnDeselect(BaseEventData eventData)
+        {
+            InputHandler.DispatchEventDeselect(this);
         }
 
         public void OnSubmit(BaseEventData eventData)
         {
-            EventSubmit.Invoke();
+            InputHandler.DispatchEventSubmit(this);
         }
     }
 }

@@ -1,77 +1,33 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace PahlBit
 {
-    public class PopupBase : MonoBehaviour, IInputHandler
+    public class PopupBase : MonoBehaviour
     {
-        public UIPartsHandler[] mUIParts;
+        public UIInputHandler InputHandler { get; private set; }
 
-        public UIPartsHandler CurrentSelectedPart { get; private set; }
-
-        public void UpdateUIParts()
+        void Awake()
         {
-            mUIParts = GetComponentsInChildren<UIPartsHandler>();
+            InputHandler = GetComponent<UIInputHandler>();
+            InputHandler.EventSelect = OnSelect;
+            InputHandler.EventDeselect = OnDeselect;
+            InputHandler.EventSubmit = OnSubmit;
         }
 
-        public void OnInputUpdate(InputSystemManager inputManager)
+        protected virtual void OnSelect(UIPartsHandler part)
         {
-            if (inputManager.JustPressed(PlayerUnitInputType.UIMove))
-            {
-                Vector2 moveDir = inputManager.GetInputValue<Vector2>(PlayerUnitInputType.UIMove);
-                if (moveDir.magnitude > 0.1f)
-                {
-                    Move(moveDir.normalized);
-                }
-            }
+        }
+        protected virtual void OnDeselect(UIPartsHandler part)
+        {
+        }
+        protected virtual void OnSubmit(UIPartsHandler part)
+        {
         }
 
-        void Move(Vector2 dir)
-        {
-            if (mUIParts == null || mUIParts.Length == 0)
-                return;
-
-            GameObject current = EventSystem.current.currentSelectedGameObject;
-            if (current == null)
-            {
-                CurrentSelectedPart = mUIParts[0];
-                EventSystem.current.SetSelectedGameObject(mUIParts[0].gameObject);
-                return;
-            }
-
-            RectTransform currentRect = current.GetComponent<RectTransform>();
-            Vector3 currentPos = currentRect.position;
-
-            UIPartsHandler best = null;
-            float bestScore = float.MaxValue;
-
-            foreach (var btn in mUIParts)
-            {
-                if (btn.gameObject == current) continue;
-
-                Vector3 dirToTarget = btn.transform.position - currentPos;
-
-                // 방향 체크 (위쪽인지 등)
-                if (Vector2.Dot(dir, dirToTarget.normalized) < 0.5f)
-                    continue;
-
-                float distance = dirToTarget.sqrMagnitude;
-
-                if (distance < bestScore)
-                {
-                    bestScore = distance;
-                    best = btn;
-                }
-            }
-
-            if (best != null)
-            {
-                CurrentSelectedPart = best;
-                EventSystem.current.SetSelectedGameObject(best.gameObject);
-            }
-        }
     }
 
 

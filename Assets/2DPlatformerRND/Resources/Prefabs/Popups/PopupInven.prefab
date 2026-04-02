@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8918790015505712675}
   - component: {fileID: 3800022745573316622}
   - component: {fileID: 1663762155587233309}
+  - component: {fileID: 8067420869622974209}
   m_Layer: 5
   m_Name: PopupInven
   m_TagString: Untagged
@@ -58,12 +59,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff536ccc78176e4fb13eedb92522ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PopupInven
-  mUIParts: []
   EquipSlotRoot: {fileID: 4507524439924183542}
   InvenSlotRoot: {fileID: 8072295643941841161}
   OptionContentRoot: {fileID: 3113503647938775844}
   FieldRow: {fileID: 6517435839170586758, guid: 0f8d3e8b50d122440b6a5bfcbd7ac24b,
     type: 3}
+--- !u!114 &8067420869622974209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169825485469804331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0564cf4d51d746240b13de07a931fb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.UIInputHandler
+  _UIParts: []
 --- !u!1 &618550339734343696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,6 +1304,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7564962959436864399, guid: 05c6b19a95e3f2b468e245b54a3a422b,
+        type: 3}
+      propertyPath: _IsEquipSlot
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2016,6 +2034,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7564962959436864399, guid: 05c6b19a95e3f2b468e245b54a3a422b,
+        type: 3}
+      propertyPath: _IsEquipSlot
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2139,6 +2162,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564962959436864399, guid: 05c6b19a95e3f2b468e245b54a3a422b,
+        type: 3}
+      propertyPath: _IsEquipSlot
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2731,6 +2759,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7564962959436864399, guid: 05c6b19a95e3f2b468e245b54a3a422b,
+        type: 3}
+      propertyPath: _IsEquipSlot
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2855,6 +2888,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7564962959436864399, guid: 05c6b19a95e3f2b468e245b54a3a422b,
+        type: 3}
+      propertyPath: _IsEquipSlot
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2978,6 +3016,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564962959436864399, guid: 05c6b19a95e3f2b468e245b54a3a422b,
+        type: 3}
+      propertyPath: _IsEquipSlot
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

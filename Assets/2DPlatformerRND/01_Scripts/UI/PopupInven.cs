@@ -24,29 +24,12 @@ namespace PahlBit
             InitItemInfo();
 
             UpdateDisplayInfo(null);
-
-            UpdateUIParts();
         }
 
         void InitSlots()
         {
             mInvenSlots = InvenSlotRoot.GetComponentsInChildren<UIPartsItemSlot>();
-            foreach (UIPartsItemSlot slot in mInvenSlots)
-            {
-                slot.SetEmpty();
-                slot.EventSelect.AddListener(() => OnSelectSlot(slot, false));
-                slot.EventDeselect.AddListener(() => OnDeselectSlot(slot, false));
-                slot.EventSubmit.AddListener(() => OnSubmitSlot(slot, false));
-            }
-
             mEquipSlots = EquipSlotRoot.GetComponentsInChildren<UIPartsItemSlot>();
-            foreach (UIPartsItemSlot slot in mEquipSlots)
-            {
-                slot.SetEmpty();
-                slot.EventSelect.AddListener(() => OnSelectSlot(slot, true));
-                slot.EventDeselect.AddListener(() => OnDeselectSlot(slot, true));
-                slot.EventSubmit.AddListener(() => OnSubmitSlot(slot, true));
-            }
         }
 
         void InitItemInfo()
@@ -101,8 +84,9 @@ namespace PahlBit
             }
         }
 
-        void OnSelectSlot(UIPartsItemSlot slot, bool isEquipSlot)
+        protected override void OnSelect(UIPartsHandler part)
         {
+            UIPartsItemSlot slot = part as UIPartsItemSlot;
             slot.GetComponent<Image>().color = Color.green;
 
             UpdateDisplayInfo(slot);
@@ -110,21 +94,23 @@ namespace PahlBit
             if (slot.IsEmpty) return;
 
         }
-        void OnDeselectSlot(UIPartsItemSlot slot, bool isEquipSlot)
+        protected override void OnDeselect(UIPartsHandler part)
         {
+            UIPartsItemSlot slot = part as UIPartsItemSlot;
             slot.GetComponent<Image>().color = Color.white;
 
             if (slot.IsEmpty) return;
 
         }
-        void OnSubmitSlot(UIPartsItemSlot slot, bool isEquipSlot)
+        protected override void OnSubmit(UIPartsHandler part)
         {
+            UIPartsItemSlot slot = part as UIPartsItemSlot;
             slot.GetComponent<Image>().color = Color.red;
             this.ExDelayedCoroutine(0.2f, () => slot.GetComponent<Image>().color = Color.green);
 
             if (slot.IsEmpty) return;
 
-            if (isEquipSlot)
+            if (slot.IsEquipSlot)
             {
                 UnEquipItem(slot);
                 UpdateDisplayInfo(null);
