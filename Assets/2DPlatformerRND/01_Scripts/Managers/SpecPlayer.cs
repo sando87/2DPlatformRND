@@ -18,6 +18,25 @@ namespace PahlBit
 
         public override float BaseAttack => BaseStats.Attack + Option.BaseAttackAdd;
         public override float PhyDefence => BaseStats.Defence * Option.DefenceUp;
+        /// </summary>
+        // 체력
+        // 마나
+        // 공격력
+        // 방어력
+        // 회피확률
+        // 피격모션감소
+        // 피격모션회복
+        // 이속
+        // 공속
+        // 쿨타임감소
+        // 쉴드
+        // 크리확률
+        // 크리뎀지
+        // 체력재생
+        // 마나재생
+        // 쉴드재생
+        // 레지스터 4종
+        /// </summary>
 
         public CharSaveData SaveData { get; private set; } = null;
         public CharResourceData ResourceData { get; private set; } = null;
