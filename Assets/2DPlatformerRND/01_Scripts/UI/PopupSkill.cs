@@ -7,6 +7,7 @@ namespace PahlBit
     public class PopupSkill : PopupBase
     {
         [SerializeField] UIPartsActions _ActionSelector;
+        [SerializeField] UIPartsViewer _Viewer;
 
         void Start()
         {
@@ -24,10 +25,12 @@ namespace PahlBit
         void OnSelect(UIPartsHandler part)
         {
             part.GetComponent<Image>().color = Color.green;
+            ShowViewer(part);
         }
         void OnDeselect(UIPartsHandler part)
         {
             part.GetComponent<Image>().color = Color.white;
+            HideViewer();
         }
         void OnSubmit(UIPartsHandler part)
         {
@@ -51,10 +54,31 @@ namespace PahlBit
                 InputHandler.SelectUIPart(part);
             });
             
-            _ActionSelector.transform.position = part.transform.position;
+            SetRePosition(_ActionSelector.transform, part);
+        }
+
+        void SetRePosition(Transform target, UIPartsHandler part)
+        {
+            target.position = part.transform.position;
 
             RectTransform screenArea = GetComponent<RectTransform>();
-            _ActionSelector.GetComponent<RectTransform>().MoveInsideOf(screenArea);
+            target.GetComponent<RectTransform>().MoveInsideOf(screenArea);
+        }
+
+        void ShowViewer(UIPartsHandler part)
+        {
+            _Viewer.Data.Clear();
+            _Viewer.Data.Add(new FieldData { Name = "Spec1", Value = "123" });
+            _Viewer.Data.Add(new FieldData { Name = "Spec2", Value = "456" });
+            _Viewer.Data.Add(new FieldData { Name = "Spec3", Value = "777" });
+            _Viewer.Data.Add(new FieldData { Name = "Spec4", Value = "888" });
+            _Viewer.Show();
+            
+            SetRePosition(_Viewer.transform, part);
+        }
+        void HideViewer()
+        {
+            _Viewer.Hide();
         }
     }
 }
