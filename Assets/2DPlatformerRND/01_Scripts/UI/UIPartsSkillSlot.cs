@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
+using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -8,11 +11,21 @@ namespace PahlBit
 {
     public class UIPartsSkillSlot : UIPartsHandler
     {
-        private Image mImage = null;
+        [SerializeField]
+        [Dropdown(nameof(IDList))]
+        string _SkillID = "";
+        public string SkillID => _SkillID;
+        List<string> IDList { get => SkillResourceTable.Instance.GetAllInfo().Select(info => info.SkillID).ToList(); }
+
+        private TextMeshProUGUI mText = null;
+        public SkillBase SKill { get; private set; } = null;
 
         void Awake()
         {
-            mImage = transform.GetChild(0).GetComponent<Image>();
+            mText = transform.GetComponentInChildren<TextMeshProUGUI>();
+            mText.text = SkillID;
+
+            SKill = InGameEngine.Instance.Player.GetComponentInChildren<SkillController>().GetSkill(SkillID);
         }
     }
 }

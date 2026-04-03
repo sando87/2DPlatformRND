@@ -15,13 +15,9 @@ namespace PahlBit
     {
         private static Dictionary<Type, FieldInfo[]> _cache = new Dictionary<Type, FieldInfo[]>();
 
-        public static List<FieldData> GetFields(object target)
+        public static void GetFields(object target, List<FieldData> result)
         {
-            var result = new List<FieldData>();
-
-            if (target == null)
-                return result;
-
+            result.Clear();
             Type type = target.GetType();
 
             FieldInfo[] fields = GetCachedFields(type);
@@ -37,8 +33,6 @@ namespace PahlBit
                     Value = ConvertValueToString(value)
                 });
             }
-
-            return result;
         }
 
         // ------------------------

@@ -56,6 +56,10 @@ namespace PahlBit
         }
 
 
+        public SkillBase GetSkill(string skillID)
+        {
+            return mAllSkills.GetValueOrDefault(skillID);
+        }
         public void LearnNewSkill(string skillResID)
         {
             SkillBase skill = mAllSkills[skillResID];

@@ -16,6 +16,7 @@ namespace PahlBit
 
         private UIPartsItemSlot[] mInvenSlots = null;
         private UIPartsItemSlot[] mEquipSlots = null;
+        private List<FieldData> mDisplayFields = new List<FieldData>();
 
         void Start()
         {
@@ -86,8 +87,8 @@ namespace PahlBit
             }
             else
             {
-                List<FieldData> fields = ReflectionFieldExtractor.GetFields(ItemInven.TotalItemOption);
-                foreach (var field in fields)
+                ReflectionFieldExtractor.GetFields(ItemInven.TotalItemOption, mDisplayFields);
+                foreach (var field in mDisplayFields)
                 {
                     string val = field.Value;
                     if (val.Equals("0") || val.Equals("0%"))

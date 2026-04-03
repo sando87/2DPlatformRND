@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -67,11 +68,10 @@ namespace PahlBit
 
         void ShowViewer(UIPartsHandler part)
         {
-            _Viewer.Data.Clear();
-            _Viewer.Data.Add(new FieldData { Name = "Spec1", Value = "123" });
-            _Viewer.Data.Add(new FieldData { Name = "Spec2", Value = "456" });
-            _Viewer.Data.Add(new FieldData { Name = "Spec3", Value = "777" });
-            _Viewer.Data.Add(new FieldData { Name = "Spec4", Value = "888" });
+            UIPartsSkillSlot skillPart = part as UIPartsSkillSlot;
+            SkillStats basicStats = skillPart.SKill.Spec.BaseStats;
+            ReflectionFieldExtractor.GetFields(basicStats, _Viewer.Data);
+
             _Viewer.Show();
             
             SetRePosition(_Viewer.transform, part);

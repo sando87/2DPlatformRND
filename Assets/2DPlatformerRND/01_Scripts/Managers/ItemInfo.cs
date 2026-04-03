@@ -88,7 +88,8 @@ public class ItemInfo
         if (Option == null)
             return;
 
-        List<FieldData> fields = ReflectionFieldExtractor.GetFields(Option);
+        List<FieldData> fields = new List<FieldData>();
+        ReflectionFieldExtractor.GetFields(Option, fields);
         foreach (var field in fields)
         {
             if (field.Value.Equals("0") || field.Value.Equals("0%"))

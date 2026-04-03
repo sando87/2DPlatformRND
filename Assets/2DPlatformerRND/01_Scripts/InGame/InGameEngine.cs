@@ -9,6 +9,8 @@ public class InGameEngine : SingletonMono<InGameEngine>
     [SerializeField] BaseObject _PlayerUnit = null;
     [SerializeField] InputSystemManager _InputManager = null;
 
+    public BaseObject Player => _PlayerUnit;
+
     PopupStats mPopupStats;
     PopupInven mPopupInven;
     PopupSkill mPopupSkill;
