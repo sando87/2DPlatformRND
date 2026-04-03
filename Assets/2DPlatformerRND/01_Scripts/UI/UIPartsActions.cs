@@ -63,19 +63,25 @@ namespace PahlBit
                 Actions.Clear();
                 gameObject.SetActive(false);
             };
+
+            _InputHandler.SelectUIPart(_ActionButtons[0]);
         }
 
         void SetButton(UIPartsHandler button, ActionInfo data)
         {
+            button.GetComponent<Image>().color = Color.white;
 
+            TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
+            text.text = data.Type.ToString();
+            text.color = data.isEnabled ? Color.white : Color.gray;
         }
         void Select(UIPartsHandler button)
         {
-
+            button.GetComponent<Image>().color = Color.green;
         }
         void DeSelect(UIPartsHandler button)
         {
-
+            button.GetComponent<Image>().color = Color.white;
         }
     }
 }

@@ -17,6 +17,8 @@ namespace PahlBit
                 part.EventDeselect = OnDeselect;
                 part.EventSubmit = OnSubmit;
             }
+
+            _ActionSelector.gameObject.SetActive(false);
         }
 
         void OnSelect(UIPartsHandler part)
@@ -35,11 +37,24 @@ namespace PahlBit
             _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Learn, isEnabled = true });
             _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Use, isEnabled = true });
             _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Enforce, isEnabled = false });
+            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Equip, isEnabled = true });
+            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.UnEquip, isEnabled = true });
+            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.UnUse, isEnabled = false });
+            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Sell, isEnabled = false });
+            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Buy, isEnabled = true });
+            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Dump, isEnabled = false });
+            
             _ActionSelector.Show((type) =>
             {
                 LOG.trace(type);
                 InGameEngine.Instance.SetInputHandler(this.InputHandler);
+                InputHandler.SelectUIPart(part);
             });
+            
+            _ActionSelector.transform.position = part.transform.position;
+
+            RectTransform screenArea = GetComponent<RectTransform>();
+            _ActionSelector.GetComponent<RectTransform>().MoveInsideOf(screenArea);
         }
     }
 }

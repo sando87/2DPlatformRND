@@ -26,6 +26,15 @@ namespace PahlBit
             _UIParts = GetComponentsInChildren<UIPartsHandler>();
         }
 
+        public void SelectUIPart(UIPartsHandler part)
+        {
+            if (part != null && part.gameObject.activeInHierarchy)
+            {
+                CurrentSelectedPart = part;
+                EventSystem.current.SetSelectedGameObject(part.gameObject);
+            }
+        }
+
         public void OnInputUpdate(InputSystemManager inputManager)
         {
             if (inputManager.JustPressed(PlayerUnitInputType.UIMove))
