@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace PahlBit
 {
+    public class Consts
+    {
+        public const int PointByLevelup = 5;
+    }
+
+
     public partial struct AnimStateNameHash
     {
         public static readonly int ExitDummy = Animator.StringToHash("ExitDummy");

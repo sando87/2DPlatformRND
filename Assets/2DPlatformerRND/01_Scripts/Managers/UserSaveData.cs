@@ -25,6 +25,7 @@ namespace PahlBit
     public class CharSaveData
     {
         public float CurrentExp;
+        public int RemainPoint;
         public int HealthPoint;
         public int ManaPoint;
         public int AttackPoint;
