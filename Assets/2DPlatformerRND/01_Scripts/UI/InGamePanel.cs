@@ -10,6 +10,7 @@ public class InGamePanel : MonoBehaviour
     [SerializeField] Image ExpBarFill = null;
     [SerializeField] TextMeshProUGUI GoldText = null;
     [SerializeField] BaseObject PlayerObject = null;
+    [SerializeField] Transform[] SkillEquipSlots = null;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +22,8 @@ public class InGamePanel : MonoBehaviour
     void Update()
     {
         UpdateUIState();
+
+        UpdateSkillEquipSlots();
     }
 
     public void OnClickStartGame()
@@ -52,5 +55,23 @@ public class InGamePanel : MonoBehaviour
 
         ItemInventory inven = PlayerObject.GetComponentInChildren<ItemInventory>();
         GoldText.text = inven.CurrentGold.ToString();
+    }
+
+    void UpdateSkillEquipSlots()
+    {
+        SkillController skillController = PlayerObject.GetComponentInChildren<SkillController>();
+        for (int i = 0; i < SkillEquipSlots.Length; i++)
+        {
+            Image skillIcon = SkillEquipSlots[i].GetChild(1).GetComponent<Image>();
+            SkillBase equipSkill = skillController.GetEquipSkill(i);
+            if (equipSkill != null)
+            {
+                skillIcon.sprite = equipSkill.Icon;
+            }
+            else
+            {
+                skillIcon.sprite = null;
+            }
+        }
     }
 }
