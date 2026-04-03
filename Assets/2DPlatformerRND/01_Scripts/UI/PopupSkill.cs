@@ -10,6 +10,11 @@ namespace PahlBit
         [SerializeField] UIPartsActions _ActionSelector;
         [SerializeField] UIPartsViewer _Viewer;
 
+        [SerializeField] Transform ContentsRoot;
+        [SerializeField] UIPartsFieldRow FieldRow;
+
+        private List<FieldData> mDisplayFields = new List<FieldData>();
+
         void Start()
         {
             UIPartsHandler[] parts = InputHandler.UIParts;
@@ -26,12 +31,13 @@ namespace PahlBit
         void OnSelect(UIPartsHandler part)
         {
             part.GetComponent<Image>().color = Color.green;
-            ShowViewer(part);
+            // ShowViewer(part);
+            UpdateDisplayInfo(part);
         }
         void OnDeselect(UIPartsHandler part)
         {
             part.GetComponent<Image>().color = Color.white;
-            HideViewer();
+            // HideViewer();
         }
         void OnSubmit(UIPartsHandler part)
         {
@@ -110,6 +116,23 @@ namespace PahlBit
         void HideViewer()
         {
             _Viewer.Hide();
+        }
+        void UpdateDisplayInfo(UIPartsHandler part)
+        {
+            UIPartsSkillSlot skillSlot = part as UIPartsSkillSlot;
+            SkillBase skill = skillSlot.SKill;
+            ContentsRoot.ExDestroyAllChildren();
+
+            ReflectionFieldExtractor.GetFields(skill.Spec.BaseStats, mDisplayFields);
+            foreach (var field in mDisplayFields)
+            {
+                string val = field.Value;
+                if (val.Equals("0") || val.Equals("0%"))
+                    continue;
+
+                UIPartsFieldRow row = Instantiate(FieldRow, ContentsRoot);
+                row.SetField(field.Name, field.Value);
+            }
         }
     }
 }

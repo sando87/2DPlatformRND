@@ -61,6 +61,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PopupSkill
   _ActionSelector: {fileID: 2504570933790236215}
   _Viewer: {fileID: 435187967654217080}
+  ContentsRoot: {fileID: 6146576172605697039}
+  FieldRow: {fileID: 6517435839170586758, guid: 0f8d3e8b50d122440b6a5bfcbd7ac24b,
+    type: 3}
 --- !u!114 &8183752148697681785
 MonoBehaviour:
   m_ObjectHideFlags: 0

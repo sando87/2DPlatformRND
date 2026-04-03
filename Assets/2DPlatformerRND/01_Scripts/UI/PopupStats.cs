@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,17 +7,19 @@ namespace PahlBit
 {
     public class PopupStats : PopupBase
     {
-        [SerializeField] GameObject StaticsRowPrefab;
-        [SerializeField] Transform ContentsRoot;
         [SerializeField] TextMeshProUGUI _RemainPointText;
         [SerializeField] TextMeshProUGUI _AttackPointText;
         [SerializeField] TextMeshProUGUI _DefensePointText;
         [SerializeField] TextMeshProUGUI _HealthPointText;
         [SerializeField] TextMeshProUGUI _ManaPointText;
         [SerializeField] UIPartsHandler[] _StatButtons;
+        
+        [SerializeField] Transform ContentsRoot;
+        [SerializeField] UIPartsFieldRow FieldRow;
 
         private BaseObject mPlayer = null;
         private Experience mExperience = null;
+        private List<FieldData> mDisplayFields = new List<FieldData>();
 
         void Start()
         {
@@ -34,6 +37,8 @@ namespace PahlBit
             _StatButtons[1].EventSubmit += (btn) => OnSubmitDefensePoint(1);
             _StatButtons[2].EventSubmit += (btn) => OnSubmitLifePoint(1);
             _StatButtons[3].EventSubmit += (btn) => OnSubmitManaPoint(1);
+
+            UpdateDisplayInfo();
         }
 
         void OnSelectButton(UIPartsHandler part)
@@ -73,6 +78,24 @@ namespace PahlBit
             _DefensePointText.text = mExperience.DefensePoint.ToString();
             _HealthPointText.text = mExperience.HealthPoint.ToString();
             _ManaPointText.text = mExperience.ManaPoint.ToString();
+        }
+        
+
+        void UpdateDisplayInfo()
+        {
+            ContentsRoot.ExDestroyAllChildren();
+
+            SpecPlayer specPlayer = mPlayer.Spec as SpecPlayer;
+            ReflectionFieldExtractor.GetFields(specPlayer.BaseStats, mDisplayFields);
+            foreach (var field in mDisplayFields)
+            {
+                string val = field.Value;
+                if (val.Equals("0") || val.Equals("0%"))
+                    continue;
+
+                UIPartsFieldRow row = Instantiate(FieldRow, ContentsRoot);
+                row.SetField(field.Name, field.Value);
+            }
         }
     }
 }
