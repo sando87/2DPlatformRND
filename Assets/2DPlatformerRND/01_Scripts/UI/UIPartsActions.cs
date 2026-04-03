@@ -40,16 +40,12 @@ namespace PahlBit
                     SetButton(actionBtn, btnData);
                     actionBtn.EventSelect = Select;
                     actionBtn.EventDeselect = DeSelect;
-
-                    if (btnData.isEnabled)
+                    actionBtn.EventSubmit = (btn) =>
                     {
-                        actionBtn.EventSubmit = (btn) =>
-                        {
-                            onEnd(btnData.Type);
-                            Actions.Clear();
-                            gameObject.SetActive(false);
-                        };
-                    }
+                        onEnd(btnData.Type);
+                        Actions.Clear();
+                        gameObject.SetActive(false);
+                    };
                 }
                 else
                 {
@@ -73,7 +69,7 @@ namespace PahlBit
 
             TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
             text.text = data.Type.ToString();
-            text.color = data.isEnabled ? Color.white : Color.gray;
+            // text.color = data.isEnabled ? Color.white : Color.gray;
         }
         void Select(UIPartsHandler button)
         {

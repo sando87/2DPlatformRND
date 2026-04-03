@@ -2046,6 +2046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e0d6732b3bf9d438d21756975e7471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillGun
+  _Icon: {fileID: 21300000, guid: 05e7af0be27155e4b8475415b3c0cc9f, type: 3}
   _ResourceID: Skill04
   SkillMotion: {fileID: 403820406}
   ProjectilePrefab: {fileID: 4627083357526262411, guid: cff92825081bc0545b14d5207d1ca8b0,
@@ -3656,6 +3657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f562fa239b5994c9c4bd781ae554b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillMelee
+  _Icon: {fileID: 0}
   _ResourceID: Skill01
   SkillMotion: {fileID: 1045329382}
   MeleePrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
@@ -4516,6 +4518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e0d6732b3bf9d438d21756975e7471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillGun
+  _Icon: {fileID: 0}
   _ResourceID: Skill04
   SkillMotion: {fileID: 1045329383}
   ProjectilePrefab: {fileID: 4627083357526262411, guid: cff92825081bc0545b14d5207d1ca8b0,
@@ -7037,7 +7040,7 @@ Tilemap:
       - {fileID: -7173815036175725588, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -4287644718094691521, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: 80828252139431176, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 4.8197117
+      m_AnimationSpeed: 4.5079174
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 78, y: 6, z: 0}
@@ -7052,7 +7055,7 @@ Tilemap:
       - {fileID: -8262301480820247010, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -8647672680586932780, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -6030660517846766822, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 4.9509172
+      m_AnimationSpeed: 4.9179497
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 83, y: 6, z: 0}
@@ -7064,7 +7067,7 @@ Tilemap:
       - {fileID: 2051757784263316258, guid: 6daf5fbe51db9a544ac90a9b81fd0602, type: 3}
       - {fileID: 8538422899418973946, guid: 6daf5fbe51db9a544ac90a9b81fd0602, type: 3}
       - {fileID: 2558546051751004457, guid: 6daf5fbe51db9a544ac90a9b81fd0602, type: 3}
-      m_AnimationSpeed: 8.036505
+      m_AnimationSpeed: 10.274696
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 86, y: 6, z: 0}
@@ -7079,7 +7082,7 @@ Tilemap:
       - {fileID: -7173815036175725588, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -4287644718094691521, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: 80828252139431176, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 3.6483526
+      m_AnimationSpeed: 3.1363049
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 87, y: 6, z: 0}
@@ -7094,7 +7097,7 @@ Tilemap:
       - {fileID: -8262301480820247010, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -8647672680586932780, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -6030660517846766822, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 3.306427
+      m_AnimationSpeed: 3.3673725
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 68, y: 7, z: 0}
@@ -7109,7 +7112,7 @@ Tilemap:
       - {fileID: -7173815036175725588, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -4287644718094691521, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: 80828252139431176, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 4.824939
+      m_AnimationSpeed: 3.4421368
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 90, y: 7, z: 0}
@@ -7124,7 +7127,7 @@ Tilemap:
       - {fileID: -7173815036175725588, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -4287644718094691521, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: 80828252139431176, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 4.9448195
+      m_AnimationSpeed: 3.4371371
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 97, y: 7, z: 0}
@@ -7139,7 +7142,7 @@ Tilemap:
       - {fileID: -4130933814904027684, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -440757937736749153, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -4449444166993443499, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 3.5337224
+      m_AnimationSpeed: 4.6426153
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 23, y: 8, z: 0}
@@ -7154,7 +7157,7 @@ Tilemap:
       - {fileID: -7173815036175725588, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -4287644718094691521, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: 80828252139431176, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 4.9745827
+      m_AnimationSpeed: 4.4834323
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 37, y: 9, z: 0}
@@ -7169,7 +7172,7 @@ Tilemap:
       - {fileID: -7173815036175725588, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -4287644718094691521, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: 80828252139431176, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 3.007307
+      m_AnimationSpeed: 4.86397
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 42, y: 10, z: 0}
@@ -7184,7 +7187,7 @@ Tilemap:
       - {fileID: -4130933814904027684, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -440757937736749153, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -4449444166993443499, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 3.0561876
+      m_AnimationSpeed: 4.84548
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 92, y: 10, z: 0}
@@ -7197,7 +7200,7 @@ Tilemap:
       - {fileID: 3846436381330788884, guid: becff6df377cf0548be2a01c672dbc66, type: 3}
       - {fileID: 5586798811565346033, guid: becff6df377cf0548be2a01c672dbc66, type: 3}
       - {fileID: -6307095672580854243, guid: becff6df377cf0548be2a01c672dbc66, type: 3}
-      m_AnimationSpeed: 3.3167617
+      m_AnimationSpeed: 3.816337
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 47, y: 13, z: 0}
@@ -7212,7 +7215,7 @@ Tilemap:
       - {fileID: -7173815036175725588, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -4287644718094691521, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: 80828252139431176, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 3.74937
+      m_AnimationSpeed: 4.1171193
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 52, y: 13, z: 0}
@@ -7227,7 +7230,7 @@ Tilemap:
       - {fileID: -4130933814904027684, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -440757937736749153, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -4449444166993443499, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 4.2268763
+      m_AnimationSpeed: 3.5742092
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 91, y: 14, z: 0}
@@ -7242,7 +7245,7 @@ Tilemap:
       - {fileID: -6224495591541005969, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -266528845555735036, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -1096514727103312570, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 3.1623511
+      m_AnimationSpeed: 3.9747047
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 139, y: 16, z: 0}
@@ -7255,7 +7258,7 @@ Tilemap:
       - {fileID: 3846436381330788884, guid: becff6df377cf0548be2a01c672dbc66, type: 3}
       - {fileID: 5586798811565346033, guid: becff6df377cf0548be2a01c672dbc66, type: 3}
       - {fileID: -6307095672580854243, guid: becff6df377cf0548be2a01c672dbc66, type: 3}
-      m_AnimationSpeed: 3.942747
+      m_AnimationSpeed: 3.1896105
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 140, y: 16, z: 0}
@@ -7266,7 +7269,7 @@ Tilemap:
       - {fileID: -7224009580750778127, guid: becff6df377cf0548be2a01c672dbc66, type: 3}
       - {fileID: -195891602017126666, guid: becff6df377cf0548be2a01c672dbc66, type: 3}
       - {fileID: 833062857229735196, guid: becff6df377cf0548be2a01c672dbc66, type: 3}
-      m_AnimationSpeed: 3.357076
+      m_AnimationSpeed: 3.9920077
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 131, y: 18, z: 0}
@@ -7277,7 +7280,7 @@ Tilemap:
       - {fileID: -7224009580750778127, guid: becff6df377cf0548be2a01c672dbc66, type: 3}
       - {fileID: -195891602017126666, guid: becff6df377cf0548be2a01c672dbc66, type: 3}
       - {fileID: 833062857229735196, guid: becff6df377cf0548be2a01c672dbc66, type: 3}
-      m_AnimationSpeed: 3.2268848
+      m_AnimationSpeed: 3.8487442
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 106, y: 20, z: 0}
@@ -7288,7 +7291,7 @@ Tilemap:
       - {fileID: -7892429465350213049, guid: 23ffc46ccf1cdd341ba3e8a99ff029ff, type: 3}
       - {fileID: 2791110666198947346, guid: 23ffc46ccf1cdd341ba3e8a99ff029ff, type: 3}
       - {fileID: -7892429465350213049, guid: 23ffc46ccf1cdd341ba3e8a99ff029ff, type: 3}
-      m_AnimationSpeed: 2.0049446
+      m_AnimationSpeed: 3.2495952
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 165, y: 22, z: 0}
@@ -7303,7 +7306,7 @@ Tilemap:
       - {fileID: -7173815036175725588, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -4287644718094691521, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: 80828252139431176, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 3.8353343
+      m_AnimationSpeed: 4.971754
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 167, y: 22, z: 0}
@@ -7318,7 +7321,7 @@ Tilemap:
       - {fileID: -4130933814904027684, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -440757937736749153, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -4449444166993443499, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 3.673699
+      m_AnimationSpeed: 3.3933382
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 139, y: 23, z: 0}
@@ -7330,7 +7333,7 @@ Tilemap:
       - {fileID: -2994877863233710035, guid: 6daf5fbe51db9a544ac90a9b81fd0602, type: 3}
       - {fileID: -7033716677687157895, guid: 6daf5fbe51db9a544ac90a9b81fd0602, type: 3}
       - {fileID: 1648749068166103451, guid: 6daf5fbe51db9a544ac90a9b81fd0602, type: 3}
-      m_AnimationSpeed: 11.272819
+      m_AnimationSpeed: 8.359887
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 196, y: 23, z: 0}
@@ -7341,7 +7344,7 @@ Tilemap:
       - {fileID: 1287052328660139587, guid: 23ffc46ccf1cdd341ba3e8a99ff029ff, type: 3}
       - {fileID: 2735969513575073521, guid: 23ffc46ccf1cdd341ba3e8a99ff029ff, type: 3}
       - {fileID: 1287052328660139587, guid: 23ffc46ccf1cdd341ba3e8a99ff029ff, type: 3}
-      m_AnimationSpeed: 3.6636846
+      m_AnimationSpeed: 2.5398197
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 150, y: 25, z: 0}
@@ -7356,7 +7359,7 @@ Tilemap:
       - {fileID: -6224495591541005969, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -266528845555735036, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
       - {fileID: -1096514727103312570, guid: 28aa37f8fb17d2a4187136312f0b3321, type: 3}
-      m_AnimationSpeed: 3.6714735
+      m_AnimationSpeed: 3.4762783
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 205, y: 25, z: 0}
@@ -7367,7 +7370,7 @@ Tilemap:
       - {fileID: -7892429465350213049, guid: 23ffc46ccf1cdd341ba3e8a99ff029ff, type: 3}
       - {fileID: 2791110666198947346, guid: 23ffc46ccf1cdd341ba3e8a99ff029ff, type: 3}
       - {fileID: -7892429465350213049, guid: 23ffc46ccf1cdd341ba3e8a99ff029ff, type: 3}
-      m_AnimationSpeed: 3.034369
+      m_AnimationSpeed: 3.6096961
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 116, y: 26, z: 0}
@@ -7378,7 +7381,7 @@ Tilemap:
       - {fileID: -7892429465350213049, guid: 23ffc46ccf1cdd341ba3e8a99ff029ff, type: 3}
       - {fileID: 2791110666198947346, guid: 23ffc46ccf1cdd341ba3e8a99ff029ff, type: 3}
       - {fileID: -7892429465350213049, guid: 23ffc46ccf1cdd341ba3e8a99ff029ff, type: 3}
-      m_AnimationSpeed: 3.6762815
+      m_AnimationSpeed: 2.7761192
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -10367,8 +10370,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 524799688}
-  - component: {fileID: 524799690}
   - component: {fileID: 524799689}
+  - component: {fileID: 524799690}
   m_Layer: 7
   m_Name: SkillLaser
   m_TagString: Untagged
@@ -10403,6 +10406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5243e9498bcce4c889f7c930cd69fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillLaser
+  _Icon: {fileID: 8117616903480516750, guid: ccd3d94e2fb6cac419b17d46d92d465f, type: 3}
   _ResourceID: Skill08
   SkillMotion: {fileID: 1617104691}
   LaserPrefab: {fileID: 8145529192335980096, guid: def12540be81c2749be075beb03b052f,
@@ -11172,6 +11176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80db11568b449934ea239aa2b1b54290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillLightning
+  _Icon: {fileID: 0}
   _ResourceID: Skill06
   SkillMotion: {fileID: 1045329381}
   ProjPrefab: {fileID: 4627083357526262411, guid: c21fbed9810f84b4daaf08f52d8a6cae,
@@ -12327,8 +12332,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 714739360}
-  - component: {fileID: 714739361}
   - component: {fileID: 714739362}
+  - component: {fileID: 714739361}
   m_Layer: 7
   m_Name: SkillLightning
   m_TagString: Untagged
@@ -12375,6 +12380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80db11568b449934ea239aa2b1b54290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillLightning
+  _Icon: {fileID: 2099869453310149314, guid: cb15f2acfe007414abe00e0543c29b00, type: 3}
   _ResourceID: Skill06
   SkillMotion: {fileID: 897804231}
   ProjPrefab: {fileID: 4627083357526262411, guid: c21fbed9810f84b4daaf08f52d8a6cae,
@@ -12755,6 +12761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 349355b2f3d80ec40b20665435f46702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillBall
+  _Icon: {fileID: 0}
   _ResourceID: Skill02
   SkillMotion: {fileID: 1045329381}
   ProjPrefab: {fileID: 0}
@@ -13532,8 +13539,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 813378233}
-  - component: {fileID: 813378235}
   - component: {fileID: 813378234}
+  - component: {fileID: 813378235}
   m_Layer: 7
   m_Name: SkillFireWall
   m_TagString: Untagged
@@ -13568,6 +13575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3ee59f25f5db24c9b338cc5468c3ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillFireWall
+  _Icon: {fileID: 4697578217365469148, guid: 3edbed9a3a4c9df4f87bb9bf0b042f84, type: 3}
   _ResourceID: Skill09
   SkillMotion: {fileID: 652164651}
   ProjPrefab: {fileID: 4627083357526262411, guid: 1d1ee123c6ffa5b40a53899773c9ac28,
@@ -13718,6 +13726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80db11568b449934ea239aa2b1b54290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillLightning
+  _Icon: {fileID: 0}
   _ResourceID: Skill06
   SkillMotion: {fileID: 2325308}
   ProjPrefab: {fileID: 4627083357526262411, guid: c21fbed9810f84b4daaf08f52d8a6cae,
@@ -16666,6 +16675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f9251c4f3032d449eb670728fb2249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillIceBall
+  _Icon: {fileID: 0}
   _ResourceID: Skill05
   SkillMotion: {fileID: 1045329381}
   ProjectilePrefab: {fileID: 4627083357526262411, guid: a734bdd536705284f8e216842c9f0668,
@@ -18182,8 +18192,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1098506701}
-  - component: {fileID: 1098506703}
   - component: {fileID: 1098506702}
+  - component: {fileID: 1098506703}
   m_Layer: 7
   m_Name: SkillIceBall
   m_TagString: Untagged
@@ -18218,6 +18228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f9251c4f3032d449eb670728fb2249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillIceBall
+  _Icon: {fileID: 1222684967, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
   _ResourceID: Skill05
   SkillMotion: {fileID: 906109735}
   ProjectilePrefab: {fileID: 4627083357526262411, guid: a734bdd536705284f8e216842c9f0668,
@@ -52864,6 +52875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f562fa239b5994c9c4bd781ae554b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillMelee
+  _Icon: {fileID: 0}
   _ResourceID: Skill01
   SkillMotion: {fileID: 2325309}
   MeleePrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
@@ -52989,6 +53001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 349355b2f3d80ec40b20665435f46702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillBall
+  _Icon: {fileID: 0}
   _ResourceID: Skill02
   SkillMotion: {fileID: 2325308}
   ProjPrefab: {fileID: 0}
@@ -53124,8 +53137,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1285531295}
-  - component: {fileID: 1285531297}
   - component: {fileID: 1285531296}
+  - component: {fileID: 1285531297}
   m_Layer: 7
   m_Name: SkillMeleeCombo
   m_TagString: Untagged
@@ -53160,6 +53173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a14731495697f447bb73d5fdcb6d697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillMeleeCombo
+  _Icon: {fileID: 8178899156310564023, guid: ad93e63dff8202d40b273593cc735d3e, type: 3}
   _ResourceID: Skill07
   SkillMotion: {fileID: 1431659124}
   MeleePrefab: {fileID: 3164944944171518125, guid: 9e71e9d2ceb1bb04c89ad394128fa9dd,
@@ -53494,6 +53508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f9251c4f3032d449eb670728fb2249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillIceBall
+  _Icon: {fileID: 0}
   _ResourceID: Skill05
   SkillMotion: {fileID: 2325308}
   ProjectilePrefab: {fileID: 4627083357526262411, guid: a734bdd536705284f8e216842c9f0668,
@@ -53599,6 +53614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ca05ba1dfe0e747931e6961382f303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillArrow
+  _Icon: {fileID: 0}
   _ResourceID: Skill03
   SkillMotion: {fileID: 2325311}
   ProjectilePrefab: {fileID: 4627083357526262411, guid: c0812866410167549b3a55cabb9e8986,
@@ -53649,6 +53665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09838f83c9a29a24e812b6c1f50ac9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillLaserBeam
+  _Icon: {fileID: 8117616903480516750, guid: ccd3d94e2fb6cac419b17d46d92d465f, type: 3}
   _ResourceID: Skill12
   ProjPrefab: {fileID: 2390396236032624357, guid: 9d380455bff0a9448a5e4df667086a9b,
     type: 3}
@@ -57237,6 +57254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ca05ba1dfe0e747931e6961382f303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillArrow
+  _Icon: {fileID: 0}
   _ResourceID: Skill03
   SkillMotion: {fileID: 1045329384}
   ProjectilePrefab: {fileID: 4627083357526262411, guid: c0812866410167549b3a55cabb9e8986,
@@ -57397,6 +57415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ca05ba1dfe0e747931e6961382f303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillArrow
+  _Icon: {fileID: 21300000, guid: db5feb45383abd347b30dd964fca3c6b, type: 3}
   _ResourceID: Skill03
   SkillMotion: {fileID: 1626554818}
   ProjectilePrefab: {fileID: 4627083357526262411, guid: c0812866410167549b3a55cabb9e8986,
@@ -75272,8 +75291,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1900999721}
-  - component: {fileID: 1900999723}
   - component: {fileID: 1900999722}
+  - component: {fileID: 1900999723}
   m_Layer: 7
   m_Name: SkillFrozenOrb
   m_TagString: Untagged
@@ -75308,6 +75327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35600837238f5ed488cac10ffe3ee49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillFrozenOrb
+  _Icon: {fileID: -5845527952135845097, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
   _ResourceID: Skill10
   SkillMotion: {fileID: 1195366223}
   ProjPrefab: {fileID: 5696730104938166540, guid: 5f3fca5a6b17d6b4fad1b5ddecec9dfc,
@@ -303605,6 +303625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e0d6732b3bf9d438d21756975e7471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillGun
+  _Icon: {fileID: 0}
   _ResourceID: Skill04
   SkillMotion: {fileID: 2325310}
   ProjectilePrefab: {fileID: 4627083357526262411, guid: cff92825081bc0545b14d5207d1ca8b0,
@@ -303841,8 +303862,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2005145683}
-  - component: {fileID: 2005145685}
   - component: {fileID: 2005145684}
+  - component: {fileID: 2005145685}
   m_Layer: 7
   m_Name: SkillWaterBomb
   m_TagString: Untagged
@@ -303877,6 +303898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e475ea13b4b2cab4b8ad0eb9273ba18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillWaterBomb
+  _Icon: {fileID: 4858660837743384793, guid: 4f5debf160d63b64c8f4a86e429f3de3, type: 3}
   _ResourceID: Skill11
   SkillMotion: {fileID: 1125145742}
   ProjPrefab: {fileID: 4627083357526262411, guid: e3eb3d6601b3c8d4d8a3e962790af41d,
@@ -305249,6 +305271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 349355b2f3d80ec40b20665435f46702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillBall
+  _Icon: {fileID: 2664034816732244463, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
   _ResourceID: Skill02
   SkillMotion: {fileID: 516684128}
   ProjPrefab: {fileID: 4627083357526262411, guid: bd318899aff485a4b8bf10cc02a9b0ce,
@@ -307269,6 +307292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f562fa239b5994c9c4bd781ae554b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillMelee
+  _Icon: {fileID: -6721367887672951865, guid: 080e6ea964a426647830af7ca0b7bb1b, type: 3}
   _ResourceID: Skill01
   SkillMotion: {fileID: 972548779}
   MeleePrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,

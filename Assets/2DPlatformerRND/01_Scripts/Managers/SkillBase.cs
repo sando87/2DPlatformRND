@@ -11,49 +11,16 @@ using UnityEngine.UIElements;
 
 public class SkillBase : MonoBehaviour
 {
+    [SerializeField] Sprite _Icon = null;
+    public Sprite Icon => _Icon;
+    
     [SerializeField]
     [Dropdown(nameof(IDList))]
     string _ResourceID = "";
     public string ResourceID => _ResourceID;
     List<string> IDList { get => SkillResourceTable.Instance.GetAllInfo().Select(info => info.SkillID).ToList(); }
 
-    [Button]
-    [ShowIf(nameof(IsShowLearn))]
-    void LearnSkill()
-    {
-        SkillController skillController = GetComponentInParent<SkillController>();
-        skillController.LearnNewSkill(ResourceID);
-    }
-    bool IsShowLearn() { return Application.isPlaying && !IsLearned; }
-
-    [Button]
-    [ShowIf(nameof(IsShowLevelUp))]
-    void LevelUpSkill()
-    {
-        SkillController skillController = GetComponentInParent<SkillController>();
-        skillController.LevelupSkill(ResourceID);
-    }
-    bool IsShowLevelUp() { return Application.isPlaying && IsLearned; }
-
-    [Button]
-    [ShowIf(nameof(IsShowEquip))]
-    void EquipSkill()
-    {
-        SkillController skillController = GetComponentInParent<SkillController>();
-        int slotIdx = skillController.FindEmptySkillSlotIndex();
-        if (slotIdx >= 0)
-            skillController.EquipSkill(ResourceID, slotIdx);
-    }
-    bool IsShowEquip() { return Application.isPlaying && IsLearned && !IsEquipped; }
-
-    [Button]
-    [ShowIf(nameof(IsShowUnEquip))]
-    void UnEquipSkill()
-    {
-        SkillController skillController = GetComponentInParent<SkillController>();
-        skillController.UnEquipSkill(ResourceID, PositionIndex);
-    }
-    bool IsShowUnEquip() { return Application.isPlaying && IsLearned && IsEquipped; }
+    public SkillController Controller { get => GetComponentInParent<SkillController>(); }
 
     public bool IsEquipped => mSkillSaveData.IsEquipped;
     public bool IsLearned => mSkillSaveData != null && mSkillSaveData.IsLearned;

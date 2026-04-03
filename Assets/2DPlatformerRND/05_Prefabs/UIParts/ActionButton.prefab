@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 742118580717275033}
   - component: {fileID: 531479712323098393}
   - component: {fileID: 4651645050886974475}
-  - component: {fileID: 2194527415683588217}
+  - component: {fileID: 516360202851611983}
   m_Layer: 5
   m_Name: ActionButton
   m_TagString: Untagged
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2194527415683588217
+--- !u!114 &516360202851611983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,9 +162,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1003972200296414947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43e9cecbd9d03854f89a5c3a58588d98, type: 3}
+  m_Script: {fileID: 11500000, guid: 614a5c8d47d01e246ae6fccb55d87b1e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.UIPartsSkillSlot
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.UIPartsHandler
 --- !u!1 &5778702380020727067
 GameObject:
   m_ObjectHideFlags: 0

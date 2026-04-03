@@ -17,15 +17,40 @@ namespace PahlBit
         public string SkillID => _SkillID;
         List<string> IDList { get => SkillResourceTable.Instance.GetAllInfo().Select(info => info.SkillID).ToList(); }
 
+        private Image mIcon = null;
         private TextMeshProUGUI mText = null;
         public SkillBase SKill { get; private set; } = null;
 
         void Awake()
         {
-            mText = transform.GetComponentInChildren<TextMeshProUGUI>();
-            mText.text = SkillID;
-
             SKill = InGameEngine.Instance.Player.GetComponentInChildren<SkillController>().GetSkill(SkillID);
+
+            mText = transform.GetComponentInChildren<TextMeshProUGUI>();
+            mIcon = transform.GetChild(0).GetComponent<Image>();
+            mIcon.sprite = SKill.Icon;
+
+            UpdateSkillState();
+        }
+
+        public void UpdateSkillState()
+        {
+            if (!SKill.IsLearned)
+            {
+                mIcon.color = Color.gray;
+                mText.color = Color.gray;
+            }
+            else if (SKill.IsEquipped)
+            {
+                mIcon.color = Color.green;
+                mText.color = Color.black;
+            }
+            else
+            {
+                mIcon.color = Color.white;
+                mText.color = Color.black;
+            }
+
+            mText.text = SkillID + (SKill.IsLearned ? $"\nLv.{SKill.Level}" : "");
         }
     }
 }

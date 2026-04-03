@@ -35,27 +35,58 @@ namespace PahlBit
         }
         void OnSubmit(UIPartsHandler part)
         {
+            UIPartsSkillSlot skillSlot = part as UIPartsSkillSlot;
+            SkillBase skill = skillSlot.SKill;
+
             InGameEngine.Instance.SetInputHandler(_ActionSelector.InputHandler);
 
             _ActionSelector.Actions.Clear();
-            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Learn, isEnabled = true });
-            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Use, isEnabled = true });
-            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Enforce, isEnabled = false });
-            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Equip, isEnabled = true });
-            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.UnEquip, isEnabled = true });
-            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.UnUse, isEnabled = false });
-            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Sell, isEnabled = false });
-            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Buy, isEnabled = true });
-            _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Dump, isEnabled = false });
+            if (!skill.IsLearned)
+            {
+                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Learn });
+            }
+            else
+            {
+                _ActionSelector.Actions.Add(new ActionInfo { Type = skill.IsEquipped ? UIActionType.UnEquip : UIActionType.Equip });
+                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Enforce });
+            }
             
             _ActionSelector.Show((type) =>
             {
-                LOG.trace(type);
+                DoAction(skill, type);
+                skillSlot.UpdateSkillState();
                 InGameEngine.Instance.SetInputHandler(this.InputHandler);
                 InputHandler.SelectUIPart(part);
             });
             
             SetRePosition(_ActionSelector.transform, part);
+        }
+
+        void DoAction(SkillBase skill, UIActionType type)
+        {
+            if (type == UIActionType.None)
+                return;
+
+            if (type == UIActionType.Learn)
+            {
+                skill.Controller.LearnNewSkill(skill.ResourceID);
+            }
+            else if (type == UIActionType.Equip)
+            {
+                int slotIdx = skill.Controller.FindEmptySkillSlotIndex();
+                if (slotIdx >= 0)
+                {
+                    skill.Controller.EquipSkill(skill.ResourceID, slotIdx);
+                }
+            }
+            else if (type == UIActionType.UnEquip)
+            {
+                skill.Controller.UnEquipSkill(skill.ResourceID, skill.PositionIndex);
+            }
+            else if (type == UIActionType.Enforce)
+            {
+                skill.Controller.LevelupSkill(skill.ResourceID);
+            }
         }
 
         void SetRePosition(Transform target, UIPartsHandler part)
