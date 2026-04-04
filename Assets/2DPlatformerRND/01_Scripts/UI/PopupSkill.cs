@@ -41,6 +41,11 @@ namespace PahlBit
         }
         void OnSubmit(UIPartsHandler part)
         {
+            ShowActionSelector(part);
+        }
+
+        void ShowActionSelector(UIPartsHandler part)
+        {
             UIPartsSkillSlot skillSlot = part as UIPartsSkillSlot;
             SkillBase skill = skillSlot.SKill;
 
@@ -56,7 +61,7 @@ namespace PahlBit
                 _ActionSelector.Actions.Add(new ActionInfo { Type = skill.IsEquipped ? UIActionType.UnEquip : UIActionType.Equip });
                 _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Enforce });
             }
-            
+
             _ActionSelector.Show((type) =>
             {
                 DoAction(skill, type);
@@ -64,7 +69,7 @@ namespace PahlBit
                 InGameEngine.Instance.SetInputHandler(this.InputHandler);
                 InputHandler.SelectUIPart(part);
             });
-            
+
             SetRePosition(_ActionSelector.transform, part);
         }
 
@@ -110,7 +115,7 @@ namespace PahlBit
             ReflectionFieldExtractor.GetFields(basicStats, _Viewer.Data);
 
             _Viewer.Show();
-            
+
             SetRePosition(_Viewer.transform, part);
         }
         void HideViewer()

@@ -11,6 +11,7 @@ namespace PahlBit
         [SerializeField] Transform InvenSlotRoot;
         [SerializeField] Transform OptionContentRoot;
         [SerializeField] UIPartsFieldRow FieldRow;
+        [SerializeField] UIPartsActions _ActionSelector;
 
         public ItemInventory ItemInven { get; set; }
 
@@ -25,6 +26,8 @@ namespace PahlBit
             InitItemInfo();
 
             UpdateDisplayInfo(null);
+
+            _ActionSelector.gameObject.SetActive(false);
         }
 
         void InitSlots()
@@ -121,22 +124,9 @@ namespace PahlBit
         void OnSubmitSlot(UIPartsHandler part, bool isEquipSlot)
         {
             UIPartsItemSlot slot = part as UIPartsItemSlot;
-            slot.GetComponent<Image>().color = Color.red;
-            this.ExDelayedCoroutine(0.2f, () => slot.GetComponent<Image>().color = Color.green);
-
             if (slot.IsEmpty) return;
 
-            if (isEquipSlot)
-            {
-                UnEquipItem(slot);
-                UpdateDisplayInfo(null);
-            }
-            else
-            {
-                EquipItem(slot);
-                UpdateDisplayInfo(null);
-            }
-
+            ShowActionSelector(slot);
         }
 
         void ShowItemInfo(UIPartsItemSlot slot)
@@ -170,10 +160,6 @@ namespace PahlBit
 
                 ItemInven.EquipItem(itemInfo.InstanceID);
             }
-            else
-            {
-                // There is no empty slot for equipment.
-            }
         }
         void UnEquipItem(UIPartsItemSlot slot)
         {
@@ -186,10 +172,13 @@ namespace PahlBit
 
                 ItemInven.UnEquipItem(itemInfo.InstanceID);
             }
-            else
-            {
-                // There is no empty slot for unequipment.
-            }
+        }
+        void DumpItem(UIPartsItemSlot slot)
+        {
+            ItemInfo itemInfo = slot.ItemInfo;
+            slot.SetEmpty();
+
+            ItemInven.RemoveItem(itemInfo.InstanceID);
         }
 
         UIPartsItemSlot FindEmptyEquipSlot()
@@ -211,6 +200,60 @@ namespace PahlBit
             return null;
         }
 
+        void ShowActionSelector(UIPartsHandler part)
+        {
+            UIPartsItemSlot itemSlot = part as UIPartsItemSlot;
+
+            InGameEngine.Instance.SetInputHandler(_ActionSelector.InputHandler);
+
+            _ActionSelector.Actions.Clear();
+            if (itemSlot.ItemInfo.IsEquipped)
+            {
+                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.UnEquip });
+            }
+            else
+            {
+                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Equip });
+                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Dump });
+            }
+
+            _ActionSelector.Show((type) =>
+            {
+                DoAction(itemSlot, type);
+                InGameEngine.Instance.SetInputHandler(this.InputHandler);
+                InputHandler.SelectUIPart(part);
+                UpdateDisplayInfo(null);
+            });
+
+            SetRePosition(_ActionSelector.transform, part);
+        }
+
+        void SetRePosition(Transform target, UIPartsHandler part)
+        {
+            target.position = part.transform.position;
+
+            RectTransform screenArea = GetComponent<RectTransform>();
+            target.GetComponent<RectTransform>().MoveInsideOf(screenArea);
+        }
+
+        void DoAction(UIPartsItemSlot itemSlot, UIActionType type)
+        {
+            if (type == UIActionType.None)
+                return;
+
+            if (type == UIActionType.Equip)
+            {
+                EquipItem(itemSlot);
+            }
+            else if (type == UIActionType.UnEquip)
+            {
+                UnEquipItem(itemSlot);
+            }
+            else if (type == UIActionType.Dump)
+            {
+                DumpItem(itemSlot);
+            }
+        }
 
 
 
