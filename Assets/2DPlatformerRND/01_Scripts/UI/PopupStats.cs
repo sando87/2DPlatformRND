@@ -7,13 +7,16 @@ namespace PahlBit
 {
     public class PopupStats : PopupBase
     {
+        [SerializeField] TextMeshProUGUI _LevelText;
+        [SerializeField] TextMeshProUGUI _ExpValueText;
+        [SerializeField] Image _ExpValueFill;
         [SerializeField] TextMeshProUGUI _RemainPointText;
         [SerializeField] TextMeshProUGUI _AttackPointText;
         [SerializeField] TextMeshProUGUI _DefensePointText;
         [SerializeField] TextMeshProUGUI _HealthPointText;
         [SerializeField] TextMeshProUGUI _ManaPointText;
         [SerializeField] UIPartsHandler[] _StatButtons;
-        
+
         [SerializeField] Transform ContentsRoot;
         [SerializeField] UIPartsFieldRow FieldRow;
 
@@ -73,26 +76,27 @@ namespace PahlBit
 
         void UpdateStatsPoints()
         {
+            const float ExpFullWidth = 580f;
+            _LevelText.text = mExperience.CurrentLevel.ToString();
+            _ExpValueText.text = mExperience.CurrentExp.ToString() + " / " + mExperience.NextExp.ToString();
+            _ExpValueFill.rectTransform.sizeDelta = new Vector2(mExperience.CurrentExpRate * ExpFullWidth, _ExpValueFill.rectTransform.sizeDelta.y);
+
             _RemainPointText.text = mExperience.RemainPoint.ToString();
             _AttackPointText.text = mExperience.AttackPoint.ToString();
             _DefensePointText.text = mExperience.DefensePoint.ToString();
             _HealthPointText.text = mExperience.HealthPoint.ToString();
             _ManaPointText.text = mExperience.ManaPoint.ToString();
         }
-        
+
 
         void UpdateDisplayInfo()
         {
             ContentsRoot.ExDestroyAllChildren();
 
             SpecPlayer specPlayer = mPlayer.Spec as SpecPlayer;
-            ReflectionFieldExtractor.GetFields(specPlayer.BaseStats, mDisplayFields);
+            specPlayer.GetDisplayInfo(mDisplayFields);
             foreach (var field in mDisplayFields)
             {
-                string val = field.Value;
-                if (val.Equals("0") || val.Equals("0%"))
-                    continue;
-
                 UIPartsFieldRow row = Instantiate(FieldRow, ContentsRoot);
                 row.SetField(field.Name, field.Value);
             }

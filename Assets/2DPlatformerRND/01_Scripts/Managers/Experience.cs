@@ -12,7 +12,7 @@ namespace PahlBit
 
         public int CurrentLevel { get; private set; } = 0;
         public int CurrentLevelIdx { get => CurrentLevel - 1; }
-        
+
         public int RemainPoint { get => mCharacterSaveData.RemainPoint; }
         public int AttackPoint { get => mCharacterSaveData.AttackPoint; }
         public int DefensePoint { get => mCharacterSaveData.DefensePoint; }
@@ -22,6 +22,7 @@ namespace PahlBit
         public float RemainExp { get { return mToExp - CurrentExp; } }
         public float CurrentExpRate { get { return (CurrentExp - mFromExp) / (mToExp - mFromExp); } }
         public float CurrentExp { get; private set; } = 0;
+        public float NextExp { get { return mToExp; } }
 
         public UnityEvent OnLevelUp = new UnityEvent();
 
