@@ -31,13 +31,13 @@ namespace PahlBit
         void OnSelect(UIPartsHandler part)
         {
             part.GetComponent<Image>().color = Color.green;
-            // ShowViewer(part);
+            ShowViewer(part);
             UpdateDisplayInfo(part);
         }
         void OnDeselect(UIPartsHandler part)
         {
             part.GetComponent<Image>().color = Color.white;
-            // HideViewer();
+            HideViewer();
         }
         void OnSubmit(UIPartsHandler part)
         {
@@ -111,8 +111,7 @@ namespace PahlBit
         void ShowViewer(UIPartsHandler part)
         {
             UIPartsSkillSlot skillPart = part as UIPartsSkillSlot;
-            SkillStats basicStats = skillPart.SKill.Spec.BaseStats;
-            ReflectionFieldExtractor.GetFields(basicStats, _Viewer.Data);
+            skillPart.SKill.Spec.GetBasicStatInfo(_Viewer.Data);
 
             _Viewer.Show();
 
@@ -128,13 +127,9 @@ namespace PahlBit
             SkillBase skill = skillSlot.SKill;
             ContentsRoot.ExDestroyAllChildren();
 
-            ReflectionFieldExtractor.GetFields(skill.Spec.BaseStats, mDisplayFields);
+            skill.Spec.GetDisplayInfo(mDisplayFields);
             foreach (var field in mDisplayFields)
             {
-                string val = field.Value;
-                if (val.Equals("0") || val.Equals("0%"))
-                    continue;
-
                 UIPartsFieldRow row = Instantiate(FieldRow, ContentsRoot);
                 row.SetField(field.Name, field.Value);
             }
