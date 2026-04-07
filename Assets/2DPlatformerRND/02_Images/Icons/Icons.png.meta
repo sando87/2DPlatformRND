@@ -19760,7 +19760,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Icons_720
+      name: Icons_720_skill
       rect:
         serializedVersion: 2
         x: 0
@@ -35600,7 +35600,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Icons_1440
+      name: Icons_1440_weapon
       rect:
         serializedVersion: 2
         x: 0
@@ -43696,7 +43696,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Icons_1808
+      name: Icons_1808_armor
       rect:
         serializedVersion: 2
         x: 0
@@ -52651,7 +52651,7 @@ TextureImporter:
       Icons_1438: -163507664
       Icons_1439: -753645156
       Icons_144: -1843368076
-      Icons_1440: 769678387
+      Icons_1440_weapon: 769678387
       Icons_1441: 719577518
       Icons_1442: 910240921
       Icons_1443: -28676913
@@ -53059,7 +53059,7 @@ TextureImporter:
       Icons_1805: -1102850239
       Icons_1806: 217547403
       Icons_1807: 540189036
-      Icons_1808: 627582718
+      Icons_1808_armor: 627582718
       Icons_1809: 1103228069
       Icons_181: 1284134143
       Icons_1810: 1250738067
@@ -54042,7 +54042,7 @@ TextureImporter:
       Icons_718: 594762032
       Icons_719: 1878493519
       Icons_72: 1882946712
-      Icons_720: -2101677271
+      Icons_720_skill: -2101677271
       Icons_721: -2060861092
       Icons_722: -1871593950
       Icons_723: 1585790100

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2d1ccc165d88a44af5485a18676513, type: 3}
   m_Name: Item03
   m_EditorClassIdentifier: Assembly-CSharp::ItemAssetData
-  Icon: {fileID: 21300000, guid: de37dc2ecf66249e2b5f4fcd1e0ce0b3, type: 3}
+  Icon: {fileID: 2140429648, guid: 4dbf30ad5efe9b04ba8d0b09e499343a, type: 3}
   Prefab: {fileID: 8872753720201472015, guid: f73e8eaab2241314aa87f2c4ea012b8e, type: 3}
