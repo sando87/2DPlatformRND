@@ -69,5 +69,9 @@ public class InGameEngine : SingletonMono<InGameEngine>
     {
         _InputManager.SetHandlerInput(handler);
     }
+    public IInputHandler GetInputHandler()
+    {
+        return _InputManager.GetHandlerInput();
+    }
 
 }

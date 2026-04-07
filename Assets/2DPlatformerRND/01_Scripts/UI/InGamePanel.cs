@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using PahlBit;
 using TMPro;
 using UnityEngine;
@@ -18,6 +20,9 @@ public class InGamePanel : MonoBehaviour
     [SerializeField] TextMeshProUGUI ManaPotion = null;
     [SerializeField] BaseObject PlayerObject = null;
     [SerializeField] Transform[] SkillEquipSlots = null;
+
+    [SerializeField] Transform _ActionsParent = null;
+    [SerializeField] UIActionSelector _ActionSelector = null;
 
     Experience mExperience = null;
     ItemInventory mInven = null;
@@ -161,5 +166,13 @@ public class InGamePanel : MonoBehaviour
                 skillCooltime.fillAmount = 0;
             }
         }
+    }
+
+    void ShowActionSelector()
+    {
+        UIActionSelector.Show(_ActionSelector, _ActionsParent, new string[] { "testA", "testB", "testC" }, (result) =>
+        {
+            LOG.trace(result);
+        });
     }
 }

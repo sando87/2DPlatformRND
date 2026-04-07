@@ -98,6 +98,10 @@ namespace PahlBit
             InitEnumKeys();
         }
 
+        public IInputHandler GetHandlerInput()
+        {
+            return mHandlerInput;
+        }
         public void SetHandlerInput(IInputHandler handler)
         {
             if (mHandlerInput == null)
