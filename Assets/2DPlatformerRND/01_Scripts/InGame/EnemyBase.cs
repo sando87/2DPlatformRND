@@ -8,7 +8,10 @@ using UnityEngine.InputSystem;
 public class EnemyBase : MonoBehaviour
 {
     [SerializeField] int GoldDropPercent = 30;
+    [SerializeField] int PotionDropPercent = 30;
     [SerializeField] Gold GoldPrefab = null;
+    [SerializeField] Potion LifePotionPrefab = null;
+    [SerializeField] Potion ManaPotionPrefab = null;
     [SerializeField] ProjectileBase ProjPrefab;
 
     [SerializeField]
@@ -43,6 +46,9 @@ public class EnemyBase : MonoBehaviour
 
         // if (MyUtils.IsPercentHit(GoldDropPercent))
         //     DropGold();
+
+        if (MyUtils.IsPercentHit(PotionDropPercent))
+            DropPotion();
     }
 
     void DropItem()
@@ -53,6 +59,13 @@ public class EnemyBase : MonoBehaviour
     {
         Gold itemObj = Instantiate(GoldPrefab, mBase.Body.Center, Quaternion.identity);
         itemObj.GoldAmount = Spec.GoldOnDeath;
+    }
+    void DropPotion()
+    {
+        if (MyUtils.IsPercentHit(50))
+            Instantiate(LifePotionPrefab, mBase.Body.Center, Quaternion.identity);
+        else
+            Instantiate(ManaPotionPrefab, mBase.Body.Center, Quaternion.identity);
     }
 
 

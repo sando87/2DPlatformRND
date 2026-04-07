@@ -8,7 +8,14 @@ using UnityEngine.InputSystem;
 
 namespace PahlBit
 {
-    public enum PlayerUnitInputType { None, Jump, Move, Dash, SkillSlotA, SkillSlotB, SkillSlotC, SkillSlotD, ShowPopupStats, ShowPopupInven, ShowPopupSkill, UIMove, UIEnter, UIBack }
+    public enum PlayerUnitInputType
+    {
+        None, Jump, Move, Dash,
+        PotionA, PotionB,
+        SkillSlotA, SkillSlotB, SkillSlotC, SkillSlotD,
+        ShowPopupStats, ShowPopupInven, ShowPopupSkill,
+        UIMove, UIEnter, UIBack
+    }
 
     public class PlayerUnitInputState
     {
@@ -29,16 +36,16 @@ namespace PahlBit
         private PlayerInputActions mInputActions;
         private Dictionary<PlayerUnitInputType, PlayerUnitInputState> mInputStates = new Dictionary<PlayerUnitInputType, PlayerUnitInputState>();
 
-        public bool LockPlayerInput 
-        { 
-            get => mInputActions.Player.enabled; 
-            set 
-            { 
-                if (value) 
-                    mInputActions.Player.Disable(); 
-                else 
-                    mInputActions.Player.Enable(); 
-            } 
+        public bool LockPlayerInput
+        {
+            get => mInputActions.Player.enabled;
+            set
+            {
+                if (value)
+                    mInputActions.Player.Disable();
+                else
+                    mInputActions.Player.Enable();
+            }
         }
 
         public bool JustPressed(PlayerUnitInputType type)
@@ -90,7 +97,7 @@ namespace PahlBit
 
             InitEnumKeys();
         }
-        
+
         public void SetHandlerInput(IInputHandler handler)
         {
             if (mHandlerInput == null)
@@ -171,6 +178,10 @@ namespace PahlBit
                     return mInputActions.Player.Move;
                 case PlayerUnitInputType.Dash:
                     return mInputActions.Player.Dash;
+                case PlayerUnitInputType.PotionA:
+                    return mInputActions.Player.PotionA;
+                case PlayerUnitInputType.PotionB:
+                    return mInputActions.Player.PotionB;
                 case PlayerUnitInputType.SkillSlotA:
                     return mInputActions.Player.SkillSlotA;
                 case PlayerUnitInputType.SkillSlotB:

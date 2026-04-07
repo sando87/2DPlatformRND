@@ -71,7 +71,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
   GoldDropPercent: 30
+  PotionDropPercent: 30
   GoldPrefab: {fileID: 5461417893251240980, guid: 5dd89691a4a14614aba050b3c09ae3bf,
+    type: 3}
+  LifePotionPrefab: {fileID: 8437516355266612991, guid: 373497e733348d2419e0554ac7b3b652,
+    type: 3}
+  ManaPotionPrefab: {fileID: 8437516355266612991, guid: 5ab96b73a691cf74aa1835b3483ada82,
     type: 3}
   ProjPrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
     type: 3}
@@ -276,6 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632bd108bdbc1ce47beac7c344218d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundFXPlayer
+  AutoPlayOnEnabled: 0
+  _Clip: {fileID: 0}
 --- !u!1 &1093580374788808452
 GameObject:
   m_ObjectHideFlags: 0

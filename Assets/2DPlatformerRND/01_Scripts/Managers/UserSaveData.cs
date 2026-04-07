@@ -9,6 +9,8 @@ namespace PahlBit
     public class UserSaveData : SaveableBase
     {
         public int Gold = 0;
+        public int LifePotionCount = 0;
+        public int ManaPotionCount = 0;
 
         public Dictionary<int, CharacterSaveData> Characters = new Dictionary<int, CharacterSaveData>();
     }

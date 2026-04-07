@@ -25,6 +25,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "PotionA",
+                    "type": "Button",
+                    "id": "fda8a908-fa10-41ec-b21e-3e89498b2d7e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PotionB",
+                    "type": "Button",
+                    "id": "ac563562-cfe4-4c07-9e6d-ab86b9273ffe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Dash",
                     "type": "Button",
                     "id": "b5e5009b-9fe6-4315-b1d1-9af3914e8ee9",
@@ -134,6 +152,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "59a335fc-d073-4016-a23a-e934a6d0cafd",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PotionA",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34d1347d-7e1e-4513-aa43-4487d5ca94a4",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PotionB",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

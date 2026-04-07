@@ -18,6 +18,8 @@ namespace PahlBit
         { get; private set; } = new SpecOption();
 
         public int CurrentGold { get { return mUserSaveData.Gold; } set { mUserSaveData.Gold = value; GameSystem.RequestSave(); } }
+        public int CurrentLifePotionCount { get { return mUserSaveData.LifePotionCount; } set { mUserSaveData.LifePotionCount = value; GameSystem.RequestSave(); } }
+        public int CurrentManaPotionCount { get { return mUserSaveData.ManaPotionCount; } set { mUserSaveData.ManaPotionCount = value; GameSystem.RequestSave(); } }
 
         [ShowIf(nameof(ShowInvenItems))]
         [Dropdown(nameof(ListInvenItems))]
@@ -153,7 +155,6 @@ namespace PahlBit
 
             TotalItemOption.Subtract(item.Option);
         }
-
 
     }
 }

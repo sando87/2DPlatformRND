@@ -43,6 +43,27 @@ namespace PahlBit
             SkillCtrl.InitSkills(CharacterID);
         }
 
+        void Update()
+        {
+            if (mBaseObj.Input.JustPressed(PlayerUnitInputType.PotionA))
+            {
+                if (Inven.CurrentLifePotionCount > 0)
+                {
+                    Inven.CurrentLifePotionCount--;
+                    mBaseObj.Health.Heal(30);
+                }
+            }
+
+            if (mBaseObj.Input.JustPressed(PlayerUnitInputType.PotionB))
+            {
+                if (Inven.CurrentManaPotionCount > 0)
+                {
+                    Inven.CurrentManaPotionCount--;
+                    mBaseObj.Health.RestoreMana(10);
+                }
+            }
+        }
+
         int GetCharacterData()
         {
             if (mCharacterID >= 0)

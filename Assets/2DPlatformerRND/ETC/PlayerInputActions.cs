@@ -111,6 +111,24 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""PotionA"",
+                    ""type"": ""Button"",
+                    ""id"": ""fda8a908-fa10-41ec-b21e-3e89498b2d7e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PotionB"",
+                    ""type"": ""Button"",
+                    ""id"": ""ac563562-cfe4-4c07-9e6d-ab86b9273ffe"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""b5e5009b-9fe6-4315-b1d1-9af3914e8ee9"",
@@ -220,6 +238,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""59a335fc-d073-4016-a23a-e934a6d0cafd"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PotionA"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34d1347d-7e1e-4513-aa43-4487d5ca94a4"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PotionB"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -504,6 +544,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_PotionA = m_Player.FindAction("PotionA", throwIfNotFound: true);
+        m_Player_PotionB = m_Player.FindAction("PotionB", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_SkillSlotA = m_Player.FindAction("SkillSlotA", throwIfNotFound: true);
         m_Player_SkillSlotB = m_Player.FindAction("SkillSlotB", throwIfNotFound: true);
@@ -600,6 +642,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_PotionA;
+    private readonly InputAction m_Player_PotionB;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_SkillSlotA;
     private readonly InputAction m_Player_SkillSlotB;
@@ -624,6 +668,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Jump".
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/PotionA".
+        /// </summary>
+        public InputAction @PotionA => m_Wrapper.m_Player_PotionA;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/PotionB".
+        /// </summary>
+        public InputAction @PotionB => m_Wrapper.m_Player_PotionB;
         /// <summary>
         /// Provides access to the underlying input action "Player/Dash".
         /// </summary>
@@ -676,6 +728,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @PotionA.started += instance.OnPotionA;
+            @PotionA.performed += instance.OnPotionA;
+            @PotionA.canceled += instance.OnPotionA;
+            @PotionB.started += instance.OnPotionB;
+            @PotionB.performed += instance.OnPotionB;
+            @PotionB.canceled += instance.OnPotionB;
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
@@ -708,6 +766,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @PotionA.started -= instance.OnPotionA;
+            @PotionA.performed -= instance.OnPotionA;
+            @PotionA.canceled -= instance.OnPotionA;
+            @PotionB.started -= instance.OnPotionB;
+            @PotionB.performed -= instance.OnPotionB;
+            @PotionB.canceled -= instance.OnPotionB;
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
@@ -941,6 +1005,20 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PotionA" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPotionA(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PotionB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPotionB(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Dash" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

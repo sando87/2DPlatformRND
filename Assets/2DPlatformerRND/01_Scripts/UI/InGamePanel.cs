@@ -12,6 +12,8 @@ public class InGamePanel : MonoBehaviour
     [SerializeField] Image ExpBarFill = null;
     [SerializeField] TextMeshProUGUI ExpValue = null;
     [SerializeField] TextMeshProUGUI GoldText = null;
+    [SerializeField] TextMeshProUGUI LifePotion = null;
+    [SerializeField] TextMeshProUGUI ManaPotion = null;
     [SerializeField] BaseObject PlayerObject = null;
     [SerializeField] Transform[] SkillEquipSlots = null;
 
@@ -26,6 +28,9 @@ public class InGamePanel : MonoBehaviour
     int mLastCurExp = 0;
     int mLastMaxExp = 0;
     int mLastGold = 0;
+    int mLastLifePotion = 0;
+    int mLastManaPotion = 0;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -102,6 +107,20 @@ public class InGamePanel : MonoBehaviour
             GoldText.SetText("{0}", curGold);
 
             mLastGold = curGold;
+        }
+        int curlifePotion = (int)mInven.CurrentLifePotionCount;
+        if (mLastLifePotion != curlifePotion)
+        {
+            LifePotion.SetText("{0}", curlifePotion);
+
+            mLastLifePotion = curlifePotion;
+        }
+        int curManaPotion = (int)mInven.CurrentManaPotionCount;
+        if (mLastManaPotion != curManaPotion)
+        {
+            ManaPotion.SetText("{0}", curManaPotion);
+
+            mLastManaPotion = curManaPotion;
         }
     }
 
