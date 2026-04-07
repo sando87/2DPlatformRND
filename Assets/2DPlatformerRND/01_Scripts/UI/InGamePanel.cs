@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class InGamePanel : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI LevelValue = null;
     [SerializeField] Image HPBarFill = null;
     [SerializeField] TextMeshProUGUI HPValue = null;
+    [SerializeField] TextMeshProUGUI ShieldValue = null;
     [SerializeField] Image MPBarFill = null;
     [SerializeField] TextMeshProUGUI MPValue = null;
     [SerializeField] Image ExpBarFill = null;
@@ -21,8 +23,10 @@ public class InGamePanel : MonoBehaviour
     ItemInventory mInven = null;
     SkillController mSkillController = null;
 
+    int mLastLevel = 0;
     int mLastCurHP = 0;
     int mLastMaxHP = 0;
+    int mLastShield = 0;
     int mLastCurMP = 0;
     int mLastMaxMP = 0;
     int mLastCurExp = 0;
@@ -62,6 +66,13 @@ public class InGamePanel : MonoBehaviour
     {
         const float barMaxLength = 500;
 
+        int curLevel = mExperience.CurrentLevel;
+        if (mLastLevel != curLevel)
+        {
+            LevelValue.SetText("Lv. {0}", curLevel);
+            mLastLevel = curLevel;
+        }
+
         int curHP = (int)PlayerObject.Health.CurrentHP;
         int maxHP = (int)PlayerObject.Health.MaxHealth;
         if (mLastCurHP != curHP || mLastMaxHP != maxHP)
@@ -73,6 +84,14 @@ public class InGamePanel : MonoBehaviour
 
             mLastCurHP = curHP;
             mLastMaxHP = maxHP;
+        }
+
+        int curShield = (int)PlayerObject.Health.CurrentShield;
+        if (mLastShield != curShield)
+        {
+            ShieldValue.SetText("({0})", curShield);
+
+            mLastShield = curShield;
         }
 
         int curMP = (int)PlayerObject.Health.CurrentMana;
