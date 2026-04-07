@@ -6,16 +6,33 @@ using UnityEngine.UI;
 public class InGamePanel : MonoBehaviour
 {
     [SerializeField] Image HPBarFill = null;
+    [SerializeField] TextMeshProUGUI HPValue = null;
     [SerializeField] Image MPBarFill = null;
+    [SerializeField] TextMeshProUGUI MPValue = null;
     [SerializeField] Image ExpBarFill = null;
+    [SerializeField] TextMeshProUGUI ExpValue = null;
     [SerializeField] TextMeshProUGUI GoldText = null;
     [SerializeField] BaseObject PlayerObject = null;
     [SerializeField] Transform[] SkillEquipSlots = null;
 
+    Experience mExperience = null;
+    ItemInventory mInven = null;
+    SkillController mSkillController = null;
+
+    int mLastCurHP = 0;
+    int mLastMaxHP = 0;
+    int mLastCurMP = 0;
+    int mLastMaxMP = 0;
+    int mLastCurExp = 0;
+    int mLastMaxExp = 0;
+    int mLastGold = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        mExperience = PlayerObject.GetComponentInChildren<Experience>();
+        mInven = PlayerObject.GetComponentInChildren<ItemInventory>();
+        mSkillController = PlayerObject.GetComponentInChildren<SkillController>();
     }
 
     // Update is called once per frame
@@ -40,30 +57,60 @@ public class InGamePanel : MonoBehaviour
     {
         const float barMaxLength = 500;
 
-        float hpRate = PlayerObject.Health.HpRate;
-        float barCurLength = hpRate * barMaxLength;
-        HPBarFill.rectTransform.sizeDelta = new Vector2(barCurLength, HPBarFill.rectTransform.sizeDelta.y);
+        int curHP = (int)PlayerObject.Health.CurrentHP;
+        int maxHP = (int)PlayerObject.Health.MaxHealth;
+        if (mLastCurHP != curHP || mLastMaxHP != maxHP)
+        {
+            float hpRate = (float)curHP / maxHP;
+            float barCurLength = hpRate * barMaxLength;
+            HPBarFill.rectTransform.sizeDelta = new Vector2(barCurLength, HPBarFill.rectTransform.sizeDelta.y);
+            HPValue.SetText("{0} / {1}", curHP, maxHP);
 
-        float mpRate = PlayerObject.Health.ManaRate;
-        float barCurLengthMP = mpRate * barMaxLength;
-        MPBarFill.rectTransform.sizeDelta = new Vector2(barCurLengthMP, MPBarFill.rectTransform.sizeDelta.y);
+            mLastCurHP = curHP;
+            mLastMaxHP = maxHP;
+        }
 
-        Experience experience = PlayerObject.GetComponentInChildren<Experience>();
-        float expRate = experience.CurrentExpRate;
-        float barCurLengthExp = expRate * barMaxLength;
-        ExpBarFill.rectTransform.sizeDelta = new Vector2(barCurLengthExp, ExpBarFill.rectTransform.sizeDelta.y);
+        int curMP = (int)PlayerObject.Health.CurrentMana;
+        int maxMP = (int)PlayerObject.Health.MaxMana;
+        if (mLastCurMP != curMP || mLastMaxMP != maxMP)
+        {
+            float mpRate = (float)curMP / maxMP;
+            float barCurLength = mpRate * barMaxLength;
+            MPBarFill.rectTransform.sizeDelta = new Vector2(barCurLength, MPBarFill.rectTransform.sizeDelta.y);
+            MPValue.SetText("{0} / {1}", curMP, maxMP);
 
-        ItemInventory inven = PlayerObject.GetComponentInChildren<ItemInventory>();
-        GoldText.text = inven.CurrentGold.ToString();
+            mLastCurMP = curMP;
+            mLastMaxMP = maxMP;
+        }
+
+        int curExp = (int)(mExperience.CurrentExp - mExperience.ExpAtLevelStart);
+        int maxExp = (int)(mExperience.ExpForNextLevel - mExperience.ExpAtLevelStart);
+        if (mLastCurExp != curExp || mLastMaxExp != maxExp)
+        {
+            float expRate = (float)curExp / maxExp;
+            float barCurLengthExp = expRate * barMaxLength;
+            ExpBarFill.rectTransform.sizeDelta = new Vector2(barCurLengthExp, ExpBarFill.rectTransform.sizeDelta.y);
+            ExpValue.SetText("{0} / {1}", curExp, maxExp);
+
+            mLastCurExp = curExp;
+            mLastMaxExp = maxExp;
+        }
+
+        int curGold = (int)mInven.CurrentGold;
+        if (mLastGold != curGold)
+        {
+            GoldText.SetText("{0}", curGold);
+
+            mLastGold = curGold;
+        }
     }
 
     void UpdateSkillEquipSlots()
     {
-        SkillController skillController = PlayerObject.GetComponentInChildren<SkillController>();
         for (int i = 0; i < SkillEquipSlots.Length; i++)
         {
             Image skillIcon = SkillEquipSlots[i].GetChild(1).GetComponent<Image>();
-            SkillBase equipSkill = skillController.GetEquipSkill(i);
+            SkillBase equipSkill = mSkillController.GetEquipSkill(i);
             if (equipSkill != null)
             {
                 skillIcon.sprite = equipSkill.Icon;

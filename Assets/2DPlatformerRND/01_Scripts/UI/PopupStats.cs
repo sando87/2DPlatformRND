@@ -78,7 +78,7 @@ namespace PahlBit
         {
             const float ExpFullWidth = 580f;
             _LevelText.text = mExperience.CurrentLevel.ToString();
-            _ExpValueText.text = mExperience.CurrentExp.ToString() + " / " + mExperience.NextExp.ToString();
+            _ExpValueText.text = mExperience.CurrentExp.ToString() + " / " + mExperience.ExpForNextLevel.ToString();
             _ExpValueFill.rectTransform.sizeDelta = new Vector2(mExperience.CurrentExpRate * ExpFullWidth, _ExpValueFill.rectTransform.sizeDelta.y);
 
             _RemainPointText.text = mExperience.RemainPoint.ToString();

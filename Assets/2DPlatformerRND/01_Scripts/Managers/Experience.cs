@@ -19,10 +19,12 @@ namespace PahlBit
         public int HealthPoint { get => mCharacterSaveData.HealthPoint; }
         public int ManaPoint { get => mCharacterSaveData.ManaPoint; }
 
+        public float ExpAtLevelStart => mFromExp;
+        public float ExpForNextLevel => mToExp;
+        public float ExpDeltaOfCurrentLevel => mToExp - mFromExp;
         public float RemainExp { get { return mToExp - CurrentExp; } }
-        public float CurrentExpRate { get { return (CurrentExp - mFromExp) / (mToExp - mFromExp); } }
+        public float CurrentExpRate { get { return (CurrentExp - mFromExp) / ExpDeltaOfCurrentLevel; } }
         public float CurrentExp { get; private set; } = 0;
-        public float NextExp { get { return mToExp; } }
 
         public UnityEvent OnLevelUp = new UnityEvent();
 

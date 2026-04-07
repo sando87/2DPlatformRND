@@ -13,6 +13,10 @@ namespace PahlBit
         public float ManaRate => mMaxCurrentMana > 0 ? mCurrentMana / mMaxCurrentMana : 0;
         public float ShieldRate => mMaxCurrentShield > 0 ? mCurrentShield / mMaxCurrentShield : 0;
 
+        public float MaxHealth => mMaxCurrentHP;
+        public float MaxMana => mMaxCurrentMana;
+        public float MaxShield => mMaxCurrentShield;
+
         public float CurrentHP => mCurrentHP;
         public float CurrentMana => mCurrentMana;
         public float CurrentShield => mCurrentShield;
