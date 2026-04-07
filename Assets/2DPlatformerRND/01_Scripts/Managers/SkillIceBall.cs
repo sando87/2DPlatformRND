@@ -14,7 +14,7 @@ public class SkillIceBall : SkillBase
 
     public override bool IsCastable()
     {
-        return SkillMotion.IsChangable();
+        return base.IsCastable() && SkillMotion.IsChangable();
     }
 
     public override void UpdateSkill()
@@ -31,7 +31,8 @@ public class SkillIceBall : SkillBase
     {
         base.DoFire();
 
-        // DoCastSkill();
+        UseMana();
+        StartCooltime();
 
         List<BaseObject> mTargets = new();
         Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);

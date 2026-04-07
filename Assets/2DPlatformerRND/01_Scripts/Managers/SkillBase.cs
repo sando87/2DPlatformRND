@@ -13,7 +13,7 @@ public class SkillBase : MonoBehaviour
 {
     [SerializeField] Sprite _Icon = null;
     public Sprite Icon => _Icon;
-    
+
     [SerializeField]
     [Dropdown(nameof(IDList))]
     string _ResourceID = "";
@@ -26,7 +26,9 @@ public class SkillBase : MonoBehaviour
     public bool IsLearned => mSkillSaveData != null && mSkillSaveData.IsLearned;
     public int PositionIndex => mSkillSaveData.PositionIndex;
     public int Level => mSkillSaveData.Level;
-    public bool IsCooltime => Time.time - mCooltime < Spec.Cooltime;
+    public bool IsCooltime => Spec.Cooltime == 0 ? false : Time.time - mCooltime < Spec.Cooltime;
+    public float CooltimeRate => IsCooltime ? (1f - ((Time.time - mCooltime) / Spec.Cooltime)) : 0f;
+    public bool IsEnoughMana => Spec.ManaUse <= mBaseObj.Health.CurrentMana;
 
     protected BaseObject mBaseObj = null;
     protected PlayerUnitInput mInput = null;
@@ -36,6 +38,7 @@ public class SkillBase : MonoBehaviour
 
     public SpecSkill Spec { get; private set; } = null;
     protected void StartCooltime() { mCooltime = Time.time; }
+    protected void UseMana() { mBaseObj.Health.UseMana(Spec.ManaUse); }
 
     void Awake()
     {
@@ -60,7 +63,7 @@ public class SkillBase : MonoBehaviour
 
     public virtual bool IsCastable()
     {
-        return true;
+        return IsEnoughMana && !IsCooltime;
     }
     public virtual void StartCasting()
     {

@@ -11,7 +11,7 @@ public class SkillLaser : SkillBase
 
     public override bool IsCastable()
     {
-        return SkillMotion.IsChangable() && mLaser == null;
+        return base.IsCastable() && SkillMotion.IsChangable() && mLaser == null;
     }
 
     public override void UpdateSkill()
@@ -42,6 +42,7 @@ public class SkillLaser : SkillBase
             SkillMotion.DoLeaveCurrentState();
         }
 
+        StartCooltime();
         StopAllCoroutines();
     }
 
@@ -54,6 +55,7 @@ public class SkillLaser : SkillBase
             mLaser = null;
         }
 
+        StartCooltime();
         StopAllCoroutines();
     }
 
@@ -64,6 +66,7 @@ public class SkillLaser : SkillBase
 
         if (mLaser != null)
         {
+            UseMana();
             mLaser.StartProjectile();
         }
     }

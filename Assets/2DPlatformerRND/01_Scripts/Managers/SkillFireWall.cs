@@ -16,7 +16,7 @@ public class SkillFireWall : SkillBase
 
     public override bool IsCastable()
     {
-        return SkillMotion.IsChangable();
+        return base.IsCastable() && SkillMotion.IsChangable();
     }
 
     public override void UpdateSkill()
@@ -42,6 +42,9 @@ public class SkillFireWall : SkillBase
         }
         else
         {
+            UseMana();
+            StartCooltime();
+
             proj.StartProjectile();
         }
     }

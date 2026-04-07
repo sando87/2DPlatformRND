@@ -15,7 +15,7 @@ public class SkillWaterBomb : SkillBase
 
     public override bool IsCastable()
     {
-        return SkillMotion.IsChangable();
+        return base.IsCastable() && SkillMotion.IsChangable();
     }
 
     public override void UpdateSkill()
@@ -41,6 +41,9 @@ public class SkillWaterBomb : SkillBase
         }
         else
         {
+            UseMana();
+            StartCooltime();
+
             proj.StartProjectile();
         }
     }

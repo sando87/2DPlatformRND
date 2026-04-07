@@ -14,8 +14,7 @@ public class SkillMelee : SkillBase
 
     public override bool IsCastable()
     {
-        // 나중에 추가로 쿨타임이나 스턴같은 경우에 대한 조건 추가
-        return SkillMotion.IsChangable();
+        return base.IsCastable() && SkillMotion.IsChangable();
     }
 
     public override void UpdateSkill()
@@ -31,6 +30,9 @@ public class SkillMelee : SkillBase
     public override void DoFire()
     {
         base.DoFire();
+
+        UseMana();
+        StartCooltime();
 
         DoCastSkill();
     }

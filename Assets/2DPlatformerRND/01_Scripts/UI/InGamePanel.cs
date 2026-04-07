@@ -129,14 +129,17 @@ public class InGamePanel : MonoBehaviour
         for (int i = 0; i < SkillEquipSlots.Length; i++)
         {
             Image skillIcon = SkillEquipSlots[i].GetChild(1).GetComponent<Image>();
+            Image skillCooltime = SkillEquipSlots[i].GetChild(2).GetComponent<Image>();
             SkillBase equipSkill = mSkillController.GetEquipSkill(i);
             if (equipSkill != null)
             {
                 skillIcon.sprite = equipSkill.Icon;
+                skillCooltime.fillAmount = equipSkill.CooltimeRate;
             }
             else
             {
                 skillIcon.sprite = null;
+                skillCooltime.fillAmount = 0;
             }
         }
     }

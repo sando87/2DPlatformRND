@@ -19,7 +19,7 @@ public class SkillLightning : SkillBase
 
     public override bool IsCastable()
     {
-        return SkillMotion.IsChangable();
+        return base.IsCastable() && SkillMotion.IsChangable();
     }
 
     public override void UpdateSkill()
@@ -35,6 +35,9 @@ public class SkillLightning : SkillBase
     public override void DoFire()
     {
         base.DoFire();
+
+        UseMana();
+        StartCooltime();
 
         List<BaseObject> alreadyHitTargets = new List<BaseObject>();
         DoCastSkill(alreadyHitTargets);

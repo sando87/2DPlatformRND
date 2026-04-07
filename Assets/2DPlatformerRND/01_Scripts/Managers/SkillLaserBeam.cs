@@ -18,11 +18,11 @@ public class SkillLaserBeam : SkillBase
     {
         while (true)
         {
-            yield return new WaitUntil(() => mInput.IsPressing(GetCurrentInputType()) && !IsCooltime);
+            yield return new WaitUntil(() => mInput.IsPressing(GetCurrentInputType()) && IsCastable());
             mBaseObj.AnimHelper.SetParamBool(AnimatorParams.IsAttacking, true);
             BeamMuzzle.SetActive(true);
 
-            Coroutine delayForFireProj = this.ExRepeatCoroutine(_FireInterval, () => CreateSkillProj());
+            Coroutine delayForFireProj = this.ExRepeatCoroutine(_FireInterval, () => DoFire());
             yield return new WaitUntil(() => !mInput.IsPressing(GetCurrentInputType()));
 
             if (delayForFireProj != null)
@@ -32,6 +32,15 @@ public class SkillLaserBeam : SkillBase
             mBaseObj.AnimHelper.SetParamBool(AnimatorParams.IsAttacking, false);
             BeamMuzzle.SetActive(false);
         }
+    }
+
+    public override void DoFire()
+    {
+        base.DoFire();
+
+        UseMana();
+
+        CreateSkillProj();
     }
 
     public ProjectileBase CreateSkillProj()

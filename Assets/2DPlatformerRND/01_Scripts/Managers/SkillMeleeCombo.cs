@@ -15,8 +15,7 @@ public class SkillMeleeCombo : SkillBase
 
     public override bool IsCastable()
     {
-        // 나중에 추가로 쿨타임이나 스턴같은 경우에 대한 조건 추가
-        return SkillMotion.Priority >= mBaseObj.StateMachine.GetCurrentState().Priority;
+        return base.IsCastable() && SkillMotion.Priority >= mBaseObj.StateMachine.GetCurrentState().Priority;
     }
 
     public override void UpdateSkill()
@@ -39,6 +38,8 @@ public class SkillMeleeCombo : SkillBase
     public void DoFireIndex(int comboIndex)
     {
         base.DoFire();
+
+        UseMana();
 
         SoundPlayManager.Instance.PlaySFXClip(_Clips[comboIndex % _Clips.Length]);
 

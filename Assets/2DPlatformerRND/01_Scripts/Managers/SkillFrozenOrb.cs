@@ -17,7 +17,7 @@ public class SkillFrozenOrb : SkillBase
     {
         while (true)
         {
-            yield return new WaitUntil(() => mInput.IsPressing(GetCurrentInputType()) && !IsCooltime);
+            yield return new WaitUntil(() => mInput.IsPressing(GetCurrentInputType()) && IsCastable());
             mBaseObj.AnimHelper.SetParamBool(AnimatorParams.IsAttacking, true);
 
             ProjectileBase proj = null;
@@ -30,7 +30,8 @@ public class SkillFrozenOrb : SkillBase
                     proj.transform.SetParent(transform);
                     delayForFireProj = this.ExDelayedCoroutine(0.4f, () =>
                     {
-                        StartCooltime();
+                        UseMana();
+
                         proj.transform.SetParent(null);
                         proj.StartProjectile();
                         proj = null;
@@ -39,6 +40,8 @@ public class SkillFrozenOrb : SkillBase
                 }
                 yield return null;
             }
+
+            StartCooltime();
 
             if (proj != null)
                 proj.DestroyNow();

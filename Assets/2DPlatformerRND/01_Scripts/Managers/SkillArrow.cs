@@ -20,7 +20,7 @@ public class SkillArrow : SkillBase
 
     public override bool IsCastable()
     {
-        return SkillMotion.IsChangable();
+        return base.IsCastable() && SkillMotion.IsChangable();
     }
 
     public override void UpdateSkill()
@@ -47,6 +47,9 @@ public class SkillArrow : SkillBase
     public override void DoFire()
     {
         base.DoFire();
+
+        UseMana();
+        StartCooltime();
 
         Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
         FireMultiShot(mProjectileCount, startPos, mBaseObj.transform.rotation, 90);
