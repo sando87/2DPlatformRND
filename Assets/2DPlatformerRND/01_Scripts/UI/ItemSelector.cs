@@ -12,8 +12,10 @@ namespace PahlBit
     {
         [SerializeField] Transform _SelectorParent = null;
         [SerializeField] UIActionSelector _ActionSelector = null;
+        [SerializeField] UIListViewer _ListViewer = null;
 
         UIActionSelector mItemSelector = null;
+        UIListViewer mItemViewer = null;
         List<ItemObject> mItemObjs = null;
         List<string> mActions = new List<string>();
 
@@ -60,7 +62,7 @@ namespace PahlBit
         void Select(UIPartsHandler button, ItemObject itemobj)
         {
             button.GetComponent<Image>().color = Color.green;
-            ShowItemInfo(itemobj);
+            ShowItemInfo(button, itemobj);
         }
         void DeSelect(UIPartsHandler button, ItemObject itemobj)
         {
@@ -71,13 +73,22 @@ namespace PahlBit
         {
             PickItemUp(itemobj);
         }
-        void ShowItemInfo(ItemObject itemobj)
+        void ShowItemInfo(UIPartsHandler button, ItemObject itemobj)
         {
-
+            List<string> infos = new List<string>();
+            foreach (var field in itemobj.ItemInfo.DisplayInfo)
+            {
+                infos.Add(field.Key + "," + field.Value);
+            }
+            mItemViewer = UIListViewer.Show(_ListViewer, button.transform, infos);
         }
         void HideItemInfo(ItemObject itemobj)
         {
-
+            if (mItemViewer != null)
+            {
+                Destroy(mItemViewer.gameObject);
+                mItemViewer = null;
+            }
         }
         void PickItemUp(ItemObject itemobj)
         {
