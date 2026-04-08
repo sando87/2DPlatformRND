@@ -17,7 +17,9 @@ namespace PahlBit
         UIActionSelector mItemSelector = null;
         UIListViewer mItemViewer = null;
         List<ItemObject> mItemObjs = null;
+        List<UIPartsHandler> mItemButtons = new List<UIPartsHandler>();
         List<string> mActions = new List<string>();
+        int mCurrentSelectedIndex = -1;
 
         public void ShowItemSelector(List<ItemObject> itemObjs)
         {
@@ -27,9 +29,11 @@ namespace PahlBit
                 mItemSelector = null;
             }
 
+            mCurrentSelectedIndex = -1;
+            mItemButtons.Clear();
+            mActions.Clear();
             mItemObjs = itemObjs;
 
-            mActions.Clear();
             foreach (ItemObject itemInfo in itemObjs)
             {
                 mActions.Add(itemInfo.ItemInfo.Name);
@@ -47,6 +51,7 @@ namespace PahlBit
                 button.EventSelect = (btn) => Select(btn, itemObj);
                 button.EventDeselect = (btn) => DeSelect(btn, itemObj);
                 button.EventSubmit = (btn) => Submit(btn, itemObj);
+                mItemButtons.Add(button);
             }
         }
 
@@ -57,6 +62,29 @@ namespace PahlBit
                 Destroy(mItemSelector.gameObject);
                 mItemSelector = null;
             }
+        }
+
+        public void MoveUp()
+        {
+            if (mItemSelector == null)
+                return;
+
+            mCurrentSelectedIndex--;
+            if (mCurrentSelectedIndex < 0)
+                mCurrentSelectedIndex = mItemButtons.Count - 1;
+
+            EventSystem.current.SetSelectedGameObject(mItemButtons[mCurrentSelectedIndex].gameObject);
+        }
+        public void MoveDown()
+        {
+            if (mItemSelector == null)
+                return;
+
+            mCurrentSelectedIndex++;
+            if (mCurrentSelectedIndex >= mItemButtons.Count)
+                mCurrentSelectedIndex = 0;
+
+            EventSystem.current.SetSelectedGameObject(mItemButtons[mCurrentSelectedIndex].gameObject);
         }
 
         void Select(UIPartsHandler button, ItemObject itemobj)
@@ -72,6 +100,19 @@ namespace PahlBit
         void Submit(UIPartsHandler button, ItemObject itemobj)
         {
             PickItemUp(itemobj);
+            RemoveCurrentButton(button);
+        }
+        void RemoveCurrentButton(UIPartsHandler button)
+        {
+            if (mCurrentSelectedIndex == mItemButtons.Count - 1)
+            {
+                mCurrentSelectedIndex--;
+            }
+            mItemButtons.Remove(button);
+            Destroy(button.gameObject);
+
+            if (mItemButtons.Count > 0 && mCurrentSelectedIndex < mItemButtons.Count)
+                EventSystem.current.SetSelectedGameObject(mItemButtons[mCurrentSelectedIndex].gameObject);
         }
         void ShowItemInfo(UIPartsHandler button, ItemObject itemobj)
         {
@@ -94,7 +135,6 @@ namespace PahlBit
         {
             InGameEngine.Instance.Player.GetComponentInChildren<ItemInventory>().AddItem(itemobj.ItemInfo);
             itemobj.OnPickedUp();
-            HideItemSelector();
         }
     }
 }

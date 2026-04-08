@@ -16,15 +16,18 @@ namespace PahlBit
         public UIInputHandler InputHandler { get => _InputHandler; }
         public UIPartsHandler[] ActionButtons { get => _ActionButtons; }
 
-        private IInputHandler mReturnInputHandler;
+        private IInputHandler mReturnInputHandler = null;
         private List<string> mActions;
 
         public static UIActionSelector Show(UIActionSelector prefab, Transform parent, List<string> actions, Action<string> onEnd)
         {
             UIActionSelector actionSelector = Instantiate(prefab, parent);
 
-            actionSelector.mReturnInputHandler = InGameEngine.Instance.GetInputHandler();
-            InGameEngine.Instance.SetInputHandler(actionSelector.InputHandler);
+            if (actionSelector.InputHandler != null)
+            {
+                actionSelector.mReturnInputHandler = InGameEngine.Instance.GetInputHandler();
+                InGameEngine.Instance.SetInputHandler(actionSelector.InputHandler);
+            }
 
             actionSelector.mActions = actions;
 
@@ -66,13 +69,16 @@ namespace PahlBit
                 }
             }
 
-            _InputHandler.EventCancel = () =>
+            if (_InputHandler != null)
             {
-                onEnd("");
-                Destroy(gameObject);
-            };
+                _InputHandler.EventCancel = () =>
+                {
+                    onEnd("");
+                    Destroy(gameObject);
+                };
 
-            _InputHandler.SelectUIPart(_ActionButtons[0]);
+                _InputHandler.SelectUIPart(_ActionButtons[0]);
+            }
 
             RectTransform screenArea = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
             GetComponent<RectTransform>().MoveInsideOf(screenArea);

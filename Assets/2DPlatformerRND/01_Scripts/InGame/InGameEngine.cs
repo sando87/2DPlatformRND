@@ -85,6 +85,29 @@ public class InGameEngine : SingletonMono<InGameEngine>
             itemSelector.ShowItemSelector(items);
         }
     }
+    public void HideItemSelector()
+    {
+        ItemSelector itemSelector = _InGamePanel.GetComponentInChildren<ItemSelector>();
+        if (itemSelector != null)
+        {
+            itemSelector.HideItemSelector();
+        }
+    }
+    public void MoveItemSelector(bool isUp)
+    {
+        ItemSelector itemSelector = _InGamePanel.GetComponentInChildren<ItemSelector>();
+        if (itemSelector != null)
+        {
+            if (isUp)
+            {
+                itemSelector.MoveUp();
+            }
+            else
+            {
+                itemSelector.MoveDown();
+            }
+        }
+    }
 
 
 }

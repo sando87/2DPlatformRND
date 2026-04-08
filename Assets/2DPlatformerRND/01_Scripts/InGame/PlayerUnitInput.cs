@@ -15,6 +15,8 @@ namespace PahlBit
 
         private InputSystemManager mInputManager = null;
 
+        public bool IsLoseControl => mInputManager == null;
+
         public void OnInputEnter(InputSystemManager inputManager)
         {
             mInputManager = inputManager;
@@ -29,16 +31,16 @@ namespace PahlBit
         {
         }
 
-        public bool LockPlayerInput 
-        { 
-            get => mInputManager != null ? mInputManager.LockPlayerInput : false; 
-            set 
+        public bool LockPlayerInput
+        {
+            get => mInputManager != null ? mInputManager.LockPlayerInput : false;
+            set
             {
                 if (mInputManager != null)
                 {
                     mInputManager.LockPlayerInput = value;
                 }
-            } 
+            }
         }
 
         public bool JustPressed(PlayerUnitInputType type) => mInputManager != null ? mInputManager.JustPressed(type) : false;

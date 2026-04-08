@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1703716896158730430}
   - component: {fileID: 9179570991698831114}
   - component: {fileID: 8510737638870044277}
-  - component: {fileID: 4792943350792159688}
   - component: {fileID: 496614668065252867}
   m_Layer: 5
   m_Name: ItemSelector
@@ -129,19 +128,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 2
   m_VerticalFit: 2
---- !u!114 &4792943350792159688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1792858447131794651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0564cf4d51d746240b13de07a931fb19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.UIInputHandler
-  _UIParts: []
 --- !u!114 &496614668065252867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +151,7 @@ MonoBehaviour:
   - {fileID: 1573284063383598611}
   - {fileID: 8317237085778787176}
   - {fileID: 5952220539085878786}
-  _InputHandler: {fileID: 4792943350792159688}
+  _InputHandler: {fileID: 0}
 --- !u!1001 &1013375590762342657
 PrefabInstance:
   m_ObjectHideFlags: 0
