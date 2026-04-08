@@ -72,15 +72,15 @@ namespace PahlBit
         public DamageInfo CalcCurrentDamages()
         {
             DamageInfo damageInfo = new DamageInfo();
-            damageInfo.PhyDamage = mSpecPlayer.BaseAttack * PhyAttack;
-            damageInfo.FireDamage = mSpecPlayer.BaseAttack * FireAttack;
-            damageInfo.IceDamage = mSpecPlayer.BaseAttack * IceAttack;
-            damageInfo.LightningDamage = mSpecPlayer.BaseAttack * LightningAttack;
+            damageInfo.PhyDamage = PhyAttack;
+            damageInfo.FireDamage = FireAttack;
+            damageInfo.IceDamage = IceAttack;
+            damageInfo.LightningDamage = LightningAttack;
             damageInfo.IsCritical = MyUtils.IsPercentHit((int)mSpecPlayer.Option.CriticalRate);
             damageInfo.CriticalAttackUp = mSpecPlayer.Option.CriticalAttack;
             return damageInfo;
         }
-        
+
         public void GetDisplayInfo(List<FieldData> fieldDatas)
         {
             fieldDatas.Clear();
@@ -99,7 +99,7 @@ namespace PahlBit
             if (Interval > 0) fieldDatas.Add(new FieldData() { Name = nameof(Interval), Value = $"{Interval:0.##}s" });
             if (StartDelay > 0) fieldDatas.Add(new FieldData() { Name = nameof(StartDelay), Value = $"{StartDelay:0.##}s" });
         }
-        
+
         public void GetBasicStatInfo(List<FieldData> fieldDatas)
         {
             fieldDatas.Clear();
@@ -107,69 +107,95 @@ namespace PahlBit
             SkillStats nextBaseStats = GetBasicStatByLevel(SaveData.LevelIndex + 1);
 
             if (BaseStats.PhyAttack.PercentValue > 0)
-                fieldDatas.Add(new FieldData() { 
-                    Name = nameof(BaseStats.PhyAttack), 
-                    Value = BaseStats.PhyAttack.ToString() + " -> " + nextBaseStats.PhyAttack.ToString() });
-            
+                fieldDatas.Add(new FieldData()
+                {
+                    Name = nameof(BaseStats.PhyAttack),
+                    Value = BaseStats.PhyAttack.ToString() + " -> " + nextBaseStats.PhyAttack.ToString()
+                });
+
             if (BaseStats.FireAttack.PercentValue > 0)
-                fieldDatas.Add(new FieldData() {
-                    Name = nameof(BaseStats.FireAttack), 
-                    Value = BaseStats.FireAttack.ToString() + " -> " + nextBaseStats.FireAttack.ToString() });
+                fieldDatas.Add(new FieldData()
+                {
+                    Name = nameof(BaseStats.FireAttack),
+                    Value = BaseStats.FireAttack.ToString() + " -> " + nextBaseStats.FireAttack.ToString()
+                });
 
             if (BaseStats.IceAttack.PercentValue > 0)
-                fieldDatas.Add(new FieldData() {
-                    Name = nameof(BaseStats.IceAttack), 
-                    Value = BaseStats.IceAttack.ToString() + " -> " + nextBaseStats.IceAttack.ToString() });
-            
+                fieldDatas.Add(new FieldData()
+                {
+                    Name = nameof(BaseStats.IceAttack),
+                    Value = BaseStats.IceAttack.ToString() + " -> " + nextBaseStats.IceAttack.ToString()
+                });
+
             if (BaseStats.LightningAttack.PercentValue > 0)
-                fieldDatas.Add(new FieldData() {
-                    Name = nameof(BaseStats.LightningAttack), 
-                    Value = BaseStats.LightningAttack.ToString() + " -> " + nextBaseStats.LightningAttack.ToString() });
+                fieldDatas.Add(new FieldData()
+                {
+                    Name = nameof(BaseStats.LightningAttack),
+                    Value = BaseStats.LightningAttack.ToString() + " -> " + nextBaseStats.LightningAttack.ToString()
+                });
 
             if (BaseStats.ManaUse > 0)
-                fieldDatas.Add(new FieldData() {
-                    Name = nameof(BaseStats.ManaUse), 
-                    Value = BaseStats.ManaUse.ToString() + " -> " + nextBaseStats.ManaUse.ToString() });
-            
+                fieldDatas.Add(new FieldData()
+                {
+                    Name = nameof(BaseStats.ManaUse),
+                    Value = BaseStats.ManaUse.ToString() + " -> " + nextBaseStats.ManaUse.ToString()
+                });
+
             if (BaseStats.Cooltime > 0)
-                fieldDatas.Add(new FieldData() {
-                    Name = nameof(BaseStats.Cooltime), 
-                    Value = BaseStats.Cooltime.ToString("0.##") + "s -> " + nextBaseStats.Cooltime.ToString("0.##") + "s" });
+                fieldDatas.Add(new FieldData()
+                {
+                    Name = nameof(BaseStats.Cooltime),
+                    Value = BaseStats.Cooltime.ToString("0.##") + "s -> " + nextBaseStats.Cooltime.ToString("0.##") + "s"
+                });
 
             if (BaseStats.ProjectileCount > 0)
-                fieldDatas.Add(new FieldData() {
-                    Name = nameof(BaseStats.ProjectileCount), 
-                    Value = BaseStats.ProjectileCount.ToString() + " -> " + nextBaseStats.ProjectileCount.ToString() });
-            
+                fieldDatas.Add(new FieldData()
+                {
+                    Name = nameof(BaseStats.ProjectileCount),
+                    Value = BaseStats.ProjectileCount.ToString() + " -> " + nextBaseStats.ProjectileCount.ToString()
+                });
+
             if (BaseStats.ProjectileSpeed > 0)
-                fieldDatas.Add(new FieldData() {
-                    Name = nameof(BaseStats.ProjectileSpeed), 
-                    Value = BaseStats.ProjectileSpeed.ToString("0.##") + " -> " + nextBaseStats.ProjectileSpeed.ToString("0.##") });
+                fieldDatas.Add(new FieldData()
+                {
+                    Name = nameof(BaseStats.ProjectileSpeed),
+                    Value = BaseStats.ProjectileSpeed.ToString("0.##") + " -> " + nextBaseStats.ProjectileSpeed.ToString("0.##")
+                });
 
             if (BaseStats.AttackRange > 0)
-                fieldDatas.Add(new FieldData() {
-                    Name = nameof(BaseStats.AttackRange), 
-                    Value = BaseStats.AttackRange.ToString("0.##") + " -> " + nextBaseStats.AttackRange.ToString("0.##") });
+                fieldDatas.Add(new FieldData()
+                {
+                    Name = nameof(BaseStats.AttackRange),
+                    Value = BaseStats.AttackRange.ToString("0.##") + " -> " + nextBaseStats.AttackRange.ToString("0.##")
+                });
 
             if (BaseStats.SplashRange > 0)
-                fieldDatas.Add(new FieldData() {
-                    Name = nameof(BaseStats.SplashRange), 
-                    Value = BaseStats.SplashRange.ToString("0.##") + " -> " + nextBaseStats.SplashRange.ToString("0.##") });
-            
+                fieldDatas.Add(new FieldData()
+                {
+                    Name = nameof(BaseStats.SplashRange),
+                    Value = BaseStats.SplashRange.ToString("0.##") + " -> " + nextBaseStats.SplashRange.ToString("0.##")
+                });
+
             if (BaseStats.Duration > 0)
-                fieldDatas.Add(new FieldData() {
-                    Name = nameof(BaseStats.Duration), 
-                    Value = BaseStats.Duration.ToString("0.##") + "s -> " + nextBaseStats.Duration.ToString("0.##") + "s" });
+                fieldDatas.Add(new FieldData()
+                {
+                    Name = nameof(BaseStats.Duration),
+                    Value = BaseStats.Duration.ToString("0.##") + "s -> " + nextBaseStats.Duration.ToString("0.##") + "s"
+                });
 
             if (BaseStats.Interval > 0)
-                fieldDatas.Add(new FieldData() {
-                    Name = nameof(BaseStats.Interval), 
-                    Value = BaseStats.Interval.ToString("0.##") + "s -> " + nextBaseStats.Interval.ToString("0.##") + "s" });
+                fieldDatas.Add(new FieldData()
+                {
+                    Name = nameof(BaseStats.Interval),
+                    Value = BaseStats.Interval.ToString("0.##") + "s -> " + nextBaseStats.Interval.ToString("0.##") + "s"
+                });
 
             if (BaseStats.StartDelay > 0)
-                fieldDatas.Add(new FieldData() {
-                    Name = nameof(BaseStats.StartDelay), 
-                    Value = BaseStats.StartDelay.ToString("0.##") + "s -> " + nextBaseStats.StartDelay.ToString("0.##") + "s" });
+                fieldDatas.Add(new FieldData()
+                {
+                    Name = nameof(BaseStats.StartDelay),
+                    Value = BaseStats.StartDelay.ToString("0.##") + "s -> " + nextBaseStats.StartDelay.ToString("0.##") + "s"
+                });
         }
     }
 }
