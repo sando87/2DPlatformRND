@@ -10,6 +10,7 @@ public class InGameEngine : SingletonMono<InGameEngine>
     [SerializeField] BaseObject _PlayerUnit = null;
     [SerializeField] InputSystemManager _InputManager = null;
     [SerializeField] InGamePanel _InGamePanel = null;
+    [SerializeField] ItemSelector _ItemSelector = null;
 
     public BaseObject Player => _PlayerUnit;
 
@@ -78,34 +79,24 @@ public class InGameEngine : SingletonMono<InGameEngine>
 
     public void ShowItemSelector(Vector2 worldPos, List<ItemObject> items)
     {
-        ItemSelector itemSelector = _InGamePanel.GetComponentInChildren<ItemSelector>();
-        if (itemSelector != null)
-        {
-            itemSelector.transform.position = worldPos;
-            itemSelector.ShowItemSelector(items);
-        }
+        Canvas canvas = _ItemSelector.GetComponentInParent<Canvas>();
+        canvas.transform.position = Player.transform.position;
+        _ItemSelector.transform.position = worldPos;
+        _ItemSelector.ShowItemSelector(items);
     }
     public void HideItemSelector()
     {
-        ItemSelector itemSelector = _InGamePanel.GetComponentInChildren<ItemSelector>();
-        if (itemSelector != null)
-        {
-            itemSelector.HideItemSelector();
-        }
+        _ItemSelector.HideItemSelector();
     }
     public void MoveItemSelector(bool isUp)
     {
-        ItemSelector itemSelector = _InGamePanel.GetComponentInChildren<ItemSelector>();
-        if (itemSelector != null)
+        if (isUp)
         {
-            if (isUp)
-            {
-                itemSelector.MoveUp();
-            }
-            else
-            {
-                itemSelector.MoveDown();
-            }
+            _ItemSelector.MoveUp();
+        }
+        else
+        {
+            _ItemSelector.MoveDown();
         }
     }
 
