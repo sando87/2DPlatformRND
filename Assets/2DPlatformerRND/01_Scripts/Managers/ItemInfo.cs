@@ -20,6 +20,7 @@ public class ItemInfo
     public Dictionary<string, string> DisplayInfo { get; private set; } = new Dictionary<string, string>();
 
     public string InstanceID => SaveData.InstanceID;
+    public string Name => ResourceData.DisplayName;
     public long ResourceID => ResourceData.ID;
     public bool IsEquipped { get => SaveData.IsEquipped; set => SaveData.IsEquipped = value; }
     public int Count { get => SaveData.Count; set => SaveData.Count = value; }

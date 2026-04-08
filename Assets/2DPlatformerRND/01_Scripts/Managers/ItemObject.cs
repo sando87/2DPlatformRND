@@ -16,12 +16,17 @@ public class ItemObject : MonoBehaviour
         return itemObj;
     }
 
-    public void OnPickedUpBy(Collider2D col)
-    {
-        BaseObject pickerPlayer = col.GetComponentInParent<BaseObject>();
-        ItemInventory inventory = pickerPlayer.GetComponentInChildren<ItemInventory>();
-        inventory.AddItem(ItemInfo);
+    // public void OnPickedUpBy(Collider2D col)
+    // {
+    //     BaseObject pickerPlayer = col.GetComponentInParent<BaseObject>();
+    //     ItemInventory inventory = pickerPlayer.GetComponentInChildren<ItemInventory>();
+    //     inventory.AddItem(ItemInfo);
 
+    //     OnPickedUp();
+    // }
+
+    public void OnPickedUp()
+    {
         Destroy(gameObject);
     }
 }

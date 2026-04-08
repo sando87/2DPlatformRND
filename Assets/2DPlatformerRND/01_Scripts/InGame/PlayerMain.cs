@@ -17,6 +17,8 @@ namespace PahlBit
         string _ResourceID = "";
         List<string> IDList { get => CharResourceTable.Instance.GetAllInfo().Select(info => info.CharacterID).ToList(); }
 
+        private List<ItemObject> mItemsAround = new List<ItemObject>();
+
         public Experience Exp { get; private set; }
         public ItemInventory Inven { get; private set; }
         public SkillController SkillCtrl { get; private set; }
@@ -41,6 +43,29 @@ namespace PahlBit
 
             SkillCtrl = GetComponentInChildren<SkillController>();
             SkillCtrl.InitSkills(CharacterID);
+        }
+
+        void Start()
+        {
+            mBaseObj.Interactor.OnInteractEnter.AddListener(OnColliderEnter);
+            mBaseObj.Interactor.OnInteractLeave.AddListener(OnColliderLeave);
+        }
+
+        void OnColliderEnter(Collider2D col)
+        {
+            ItemObject itemObj = col.ExGetCompInBase<ItemObject>();
+            if (itemObj != null)
+            {
+                mItemsAround.Add(itemObj);
+            }
+        }
+        void OnColliderLeave(Collider2D col)
+        {
+            ItemObject itemObj = col.ExGetCompInBase<ItemObject>();
+            if (itemObj != null)
+            {
+                mItemsAround.Remove(itemObj);
+            }
         }
 
         void Update()

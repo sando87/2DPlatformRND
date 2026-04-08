@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using PahlBit;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,6 +9,7 @@ public class InGameEngine : SingletonMono<InGameEngine>
     [SerializeField] AudioClip _BGM = null;
     [SerializeField] BaseObject _PlayerUnit = null;
     [SerializeField] InputSystemManager _InputManager = null;
+    [SerializeField] InGamePanel _InGamePanel = null;
 
     public BaseObject Player => _PlayerUnit;
 
@@ -73,5 +75,16 @@ public class InGameEngine : SingletonMono<InGameEngine>
     {
         return _InputManager.GetHandlerInput();
     }
+
+    public void ShowItemSelector(Vector2 worldPos, List<ItemObject> items)
+    {
+        ItemSelector itemSelector = _InGamePanel.GetComponentInChildren<ItemSelector>();
+        if (itemSelector != null)
+        {
+            itemSelector.transform.position = worldPos;
+            itemSelector.ShowItemSelector(items);
+        }
+    }
+
 
 }

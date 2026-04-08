@@ -21,9 +21,6 @@ public class InGamePanel : MonoBehaviour
     [SerializeField] BaseObject PlayerObject = null;
     [SerializeField] Transform[] SkillEquipSlots = null;
 
-    [SerializeField] Transform _ActionsParent = null;
-    [SerializeField] UIActionSelector _ActionSelector = null;
-
     Experience mExperience = null;
     ItemInventory mInven = null;
     SkillController mSkillController = null;
@@ -166,13 +163,5 @@ public class InGamePanel : MonoBehaviour
                 skillCooltime.fillAmount = 0;
             }
         }
-    }
-
-    void ShowActionSelector()
-    {
-        UIActionSelector.Show(_ActionSelector, _ActionsParent, new string[] { "testA", "testB", "testC" }, (result) =>
-        {
-            LOG.trace(result);
-        });
     }
 }

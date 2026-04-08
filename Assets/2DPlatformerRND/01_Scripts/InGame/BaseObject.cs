@@ -15,6 +15,7 @@ namespace PahlBit
         public PlayerController Ctrl { get => GetComponentInChildren<PlayerController>(); }
         public BuffController Buffs => GetComponentInChildren<BuffController>();
         public SpecBase Spec => GetComponentInChildren<SpecBase>();
+        public InteractableCollider Interactor => GetComponentInChildren<InteractableCollider>();
 
         public PlayerMain PlayerObj => GetComponentInChildren<PlayerMain>();
         public EnemyBase EnemyObj => GetComponentInChildren<EnemyBase>();

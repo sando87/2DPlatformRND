@@ -14,11 +14,12 @@ namespace PahlBit
         [SerializeField] UIInputHandler _InputHandler;
 
         public UIInputHandler InputHandler { get => _InputHandler; }
+        public UIPartsHandler[] ActionButtons { get => _ActionButtons; }
 
         private IInputHandler mReturnInputHandler;
-        private string[] mActions;
+        private List<string> mActions;
 
-        public static UIActionSelector Show(UIActionSelector prefab, Transform parent, string[] actions, Action<string> onEnd)
+        public static UIActionSelector Show(UIActionSelector prefab, Transform parent, List<string> actions, Action<string> onEnd)
         {
             UIActionSelector actionSelector = Instantiate(prefab, parent);
 
@@ -29,10 +30,15 @@ namespace PahlBit
 
             actionSelector.Show((type) =>
             {
-                InGameEngine.Instance.SetInputHandler(actionSelector.mReturnInputHandler);
-                onEnd(type);
+                onEnd?.Invoke(type);
             });
             return actionSelector;
+        }
+
+        void OnDestroy()
+        {
+            if (mReturnInputHandler != null)
+                InGameEngine.Instance.SetInputHandler(mReturnInputHandler);
         }
 
         public void Show(Action<string> onEnd)
@@ -41,7 +47,7 @@ namespace PahlBit
             for (int i = 0; i < count; ++i)
             {
                 UIPartsHandler actionBtn = _ActionButtons[i];
-                if (i < mActions.Length)
+                if (i < mActions.Count)
                 {
                     string actionName = mActions[i];
                     actionBtn.gameObject.SetActive(true);
