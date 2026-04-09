@@ -23,7 +23,7 @@ namespace PahlBit
 
         void Awake()
         {
-            SKill = InGameEngine.Instance.Player.GetComponentInChildren<SkillController>().GetSkill(SkillID);
+            SKill = InGameManager.Instance.Engine.Player.GetComponentInChildren<SkillController>().GetSkill(SkillID);
 
             mText = transform.GetComponentInChildren<TextMeshProUGUI>();
             mIcon = transform.GetChild(0).GetComponent<Image>();

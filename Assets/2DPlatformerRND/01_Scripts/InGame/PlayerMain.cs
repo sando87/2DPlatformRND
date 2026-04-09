@@ -17,6 +17,8 @@ namespace PahlBit
         string _ResourceID = "";
         List<string> IDList { get => CharResourceTable.Instance.GetAllInfo().Select(info => info.CharacterID).ToList(); }
 
+        private WrapStation mWrapStationAround = null;
+
         public List<ItemObject> ItemsAround { get; private set; } = new List<ItemObject>();
 
         public Experience Exp { get; private set; }
@@ -58,6 +60,13 @@ namespace PahlBit
             {
                 ItemsAround.Add(itemObj);
             }
+
+            WrapStation wrapStation = col.ExGetCompInBase<WrapStation>();
+            if (wrapStation != null)
+            {
+                mWrapStationAround = wrapStation;
+            }
+
         }
         void OnColliderLeave(Collider2D col)
         {
@@ -65,6 +74,12 @@ namespace PahlBit
             if (itemObj != null)
             {
                 ItemsAround.Remove(itemObj);
+            }
+
+            WrapStation wrapStation = col.ExGetCompInBase<WrapStation>();
+            if (wrapStation != null)
+            {
+                mWrapStationAround = null;
             }
         }
 
@@ -85,6 +100,14 @@ namespace PahlBit
                 {
                     Inven.CurrentManaPotionCount--;
                     mBaseObj.Health.RestoreMana(10);
+                }
+            }
+
+            if (mWrapStationAround != null && mBaseObj.Input.JustPressed(PlayerUnitInputType.Move))
+            {
+                if (mBaseObj.Input.MoveY < 0)
+                {
+                    InGameManager.Instance.Engine.DoWarpStation(mWrapStationAround.DestScene, mWrapStationAround.DestWarpID);
                 }
             }
         }

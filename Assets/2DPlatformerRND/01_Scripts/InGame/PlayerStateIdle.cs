@@ -31,7 +31,7 @@ namespace PahlBit
             if (PlayerMain.ItemsAround.Count > 0)
             {
                 mIsOpenedSelector = true;
-                InGameEngine.Instance.ShowItemSelector(Base.Body.Foot, PlayerMain.ItemsAround);
+                InGameManager.Instance.Engine.ShowItemSelector(Base.Body.Foot, PlayerMain.ItemsAround);
             }
         }
 
@@ -48,9 +48,9 @@ namespace PahlBit
                 else if (PlayerInput.JustPressed(PlayerUnitInputType.UIMove))
                 {
                     if (PlayerInput.MoveY > 0)
-                        InGameEngine.Instance.MoveItemSelector(true);
+                        InGameManager.Instance.Engine.MoveItemSelector(true);
                     else if (PlayerInput.MoveY < 0)
-                        InGameEngine.Instance.MoveItemSelector(false);
+                        InGameManager.Instance.Engine.MoveItemSelector(false);
                 }
             }
         }
@@ -67,7 +67,7 @@ namespace PahlBit
 
         void CloseItemSelector()
         {
-            InGameEngine.Instance.HideItemSelector();
+            InGameManager.Instance.Engine.HideItemSelector();
             mIsOpenedSelector = false;
         }
 

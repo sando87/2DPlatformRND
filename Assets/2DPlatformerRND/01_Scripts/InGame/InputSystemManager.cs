@@ -116,6 +116,14 @@ namespace PahlBit
                 mHandlerInput.OnInputEnter(this);
             }
         }
+        public void ClearHandlerInput()
+        {
+            if (mHandlerInput != null)
+            {
+                mHandlerInput.OnInputExit(this);
+                mHandlerInput = null;
+            }
+        }
 
         void Update()
         {

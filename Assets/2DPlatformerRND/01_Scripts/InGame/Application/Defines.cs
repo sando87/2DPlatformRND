@@ -8,6 +8,12 @@ namespace PahlBit
         public const int PointByLevelup = 5;
     }
 
+    public enum SceneType
+    {
+        Main = 0,
+        LevelDemo = 1,
+        Level1 = 2,
+    }
 
     public partial struct AnimStateNameHash
     {

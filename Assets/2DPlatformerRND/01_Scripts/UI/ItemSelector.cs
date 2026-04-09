@@ -133,7 +133,7 @@ namespace PahlBit
         }
         void PickItemUp(ItemObject itemobj)
         {
-            InGameEngine.Instance.Player.GetComponentInChildren<ItemInventory>().AddItem(itemobj.ItemInfo);
+            InGameManager.Instance.Engine.Player.GetComponentInChildren<ItemInventory>().AddItem(itemobj.ItemInfo);
             itemobj.OnPickedUp();
         }
     }

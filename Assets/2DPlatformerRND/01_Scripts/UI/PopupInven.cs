@@ -204,7 +204,7 @@ namespace PahlBit
         {
             UIPartsItemSlot itemSlot = part as UIPartsItemSlot;
 
-            InGameEngine.Instance.SetInputHandler(_ActionSelector.InputHandler);
+            InGameManager.Instance.Engine.SetInputHandler(_ActionSelector.InputHandler);
 
             _ActionSelector.Actions.Clear();
             if (itemSlot.ItemInfo.IsEquipped)
@@ -220,7 +220,7 @@ namespace PahlBit
             _ActionSelector.Show((type) =>
             {
                 DoAction(itemSlot, type);
-                InGameEngine.Instance.SetInputHandler(this.InputHandler);
+                InGameManager.Instance.Engine.SetInputHandler(this.InputHandler);
                 InputHandler.SelectUIPart(part);
                 UpdateDisplayInfo(null);
             });

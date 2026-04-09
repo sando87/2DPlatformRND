@@ -49,7 +49,7 @@ namespace PahlBit
             UIPartsSkillSlot skillSlot = part as UIPartsSkillSlot;
             SkillBase skill = skillSlot.SKill;
 
-            InGameEngine.Instance.SetInputHandler(_ActionSelector.InputHandler);
+            InGameManager.Instance.Engine.SetInputHandler(_ActionSelector.InputHandler);
 
             _ActionSelector.Actions.Clear();
             if (!skill.IsLearned)
@@ -66,7 +66,7 @@ namespace PahlBit
             {
                 DoAction(skill, type);
                 skillSlot.UpdateSkillState();
-                InGameEngine.Instance.SetInputHandler(this.InputHandler);
+                InGameManager.Instance.Engine.SetInputHandler(this.InputHandler);
                 InputHandler.SelectUIPart(part);
             });
 

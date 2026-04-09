@@ -26,7 +26,7 @@ namespace PahlBit
 
         void Start()
         {
-            mPlayer = InGameEngine.Instance.Player;
+            mPlayer = InGameManager.Instance.Engine.Player;
             mExperience = mPlayer.GetComponentInChildren<Experience>();
             UpdateStatsPoints();
 

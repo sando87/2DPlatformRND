@@ -25,8 +25,8 @@ namespace PahlBit
 
             if (actionSelector.InputHandler != null)
             {
-                actionSelector.mReturnInputHandler = InGameEngine.Instance.GetInputHandler();
-                InGameEngine.Instance.SetInputHandler(actionSelector.InputHandler);
+                actionSelector.mReturnInputHandler = InGameManager.Instance.Engine.GetInputHandler();
+                InGameManager.Instance.Engine.SetInputHandler(actionSelector.InputHandler);
             }
 
             actionSelector.mActions = actions;
@@ -41,7 +41,7 @@ namespace PahlBit
         void OnDestroy()
         {
             if (mReturnInputHandler != null)
-                InGameEngine.Instance.SetInputHandler(mReturnInputHandler);
+                InGameManager.Instance.Engine.SetInputHandler(mReturnInputHandler);
         }
 
         public void Show(Action<string> onEnd)

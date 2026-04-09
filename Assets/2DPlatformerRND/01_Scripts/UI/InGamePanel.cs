@@ -18,9 +18,9 @@ public class InGamePanel : MonoBehaviour
     [SerializeField] TextMeshProUGUI GoldText = null;
     [SerializeField] TextMeshProUGUI LifePotion = null;
     [SerializeField] TextMeshProUGUI ManaPotion = null;
-    [SerializeField] BaseObject PlayerObject = null;
     [SerializeField] Transform[] SkillEquipSlots = null;
 
+    BaseObject mPlayerObject = null;
     Experience mExperience = null;
     ItemInventory mInven = null;
     SkillController mSkillController = null;
@@ -37,13 +37,18 @@ public class InGamePanel : MonoBehaviour
     int mLastLifePotion = 0;
     int mLastManaPotion = 0;
 
+    public void DoActivatePanel(BaseObject playerObject)
+    {
+        mPlayerObject = playerObject;
+        enabled = true;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        mExperience = PlayerObject.GetComponentInChildren<Experience>();
-        mInven = PlayerObject.GetComponentInChildren<ItemInventory>();
-        mSkillController = PlayerObject.GetComponentInChildren<SkillController>();
+        mExperience = mPlayerObject.GetComponentInChildren<Experience>();
+        mInven = mPlayerObject.GetComponentInChildren<ItemInventory>();
+        mSkillController = mPlayerObject.GetComponentInChildren<SkillController>();
     }
 
     // Update is called once per frame
@@ -75,8 +80,8 @@ public class InGamePanel : MonoBehaviour
             mLastLevel = curLevel;
         }
 
-        int curHP = (int)PlayerObject.Health.CurrentHP;
-        int maxHP = (int)PlayerObject.Health.MaxHealth;
+        int curHP = (int)mPlayerObject.Health.CurrentHP;
+        int maxHP = (int)mPlayerObject.Health.MaxHealth;
         if (mLastCurHP != curHP || mLastMaxHP != maxHP)
         {
             float hpRate = (float)curHP / maxHP;
@@ -88,7 +93,7 @@ public class InGamePanel : MonoBehaviour
             mLastMaxHP = maxHP;
         }
 
-        int curShield = (int)PlayerObject.Health.CurrentShield;
+        int curShield = (int)mPlayerObject.Health.CurrentShield;
         if (mLastShield != curShield)
         {
             ShieldValue.SetText("({0})", curShield);
@@ -96,8 +101,8 @@ public class InGamePanel : MonoBehaviour
             mLastShield = curShield;
         }
 
-        int curMP = (int)PlayerObject.Health.CurrentMana;
-        int maxMP = (int)PlayerObject.Health.MaxMana;
+        int curMP = (int)mPlayerObject.Health.CurrentMana;
+        int maxMP = (int)mPlayerObject.Health.MaxMana;
         if (mLastCurMP != curMP || mLastMaxMP != maxMP)
         {
             float mpRate = (float)curMP / maxMP;
