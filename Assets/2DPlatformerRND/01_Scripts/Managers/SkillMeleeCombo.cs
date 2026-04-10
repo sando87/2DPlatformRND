@@ -52,7 +52,7 @@ public class SkillMeleeCombo : SkillBase
         Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
         ProjectileBase proj = ProjectileBase.Create(MeleePrefab, startPos, mBaseObj.transform.rotation, mBaseObj.gameObject.layer);
 
-        ApplySkillStatsToProjectile(proj);
+        // ApplySkillStatsToProjectile(proj);
 
         proj.OnHit.AddListener((col) =>
         {
