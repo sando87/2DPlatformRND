@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8536736938578584811}
   - component: {fileID: 4959186170716446665}
   - component: {fileID: 6612556377838412465}
+  - component: {fileID: 1251116191958931174}
   m_Layer: 8
   m_Name: Mushroom
   m_TagString: Untagged
@@ -71,8 +72,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
   GoldDropPercent: 30
+  PotionDropPercent: 30
   GoldPrefab: {fileID: 5461417893251240980, guid: 5dd89691a4a14614aba050b3c09ae3bf,
     type: 3}
+  LifePotionPrefab: {fileID: 0}
+  ManaPotionPrefab: {fileID: 0}
   ProjPrefab: {fileID: 0}
   _ResourceID: Enemy03
 --- !u!114 &7996635295318006703
@@ -186,6 +190,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1251116191958931174}
+        m_TargetAssemblyTypeName: PahlBit.SpriteNumberEffect, Assembly-CSharp
+        m_MethodName: ShowNumberEffect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDied:
     m_PersistentCalls:
       m_Calls:
@@ -213,6 +229,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22bef6b20d622a74d9998cfff6db6d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.BuffController
+--- !u!114 &1251116191958931174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662150947426525976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d797e43b5f41d428baa341b267bcb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.SpriteNumberEffect
+  NumberPrefab: {fileID: 2756351633337986132, guid: 1bab2be6809e6924ead8917f1ab95a98,
+    type: 3}
 --- !u!1 &1093580374788808452
 GameObject:
   m_ObjectHideFlags: 0
