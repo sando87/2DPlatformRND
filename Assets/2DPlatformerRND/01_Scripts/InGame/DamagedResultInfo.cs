@@ -5,15 +5,15 @@ namespace PahlBit
 {
     public struct DamagedResultInfo
     {
-        public float OriDamage;
-        public float TotalDamage;
-        public float ValidDamage;
+        public int OriDamage;
+        public int TotalDamage;
+        public int ValidDamage;
 
-        public float BeforeHealth;
-        public float AfterHealth;
-        public float MaxHealth;
+        public int BeforeHealth;
+        public int AfterHealth;
+        public int MaxHealth;
 
-        public float DeltaHealth => AfterHealth - BeforeHealth;
-        public float CurrentHealthRate => AfterHealth / MaxHealth;
+        public int DeltaHealth => AfterHealth - BeforeHealth;
+        public float CurrentHealthRate => AfterHealth / (float)MaxHealth;
     }
 }

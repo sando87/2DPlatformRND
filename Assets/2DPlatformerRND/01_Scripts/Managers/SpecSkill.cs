@@ -85,13 +85,13 @@ namespace PahlBit
         {
             fieldDatas.Clear();
 
-            if (PhyAttack > 0) fieldDatas.Add(new FieldData() { Name = nameof(PhyAttack), Value = ((int)PhyAttack).ToString() });
-            if (FireAttack > 0) fieldDatas.Add(new FieldData() { Name = nameof(FireAttack), Value = ((int)FireAttack).ToString() });
-            if (IceAttack > 0) fieldDatas.Add(new FieldData() { Name = nameof(IceAttack), Value = ((int)IceAttack).ToString() });
-            if (LightningAttack > 0) fieldDatas.Add(new FieldData() { Name = nameof(LightningAttack), Value = ((int)LightningAttack).ToString() });
-            if (ManaUse > 0) fieldDatas.Add(new FieldData() { Name = nameof(ManaUse), Value = ((int)ManaUse).ToString() });
+            if (PhyAttack > 0) fieldDatas.Add(new FieldData() { Name = nameof(PhyAttack), Value = PhyAttack.ToInt().ToString() });
+            if (FireAttack > 0) fieldDatas.Add(new FieldData() { Name = nameof(FireAttack), Value = FireAttack.ToInt().ToString() });
+            if (IceAttack > 0) fieldDatas.Add(new FieldData() { Name = nameof(IceAttack), Value = IceAttack.ToInt().ToString() });
+            if (LightningAttack > 0) fieldDatas.Add(new FieldData() { Name = nameof(LightningAttack), Value = LightningAttack.ToInt().ToString() });
+            if (ManaUse > 0) fieldDatas.Add(new FieldData() { Name = nameof(ManaUse), Value = ManaUse.ToInt().ToString() });
             if (Cooltime > 0) fieldDatas.Add(new FieldData() { Name = nameof(Cooltime), Value = $"{Cooltime:0.##}s" });
-            if (ProjectileCount > 0) fieldDatas.Add(new FieldData() { Name = nameof(ProjectileCount), Value = ((int)ProjectileCount).ToString() });
+            if (ProjectileCount > 0) fieldDatas.Add(new FieldData() { Name = nameof(ProjectileCount), Value = ProjectileCount.ToInt().ToString() });
             if (ProjectileSpeed > 0) fieldDatas.Add(new FieldData() { Name = nameof(ProjectileSpeed), Value = $"{ProjectileSpeed:0.##}" });
             if (AttackRange > 0) fieldDatas.Add(new FieldData() { Name = nameof(AttackRange), Value = $"{AttackRange:0.##}" });
             if (SplashRange > 0) fieldDatas.Add(new FieldData() { Name = nameof(SplashRange), Value = $"{SplashRange:0.##}" });

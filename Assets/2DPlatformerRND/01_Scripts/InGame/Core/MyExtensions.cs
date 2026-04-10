@@ -17,6 +17,14 @@ namespace PahlBit
 {
     public static partial class MyExtensions
     {
+        public static int ToInt(this float val)
+        {
+            return (int)(val + 0.0001f);
+        }
+        public static bool IsEquals(this float val, float targetVal)
+        {
+            return Mathf.Abs(val - targetVal) < 0.0001f;
+        }
 
         public static UniTask ExDelayedTask(
             this MonoBehaviour mono,

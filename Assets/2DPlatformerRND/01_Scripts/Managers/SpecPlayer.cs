@@ -58,39 +58,19 @@ namespace PahlBit
         {
             fieldDatas.Clear();
 
-            /// </summary>
-            // 체력
-            // 체력재생
-            // 마나
-            // 마나재생
-            // 쉴드
-            // 쉴드재생
-            // 공격력
-            // 방어력
-            // 이속
-            // 공속
-            // 쿨타임감소
-            // 크리확률
-            // 크리뎀지
-            // 레지스터 4종
-            // 회피확률
-            // 피격방어
-            // 피격회복
-            /// </summary>
-
-            fieldDatas.Add(new FieldData() { Name = nameof(MaxHealth), Value = ((int)MaxHealth).ToString() });
-            fieldDatas.Add(new FieldData() { Name = nameof(Option.HealthRegen), Value = ((int)Option.HealthRegen).ToString() });
-            fieldDatas.Add(new FieldData() { Name = nameof(MaxMana), Value = ((int)MaxMana).ToString() });
-            fieldDatas.Add(new FieldData() { Name = nameof(Option.ManaRegen), Value = ((int)Option.ManaRegen).ToString() });
-            fieldDatas.Add(new FieldData() { Name = nameof(MaxShield), Value = ((int)MaxShield).ToString() });
-            fieldDatas.Add(new FieldData() { Name = nameof(Option.ShieldRegen), Value = ((int)Option.ShieldRegen).ToString() });
-            fieldDatas.Add(new FieldData() { Name = nameof(BaseAttack), Value = ((int)BaseAttack).ToString() });
-            fieldDatas.Add(new FieldData() { Name = nameof(PhyDefence), Value = ((int)PhyDefence).ToString() });
-            fieldDatas.Add(new FieldData() { Name = nameof(MoveSpeed), Value = ((int)MoveSpeed).ToString() });
+            fieldDatas.Add(new FieldData() { Name = nameof(MaxHealth), Value = MaxHealth.ToInt().ToString() });
+            fieldDatas.Add(new FieldData() { Name = nameof(MaxMana), Value = MaxMana.ToInt().ToString() });
+            fieldDatas.Add(new FieldData() { Name = nameof(BaseAttack), Value = BaseAttack.ToInt().ToString() });
+            fieldDatas.Add(new FieldData() { Name = nameof(PhyDefence), Value = PhyDefence.ToInt().ToString() });
             fieldDatas.Add(new FieldData() { Name = nameof(AttackSpeed), Value = AttackSpeed.ToString("0.##") });
+            fieldDatas.Add(new FieldData() { Name = nameof(MoveSpeed), Value = MoveSpeed.ToInt().ToString() });
+            fieldDatas.Add(new FieldData() { Name = nameof(MaxShield), Value = MaxShield.ToInt().ToString() });
             fieldDatas.Add(new FieldData() { Name = nameof(Option.CooltimeDown), Value = Option.CooltimeDown.ToString() });
             fieldDatas.Add(new FieldData() { Name = nameof(Option.CriticalRate), Value = Option.CriticalRate.ToString() });
             fieldDatas.Add(new FieldData() { Name = nameof(Option.CriticalAttack), Value = Option.CriticalAttack.ToString() });
+            fieldDatas.Add(new FieldData() { Name = nameof(Option.HealthRegen), Value = Option.HealthRegen.ToInt().ToString() });
+            fieldDatas.Add(new FieldData() { Name = nameof(Option.ManaRegen), Value = Option.ManaRegen.ToInt().ToString() });
+            fieldDatas.Add(new FieldData() { Name = nameof(Option.ShieldRegen), Value = Option.ShieldRegen.ToInt().ToString() });
             fieldDatas.Add(new FieldData() { Name = nameof(Option.FireResist), Value = Option.FireResist.ToString() });
             fieldDatas.Add(new FieldData() { Name = nameof(Option.IceResist), Value = Option.IceResist.ToString() });
             fieldDatas.Add(new FieldData() { Name = nameof(Option.LightningResist), Value = Option.LightningResist.ToString() });
