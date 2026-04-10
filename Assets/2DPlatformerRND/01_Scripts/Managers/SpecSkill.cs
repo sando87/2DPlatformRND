@@ -52,19 +52,19 @@ namespace PahlBit
         {
             SkillStats baseStats = new SkillStats();
 
-            baseStats.ManaUse = ResourceData._ManaUse.GetValueByPoint(currentLevelIndex);
-            baseStats.Cooltime = ResourceData._Cooltime.GetValueByPoint(currentLevelIndex);
-            baseStats.ProjectileCount = ResourceData._ProjectileCount.GetValueByPoint(currentLevelIndex);
-            baseStats.ProjectileSpeed = ResourceData._ProjectileSpeed.GetValueByPoint(currentLevelIndex);
-            baseStats.AttackRange = ResourceData._AttackRange.GetValueByPoint(currentLevelIndex);
-            baseStats.SplashRange = ResourceData._SplashRange.GetValueByPoint(currentLevelIndex);
-            baseStats.Duration = ResourceData._Duration.GetValueByPoint(currentLevelIndex);
-            baseStats.Interval = ResourceData._Interval.GetValueByPoint(currentLevelIndex);
-            baseStats.StartDelay = ResourceData._StartDelay.GetValueByPoint(currentLevelIndex);
-            baseStats.PhyAttack = (Percent)ResourceData._PhyAttack.GetValueByPoint(currentLevelIndex);
-            baseStats.FireAttack = (Percent)ResourceData._FireAttack.GetValueByPoint(currentLevelIndex);
-            baseStats.IceAttack = (Percent)ResourceData._IceAttack.GetValueByPoint(currentLevelIndex);
-            baseStats.LightningAttack = (Percent)ResourceData._LightningAttack.GetValueByPoint(currentLevelIndex);
+            baseStats.ManaUse = ResourceData._ManaUse.GetValueByLevel(currentLevelIndex);
+            baseStats.Cooltime = ResourceData._Cooltime.GetValueByLevel(currentLevelIndex);
+            baseStats.ProjectileCount = ResourceData._ProjectileCount.GetValueByLevel(currentLevelIndex);
+            baseStats.ProjectileSpeed = ResourceData._ProjectileSpeed.GetValueByLevel(currentLevelIndex);
+            baseStats.AttackRange = ResourceData._AttackRange.GetValueByLevel(currentLevelIndex);
+            baseStats.SplashRange = ResourceData._SplashRange.GetValueByLevel(currentLevelIndex);
+            baseStats.Duration = ResourceData._Duration.GetValueByLevel(currentLevelIndex);
+            baseStats.Interval = ResourceData._Interval.GetValueByLevel(currentLevelIndex);
+            baseStats.StartDelay = ResourceData._StartDelay.GetValueByLevel(currentLevelIndex);
+            baseStats.PhyAttack = (Percent)ResourceData._PhyAttack.GetValueByLevel(currentLevelIndex);
+            baseStats.FireAttack = (Percent)ResourceData._FireAttack.GetValueByLevel(currentLevelIndex);
+            baseStats.IceAttack = (Percent)ResourceData._IceAttack.GetValueByLevel(currentLevelIndex);
+            baseStats.LightningAttack = (Percent)ResourceData._LightningAttack.GetValueByLevel(currentLevelIndex);
 
             return baseStats;
         }

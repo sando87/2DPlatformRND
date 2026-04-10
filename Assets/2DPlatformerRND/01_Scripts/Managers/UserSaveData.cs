@@ -56,6 +56,7 @@ namespace PahlBit
         public bool IsEquipped;
         public bool IsLearned;
         public int Level;
+        public int SubStep;
         public int PositionIndex;
 
         [JsonIgnore]
@@ -65,6 +66,7 @@ namespace PahlBit
         {
             this.ResourceID = _resourceID;
             this.Level = 1;
+            this.SubStep = 0;
         }
     }
 }

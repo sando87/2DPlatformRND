@@ -13,6 +13,8 @@ namespace PahlBit
         public readonly string DisplayName;
         public readonly string Desc;
 
+        public readonly string UnlockLevel;
+        public readonly string UpgradeStep;
         public readonly string ManaUse;
         public readonly string Cooltime;
         public readonly string ProjectileCount;
@@ -30,6 +32,8 @@ namespace PahlBit
         public int RowIndex { get; set; } // 데이터데이블상에 존재하는 순서
         public long ID { get { return ICSVFormat.ToID(SkillID); } } // 데이터 접근을 위한 id값
 
+        public int _UnlockLevel { get; private set; }
+        public int[] _UpgradeStep { get; private set; }
         public ParseValue _ManaUse { get; private set; }
         public ParseValue _Cooltime { get; private set; }
         public ParseValue _ProjectileCount { get; private set; }
@@ -47,6 +51,12 @@ namespace PahlBit
 
         void ICSVFormat.OnLoad()
         {
+            _UnlockLevel = int.Parse(UnlockLevel);
+            string[] steps = UpgradeStep.Split('/');
+            _UpgradeStep = new int[steps.Length];
+            for (int i = 0; i < steps.Length; i++)
+                _UpgradeStep[i] = int.Parse(steps[i]);
+
             _ManaUse = ParseValue.Parse(ManaUse);
             _Cooltime = ParseValue.Parse(Cooltime);
             _ProjectileCount = ParseValue.Parse(ProjectileCount);

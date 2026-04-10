@@ -50,7 +50,10 @@ namespace PahlBit
                 mText.color = Color.black;
             }
 
-            mText.text = SkillID + (SKill.IsLearned ? $"\nLv.{SKill.Level}" : "");
+            if (SKill.IsLearned)
+                mText.SetText($"{SkillID}\nLv.{SKill.Level}\n({SKill.CurrentSubStep}/{SKill.MaxSubStep})");
+            else
+                mText.SetText(SkillID);
         }
     }
 }

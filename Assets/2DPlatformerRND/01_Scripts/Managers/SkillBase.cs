@@ -25,7 +25,11 @@ public class SkillBase : MonoBehaviour
     public bool IsEquipped => mSkillSaveData.IsEquipped;
     public bool IsLearned => mSkillSaveData != null && mSkillSaveData.IsLearned;
     public int PositionIndex => mSkillSaveData.PositionIndex;
+    public int UnlockLevel => Spec.ResourceData._UnlockLevel;
     public int Level => mSkillSaveData.Level;
+    public bool IsLearnable => Controller.IsLearnableSkill(ResourceID);
+    public int CurrentSubStep => mSkillSaveData.SubStep;
+    public int MaxSubStep => Spec.ResourceData._UpgradeStep[mSkillSaveData.LevelIndex];
     public bool IsCooltime => Spec.Cooltime == 0 ? false : Time.time - mCooltime < Spec.Cooltime;
     public float CooltimeRate => IsCooltime ? (1f - ((Time.time - mCooltime) / Spec.Cooltime)) : 0f;
     public bool IsEnoughMana => Spec.ManaUse <= mBaseObj.Health.CurrentMana;
@@ -77,7 +81,17 @@ public class SkillBase : MonoBehaviour
 
     public virtual void OnLevelupSkill()
     {
-        mSkillSaveData.Level++;
+        int newSubStep = CurrentSubStep + 1;
+        if (MaxSubStep <= newSubStep)
+        {
+            mSkillSaveData.SubStep = 0;
+            mSkillSaveData.Level++;
+        }
+        else
+        {
+            mSkillSaveData.SubStep++;
+        }
+
         Spec.UpdateBasicStat();
         GameSystem.DoSave_UserSaveData();
     }

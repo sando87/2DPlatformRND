@@ -22,6 +22,7 @@ namespace PahlBit
         CharSaveData mPlayerStateData = null;
 
         public int RemainSkillPoint => mPlayerStateData.RemainSkillPoint;
+        public int CurrentLevel => GameSystem.CurrentExpToLevel(mPlayerStateData.CurrentExp);
 
         void Awake()
         {
@@ -74,6 +75,11 @@ namespace PahlBit
         public SkillBase GetEquipSkill(int slotIndex)
         {
             return SkillSlots[slotIndex];
+        }
+        public bool IsLearnableSkill(string skillResID)
+        {
+            SkillBase skill = mAllSkills[skillResID];
+            return skill.UnlockLevel <= CurrentLevel;
         }
         public void LearnNewSkill(string skillResID)
         {
