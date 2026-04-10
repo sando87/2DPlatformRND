@@ -22,6 +22,7 @@ namespace PahlBit
             {
                 if (i < Data.Count)
                 {
+                    _FieldRows[i].gameObject.SetActive(true);
                     SetFieldData(_FieldRows[i], Data[i]);
                 }
                 else
