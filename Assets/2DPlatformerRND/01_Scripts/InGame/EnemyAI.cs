@@ -400,7 +400,7 @@ public class EnemyAI : MonoBehaviour
         if (node == null)
             return null;
 
-        PathInfo path = PlatformerPathfinder.Instance.FindPath(node, mSpec.MoveSpeed);
+        PathInfo path = InGameEngine.Inst.Pathfinder.FindPath(node, mSpec.MoveSpeed);
         return path;
     }
 
@@ -409,7 +409,7 @@ public class EnemyAI : MonoBehaviour
         if (!baseObject.Phy.IsGrounded)
             return null;
 
-        NodeNav node = PlatformerPathfinder.Instance.GetCurrentGroundNode(baseObject.Body.Rect);
+        NodeNav node = InGameEngine.Inst.Pathfinder.GetCurrentGroundNode(baseObject.Body.Rect);
         if (node != null)
             return node;
 
@@ -419,12 +419,12 @@ public class EnemyAI : MonoBehaviour
     bool IsNoWayToMove()
     {
         Vector2 pos = mBase.Body.FootFront + new Vector2(mBase.transform.right.x * 0.2f, 0);
-        NodeNav frontNode = PlatformerPathfinder.Instance.GetNode(pos);
+        NodeNav frontNode = InGameEngine.Inst.Pathfinder.GetNode(pos);
         if (frontNode != null && !frontNode.IsThin) // IsObstacled
             return true;
 
         pos.y -= 0.2f;
-        NodeNav frontGroundNode = PlatformerPathfinder.Instance.GetNode(pos);
+        NodeNav frontGroundNode = InGameEngine.Inst.Pathfinder.GetNode(pos);
         if (frontGroundNode == null) // No ground ahead
             return true;
 

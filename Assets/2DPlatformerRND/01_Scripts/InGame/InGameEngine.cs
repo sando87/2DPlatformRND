@@ -9,14 +9,20 @@ namespace PahlBit
 {
     public class InGameEngine : MonoBehaviour
     {
+        public static InGameEngine Inst => InGameManager.Instance.Engine;
+
         [SerializeField] AudioClip _BGM = null;
         [SerializeField] BaseObject _PlayerPrefab = null;
         [SerializeField] InputSystemManager _InputManager = null;
         [SerializeField] InGamePanel _InGamePanel = null;
         [SerializeField] ItemSelector _ItemSelector = null;
         [SerializeField] CinemachineCamera _CinemachineCamera = null;
+        [SerializeField] PlayerDepthManager _PlayerDepthManager = null;
+        [SerializeField] PlatformerPathfinder _Pathfinder = null;
 
         public BaseObject Player { get; private set; } = null;
+        public PlayerDepthManager DepthManager => _PlayerDepthManager;
+        public PlatformerPathfinder Pathfinder => _Pathfinder;
 
         PopupStats mPopupStats;
         PopupInven mPopupInven;
@@ -33,6 +39,7 @@ namespace PahlBit
             RespawnPlayer(destWarp);
             _InGamePanel.DoActivatePanel(Player);
             _CinemachineCamera.Follow = Player.transform;
+            _PlayerDepthManager.SetPlayer(Player.gameObject);
             yield return newWaitForSeconds.Cache(0.2f);
             SetInputHandler(Player.Input);
         }

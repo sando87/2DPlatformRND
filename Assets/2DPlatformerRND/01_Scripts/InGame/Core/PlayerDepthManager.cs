@@ -9,7 +9,7 @@ using System.IO;
 
 namespace PahlBit
 {
-    public class PlayerDepthManager : SingletonMono<PlayerDepthManager>
+    public class PlayerDepthManager : MonoBehaviour
     {
         const int DepthWidthRange = 18;
         const int DepthHeightRange = 10;
@@ -24,7 +24,8 @@ namespace PahlBit
         };
 
         [SerializeField] Tilemap _Tilemap = null;
-        [SerializeField] GameObject _Player = null;
+
+        GameObject mPlayer = null;
 
         // BFS용 큐
         Queue<Vector2Int> mQueue = new Queue<Vector2Int>();
@@ -34,11 +35,16 @@ namespace PahlBit
 
         Dictionary<Vector2Int, PlayerDepthInfo> mPlayerDepthInfo = new Dictionary<Vector2Int, PlayerDepthInfo>();
 
+        public void SetPlayer(GameObject player)
+        {
+            mPlayer = player;
+        }
+
         void Update()
         {
-            if (_Player != null)
+            if (mPlayer != null)
             {
-                UpdatePlayerDepth(_Player.GetComponent<BaseObject>().Body.Center);
+                UpdatePlayerDepth(mPlayer.GetComponent<BaseObject>().Body.Center);
             }
         }
 

@@ -9,7 +9,7 @@ using System.IO;
 
 namespace PahlBit
 {
-    public class PlatformerPathfinder : SingletonMono<PlatformerPathfinder>
+    public class PlatformerPathfinder : MonoBehaviour
     {
         [SerializeField] Tilemap GroundTilemap;
         [SerializeField] Tilemap ThinPlatformTilemap;
@@ -17,10 +17,8 @@ namespace PahlBit
         Dictionary<Vector2Int, NodeNav> mGroundNodes = new Dictionary<Vector2Int, NodeNav>();
         List<NodeNavGroup> mNodeGroups = new List<NodeNavGroup>();
 
-        protected override void Awake()
+        void Awake()
         {
-            base.Awake();
-
             Init(GroundTilemap, ThinPlatformTilemap);
         }
 
@@ -234,7 +232,7 @@ namespace PahlBit
             foreach (var node in nodeGroup.GroundNodes)
             {
                 Vector2Int nodeUpPos = node.Position + new Vector2Int(0, 1);
-                PlayerDepthInfo depthInfo = PlayerDepthManager.Instance.GetPlayerDepthInfoAtPos(nodeUpPos);
+                PlayerDepthInfo depthInfo = InGameManager.Instance.Engine.DepthManager.GetPlayerDepthInfoAtPos(nodeUpPos);
                 if (depthInfo == null || depthInfo.IsOld)
                     continue;
 
