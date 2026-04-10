@@ -37,7 +37,7 @@ namespace PahlBit
             UpdateBasicStat();
         }
 
-        void UpdateBasicStat()
+        public void UpdateBasicStat()
         {
             int currentLevel = GameSystem.CurrentExpToLevel(SaveData.CurrentExp);
             int currentLevelIndex = currentLevel - 1;

@@ -9,6 +9,7 @@ public class SpriteAnimation : MonoBehaviour
     [SerializeField] Sprite[] _Sprites = null;
     [SerializeField] bool _Loop = false;
     [SerializeField] float _Interval = 0.1f;
+    [SerializeField] bool _StartOnEnable = true;
     [SerializeField] UnityEvent _OnAnimEnd = null;
 
     int mIndex = 0;
@@ -18,7 +19,8 @@ public class SpriteAnimation : MonoBehaviour
         if (_Renderer == null)
             return;
 
-        StartAnimation();
+        if (_StartOnEnable)
+            StartAnimation();
     }
 
     public void StartAnimation()

@@ -9,9 +9,9 @@ namespace PahlBit
     {
         public bool IsDead => mCurrentHP <= 0;
 
-        public float HpRate => mMaxCurrentHP > 0 ? mCurrentHP / mMaxCurrentHP : 0;
-        public float ManaRate => mMaxCurrentMana > 0 ? mCurrentMana / mMaxCurrentMana : 0;
-        public float ShieldRate => mMaxCurrentShield > 0 ? mCurrentShield / mMaxCurrentShield : 0;
+        public float HpRate => mMaxCurrentHP > 0 ? mCurrentHP / (float)mMaxCurrentHP : 0;
+        public float ManaRate => mMaxCurrentMana > 0 ? mCurrentMana / (float)mMaxCurrentMana : 0;
+        public float ShieldRate => mMaxCurrentShield > 0 ? mCurrentShield / (float)mMaxCurrentShield : 0;
 
         public int MaxHealth => mMaxCurrentHP;
         public int MaxMana => mMaxCurrentMana;
@@ -51,20 +51,37 @@ namespace PahlBit
 
         void Start()
         {
-            InitHealth();
+            UpdateMaxStats(false);
 
             // StartCoroutine(CoProcessBurnOrFreez());
         }
 
-        void InitHealth()
+        public void UpdateMaxStats(bool keepRate)
         {
-            mMaxCurrentHP = mSpec.MaxHealth.ToInt();
-            mMaxCurrentMana = mSpec.MaxMana.ToInt();
-            mMaxCurrentShield = mSpec.MaxShield.ToInt();
+            if (keepRate)
+            {
+                float hpRate = HpRate;
+                float manaRate = ManaRate;
+                float shieldRate = ShieldRate;
 
-            mCurrentHP = mMaxCurrentHP;
-            mCurrentMana = mMaxCurrentMana;
-            mCurrentShield = mMaxCurrentShield;
+                mMaxCurrentHP = mSpec.MaxHealth.ToInt();
+                mMaxCurrentMana = mSpec.MaxMana.ToInt();
+                mMaxCurrentShield = mSpec.MaxShield.ToInt();
+
+                mCurrentHP = (mMaxCurrentHP * hpRate).ToInt();
+                mCurrentMana = (mMaxCurrentMana * manaRate).ToInt();
+                mCurrentShield = (mMaxCurrentShield * shieldRate).ToInt();
+            }
+            else
+            {
+                mMaxCurrentHP = mSpec.MaxHealth.ToInt();
+                mMaxCurrentMana = mSpec.MaxMana.ToInt();
+                mMaxCurrentShield = mSpec.MaxShield.ToInt();
+
+                mCurrentHP = mMaxCurrentHP;
+                mCurrentMana = mMaxCurrentMana;
+                mCurrentShield = mMaxCurrentShield;
+            }
         }
 
         DamagedResultInfo CalcHitResult(DamageInfo damageInfo)

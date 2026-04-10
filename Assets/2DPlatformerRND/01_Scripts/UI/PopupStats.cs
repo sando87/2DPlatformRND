@@ -57,21 +57,25 @@ namespace PahlBit
         {
             mExperience.AddAttackPoint();
             UpdateStatsPoints();
+            UpdateDisplayInfo();
         }
         void OnSubmitDefensePoint(int point)
         {
             mExperience.AddDefensePoint();
             UpdateStatsPoints();
+            UpdateDisplayInfo();
         }
         void OnSubmitLifePoint(int point)
         {
             mExperience.AddHealthPoint();
             UpdateStatsPoints();
+            UpdateDisplayInfo();
         }
         void OnSubmitManaPoint(int point)
         {
             mExperience.AddManaPoint();
             UpdateStatsPoints();
+            UpdateDisplayInfo();
         }
 
         void UpdateStatsPoints()

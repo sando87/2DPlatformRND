@@ -112,6 +112,17 @@ namespace PahlBit
             }
         }
 
+        public void UpdateSpecByLevelUp()
+        {
+            Spec.UpdateBasicStat();
+            mBaseObj.Health.UpdateMaxStats(false);
+        }
+        public void UpdateSpecByPoint()
+        {
+            Spec.UpdateBasicStat();
+            mBaseObj.Health.UpdateMaxStats(true);
+        }
+
         int GetCharacterData()
         {
             if (mCharacterID >= 0)

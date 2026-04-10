@@ -27,6 +27,7 @@ namespace PahlBit
         public float CurrentExp { get; private set; } = 0;
 
         public UnityEvent OnLevelUp = new UnityEvent();
+        public UnityEvent OnStatPointChanged = new UnityEvent();
 
         void Start()
         {
@@ -89,6 +90,7 @@ namespace PahlBit
             {
                 mCharacterSaveData.AttackPoint += 1;
                 mCharacterSaveData.RemainPoint -= 1;
+                OnStatPointChanged?.Invoke();
                 GameSystem.DoSave_UserSaveData();
             }
         }
@@ -98,6 +100,7 @@ namespace PahlBit
             {
                 mCharacterSaveData.DefensePoint += 1;
                 mCharacterSaveData.RemainPoint -= 1;
+                OnStatPointChanged?.Invoke();
                 GameSystem.DoSave_UserSaveData();
             }
         }
@@ -107,6 +110,7 @@ namespace PahlBit
             {
                 mCharacterSaveData.HealthPoint += 1;
                 mCharacterSaveData.RemainPoint -= 1;
+                OnStatPointChanged?.Invoke();
                 GameSystem.DoSave_UserSaveData();
             }
         }
@@ -116,6 +120,7 @@ namespace PahlBit
             {
                 mCharacterSaveData.ManaPoint += 1;
                 mCharacterSaveData.RemainPoint -= 1;
+                OnStatPointChanged?.Invoke();
                 GameSystem.DoSave_UserSaveData();
             }
         }
