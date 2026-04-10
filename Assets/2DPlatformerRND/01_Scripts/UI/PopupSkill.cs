@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ namespace PahlBit
 {
     public class PopupSkill : PopupBase
     {
+        [SerializeField] TextMeshProUGUI _RemainSkillPoint;
         [SerializeField] UIPartsActions _ActionSelector;
         [SerializeField] UIPartsViewer _Viewer;
 
@@ -14,9 +16,12 @@ namespace PahlBit
         [SerializeField] UIPartsFieldRow FieldRow;
 
         private List<FieldData> mDisplayFields = new List<FieldData>();
+        private SkillController mSkillCtrl = null;
 
         void Start()
         {
+            mSkillCtrl = InGameEngine.Inst.Player.GetComponentInChildren<SkillController>();
+
             UIPartsHandler[] parts = InputHandler.UIParts;
             foreach (var part in parts)
             {
@@ -26,6 +31,8 @@ namespace PahlBit
             }
 
             _ActionSelector.gameObject.SetActive(false);
+
+            UpdateRemainSkillPoint();
         }
 
         void OnSelect(UIPartsHandler part)
@@ -65,6 +72,7 @@ namespace PahlBit
             _ActionSelector.Show((type) =>
             {
                 DoAction(skill, type);
+                UpdateRemainSkillPoint();
                 skillSlot.UpdateSkillState();
                 InGameManager.Instance.Engine.SetInputHandler(this.InputHandler);
                 InputHandler.SelectUIPart(part);
@@ -133,6 +141,11 @@ namespace PahlBit
                 UIPartsFieldRow row = Instantiate(FieldRow, ContentsRoot);
                 row.SetField(field.Name, field.Value);
             }
+        }
+
+        void UpdateRemainSkillPoint()
+        {
+            _RemainSkillPoint.text = $"SkillPoint : {mSkillCtrl.RemainSkillPoint}";
         }
     }
 }

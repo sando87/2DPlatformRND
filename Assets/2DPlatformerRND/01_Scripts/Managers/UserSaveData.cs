@@ -9,8 +9,6 @@ namespace PahlBit
     public class UserSaveData : SaveableBase
     {
         public int Gold = 0;
-        public int LifePotionCount = 0;
-        public int ManaPotionCount = 0;
 
         public Dictionary<int, CharacterSaveData> Characters = new Dictionary<int, CharacterSaveData>();
     }
@@ -18,6 +16,8 @@ namespace PahlBit
     [System.Serializable]
     public class CharacterSaveData
     {
+        public int LifePotionCount = 0;
+        public int ManaPotionCount = 0;
         public CharSaveData Stats = new CharSaveData();
         public Dictionary<string, ItemSaveData> Items = new Dictionary<string, ItemSaveData>();
         public Dictionary<string, SkillSaveData> Skills = new Dictionary<string, SkillSaveData>();
@@ -28,6 +28,7 @@ namespace PahlBit
     {
         public float CurrentExp;
         public int RemainPoint;
+        public int RemainSkillPoint;
         public int HealthPoint;
         public int ManaPoint;
         public int AttackPoint;

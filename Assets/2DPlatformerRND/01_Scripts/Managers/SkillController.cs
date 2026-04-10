@@ -19,6 +19,9 @@ namespace PahlBit
         public UnityEvent<SkillBase> OnUnEquipSkill = new UnityEvent<SkillBase>();
 
         BaseObject mBaseObj = null;
+        CharSaveData mPlayerStateData = null;
+
+        public int RemainSkillPoint => mPlayerStateData.RemainSkillPoint;
 
         void Awake()
         {
@@ -27,11 +30,19 @@ namespace PahlBit
 
         public void InitSkills(int characterID)
         {
+            UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
+            mPlayerStateData = saveData.Characters[characterID].Stats;
+
             SkillBase[] allSkills = GetComponentsInChildren<SkillBase>();
             foreach (SkillBase skillObj in allSkills)
             {
                 skillObj.InitSkillInfo(characterID);
                 mAllSkills[skillObj.ResourceID] = skillObj;
+
+                if (skillObj.ResourceID.Equals("Skill07"))
+                {
+                    skillObj.OnLearnedSkill();
+                }
 
                 if (!skillObj.IsLearned)
                 {
@@ -66,14 +77,24 @@ namespace PahlBit
         }
         public void LearnNewSkill(string skillResID)
         {
+            if (RemainSkillPoint <= 0)
+                return;
+
+            mPlayerStateData.RemainSkillPoint--;
             SkillBase skill = mAllSkills[skillResID];
             skill.gameObject.SetActive(true);
             skill.OnLearnedSkill();
+            GameSystem.DoSave_UserSaveData();
         }
         public void LevelupSkill(string skillResID)
         {
+            if (RemainSkillPoint <= 0)
+                return;
+
+            mPlayerStateData.RemainSkillPoint--;
             SkillBase skill = mAllSkills[skillResID];
             skill.OnLevelupSkill();
+            GameSystem.DoSave_UserSaveData();
         }
 
         public void EquipSkill(string skillResID, int slotIndex)

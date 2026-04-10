@@ -13,13 +13,14 @@ namespace PahlBit
         private Dictionary<string, ItemInfo> mEquipItems = new Dictionary<string, ItemInfo>();
         private Dictionary<string, ItemSaveData> mSaveData = null;
         private UserSaveData mUserSaveData = null;
+        private CharacterSaveData mCharacterSaveData = null;
 
         public SpecOption TotalItemOption
         { get; private set; } = new SpecOption();
 
         public int CurrentGold { get { return mUserSaveData.Gold; } set { mUserSaveData.Gold = value; GameSystem.RequestSave(); } }
-        public int CurrentLifePotionCount { get { return mUserSaveData.LifePotionCount; } set { mUserSaveData.LifePotionCount = value; GameSystem.RequestSave(); } }
-        public int CurrentManaPotionCount { get { return mUserSaveData.ManaPotionCount; } set { mUserSaveData.ManaPotionCount = value; GameSystem.RequestSave(); } }
+        public int CurrentLifePotionCount { get { return mCharacterSaveData.LifePotionCount; } set { mCharacterSaveData.LifePotionCount = value; GameSystem.RequestSave(); } }
+        public int CurrentManaPotionCount { get { return mCharacterSaveData.ManaPotionCount; } set { mCharacterSaveData.ManaPotionCount = value; GameSystem.RequestSave(); } }
 
         [ShowIf(nameof(ShowInvenItems))]
         [Dropdown(nameof(ListInvenItems))]
@@ -59,7 +60,8 @@ namespace PahlBit
         public void LoadItemsFromData(int characterID)
         {
             mUserSaveData = SaveFileManager<UserSaveData>.Load();
-            mSaveData = mUserSaveData.Characters[characterID].Items;
+            mCharacterSaveData = mUserSaveData.Characters[characterID];
+            mSaveData = mCharacterSaveData.Items;
             foreach (var pair in mSaveData)
             {
                 ItemSaveData itemSaveData = pair.Value;

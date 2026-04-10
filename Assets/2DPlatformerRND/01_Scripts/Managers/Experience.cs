@@ -76,6 +76,7 @@ namespace PahlBit
         {
             CurrentLevel += 1;
             mCharacterSaveData.RemainPoint += Consts.PointByLevelup;
+            mCharacterSaveData.RemainSkillPoint += Consts.SkillPointByLevelup;
             mFromExp = mToExp;
             mToExp = GameSystem.GetNextExpForLevelup(CurrentLevel);
 

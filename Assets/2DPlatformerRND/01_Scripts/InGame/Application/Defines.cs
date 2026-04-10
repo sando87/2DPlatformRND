@@ -6,6 +6,7 @@ namespace PahlBit
     public class Consts
     {
         public const int PointByLevelup = 5;
+        public const int SkillPointByLevelup = 1;
     }
 
     public enum SceneType
