@@ -123,7 +123,8 @@ namespace PahlBit
         public float GetValueInRange(float normalizedTime)
         {
             float t = TransferTime(normalizedTime);
-            return Lerp(mBaseMin, mBaseMax, t);
+            int val = (int)Lerp(mBaseMin, mBaseMax, t);
+            return val;
         }
         private float Lerp(float a, float b, float t) => a + (b - a) * t;
 
