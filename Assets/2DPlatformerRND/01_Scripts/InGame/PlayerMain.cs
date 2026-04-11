@@ -37,6 +37,8 @@ namespace PahlBit
 
             Inven = GetComponentInChildren<ItemInventory>();
             Inven.LoadItemsFromData(CharacterID);
+            Inven.EventEquipItem.AddListener(OnChangeEquipState);
+            Inven.EventUnEquipItem.AddListener(OnChangeEquipState);
 
             Spec = GetComponentInChildren<SpecPlayer>();
             Spec.Init(CharacterID, _ResourceID);
@@ -51,6 +53,8 @@ namespace PahlBit
         {
             mBaseObj.Interactor.OnInteractEnter.AddListener(OnColliderEnter);
             mBaseObj.Interactor.OnInteractLeave.AddListener(OnColliderLeave);
+
+            OnChangeEquipState();
         }
 
         void OnColliderEnter(Collider2D col)
@@ -120,6 +124,16 @@ namespace PahlBit
         public void UpdateSpecByPoint()
         {
             Spec.UpdateBasicStat();
+            mBaseObj.Health.UpdateMaxStats(true);
+        }
+        public void OnChangeEquipState()
+        {
+            float attackSpeed = mBaseObj.PlayerObj.Spec.Option.AttackSpeedUp.Multiplier;
+            mBaseObj.AnimHelper.SetParamFloat(AnimatorParams.AttackSpeed, attackSpeed);
+
+            float moveSpeed = mBaseObj.PlayerObj.Spec.Option.MoveSpeedUp.Multiplier;
+            mBaseObj.AnimHelper.SetParamFloat(AnimatorParams.MoveSpeed, moveSpeed);
+
             mBaseObj.Health.UpdateMaxStats(true);
         }
 

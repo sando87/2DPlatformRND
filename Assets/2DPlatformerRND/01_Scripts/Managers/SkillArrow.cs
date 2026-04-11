@@ -30,7 +30,6 @@ public class SkillArrow : SkillBase
         if (mInput.JustPressed(GetCurrentInputType()) && IsCastable())
         {
             UpdateSpec();
-            mBaseObj.AnimHelper.SetParamFloat(AnimatorParams.MotionSpeed, mMotionSpeed);
             mBaseObj.StateMachine.TryChangeState(SkillMotion, (Action)DoFire);
         }
     }

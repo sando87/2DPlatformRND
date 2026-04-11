@@ -26,30 +26,30 @@ namespace PahlBit
         // public bool IsBurned { get; private set; }
         // public bool IsFreezed { get; private set; }
 
-        int mMaxCurrentHP = 10;
-        int mMaxCurrentMana = 0;
-        int mMaxCurrentShield = 0;
+        protected int mMaxCurrentHP = 10;
+        protected int mMaxCurrentMana = 0;
+        protected int mMaxCurrentShield = 0;
 
         [SerializeField, NaughtyAttributes.ReadOnly]
-        int mCurrentHP = 10;
+        protected int mCurrentHP = 10;
         [SerializeField, NaughtyAttributes.ReadOnly]
-        int mCurrentMana = 0;
+        protected int mCurrentMana = 0;
         [SerializeField, NaughtyAttributes.ReadOnly]
-        int mCurrentShield = 0;
+        protected int mCurrentShield = 0;
 
         public UnityEvent<DamagedResultInfo> OnDamaged = new UnityEvent<DamagedResultInfo>();
         public UnityEvent OnDied = new UnityEvent();
 
-        BaseObject mBaseObj = null;
-        SpecBase mSpec = null;
+        protected BaseObject mBaseObj = null;
+        protected SpecBase mSpec = null;
 
-        void Awake()
+        protected virtual void Awake()
         {
             mBaseObj = this.ExGetBase();
             mSpec = mBaseObj.Spec;
         }
 
-        void Start()
+        protected virtual void Start()
         {
             UpdateMaxStats(false);
 

@@ -5,8 +5,6 @@ namespace PahlBit
 {
     public class PlayerStateFloating : PlayerStateBase
     {
-        public float moveSpeed = 7f;
-
         // public override void HandleInput()
         // {
         //     if (PlayerMain.LockControl)
@@ -29,7 +27,7 @@ namespace PahlBit
         {
             base.UpdateState();
 
-            float moveX = PlayerInput.MoveX * moveSpeed;
+            float moveX = PlayerInput.MoveX * PlayerMain.Spec.MoveSpeed;
             Base.Phy.MoveHorizontally(moveX);
         }
 

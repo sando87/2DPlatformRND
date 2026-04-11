@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 6484529610938876457}
   - component: {fileID: 3123351129440801728}
   - component: {fileID: 7458501680117886929}
-  - component: {fileID: 711329774657787905}
+  - component: {fileID: 4955407901480420106}
   - component: {fileID: 2348052353925164232}
   - component: {fileID: 1522274642337502413}
   - component: {fileID: 4913185403793771702}
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bab4e09feee42a43a3d7d88eaf78e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.CharObject
-  _MoveSpeed: 5
+  _MoveSpeed: 7
   _AttackSpeed: 1
 --- !u!114 &3123351129440801728
 MonoBehaviour:
@@ -260,7 +260,7 @@ MonoBehaviour:
   EventOnKillResult:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &711329774657787905
+--- !u!114 &4955407901480420106
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,9 +269,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 111553638396792109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcc6104ce35a20a468ef2c8785639a5f, type: 3}
+  m_Script: {fileID: 11500000, guid: b2791ee037ff0c648bd86a1144a69784, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.Health
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.HealthPlayer
   mCurrentHP: 10
   mCurrentMana: 0
   mCurrentShield: 0
@@ -1027,7 +1027,6 @@ MonoBehaviour:
   EventLeave:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 7
 --- !u!114 &2314548757000501516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1909,6 +1908,12 @@ MonoBehaviour:
         mPercentVal: 0
       PosionResist:
         mPercentVal: 0
+  EventEquipItem:
+    m_PersistentCalls:
+      m_Calls: []
+  EventUnEquipItem:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2383048795797964504
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,9 @@ namespace PahlBit
         public override float PhyDefence => BaseStats.Defence * Option.DefenceUp;
         public float MoveSpeed => BaseStats.MoveSpeed * Option.MoveSpeedUp;
         public float AttackSpeed => BaseStats.AttackSpeed * Option.AttackSpeedUp;
+        public float HealthRegen => Option.HealthRegen;
+        public float ManaRegen => Option.ManaRegen;
+        public float ShieldRegen => Option.ShieldRegen;
 
         public CharSaveData SaveData { get; private set; } = null;
         public CharResourceData ResourceData { get; private set; } = null;
@@ -69,9 +72,9 @@ namespace PahlBit
             fieldDatas.Add(new FieldData() { Name = nameof(Option.CooltimeDown), Value = Option.CooltimeDown.ToString() });
             fieldDatas.Add(new FieldData() { Name = nameof(Option.CriticalRate), Value = Option.CriticalRate.ToString() });
             fieldDatas.Add(new FieldData() { Name = nameof(Option.CriticalAttack), Value = Option.CriticalAttack.ToString() });
-            fieldDatas.Add(new FieldData() { Name = nameof(Option.HealthRegen), Value = Option.HealthRegen.ToInt().ToString() });
-            fieldDatas.Add(new FieldData() { Name = nameof(Option.ManaRegen), Value = Option.ManaRegen.ToInt().ToString() });
-            fieldDatas.Add(new FieldData() { Name = nameof(Option.ShieldRegen), Value = Option.ShieldRegen.ToInt().ToString() });
+            fieldDatas.Add(new FieldData() { Name = nameof(HealthRegen), Value = HealthRegen.ToInt().ToString() });
+            fieldDatas.Add(new FieldData() { Name = nameof(ManaRegen), Value = ManaRegen.ToInt().ToString() });
+            fieldDatas.Add(new FieldData() { Name = nameof(ShieldRegen), Value = ShieldRegen.ToInt().ToString() });
             fieldDatas.Add(new FieldData() { Name = nameof(Option.FireResist), Value = Option.FireResist.ToString() });
             fieldDatas.Add(new FieldData() { Name = nameof(Option.IceResist), Value = Option.IceResist.ToString() });
             fieldDatas.Add(new FieldData() { Name = nameof(Option.LightningResist), Value = Option.LightningResist.ToString() });

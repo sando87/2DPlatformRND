@@ -3,6 +3,7 @@ using System.Linq;
 using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace PahlBit
@@ -56,6 +57,8 @@ namespace PahlBit
         [ShowIf(nameof(ShowEquipItems))]
         void _UnEquipItem() { UnEquipItem(mSelectEquipItem.InstanceID); }
 
+        public UnityEvent EventEquipItem = new UnityEvent();
+        public UnityEvent EventUnEquipItem = new UnityEvent();
 
         public void LoadItemsFromData(int characterID)
         {
@@ -142,6 +145,7 @@ namespace PahlBit
             GameSystem.DoSave_UserSaveData();
 
             TotalItemOption.Add(item.Option);
+            EventEquipItem?.Invoke();
         }
 
         public void UnEquipItem(string itemInstID)
@@ -156,6 +160,7 @@ namespace PahlBit
             GameSystem.DoSave_UserSaveData();
 
             TotalItemOption.Subtract(item.Option);
+            EventUnEquipItem?.Invoke();
         }
 
     }

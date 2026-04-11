@@ -5,8 +5,6 @@ namespace PahlBit
 {
     public class PlayerStateWalk : PlayerStateBase
     {
-        public float moveSpeed = 7f;
-
         public override void EnterState(object param)
         {
             base.EnterState(param);
@@ -18,7 +16,7 @@ namespace PahlBit
         {
             base.UpdateState();
 
-            float moveX = PlayerInput.MoveX * moveSpeed;
+            float moveX = PlayerInput.MoveX * PlayerMain.Spec.MoveSpeed;
             Base.Phy.MoveHorizontally(moveX);
         }
 

@@ -54,7 +54,8 @@ namespace PahlBit
 
     public static class AnimatorParams
     {
-        public static readonly int MotionSpeed = Animator.StringToHash("MotionSpeed");
+        public static readonly int AttackSpeed = Animator.StringToHash("AttackSpeed");
+        public static readonly int MoveSpeed = Animator.StringToHash("MoveSpeed");
         public static readonly int DoNextCombo = Animator.StringToHash("DoNextCombo");
         public static readonly int StopLoop = Animator.StringToHash("StopLoop");
         public static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
