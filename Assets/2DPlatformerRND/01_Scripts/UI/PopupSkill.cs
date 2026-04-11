@@ -38,7 +38,6 @@ namespace PahlBit
         void OnSelect(UIPartsHandler part)
         {
             part.GetComponent<Image>().color = Color.green;
-            ShowViewer(part);
             UpdateDisplayInfo(part);
         }
         void OnDeselect(UIPartsHandler part)
@@ -81,7 +80,7 @@ namespace PahlBit
 
             _ActionSelector.Show((type) =>
             {
-                DoAction(skill, type);
+                DoAction(part, type);
                 UpdateRemainSkillPoint();
                 skillSlot.UpdateSkillState();
                 InGameManager.Instance.Engine.SetInputHandler(this.InputHandler);
@@ -91,8 +90,11 @@ namespace PahlBit
             SetRePosition(_ActionSelector.transform, part);
         }
 
-        void DoAction(SkillBase skill, UIActionType type)
+        void DoAction(UIPartsHandler part, UIActionType type)
         {
+            UIPartsSkillSlot skillPart = part as UIPartsSkillSlot;
+            SkillBase skill = skillPart.SKill;
+
             if (type == UIActionType.None)
                 return;
 
@@ -115,6 +117,10 @@ namespace PahlBit
             else if (type == UIActionType.Enforce)
             {
                 skill.Controller.LevelupSkill(skill.ResourceID);
+            }
+            else if (type == UIActionType.Detail)
+            {
+                ShowViewer(part);
             }
         }
 

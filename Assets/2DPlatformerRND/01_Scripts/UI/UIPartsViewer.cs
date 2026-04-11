@@ -41,6 +41,11 @@ namespace PahlBit
         {
             field.GetChild(0).GetComponent<TextMeshProUGUI>().text = data.Name;
             field.GetChild(1).GetComponent<TextMeshProUGUI>().text = data.Value;
+
+            if (data.Value2.Length > 0)
+                field.GetChild(2).GetComponent<TextMeshProUGUI>().text = "-> " + data.Value2;
+            else
+                field.GetChild(2).GetComponent<TextMeshProUGUI>().text = "";
         }
     }
 }

@@ -7,8 +7,8 @@ namespace PahlBit
     public struct FieldData
     {
         public string Name;
-        public string Type;
         public string Value;
+        public string Value2;
     }
 
     public static class ReflectionFieldExtractor
@@ -29,8 +29,8 @@ namespace PahlBit
                 result.Add(new FieldData
                 {
                     Name = field.Name,
-                    Type = GetFriendlyTypeName(field.FieldType),
-                    Value = ConvertValueToString(value)
+                    Value = ConvertValueToString(value),
+                    Value2 = GetFriendlyTypeName(field.FieldType)
                 });
             }
         }

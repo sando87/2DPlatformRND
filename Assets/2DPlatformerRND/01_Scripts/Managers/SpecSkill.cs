@@ -110,91 +110,104 @@ namespace PahlBit
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.PhyAttack),
-                    Value = BaseStats.PhyAttack.ToString() + " -> " + nextBaseStats.PhyAttack.ToString()
+                    Value = BaseStats.PhyAttack.ToString(),
+                    Value2 = SaveData.IsLearned ? nextBaseStats.PhyAttack.ToString() : ""
                 });
 
             if (BaseStats.FireAttack.PercentValue > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.FireAttack),
-                    Value = BaseStats.FireAttack.ToString() + " -> " + nextBaseStats.FireAttack.ToString()
+                    Value = BaseStats.FireAttack.ToString(),
+                    Value2 = SaveData.IsLearned ? nextBaseStats.FireAttack.ToString() : ""
                 });
 
             if (BaseStats.IceAttack.PercentValue > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.IceAttack),
-                    Value = BaseStats.IceAttack.ToString() + " -> " + nextBaseStats.IceAttack.ToString()
+                    Value = BaseStats.IceAttack.ToString(),
+                    Value2 = SaveData.IsLearned ? nextBaseStats.IceAttack.ToString() : ""
                 });
 
             if (BaseStats.LightningAttack.PercentValue > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.LightningAttack),
-                    Value = BaseStats.LightningAttack.ToString() + " -> " + nextBaseStats.LightningAttack.ToString()
+                    Value = BaseStats.LightningAttack.ToString(),
+                    Value2 = SaveData.IsLearned ? nextBaseStats.LightningAttack.ToString() : ""
                 });
 
             if (BaseStats.ManaUse > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.ManaUse),
-                    Value = BaseStats.ManaUse.ToString() + " -> " + nextBaseStats.ManaUse.ToString()
+                    Value = BaseStats.ManaUse.ToString(),
+                    Value2 = SaveData.IsLearned ? nextBaseStats.ManaUse.ToString() : ""
                 });
 
             if (BaseStats.Cooltime > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.Cooltime),
-                    Value = BaseStats.Cooltime.ToString("0.##") + "s -> " + nextBaseStats.Cooltime.ToString("0.##") + "s"
+                    Value = BaseStats.Cooltime.ToString("0.##") + "s",
+                    Value2 = SaveData.IsLearned ? nextBaseStats.Cooltime.ToString("0.##") + "s" : ""
                 });
 
             if (BaseStats.ProjectileCount > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.ProjectileCount),
-                    Value = BaseStats.ProjectileCount.ToString() + " -> " + nextBaseStats.ProjectileCount.ToString()
+                    Value = BaseStats.ProjectileCount.ToString(),
+                    Value2 = SaveData.IsLearned ? nextBaseStats.ProjectileCount.ToString() : ""
                 });
 
             if (BaseStats.ProjectileSpeed > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.ProjectileSpeed),
-                    Value = BaseStats.ProjectileSpeed.ToString("0.##") + " -> " + nextBaseStats.ProjectileSpeed.ToString("0.##")
+                    Value = BaseStats.ProjectileSpeed.ToString("0.##"),
+                    Value2 = SaveData.IsLearned ? nextBaseStats.ProjectileSpeed.ToString("0.##") : ""
                 });
 
             if (BaseStats.AttackRange > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.AttackRange),
-                    Value = BaseStats.AttackRange.ToString("0.##") + " -> " + nextBaseStats.AttackRange.ToString("0.##")
+                    Value = BaseStats.AttackRange.ToString("0.##"),
+                    Value2 = SaveData.IsLearned ? nextBaseStats.AttackRange.ToString("0.##") : ""
                 });
 
             if (BaseStats.SplashRange > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.SplashRange),
-                    Value = BaseStats.SplashRange.ToString("0.##") + " -> " + nextBaseStats.SplashRange.ToString("0.##")
+                    Value = BaseStats.SplashRange.ToString("0.##"),
+                    Value2 = SaveData.IsLearned ? nextBaseStats.SplashRange.ToString("0.##") : ""
                 });
 
             if (BaseStats.Duration > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.Duration),
-                    Value = BaseStats.Duration.ToString("0.##") + "s -> " + nextBaseStats.Duration.ToString("0.##") + "s"
+                    Value = BaseStats.Duration.ToString("0.##") + "s",
+                    Value2 = SaveData.IsLearned ? nextBaseStats.Duration.ToString("0.##") + "s" : ""
                 });
 
             if (BaseStats.Interval > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.Interval),
-                    Value = BaseStats.Interval.ToString("0.##") + "s -> " + nextBaseStats.Interval.ToString("0.##") + "s"
+                    Value = BaseStats.Interval.ToString("0.##") + "s",
+                    Value2 = SaveData.IsLearned ? nextBaseStats.Interval.ToString("0.##") + "s" : ""
                 });
 
             if (BaseStats.StartDelay > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.StartDelay),
-                    Value = BaseStats.StartDelay.ToString("0.##") + "s -> " + nextBaseStats.StartDelay.ToString("0.##") + "s"
+                    Value = BaseStats.StartDelay.ToString("0.##") + "s",
+                    Value2 = SaveData.IsLearned ? nextBaseStats.StartDelay.ToString("0.##") + "s" : ""
                 });
         }
     }
