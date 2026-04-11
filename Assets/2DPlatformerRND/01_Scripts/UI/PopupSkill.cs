@@ -59,14 +59,24 @@ namespace PahlBit
             InGameManager.Instance.Engine.SetInputHandler(_ActionSelector.InputHandler);
 
             _ActionSelector.Actions.Clear();
-            if (!skill.IsLearned)
+            if (skill.IsLocked)
             {
-                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Learn });
+                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Detail });
+            }
+            else if (!skill.IsLearned)
+            {
+                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Detail });
+
+                if (mSkillCtrl.RemainSkillPoint > 0)
+                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Learn });
             }
             else
             {
+                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Detail });
                 _ActionSelector.Actions.Add(new ActionInfo { Type = skill.IsEquipped ? UIActionType.UnEquip : UIActionType.Equip });
-                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Enforce });
+
+                if (mSkillCtrl.RemainSkillPoint > 0)
+                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Enforce });
             }
 
             _ActionSelector.Show((type) =>

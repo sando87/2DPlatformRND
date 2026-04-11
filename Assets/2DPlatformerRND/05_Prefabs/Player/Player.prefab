@@ -931,7 +931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e475ea13b4b2cab4b8ad0eb9273ba18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillWaterBomb
-  _Icon: {fileID: 4858660837743384793, guid: 4f5debf160d63b64c8f4a86e429f3de3, type: 3}
+  _Icon: {fileID: 1358295364, guid: 4dbf30ad5efe9b04ba8d0b09e499343a, type: 3}
   _ResourceID: Skill11
   SkillMotion: {fileID: 4465553402592082160}
   ProjPrefab: {fileID: 4627083357526262411, guid: e3eb3d6601b3c8d4d8a3e962790af41d,
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 349355b2f3d80ec40b20665435f46702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillBall
-  _Icon: {fileID: 2664034816732244463, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  _Icon: {fileID: -313312679, guid: 4dbf30ad5efe9b04ba8d0b09e499343a, type: 3}
   _ResourceID: Skill02
   SkillMotion: {fileID: 1640945282392938724}
   ProjPrefab: {fileID: 4627083357526262411, guid: bd318899aff485a4b8bf10cc02a9b0ce,
@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f9251c4f3032d449eb670728fb2249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillIceBall
-  _Icon: {fileID: 1222684967, guid: 6f7bed7ce05a9bb45af364cbd0f9688a, type: 3}
+  _Icon: {fileID: 611095369, guid: 4dbf30ad5efe9b04ba8d0b09e499343a, type: 3}
   _ResourceID: Skill05
   SkillMotion: {fileID: 2639148574028594699}
   ProjectilePrefab: {fileID: 4627083357526262411, guid: a734bdd536705284f8e216842c9f0668,
@@ -1587,7 +1587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ca05ba1dfe0e747931e6961382f303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillArrow
-  _Icon: {fileID: 21300000, guid: db5feb45383abd347b30dd964fca3c6b, type: 3}
+  _Icon: {fileID: 370741199, guid: 4dbf30ad5efe9b04ba8d0b09e499343a, type: 3}
   _ResourceID: Skill03
   SkillMotion: {fileID: 5588735595078327464}
   ProjectilePrefab: {fileID: 4627083357526262411, guid: c0812866410167549b3a55cabb9e8986,
@@ -2151,7 +2151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5243e9498bcce4c889f7c930cd69fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillLaser
-  _Icon: {fileID: 8117616903480516750, guid: ccd3d94e2fb6cac419b17d46d92d465f, type: 3}
+  _Icon: {fileID: 452574071, guid: 4dbf30ad5efe9b04ba8d0b09e499343a, type: 3}
   _ResourceID: Skill08
   SkillMotion: {fileID: 8756908362754044847}
   LaserPrefab: {fileID: 8145529192335980096, guid: def12540be81c2749be075beb03b052f,
@@ -3015,7 +3015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f562fa239b5994c9c4bd781ae554b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillMelee
-  _Icon: {fileID: -6721367887672951865, guid: 080e6ea964a426647830af7ca0b7bb1b, type: 3}
+  _Icon: {fileID: -2101677271, guid: 4dbf30ad5efe9b04ba8d0b09e499343a, type: 3}
   _ResourceID: Skill01
   SkillMotion: {fileID: 3333459073410297177}
   MeleePrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
@@ -3141,7 +3141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35600837238f5ed488cac10ffe3ee49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillFrozenOrb
-  _Icon: {fileID: -5845527952135845097, guid: 3076b6b40b17d3c44bd353ac07f7a599, type: 3}
+  _Icon: {fileID: 1948025120, guid: 4dbf30ad5efe9b04ba8d0b09e499343a, type: 3}
   _ResourceID: Skill10
   SkillMotion: {fileID: 6944917928910177083}
   ProjPrefab: {fileID: 5696730104938166540, guid: 5f3fca5a6b17d6b4fad1b5ddecec9dfc,
@@ -3848,7 +3848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e0d6732b3bf9d438d21756975e7471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillGun
-  _Icon: {fileID: 21300000, guid: 05e7af0be27155e4b8475415b3c0cc9f, type: 3}
+  _Icon: {fileID: -821477319, guid: 4dbf30ad5efe9b04ba8d0b09e499343a, type: 3}
   _ResourceID: Skill04
   SkillMotion: {fileID: 1341993030618312282}
   ProjectilePrefab: {fileID: 4627083357526262411, guid: cff92825081bc0545b14d5207d1ca8b0,
@@ -4064,7 +4064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a14731495697f447bb73d5fdcb6d697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillMeleeCombo
-  _Icon: {fileID: 8178899156310564023, guid: ad93e63dff8202d40b273593cc735d3e, type: 3}
+  _Icon: {fileID: 1585790100, guid: 4dbf30ad5efe9b04ba8d0b09e499343a, type: 3}
   _ResourceID: Skill07
   SkillMotion: {fileID: 4980095597237122489}
   MeleePrefab: {fileID: 3164944944171518125, guid: 9e71e9d2ceb1bb04c89ad394128fa9dd,
@@ -4513,7 +4513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3ee59f25f5db24c9b338cc5468c3ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillFireWall
-  _Icon: {fileID: 4697578217365469148, guid: 3edbed9a3a4c9df4f87bb9bf0b042f84, type: 3}
+  _Icon: {fileID: 1126027973, guid: 4dbf30ad5efe9b04ba8d0b09e499343a, type: 3}
   _ResourceID: Skill09
   SkillMotion: {fileID: 6520458866787857399}
   ProjPrefab: {fileID: 4627083357526262411, guid: 1d1ee123c6ffa5b40a53899773c9ac28,
@@ -5190,7 +5190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80db11568b449934ea239aa2b1b54290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillLightning
-  _Icon: {fileID: 2099869453310149314, guid: cb15f2acfe007414abe00e0543c29b00, type: 3}
+  _Icon: {fileID: -473291375, guid: 4dbf30ad5efe9b04ba8d0b09e499343a, type: 3}
   _ResourceID: Skill06
   SkillMotion: {fileID: 3500105193256433224}
   ProjPrefab: {fileID: 4627083357526262411, guid: c21fbed9810f84b4daaf08f52d8a6cae,

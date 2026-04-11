@@ -42,7 +42,11 @@ namespace PahlBit
 
                 if (skillObj.ResourceID.Equals("Skill07"))
                 {
-                    skillObj.OnLearnedSkill();
+                    if (!skillObj.IsLearned)
+                    {
+                        LearnNewSkill(skillObj.ResourceID);
+                        EquipSkill(skillObj.ResourceID, 0);
+                    }
                 }
 
                 if (!skillObj.IsLearned)
@@ -76,17 +80,15 @@ namespace PahlBit
         {
             return SkillSlots[slotIndex];
         }
-        public bool IsLearnableSkill(string skillResID)
+        public bool IsLockedSkill(string skillResID)
         {
             SkillBase skill = mAllSkills[skillResID];
-            return skill.UnlockLevel <= CurrentLevel;
+            return skill.UnlockLevel > CurrentLevel;
         }
         public void LearnNewSkill(string skillResID)
         {
-            if (RemainSkillPoint <= 0)
-                return;
-
             mPlayerStateData.RemainSkillPoint--;
+            mPlayerStateData.RemainSkillPoint.ExSetMinimum(0);
             SkillBase skill = mAllSkills[skillResID];
             skill.gameObject.SetActive(true);
             skill.OnLearnedSkill();
@@ -94,10 +96,8 @@ namespace PahlBit
         }
         public void LevelupSkill(string skillResID)
         {
-            if (RemainSkillPoint <= 0)
-                return;
-
             mPlayerStateData.RemainSkillPoint--;
+            mPlayerStateData.RemainSkillPoint.ExSetMinimum(0);
             SkillBase skill = mAllSkills[skillResID];
             skill.OnLevelupSkill();
             GameSystem.DoSave_UserSaveData();

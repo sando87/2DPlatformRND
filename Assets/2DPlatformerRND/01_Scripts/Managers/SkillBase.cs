@@ -27,7 +27,7 @@ public class SkillBase : MonoBehaviour
     public int PositionIndex => mSkillSaveData.PositionIndex;
     public int UnlockLevel => Spec.ResourceData._UnlockLevel;
     public int Level => mSkillSaveData.Level;
-    public bool IsLearnable => Controller.IsLearnableSkill(ResourceID);
+    public bool IsLocked => Controller.IsLockedSkill(ResourceID);
     public int CurrentSubStep => mSkillSaveData.SubStep;
     public int MaxSubStep => Spec.ResourceData._UpgradeStep[mSkillSaveData.LevelIndex];
     public bool IsCooltime => Spec.Cooltime == 0 ? false : Time.time - mCooltime < Spec.Cooltime;

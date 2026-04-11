@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace PahlBit
 {
-    public enum UIActionType { None, Learn, Use, UnUse, Enforce, Equip, UnEquip, Sell, Buy, Dump }
+    public enum UIActionType { None, Learn, Use, UnUse, Enforce, Equip, UnEquip, Sell, Buy, Dump, Detail }
 
     public struct ActionInfo
     {
