@@ -69,6 +69,26 @@ namespace PahlBit
             mQueue.Enqueue(playerCell);
             mVisited[playerCell] = 0;
 
+            {
+                // 적 이동 분포를 고르게 하기 위해 플레이어 위치 기준 세로칸이 모두 0 depth로 시작하게 함.
+                // 그래야 적들이 플레이어를 따라올때 퍼져서 오기 때문..
+                Vector2Int upPos = playerCell + new Vector2Int(0, 1);
+                while (!IsBlocked(upPos) && Mathf.Abs(upPos.y - playerCell.y) < DepthHeightRange)
+                {
+                    mQueue.Enqueue(upPos);
+                    mVisited[upPos] = 0;
+                    upPos.y++;
+                }
+
+                Vector2Int downPos = playerCell + new Vector2Int(0, -1);
+                while (!IsBlocked(downPos) && Mathf.Abs(downPos.y - playerCell.y) < DepthHeightRange)
+                {
+                    mQueue.Enqueue(downPos);
+                    mVisited[downPos] = 0;
+                    downPos.y--;
+                }
+            }
+
             while (mQueue.Count > 0)
             {
                 Vector2Int current = mQueue.Dequeue();

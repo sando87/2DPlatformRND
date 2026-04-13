@@ -179,25 +179,29 @@ namespace PahlBit
                 }
             }
 
-            // float curPosWeight = GetMinWeight(currentGroup);
+            float curPosWeight = GetMinWeight(currentGroup);
             List<PathInfo> nextPaths = new List<PathInfo>();
-            PathInfo selectedPath = null;
-            float minWeight = float.MaxValue;
+            // PathInfo selectedPath = null;
+            // float minWeight = float.MaxValue;
             foreach (var path in possiblePaths)
             {
                 float weight = GetMinWeight(path.Transition.EndNode.ParentGroup);
-                if (weight < 10)
+                if (weight <= 7)
+                {
+                    nextPaths.Add(path);
+                }
+                else if (weight <= curPosWeight)
                 {
                     nextPaths.Add(path);
                 }
 
-                if (weight < minWeight)
-                {
-                    minWeight = weight;
-                    selectedPath = path;
-                }
+                // if (weight < minWeight)
+                // {
+                //     minWeight = weight;
+                //     selectedPath = path;
+                // }
             }
-            return nextPaths.Count > 0 ? nextPaths.ExGetRandom() : selectedPath;
+            return nextPaths.ExGetRandom();
         }
 
         public NodeNav GetCurrentGroundNode(Vector2 worldPos)

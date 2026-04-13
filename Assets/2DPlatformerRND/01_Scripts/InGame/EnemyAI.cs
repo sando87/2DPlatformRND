@@ -206,11 +206,16 @@ public class EnemyAI : MonoBehaviour
         try
         {
             DoChaseMoving(ctx).Forget();
-            int returnIdx = await UniTask.WhenAny(IsAttackableTarget(ctx), IsLostTarget(ctx));
+
+            int returnIdx = await UniTask.WhenAny(IsLostTarget(ctx));
             if (returnIdx == 0)
-                return EnemyState.Attack;
-            else if (returnIdx == 1)
                 return EnemyState.Patrol;
+
+            // int returnIdx = await UniTask.WhenAny(IsAttackableTarget(ctx), IsLostTarget(ctx));
+            // if (returnIdx == 0)
+            //     return EnemyState.Attack;
+            // else if (returnIdx == 1)
+            //     return EnemyState.Patrol;
         }
         finally
         {
@@ -512,10 +517,12 @@ public class EnemyAI : MonoBehaviour
         {
             await UniTask.Yield(cancellationToken: ct);
             Stop();
+            int stayChanceOnSameNode = 100;
             while (!ct.IsCancellationRequested && mPlayerTarget != null)
             {
-                if (IsSameNodeGroupWithPlayer())
+                if (IsStandOnZeroNode() && MyUtils.IsPercentHit(stayChanceOnSameNode))
                 {
+                    stayChanceOnSameNode = 50;
                     int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
                     Turn(curDir);
                     StartMoving(curDir * mSpec.MoveSpeed);
@@ -523,6 +530,7 @@ public class EnemyAI : MonoBehaviour
                 }
                 else
                 {
+                    stayChanceOnSameNode = 100;
                     PathInfo path = FindPath();
                     if (path != null)
                     {
@@ -539,23 +547,24 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    bool IsSameNodeGroupWithPlayer()
+    bool IsStandOnZeroNode()
     {
         if (mPlayerTarget == null)
             return false;
 
-        NodeNav playerNode = GetCurrentNodeNav(mPlayerTarget);
-        if (playerNode == null)
-            return false;
+        // NodeNav playerNode = GetCurrentNodeNav(mPlayerTarget);
+        // if (playerNode == null)
+        //     return false;
 
         NodeNav baseNode = GetCurrentNodeNav(mBase);
         if (baseNode == null)
             return false;
 
-        if (playerNode.ParentGroup == baseNode.ParentGroup)
-            return true;
+        // if (playerNode.ParentGroup == baseNode.ParentGroup)
+        //     return true;
 
-        return false;
+        float minWeight = InGameManager.Instance.Engine.Pathfinder.GetMinWeight(baseNode.ParentGroup);
+        return minWeight == 0;
     }
 
     BaseObject DetectPlayerAround(float range)
