@@ -12,6 +12,8 @@ public class SkillIceBall : SkillBase
     [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase ProjectilePrefab;
 
+    float mAimingDegreeOffset = 0;
+
     public override bool IsCastable()
     {
         return base.IsCastable() && SkillMotion.IsChangable();
@@ -21,7 +23,7 @@ public class SkillIceBall : SkillBase
     {
         base.UpdateSkill();
 
-        if (mInput.JustPressed(GetCurrentInputType()) && IsCastable())
+        if (mInput.IsPressing(GetCurrentInputType()) && IsCastable())
         {
             mBaseObj.StateMachine.TryChangeState(SkillMotion, (Action)DoFire);
         }
@@ -33,6 +35,12 @@ public class SkillIceBall : SkillBase
 
         UseMana();
         StartCooltime();
+
+        Vector2 inputXY = mBaseObj.Input.MoveXY;
+        if (inputXY.magnitude > 0.1f)
+            mAimingDegreeOffset = Mathf.Atan2(inputXY.y, Mathf.Abs(inputXY.x)) * Mathf.Rad2Deg;
+        else
+            mAimingDegreeOffset = 0;
 
         List<BaseObject> mTargets = new();
         Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
@@ -55,9 +63,9 @@ public class SkillIceBall : SkillBase
         for (int i = 0; i < arrowCount; i++)
         {
             float offsetIndex = i - (arrowCount - 1) / 2f;
-            float angle = offsetIndex * stepAngle;
+            float degree = mAimingDegreeOffset + (offsetIndex * stepAngle);
 
-            Quaternion rot = baseRotation * Quaternion.Euler(0f, 0f, angle);
+            Quaternion rot = baseRotation * Quaternion.Euler(0f, 0f, degree);
 
             ProjectileBase proj = ProjectileBase.Create(
                 ProjectilePrefab,
