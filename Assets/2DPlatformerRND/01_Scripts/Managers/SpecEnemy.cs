@@ -44,7 +44,7 @@ namespace PahlBit
             BaseStats.DetectRange = ResourceData._DetectRange.GetValue();
             BaseStats.AttackRange = ResourceData._AttackRange.GetValue();
             BaseStats.ItemDrop = (PercentUp)ResourceData._ItemDrop.GetValue();
-            BaseStats.GoldOnDeath = (int)ResourceData._GoldOnDeath.GetValueInRange(MyUtils.RandomRate());
+            BaseStats.GoldOnDeath = ResourceData._GoldOnDeath.GetIntInRange(MyUtils.RandomRate());
             BaseStats.ExpOnDeath = ResourceData._ExpOnDeath.GetValue();
         }
     }

@@ -7,19 +7,19 @@ namespace PahlBit
 {
     public class Health : MonoBehaviour
     {
-        public bool IsDead => mCurrentHP <= 0;
+        public bool IsDead => mCurrentHP.ToInt() <= 0;
 
-        public float HpRate => mMaxCurrentHP > 0 ? mCurrentHP / (float)mMaxCurrentHP : 0;
-        public float ManaRate => mMaxCurrentMana > 0 ? mCurrentMana / (float)mMaxCurrentMana : 0;
-        public float ShieldRate => mMaxCurrentShield > 0 ? mCurrentShield / (float)mMaxCurrentShield : 0;
+        public float HpRate => mMaxCurrentHP > 0 ? mCurrentHP / mMaxCurrentHP : 1;
+        public float ManaRate => mMaxCurrentMana > 0 ? mCurrentMana / mMaxCurrentMana : 1;
+        public float ShieldRate => mMaxCurrentShield > 0 ? mCurrentShield / mMaxCurrentShield : 1;
 
         public int MaxHealth => mMaxCurrentHP;
         public int MaxMana => mMaxCurrentMana;
         public int MaxShield => mMaxCurrentShield;
 
-        public int CurrentHP => mCurrentHP;
-        public int CurrentMana => mCurrentMana;
-        public int CurrentShield => mCurrentShield;
+        public int CurrentHP => mCurrentHP.ToInt();
+        public int CurrentMana => mCurrentMana.ToInt();
+        public int CurrentShield => mCurrentShield.ToInt();
 
         // public float CurrentTemputure { get; set; } = 0;
 
@@ -31,11 +31,11 @@ namespace PahlBit
         protected int mMaxCurrentShield = 0;
 
         [SerializeField, NaughtyAttributes.ReadOnly]
-        protected int mCurrentHP = 10;
+        protected float mCurrentHP = 10;
         [SerializeField, NaughtyAttributes.ReadOnly]
-        protected int mCurrentMana = 0;
+        protected float mCurrentMana = 0;
         [SerializeField, NaughtyAttributes.ReadOnly]
-        protected int mCurrentShield = 0;
+        protected float mCurrentShield = 0;
 
         public UnityEvent<DamagedResultInfo> OnDamaged = new UnityEvent<DamagedResultInfo>();
         public UnityEvent OnDied = new UnityEvent();
@@ -68,9 +68,9 @@ namespace PahlBit
                 mMaxCurrentMana = mSpec.MaxMana.ToInt();
                 mMaxCurrentShield = mSpec.MaxShield.ToInt();
 
-                mCurrentHP = (mMaxCurrentHP * hpRate).ToInt();
-                mCurrentMana = (mMaxCurrentMana * manaRate).ToInt();
-                mCurrentShield = (mMaxCurrentShield * shieldRate).ToInt();
+                mCurrentHP = mMaxCurrentHP * hpRate;
+                mCurrentMana = mMaxCurrentMana * manaRate;
+                mCurrentShield = mMaxCurrentShield * shieldRate;
             }
             else
             {
@@ -88,7 +88,7 @@ namespace PahlBit
         {
             DamagedResultInfo damageRetInfo = new DamagedResultInfo();
             damageRetInfo.MaxHealth = mMaxCurrentHP;
-            damageRetInfo.BeforeHealth = mCurrentHP;
+            damageRetInfo.BeforeHealth = mCurrentHP.ToInt();
             damageRetInfo.OriDamage = (damageInfo.PhyDamage + damageInfo.FireDamage + damageInfo.IceDamage + damageInfo.LightningDamage).ToInt();
 
             // 물리 데미지 계산
@@ -127,7 +127,7 @@ namespace PahlBit
 
             if (mCurrentShield > 0)
             {
-                int usedShield = Mathf.Min(mCurrentShield, remainDamage);
+                int usedShield = Mathf.Min(mCurrentShield.ToInt(), remainDamage);
                 mCurrentShield -= usedShield;
                 remainDamage -= usedShield;
                 damageRetInfo.ValidDamage += usedShield;
@@ -142,7 +142,7 @@ namespace PahlBit
                 mCurrentHP -= remainDamage;
                 mCurrentHP.ExSetMinimum(0);
 
-                damageRetInfo.AfterHealth = mCurrentHP;
+                damageRetInfo.AfterHealth = mCurrentHP.ToInt();
                 OnDamaged.Invoke(damageRetInfo);
 
                 if (IsDead)
@@ -163,7 +163,7 @@ namespace PahlBit
         public void Heal(float amount)
         {
             if (IsDead || amount <= 0) return;
-            mCurrentHP += amount.ToInt();
+            mCurrentHP += amount;
             mCurrentHP.ExSetMaximum(mMaxCurrentHP);
         }
         public void UseMana(float amount)
@@ -173,12 +173,14 @@ namespace PahlBit
         }
         public void RestoreMana(float amount)
         {
-            mCurrentMana += amount.ToInt();
+            if (IsDead || amount <= 0) return;
+            mCurrentMana += amount;
             mCurrentMana.ExSetMaximum(mMaxCurrentMana);
         }
         public void RestoreShield(float amount)
         {
-            mCurrentShield += amount.ToInt();
+            if (IsDead || amount <= 0) return;
+            mCurrentShield += amount;
             mCurrentShield.ExSetMaximum(mMaxCurrentShield);
         }
 

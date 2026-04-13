@@ -65,7 +65,7 @@ namespace PahlBit
                 return "null";
 
             if (value is float f)
-                return f.ToString("0.##");
+                return f.ToString("0.#");
 
             if (value is int i)
                 return i.ToString();

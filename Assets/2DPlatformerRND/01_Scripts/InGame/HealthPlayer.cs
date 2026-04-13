@@ -27,23 +27,17 @@ namespace PahlBit
         {
             if (mSpecPlayer.HealthRegen > 0)
             {
-                int hpRegen = mSpecPlayer.HealthRegen.ToInt();
-                mCurrentHP += hpRegen;
-                mCurrentHP.ExSetMaximum(mMaxCurrentHP);
+                Heal(mSpecPlayer.HealthRegen);
             }
 
             if (mSpecPlayer.ManaRegen > 0)
             {
-                int manaRegen = mSpecPlayer.ManaRegen.ToInt();
-                mCurrentMana += manaRegen;
-                mCurrentMana.ExSetMaximum(mMaxCurrentMana);
+                RestoreMana(mSpecPlayer.ManaRegen);
             }
 
             if (mSpecPlayer.ShieldRegen > 0)
             {
-                int shieldRegen = mSpecPlayer.ShieldRegen.ToInt();
-                mCurrentShield += shieldRegen;
-                mCurrentShield.ExSetMaximum(mMaxCurrentShield);
+                RestoreShield(mSpecPlayer.ShieldRegen);
             }
         }
 

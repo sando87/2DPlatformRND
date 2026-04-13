@@ -90,14 +90,14 @@ namespace PahlBit
             if (IceAttack > 0) fieldDatas.Add(new FieldData() { Name = nameof(IceAttack), Value = IceAttack.ToInt().ToString() });
             if (LightningAttack > 0) fieldDatas.Add(new FieldData() { Name = nameof(LightningAttack), Value = LightningAttack.ToInt().ToString() });
             if (ManaUse > 0) fieldDatas.Add(new FieldData() { Name = nameof(ManaUse), Value = ManaUse.ToInt().ToString() });
-            if (Cooltime > 0) fieldDatas.Add(new FieldData() { Name = nameof(Cooltime), Value = $"{Cooltime:0.##}s" });
+            if (Cooltime > 0) fieldDatas.Add(new FieldData() { Name = nameof(Cooltime), Value = $"{Cooltime:0.#}s" });
             if (ProjectileCount > 0) fieldDatas.Add(new FieldData() { Name = nameof(ProjectileCount), Value = ProjectileCount.ToInt().ToString() });
-            if (ProjectileSpeed > 0) fieldDatas.Add(new FieldData() { Name = nameof(ProjectileSpeed), Value = $"{ProjectileSpeed:0.##}" });
-            if (AttackRange > 0) fieldDatas.Add(new FieldData() { Name = nameof(AttackRange), Value = $"{AttackRange:0.##}" });
-            if (SplashRange > 0) fieldDatas.Add(new FieldData() { Name = nameof(SplashRange), Value = $"{SplashRange:0.##}" });
-            if (Duration > 0) fieldDatas.Add(new FieldData() { Name = nameof(Duration), Value = $"{Duration:0.##}s" });
-            if (Interval > 0) fieldDatas.Add(new FieldData() { Name = nameof(Interval), Value = $"{Interval:0.##}s" });
-            if (StartDelay > 0) fieldDatas.Add(new FieldData() { Name = nameof(StartDelay), Value = $"{StartDelay:0.##}s" });
+            if (ProjectileSpeed > 0) fieldDatas.Add(new FieldData() { Name = nameof(ProjectileSpeed), Value = $"{ProjectileSpeed:0.#}" });
+            if (AttackRange > 0) fieldDatas.Add(new FieldData() { Name = nameof(AttackRange), Value = $"{AttackRange:0.#}" });
+            if (SplashRange > 0) fieldDatas.Add(new FieldData() { Name = nameof(SplashRange), Value = $"{SplashRange:0.#}" });
+            if (Duration > 0) fieldDatas.Add(new FieldData() { Name = nameof(Duration), Value = $"{Duration:0.#}s" });
+            if (Interval > 0) fieldDatas.Add(new FieldData() { Name = nameof(Interval), Value = $"{Interval:0.#}s" });
+            if (StartDelay > 0) fieldDatas.Add(new FieldData() { Name = nameof(StartDelay), Value = $"{StartDelay:0.#}s" });
         }
 
         public void GetBasicStatInfo(List<FieldData> fieldDatas)
@@ -150,8 +150,8 @@ namespace PahlBit
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.Cooltime),
-                    Value = BaseStats.Cooltime.ToString("0.##") + "s",
-                    Value2 = SaveData.IsLearned ? nextBaseStats.Cooltime.ToString("0.##") + "s" : ""
+                    Value = BaseStats.Cooltime.ToString("0.#") + "s",
+                    Value2 = SaveData.IsLearned ? nextBaseStats.Cooltime.ToString("0.#") + "s" : ""
                 });
 
             if (BaseStats.ProjectileCount > 0)
@@ -166,48 +166,48 @@ namespace PahlBit
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.ProjectileSpeed),
-                    Value = BaseStats.ProjectileSpeed.ToString("0.##"),
-                    Value2 = SaveData.IsLearned ? nextBaseStats.ProjectileSpeed.ToString("0.##") : ""
+                    Value = BaseStats.ProjectileSpeed.ToString("0.#"),
+                    Value2 = SaveData.IsLearned ? nextBaseStats.ProjectileSpeed.ToString("0.#") : ""
                 });
 
             if (BaseStats.AttackRange > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.AttackRange),
-                    Value = BaseStats.AttackRange.ToString("0.##"),
-                    Value2 = SaveData.IsLearned ? nextBaseStats.AttackRange.ToString("0.##") : ""
+                    Value = BaseStats.AttackRange.ToString("0.#"),
+                    Value2 = SaveData.IsLearned ? nextBaseStats.AttackRange.ToString("0.#") : ""
                 });
 
             if (BaseStats.SplashRange > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.SplashRange),
-                    Value = BaseStats.SplashRange.ToString("0.##"),
-                    Value2 = SaveData.IsLearned ? nextBaseStats.SplashRange.ToString("0.##") : ""
+                    Value = BaseStats.SplashRange.ToString("0.#"),
+                    Value2 = SaveData.IsLearned ? nextBaseStats.SplashRange.ToString("0.#") : ""
                 });
 
             if (BaseStats.Duration > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.Duration),
-                    Value = BaseStats.Duration.ToString("0.##") + "s",
-                    Value2 = SaveData.IsLearned ? nextBaseStats.Duration.ToString("0.##") + "s" : ""
+                    Value = BaseStats.Duration.ToString("0.#") + "s",
+                    Value2 = SaveData.IsLearned ? nextBaseStats.Duration.ToString("0.#") + "s" : ""
                 });
 
             if (BaseStats.Interval > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.Interval),
-                    Value = BaseStats.Interval.ToString("0.##") + "s",
-                    Value2 = SaveData.IsLearned ? nextBaseStats.Interval.ToString("0.##") + "s" : ""
+                    Value = BaseStats.Interval.ToString("0.#") + "s",
+                    Value2 = SaveData.IsLearned ? nextBaseStats.Interval.ToString("0.#") + "s" : ""
                 });
 
             if (BaseStats.StartDelay > 0)
                 fieldDatas.Add(new FieldData()
                 {
                     Name = nameof(BaseStats.StartDelay),
-                    Value = BaseStats.StartDelay.ToString("0.##") + "s",
-                    Value2 = SaveData.IsLearned ? nextBaseStats.StartDelay.ToString("0.##") + "s" : ""
+                    Value = BaseStats.StartDelay.ToString("0.#") + "s",
+                    Value2 = SaveData.IsLearned ? nextBaseStats.StartDelay.ToString("0.#") + "s" : ""
                 });
         }
     }

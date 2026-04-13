@@ -120,24 +120,36 @@ namespace PahlBit
             float result = mBaseMin + (mStepByPoint * point) + (mStepByLevel * level);
             return result;
         }
-        public float GetValueInRange(float normalizedTime)
+        public float GetFloatInRange(float normalizedTime)
         {
             float t = TransferTime(normalizedTime);
-            int val = (int)Lerp(mBaseMin, mBaseMax, t);
+            float val = Lerp(mBaseMin, mBaseMax, t);
+            val = (val * 10f).ToInt() * 0.1f; // 소수점 두번째 자리부터 버림
             return val;
+        }
+        public int GetIntInRange(float normalizedTime)
+        {
+            float t = TransferTime(normalizedTime);
+            float val = Lerp(mBaseMin, mBaseMax, t);
+            return val.ToInt();
         }
         private float Lerp(float a, float b, float t) => a + (b - a) * t;
 
         private float TransferTime(float time)
         {
+            float trTime = 0;
             if (mEase != Ease.Unset)
             {
-                return EaseManager.Evaluate(mEase, null, (float)time, 1, 1, 1);
+                trTime = EaseManager.Evaluate(mEase, null, (float)time, 1, 1, 1);
             }
             else
             {
-                return time;
+                trTime = time;
             }
+
+            // 0~1구간의 값들을 0.0 0.1 0.2 ... 0.9 1.0의 계단 형태로 값을 절삭시킨다.
+            trTime = (int)(trTime / 0.091f) * 0.1f;
+            return trTime;
         }
     }
 }
