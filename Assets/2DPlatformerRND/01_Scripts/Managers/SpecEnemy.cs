@@ -21,7 +21,7 @@ namespace PahlBit
         public PercentUp ItemDrop => BaseStats.ItemDrop;
         public int GoldOnDeath => BaseStats.GoldOnDeath;
         public float ExpOnDeath => BaseStats.ExpOnDeath;
-
+        public Percent HitChance => BaseStats.HitChance;
 
         public EnemyResourceData ResourceData { get; private set; } = null;
         public EnemyStats BaseStats { get; private set; } = null;
@@ -46,6 +46,7 @@ namespace PahlBit
             BaseStats.ItemDrop = (PercentUp)ResourceData._ItemDrop.GetValue();
             BaseStats.GoldOnDeath = ResourceData._GoldOnDeath.GetIntInRange(MyUtils.RandomRate());
             BaseStats.ExpOnDeath = ResourceData._ExpOnDeath.GetValue();
+            BaseStats.HitChance = (Percent)ResourceData._HitChance.GetValue();
         }
     }
 }

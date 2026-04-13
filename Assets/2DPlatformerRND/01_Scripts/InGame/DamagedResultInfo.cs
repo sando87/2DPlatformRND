@@ -13,7 +13,7 @@ namespace PahlBit
         public int AfterHealth;
         public int MaxHealth;
 
-        public int DeltaHealth => AfterHealth - BeforeHealth;
+        public int DeltaHealth => BeforeHealth - AfterHealth;
         public float CurrentHealthRate => AfterHealth / (float)MaxHealth;
     }
 }

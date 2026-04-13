@@ -22,6 +22,7 @@ namespace PahlBit
         public readonly string ItemDrop;
         public readonly string GoldOnDeath;
         public readonly string ExpOnDeath;
+        public readonly string HitChance;
 
         public int RowIndex { get; set; } // 데이터데이블상에 존재하는 순서
         public long ID { get { return ICSVFormat.ToID(EnemyID); } } // 데이터 접근을 위한 id값
@@ -37,6 +38,7 @@ namespace PahlBit
         public ParseValue _ItemDrop { get; private set; }
         public ParseValue _GoldOnDeath { get; private set; }
         public ParseValue _ExpOnDeath { get; private set; }
+        public ParseValue _HitChance { get; private set; }
 
         void ICSVFormat.OnLoad()
         {
@@ -51,6 +53,7 @@ namespace PahlBit
             _ItemDrop = ParseValue.Parse(ItemDrop);
             _GoldOnDeath = ParseValue.Parse(GoldOnDeath);
             _ExpOnDeath = ParseValue.Parse(ExpOnDeath);
+            _HitChance = ParseValue.Parse(HitChance);
         }
     }
 

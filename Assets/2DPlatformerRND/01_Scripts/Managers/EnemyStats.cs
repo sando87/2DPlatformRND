@@ -15,6 +15,7 @@ namespace PahlBit
         public PercentUp ItemDrop;
         public int GoldOnDeath;
         public float ExpOnDeath;
+        public Percent HitChance;
 
         public static EnemyStats operator *(EnemyStats stat, SpecOption option)
         {
@@ -30,6 +31,8 @@ namespace PahlBit
             result.ItemDrop = stat.ItemDrop;
             result.GoldOnDeath = stat.GoldOnDeath;
             result.ExpOnDeath = stat.ExpOnDeath;
+            result.HitChance = stat.HitChance;
+
             return result;
         }
     }
