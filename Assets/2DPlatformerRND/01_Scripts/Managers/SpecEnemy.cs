@@ -17,7 +17,7 @@ namespace PahlBit
         public float MoveSpeed => BaseStats.MoveSpeed * Option.MoveSpeedUp;
         public float DetectRange => BaseStats.DetectRange;
         public float AttackRange => BaseStats.AttackRange;
-        public float DetectLossRange => DetectRange * 1.5f;
+        public float DetectLossRange => DetectRange * 10f;
         public PercentUp ItemDrop => BaseStats.ItemDrop;
         public int GoldOnDeath => BaseStats.GoldOnDeath;
         public float ExpOnDeath => BaseStats.ExpOnDeath;

@@ -179,18 +179,25 @@ namespace PahlBit
                 }
             }
 
+            // float curPosWeight = GetMinWeight(currentGroup);
+            List<PathInfo> nextPaths = new List<PathInfo>();
             PathInfo selectedPath = null;
-            int minDepth = int.MaxValue;
+            float minWeight = float.MaxValue;
             foreach (var path in possiblePaths)
             {
-                int curDepth = GetMinDepth(path.Transition.EndNode.ParentGroup);
-                if (curDepth < minDepth)
+                float weight = GetMinWeight(path.Transition.EndNode.ParentGroup);
+                if (weight < 10)
                 {
-                    minDepth = curDepth;
+                    nextPaths.Add(path);
+                }
+
+                if (weight < minWeight)
+                {
+                    minWeight = weight;
                     selectedPath = path;
                 }
             }
-            return selectedPath;
+            return nextPaths.Count > 0 ? nextPaths.ExGetRandom() : selectedPath;
         }
 
         public NodeNav GetCurrentGroundNode(Vector2 worldPos)
@@ -226,22 +233,22 @@ namespace PahlBit
                 return mGroundNodes[nodePos];
             return null;
         }
-        public int GetMinDepth(NodeNavGroup nodeGroup)
+        public float GetMinWeight(NodeNavGroup nodeGroup)
         {
-            int minDepth = int.MaxValue;
+            float minWeight = float.MaxValue;
             foreach (var node in nodeGroup.GroundNodes)
             {
                 Vector2Int nodeUpPos = node.Position + new Vector2Int(0, 1);
                 PlayerDepthInfo depthInfo = InGameManager.Instance.Engine.DepthManager.GetPlayerDepthInfoAtPos(nodeUpPos);
-                if (depthInfo == null || depthInfo.IsOld)
+                if (depthInfo == null)
                     continue;
 
-                int curDepth = depthInfo.GetDepth();
-                if (curDepth < minDepth)
-                    minDepth = curDepth;
+                float curWeight = depthInfo.GetWeight();
+                if (curWeight < minWeight)
+                    minWeight = curWeight;
             }
 
-            return minDepth;
+            return minWeight;
         }
     }
 

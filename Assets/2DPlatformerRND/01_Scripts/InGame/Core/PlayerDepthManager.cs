@@ -5,14 +5,17 @@ using System.Threading;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.IO;
+using System.Data;
 
 
 namespace PahlBit
 {
     public class PlayerDepthManager : MonoBehaviour
     {
-        const int DepthWidthRange = 18;
-        const int DepthHeightRange = 10;
+        const int DepthWidthRange = 20;
+        const int DepthHeightRange = 12;
+
+        public static int FrameCounter = 0;
 
         // 방향 벡터 (상하좌우)
         Vector2Int[] mDirections =
@@ -37,6 +40,7 @@ namespace PahlBit
 
         public void SetPlayer(GameObject player)
         {
+            FrameCounter = 0;
             mPlayer = player;
         }
 
@@ -44,6 +48,7 @@ namespace PahlBit
         {
             if (mPlayer != null)
             {
+                FrameCounter++;
                 UpdatePlayerDepth(mPlayer.GetComponent<BaseObject>().Body.Center);
             }
         }
@@ -86,7 +91,7 @@ namespace PahlBit
                     info = new PlayerDepthInfo(current);
                     mPlayerDepthInfo.Add(current, info);
                 }
-                info.UpdateDepth(currentDepth);
+                info.UpdateDepth(currentDepth, FrameCounter);
 
                 // 이웃 탐색
                 foreach (var dir in mDirections)
@@ -118,7 +123,7 @@ namespace PahlBit
         }
 
 #if UNITY_EDITOR
-        void OnGUI()
+        void OnDrawGizmos()
         {
             // DebugDrawDepthInfo();
         }
@@ -136,11 +141,8 @@ namespace PahlBit
                 Vector3 screenPos = mainCam.WorldToScreenPoint(centerPos);
                 if (screenPos.z > 0)
                 {
-                    GUI.Label(new Rect(screenPos.x, Screen.height - screenPos.y, 20, 20), info.GetDepth().ToString());
+                    UnityEditor.Handles.Label(centerPos, info.GetWeight().ToInt().ToString());
                 }
-
-                // Vector3 worldPos = _Tilemap.CellToWorld(new Vector3Int(pos.x, pos.y, 0)) + new Vector3(0.5f, 0.5f, 0f);
-                // Debug.DrawLine(worldPos, worldPos + Vector3.up * 0.5f, Color.Lerp(Color.green, Color.red, info.GetDepth() / 30f), 0.1f);
             }
         }
 
@@ -153,22 +155,32 @@ namespace PahlBit
         public Vector2Int Position { get; private set; }
         float mDirtyTime = 0f;
         int mDepth = 0;
-        public bool IsOld { get => (Time.time - mDirtyTime) > 5f; }
+        int mFrameCounter = 0;
+        public float ElapsedTime => Time.time - mDirtyTime;
+        public bool IsNew { get => mFrameCounter == PlayerDepthManager.FrameCounter; }
 
         public PlayerDepthInfo(Vector2Int position)
         {
             Position = position;
         }
 
-        public void UpdateDepth(int depth)
+        public void UpdateDepth(int depth, int frameCounter)
         {
             mDepth = depth;
+            mFrameCounter = frameCounter;
             mDepth.ExSetMaximum(MaxDepth);
             mDirtyTime = Time.time;
         }
-        public int GetDepth()
+        public float GetWeight()
         {
-            return IsOld ? MaxDepth : mDepth;
+            if (IsNew)
+            {
+                return mDepth;
+            }
+            else
+            {
+                return MaxDepth + (ElapsedTime * 10f);
+            }
         }
     }
 }

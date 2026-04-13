@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Threading;
+using System.Collections.Generic;
+
 
 
 
@@ -61,6 +63,11 @@ namespace PahlBit
             {
                 // 정상 취소
             }
+        }
+
+        public static T ExGetRandom<T>(this List<T> list)
+        {
+            return list.Count > 0 ? list[UnityEngine.Random.Range(0, list.Count)] : default;
         }
 
 
