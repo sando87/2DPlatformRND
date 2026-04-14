@@ -131,7 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAIFlying
   _AttackDegree: 0
-  _ThinkInterval: 0.1
+  _ThinkInterval: 1
+  _AttackOnSameNode: 1
   OnAttackFire:
     m_PersistentCalls:
       m_Calls:

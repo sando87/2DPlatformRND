@@ -66,32 +66,111 @@ public class EnemyAIFlying : EnemyAI
     {
         try
         {
-            while (!ctx.IsCancellationRequested && mPlayerTarget != null)
-            {
-                Vector2 targetDestPos = mPlayerTarget.Body.Center + new Vector2(0, 3);
-                Vector2 vel = (targetDestPos - mBase.Body.Center).normalized * mSpec.MoveSpeed;
-                float distanceFromFirstPos = (mFirstPos - mBase.Body.Foot).magnitude;
-
-                if (distanceFromFirstPos > 20 || !IsTargetInRange(mSpec.DetectLossRange))
-                {
-                    return EnemyState.Patrol;
-                }
-                else if (IsTargetInRange(mSpec.AttackRange))
-                {
-                    return EnemyState.Attack;
-                }
-                else
-                {
-                    TurnTo(targetDestPos);
-                    mBase.Phy.Velocity = vel;
-                    await UniTask.Delay(TimeSpan.FromSeconds(0.1f), cancellationToken: ctx);
-                }
-            }
+            DoChaseFlying(ctx).Forget();
+            int returnIdx = await UniTask.WhenAny(IsAttackableTarget(ctx), IsLostTarget(ctx), IsTooFarFromFirstPos(ctx));
+            if (returnIdx == 0)
+                return EnemyState.Attack;
+            else if (returnIdx == 1)
+                return EnemyState.Patrol;
+            else if (returnIdx == 2)
+                return EnemyState.Patrol;
         }
         finally
         {
         }
         return EnemyState.Patrol;
+        // try
+        // {
+        //     while (!ctx.IsCancellationRequested && mPlayerTarget != null)
+        //     {
+        //         Vector2 targetDestPos = mPlayerTarget.Body.Center + new Vector2(0, 3);
+        //         Vector2 vel = (targetDestPos - mBase.Body.Center).normalized * mSpec.MoveSpeed;
+        //         float distanceFromFirstPos = (mFirstPos - mBase.Body.Foot).magnitude;
+
+        //         if (distanceFromFirstPos > 20 || !IsTargetInRange(mSpec.DetectLossRange))
+        //         {
+        //             return EnemyState.Patrol;
+        //         }
+        //         else if (IsTargetInRange(mSpec.AttackRange))
+        //         {
+        //             return EnemyState.Attack;
+        //         }
+        //         else
+        //         {
+        //             TurnTo(targetDestPos);
+        //             mBase.Phy.Velocity = vel;
+        //             await UniTask.Delay(TimeSpan.FromSeconds(0.1f), cancellationToken: ctx);
+        //         }
+        //     }
+        // }
+        // finally
+        // {
+        // }
+        // return EnemyState.Patrol;
+    }
+
+    protected async UniTask IsTooFarFromFirstPos(CancellationToken ct)
+    {
+        while (!ct.IsCancellationRequested)
+        {
+            float distanceFromFirstPos = (mFirstPos - mBase.Body.Foot).sqrMagnitude;
+            float refDistance = 20;
+            if (distanceFromFirstPos > refDistance * refDistance)
+            {
+                break;
+            }
+            else
+            {
+                float thinkInterval = MyUtils.RandomFloat(_ThinkInterval - 0.5f, _ThinkInterval + 0.5f);
+                thinkInterval.ExSetMinimum(0.1f);
+                await UniTask.Delay(TimeSpan.FromSeconds(thinkInterval), cancellationToken: ct);
+            }
+        }
+    }
+
+    protected async UniTask DoChaseFlying(CancellationToken ct)
+    {
+        try
+        {
+            await UniTask.Yield(cancellationToken: ct);
+            Stop();
+            mBase.AnimHelper.PlayAnim(AnimStateNameHash.Fly);
+            while (!ct.IsCancellationRequested && mPlayerTarget != null)
+            {
+                Rect destArea = new Rect();
+                destArea.size = new Vector2(8, 3);
+                destArea.center = mPlayerTarget.Body.Head + new Vector2(0, 5);
+                Vector2 destPos = MyUtils.Random(destArea);
+                Vector2 vel = (destPos - mBase.Body.Center).normalized * mSpec.MoveSpeed;
+                TurnTo(destPos);
+                while ((destPos - mBase.Body.Center).magnitude > 2)
+                {
+                    mBase.Phy.Velocity = vel;
+                    await UniTask.Yield(cancellationToken: ct);
+                }
+                await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(1f, 5f)), cancellationToken: ct);
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            // LOG.trace(ex.Message);
+        }
+    }
+
+    protected override bool IsAttackable()
+    {
+        if (mPlayerTarget == null)
+            return false;
+
+        if (IsCooltime)
+            return false;
+
+        float range = mSpec.AttackRange;
+        float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - mPlayerTarget.Body.Center);
+        if (distSqr > range * range)
+            return false;
+
+        return true;
     }
 
     // protected override async UniTask<EnemyState> AttackMode(CancellationToken ctx)

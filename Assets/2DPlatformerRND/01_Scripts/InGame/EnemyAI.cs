@@ -35,7 +35,7 @@ public class EnemyAI : MonoBehaviour
     public bool IsCooltime => (Time.time - mAttackTime) < mSpec.AttackInterval;
 
     [SerializeField] float _AttackDegree = 0;
-    [SerializeField] float _ThinkInterval = 0.5f;
+    [SerializeField] protected float _ThinkInterval = 0.5f;
     [SerializeField] bool _AttackOnSameNode = true;
     [SerializeField] UnityEvent<BaseObject> OnAttackFire = null;
 
@@ -328,7 +328,7 @@ public class EnemyAI : MonoBehaviour
         float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - mPlayerTarget.Body.Center);
         return distSqr <= range * range;
     }
-    protected bool IsAttackable()
+    protected virtual bool IsAttackable()
     {
         if (mPlayerTarget == null || !mBase.Phy.IsGrounded)
             return false;
