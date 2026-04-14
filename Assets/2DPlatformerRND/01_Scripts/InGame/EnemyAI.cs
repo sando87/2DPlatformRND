@@ -225,6 +225,7 @@ public class EnemyAI : MonoBehaviour
         try
         {
             Stop();
+            TurnToPlayer();
 
             AnimEventState animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.Attack);
             await UniTask.WaitUntil(() => animEventState.IsFired, cancellationToken: ctx);
@@ -525,8 +526,8 @@ public class EnemyAI : MonoBehaviour
                 if (IsStandOnZeroNode() && MyUtils.IsPercentHit(stayChanceOnSameNode))
                 {
                     stayChanceOnSameNode = 50;
+                    TurnToPlayer();
                     int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
-                    Turn(curDir);
                     StartMoving(curDir * mSpec.MoveSpeed);
                     await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 3.5f)), cancellationToken: ct);
                 }
@@ -634,6 +635,14 @@ public class EnemyAI : MonoBehaviour
     {
         int curDir = mBase.Body.Center.x < targetPos.x ? 1 : -1;
         Turn(curDir);
+    }
+    protected void TurnToPlayer()
+    {
+        if (mPlayerTarget != null)
+        {
+            int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
+            Turn(curDir);
+        }
     }
     protected void StartMoving(float velocity)
     {
