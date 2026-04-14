@@ -131,7 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAIMushroom
   _AttackDegree: 0
-  _ThinkInterval: 0.1
+  _ThinkInterval: 2
+  _AttackOnSameNode: 1
   OnAttackFire:
     m_PersistentCalls:
       m_Calls: []

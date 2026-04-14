@@ -78,12 +78,16 @@ public class EnemyAIMushroom : EnemyAI
         {
             Stop();
             TurnTo(mPlayerTarget.Body.Center);
+            mAttackTime = Time.time;
 
             AnimEventState animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.Attack);
             await UniTask.WaitUntil(() => animEventState.FireIndex == 0, cancellationToken: ctx);
-            mBase.Phy.SetMoveSpeedOnly(mSpec.MoveSpeed * 2);
             AttackArea.SetActive(true);
-            await UniTask.WaitUntil(() => animEventState.FireIndex == 1, cancellationToken: ctx);
+            while (animEventState.FireIndex == 0)
+            {
+                mBase.Phy.SetMoveSpeedOnly(mSpec.MoveSpeed * 3);
+                await UniTask.Yield(cancellationToken: ctx);
+            }
             mBase.Phy.SetMoveSpeedOnly(0);
             AttackArea.SetActive(false);
             await UniTask.WaitUntil(() => animEventState.IsEnd, cancellationToken: ctx);

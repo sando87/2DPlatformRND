@@ -364,7 +364,9 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(_ThinkInterval), cancellationToken: ct);
+                float thinkInterval = MyUtils.RandomFloat(_ThinkInterval - 0.5f, _ThinkInterval + 0.5f);
+                thinkInterval.ExSetMinimum(0.1f);
+                await UniTask.Delay(TimeSpan.FromSeconds(thinkInterval), cancellationToken: ct);
             }
         }
     }
@@ -526,8 +528,9 @@ public class EnemyAI : MonoBehaviour
                 if (IsStandOnZeroNode() && MyUtils.IsPercentHit(stayChanceOnSameNode))
                 {
                     stayChanceOnSameNode = 50;
-                    TurnToPlayer();
+                    // int curDir = MyUtils.RandomInt(0, 2) == 0 ? 1 : -1;
                     int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
+                    Turn(curDir);
                     StartMoving(curDir * mSpec.MoveSpeed);
                     await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 3.5f)), cancellationToken: ct);
                 }
