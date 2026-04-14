@@ -31,9 +31,12 @@ public class EnemyAI : MonoBehaviour
     protected CancellationTokenSource mMoveCTS = null;
 
     protected EnemyState mState = EnemyState.Idle;
+    protected float mAttackTime = 0;
+    public bool IsCooltime => (Time.time - mAttackTime) < mSpec.AttackInterval;
 
     [SerializeField] float _AttackDegree = 0;
     [SerializeField] float _ThinkInterval = 0.5f;
+    [SerializeField] bool _AttackOnSameNode = true;
     [SerializeField] UnityEvent<BaseObject> OnAttackFire = null;
 
     void Awake()
@@ -206,16 +209,11 @@ public class EnemyAI : MonoBehaviour
         try
         {
             DoChaseMoving(ctx).Forget();
-
-            int returnIdx = await UniTask.WhenAny(IsLostTarget(ctx));
+            int returnIdx = await UniTask.WhenAny(IsAttackableTarget(ctx), IsLostTarget(ctx));
             if (returnIdx == 0)
+                return EnemyState.Attack;
+            else if (returnIdx == 1)
                 return EnemyState.Patrol;
-
-            // int returnIdx = await UniTask.WhenAny(IsAttackableTarget(ctx), IsLostTarget(ctx));
-            // if (returnIdx == 0)
-            //     return EnemyState.Attack;
-            // else if (returnIdx == 1)
-            //     return EnemyState.Patrol;
         }
         finally
         {
@@ -245,7 +243,8 @@ public class EnemyAI : MonoBehaviour
     {
         try
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1.5f), cancellationToken: ctx);
+            float recoverTime = MyUtils.RandomFloat(0.1f, 0.5f);
+            await UniTask.Delay(TimeSpan.FromSeconds(recoverTime), cancellationToken: ctx);
 
             if (mPlayerTarget == null)
                 return EnemyState.Patrol;
@@ -333,8 +332,11 @@ public class EnemyAI : MonoBehaviour
         if (mPlayerTarget == null || !mBase.Phy.IsGrounded)
             return false;
 
-        // if (!IsSameNodeGroupWithPlayer())
-        //     return false;
+        if (IsCooltime)
+            return false;
+
+        if (_AttackOnSameNode && !IsStandOnSameNode())
+            return false;
 
         float range = mSpec.AttackRange;
         float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - mPlayerTarget.Body.Center);
@@ -517,7 +519,7 @@ public class EnemyAI : MonoBehaviour
         {
             await UniTask.Yield(cancellationToken: ct);
             Stop();
-            int stayChanceOnSameNode = 100;
+            int stayChanceOnSameNode = 50;
             while (!ct.IsCancellationRequested && mPlayerTarget != null)
             {
                 if (IsStandOnZeroNode() && MyUtils.IsPercentHit(stayChanceOnSameNode))
@@ -565,6 +567,21 @@ public class EnemyAI : MonoBehaviour
 
         float minWeight = InGameManager.Instance.Engine.Pathfinder.GetMinWeight(baseNode.ParentGroup);
         return minWeight == 0;
+    }
+    bool IsStandOnSameNode()
+    {
+        if (mPlayerTarget == null)
+            return false;
+
+        NodeNav playerNode = GetCurrentNodeNav(mPlayerTarget);
+        if (playerNode == null)
+            return false;
+
+        NodeNav baseNode = GetCurrentNodeNav(mBase);
+        if (baseNode == null)
+            return false;
+
+        return playerNode.ParentGroup == baseNode.ParentGroup;
     }
 
     BaseObject DetectPlayerAround(float range)
@@ -789,6 +806,7 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual void DoFireAttack()
     {
+        mAttackTime = Time.time;
         OnAttackFire?.Invoke(mPlayerTarget);
     }
 
