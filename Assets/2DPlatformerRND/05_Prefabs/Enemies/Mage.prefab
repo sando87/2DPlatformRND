@@ -131,8 +131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b47cc91083f5346bccf431011944b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  _AttackDegree: 90
+  _AttackDegree: 30
   _ThinkInterval: 0.1
+  _AttackOnSameNode: 0
+  _IsMage: 1
   OnAttackFire:
     m_PersistentCalls:
       m_Calls:

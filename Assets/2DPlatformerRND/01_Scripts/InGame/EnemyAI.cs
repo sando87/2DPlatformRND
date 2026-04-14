@@ -37,6 +37,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float _AttackDegree = 0;
     [SerializeField] protected float _ThinkInterval = 0.5f;
     [SerializeField] bool _AttackOnSameNode = true;
+    [SerializeField] bool _IsMage = false;
     [SerializeField] UnityEvent<BaseObject> OnAttackFire = null;
 
     void Awake()
@@ -208,7 +209,11 @@ public class EnemyAI : MonoBehaviour
     {
         try
         {
-            DoChaseMoving(ctx).Forget();
+            if (_IsMage)
+                DoChaseMovingForMage(ctx).Forget();
+            else
+                DoChaseMoving(ctx).Forget();
+
             int returnIdx = await UniTask.WhenAny(IsAttackableTarget(ctx), IsLostTarget(ctx));
             if (returnIdx == 0)
                 return EnemyState.Attack;
@@ -545,6 +550,26 @@ public class EnemyAI : MonoBehaviour
 
                     await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
                 }
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            // LOG.trace(ex.Message);
+        }
+    }
+
+    protected async UniTask DoChaseMovingForMage(CancellationToken ct)
+    {
+        try
+        {
+            await UniTask.Yield(cancellationToken: ct);
+            Stop();
+            while (!ct.IsCancellationRequested && mPlayerTarget != null)
+            {
+                int curDir = MyUtils.RandomInt(0, 2) == 0 ? 1 : -1;
+                Turn(curDir);
+                StartMoving(curDir * mSpec.MoveSpeed);
+                await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 3.5f)), cancellationToken: ct);
             }
         }
         catch (OperationCanceledException)

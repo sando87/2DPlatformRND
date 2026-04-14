@@ -343,9 +343,11 @@ MonoBehaviour:
     FireAngle: 0
     AttackRange: 0
     SplashRange: 0
-    Duration: 1
+    Duration: 2
     Interval: 0
     StartDelay: 0
+    RotateSpeed: 0
+    AimToVelocity: 0
   OnStart:
     m_PersistentCalls:
       m_Calls: []
