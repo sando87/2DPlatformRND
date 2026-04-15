@@ -79,7 +79,7 @@ MonoBehaviour:
     type: 3}
   ManaPotionPrefab: {fileID: 8437516355266612991, guid: 5ab96b73a691cf74aa1835b3483ada82,
     type: 3}
-  ProjPrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
+  ProjPrefab: {fileID: 3164944944171518125, guid: b3d3d3a7aa37f7a428626dda434cb69f,
     type: 3}
   _ResourceID: Enemy05
 --- !u!114 &7996635295318006703
@@ -135,6 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   _AttackDegree: 0
   _ThinkInterval: 0.1
+  _AttackOnSameNode: 1
+  _IsMage: 0
   OnAttackFire:
     m_PersistentCalls:
       m_Calls:
