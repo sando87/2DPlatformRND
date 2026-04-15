@@ -94,7 +94,7 @@ namespace PahlBit
                 if (Inven.CurrentLifePotionCount > 0)
                 {
                     Inven.CurrentLifePotionCount--;
-                    mBaseObj.Health.Heal(30);
+                    mBaseObj.Health.Heal(15);
                 }
             }
 

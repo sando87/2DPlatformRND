@@ -22,7 +22,7 @@ namespace PahlBit
         CharSaveData mPlayerStateData = null;
 
         public int RemainSkillPoint => mPlayerStateData.RemainSkillPoint;
-        public int CurrentLevel => GameSystem.CurrentExpToLevel(mPlayerStateData.CurrentExp);
+        public int CurrentLevel => GameSystem.GetLevelFromAccExp(mPlayerStateData.CurrentExp);
 
         void Awake()
         {

@@ -34,14 +34,42 @@ namespace PahlBit
             SaveRequestedTime = 0;
             DoSave_UserSaveData();
         }
-        static public int CurrentExpToLevel(float accumulatedExp)
+
+        // 다음 레벨업을 위해 필요한 경험치량이 증가하는 방식
+        static int FirstExpAtLevelOne = 100;
+        static int FirstExpIncrease = 150;
+        static int IncreaseOfExpIncrease = 50;
+        static public int GetAccExpForNextLevel(int curLevel)
         {
-            return (int)(accumulatedExp / 100) + 1;
+            if (curLevel <= 0)
+                return 0;
+                
+            int levelDown = Mathf.Max(0, curLevel - 1);
+            int levelDownDown = Mathf.Max(0, curLevel - 2);
+            return FirstExpAtLevelOne 
+            + levelDown * FirstExpIncrease
+            + levelDown * levelDownDown / 2 * IncreaseOfExpIncrease;
         }
-        static public float GetNextExpForLevelup(int level)
+        static public int GetLevelFromAccExp(int accumulatedExp)
         {
-            return level * 100;
+            if (accumulatedExp < FirstExpAtLevelOne)
+                return 1;
+
+            float A = IncreaseOfExpIncrease / 2f;
+            float B = FirstExpIncrease - (3f * IncreaseOfExpIncrease / 2f);
+            float C = FirstExpAtLevelOne - FirstExpIncrease + IncreaseOfExpIncrease - accumulatedExp;
+
+            float discriminant = B * B - 4f * A * C;
+
+            if (discriminant < 0f)
+                return 0; // 예외 처리
+
+            float L = (-B + Mathf.Sqrt(discriminant)) / (2f * A);
+
+            return Mathf.FloorToInt(L) + 1;
         }
+
+
         static public int GetAttackableLayerMask(int layer)
         {
             if (layer == LayerID.Player)
