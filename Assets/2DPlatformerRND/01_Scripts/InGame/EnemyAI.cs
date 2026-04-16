@@ -38,6 +38,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] protected float _ThinkInterval = 0.5f;
     [SerializeField] bool _AttackOnSameNode = true;
     [SerializeField] bool _IsMage = false;
+    [SerializeField] bool _FindMinPath = false;
+    [SerializeField] int _AroundNodeRange = 7;
     [SerializeField] UnityEvent<BaseObject> OnAttackFire = null;
 
     void Awake()
@@ -419,13 +421,22 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    PathInfo FindPath()
+    PathInfo FindPathAround(int aroundNodeRange)
     {
         NodeNav node = GetCurrentNodeNav(mBase);
         if (node == null)
             return null;
 
-        PathInfo path = InGameEngine.Inst.Pathfinder.FindPath(node, mSpec.MoveSpeed);
+        PathInfo path = InGameEngine.Inst.Pathfinder.FindPathAround(node, mSpec.MoveSpeed, aroundNodeRange);
+        return path;
+    }
+    PathInfo FindMinPath()
+    {
+        NodeNav node = GetCurrentNodeNav(mBase);
+        if (node == null)
+            return null;
+
+        PathInfo path = InGameEngine.Inst.Pathfinder.FindMinPath(node, mSpec.MoveSpeed);
         return path;
     }
 
@@ -530,7 +541,14 @@ public class EnemyAI : MonoBehaviour
             int stayChanceOnSameNode = 50;
             while (!ct.IsCancellationRequested && mPlayerTarget != null)
             {
-                if (IsStandOnZeroNode() && MyUtils.IsPercentHit(stayChanceOnSameNode))
+                if (_FindMinPath && IsStandOnSameNode())
+                {
+                    int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
+                    Turn(curDir);
+                    StartMoving(curDir * mSpec.MoveSpeed);
+                    await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 3.5f)), cancellationToken: ct);
+                }
+                else if (IsStandOnAroundNode() && MyUtils.IsPercentHit(stayChanceOnSameNode))
                 {
                     stayChanceOnSameNode = 50;
                     // int curDir = MyUtils.RandomInt(0, 2) == 0 ? 1 : -1;
@@ -542,7 +560,7 @@ public class EnemyAI : MonoBehaviour
                 else
                 {
                     stayChanceOnSameNode = 100;
-                    PathInfo path = FindPath();
+                    PathInfo path = _FindMinPath ? FindMinPath() : FindPathAround(_AroundNodeRange);
                     if (path != null)
                     {
                         await GotoPathDestPosition(path, ct);
@@ -578,7 +596,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    bool IsStandOnZeroNode()
+    bool IsStandOnAroundNode()
     {
         if (mPlayerTarget == null)
             return false;
@@ -595,7 +613,7 @@ public class EnemyAI : MonoBehaviour
         //     return true;
 
         float minWeight = InGameManager.Instance.Engine.Pathfinder.GetMinWeight(baseNode.ParentGroup);
-        return minWeight == 0;
+        return minWeight <= _AroundNodeRange;
     }
     bool IsStandOnSameNode()
     {

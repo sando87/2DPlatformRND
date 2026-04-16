@@ -40,15 +40,6 @@ namespace PahlBit
                 skillObj.InitSkillInfo(characterID);
                 mAllSkills[skillObj.ResourceID] = skillObj;
 
-                if (skillObj.ResourceID.Equals("Skill07"))
-                {
-                    if (!skillObj.IsLearned)
-                    {
-                        LearnNewSkill(skillObj.ResourceID);
-                        EquipSkill(skillObj.ResourceID, 0);
-                    }
-                }
-
                 if (!skillObj.IsLearned)
                 {
                     skillObj.gameObject.SetActive(false);

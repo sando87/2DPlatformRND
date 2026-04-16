@@ -16,6 +16,7 @@ namespace PahlBit
     [System.Serializable]
     public class CharacterSaveData
     {
+        public bool IsFirstPlay = true;
         public int LifePotionCount = 0;
         public int ManaPotionCount = 0;
         public CharSaveData Stats = new CharSaveData();

@@ -119,13 +119,9 @@ namespace PahlBit
             }
         }
 
-        public PathInfo FindPath(NodeNav startNode, float moveSpeed)
+        public List<PathInfo> FindPossiblePaths(NodeNav startNode, float moveSpeed)
         {
-            NodeNav currentNode = startNode;
-            if (currentNode == null)
-                return null;
-
-            NodeNavGroup currentGroup = currentNode.ParentGroup;
+            NodeNavGroup currentGroup = startNode.ParentGroup;
             List<PathInfo> possiblePaths = new List<PathInfo>();
             foreach (var transition in currentGroup.Transitions)
             {
@@ -140,7 +136,7 @@ namespace PahlBit
 
                     if (isPossibleJump)
                     {
-                        NodeNav endNode = transition.EndNode.ParentGroup.GetNodeAtWorldPosX(currentNode.Position.x);
+                        NodeNav endNode = transition.EndNode.ParentGroup.GetNodeAtWorldPosX(startNode.Position.x);
                         bool isNoNeedToMove = endNode != null;
 
                         PathInfo pathInfo = new PathInfo();
@@ -152,7 +148,7 @@ namespace PahlBit
                 }
                 else if (transition.TransitionType == NodeTransitionType.DropDown)
                 {
-                    NodeNav endNode = transition.EndNode.ParentGroup.GetNodeAtWorldPosX(currentNode.Position.x);
+                    NodeNav endNode = transition.EndNode.ParentGroup.GetNodeAtWorldPosX(startNode.Position.x);
                     bool isNoNeedToMove = endNode != null;
 
                     PathInfo pathInfo = new PathInfo();
@@ -178,15 +174,24 @@ namespace PahlBit
                     }
                 }
             }
+            return possiblePaths;
+        }
 
+        public PathInfo FindPathAround(NodeNav startNode, float moveSpeed, int aroundNodeRange)
+        {
+            NodeNav currentNode = startNode;
+            if (currentNode == null)
+                return null;
+
+            List<PathInfo> possiblePaths = FindPossiblePaths(currentNode, moveSpeed);
+
+            NodeNavGroup currentGroup = startNode.ParentGroup;
             float curPosWeight = GetMinWeight(currentGroup);
             List<PathInfo> nextPaths = new List<PathInfo>();
-            // PathInfo selectedPath = null;
-            // float minWeight = float.MaxValue;
             foreach (var path in possiblePaths)
             {
                 float weight = GetMinWeight(path.Transition.EndNode.ParentGroup);
-                if (weight <= 7)
+                if (weight <= aroundNodeRange)
                 {
                     nextPaths.Add(path);
                 }
@@ -194,14 +199,30 @@ namespace PahlBit
                 {
                     nextPaths.Add(path);
                 }
-
-                // if (weight < minWeight)
-                // {
-                //     minWeight = weight;
-                //     selectedPath = path;
-                // }
             }
             return nextPaths.ExGetRandom();
+        }
+
+        public PathInfo FindMinPath(NodeNav startNode, float moveSpeed)
+        {
+            NodeNav currentNode = startNode;
+            if (currentNode == null)
+                return null;
+
+            List<PathInfo> possiblePaths = FindPossiblePaths(currentNode, moveSpeed);
+
+            PathInfo selectedPath = null;
+            float minWeight = float.MaxValue;
+            foreach (var path in possiblePaths)
+            {
+                float weight = GetMinWeight(path.Transition.EndNode.ParentGroup);
+                if (weight < minWeight)
+                {
+                    minWeight = weight;
+                    selectedPath = path;
+                }
+            }
+            return selectedPath;
         }
 
         public NodeNav GetCurrentGroundNode(Vector2 worldPos)

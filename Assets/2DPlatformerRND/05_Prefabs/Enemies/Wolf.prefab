@@ -135,6 +135,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   _AttackDegree: 0
   _ThinkInterval: 0.1
+  _AttackOnSameNode: 1
+  _IsMage: 0
+  _FindMinPath: 1
+  _AroundNodeRange: 7
   OnAttackFire:
     m_PersistentCalls:
       m_Calls:

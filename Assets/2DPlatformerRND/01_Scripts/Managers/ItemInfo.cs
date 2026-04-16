@@ -29,7 +29,13 @@ public class ItemInfo
 
     public void InitRandomItem()
     {
-        ResourceData = ItemResourceTable.Instance.GetRandomItem();
+        ItemResourceData resourceData = ItemResourceTable.Instance.GetRandomItem();
+
+        InitItem(resourceData.ItemID);
+    }
+    public void InitItem(string itemID)
+    {
+        ResourceData = ItemResourceTable.Instance.GetInfo(itemID);
 
         SaveData = new ItemSaveData();
         SaveData.InstanceID = System.Guid.NewGuid().ToString();

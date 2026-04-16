@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.PlayerController
   _CharacterID: 1
-  _ResourceID: Character01
+  _ResourceID: Character02
 --- !u!114 &5289966796908238371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,7 +1048,6 @@ MonoBehaviour:
   EventLeave:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 7
 --- !u!114 &4250221946892639992
 MonoBehaviour:
   m_ObjectHideFlags: 0
