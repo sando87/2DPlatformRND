@@ -39,6 +39,7 @@ namespace PahlBit
             RespawnPlayer(destWarp);
             _InGamePanel.DoActivatePanel(Player);
             _CinemachineCamera.Follow = Player.transform;
+            _CinemachineCamera.ForceCameraPosition(Player.transform.position, Quaternion.identity);
             _PlayerDepthManager.SetPlayer(Player.gameObject);
             yield return newWaitForSeconds.Cache(0.2f);
             SetInputHandler(Player.Input);
