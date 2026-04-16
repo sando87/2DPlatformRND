@@ -1136,11 +1136,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableCollider
   _MyProperty: 1
-  _InteractableWith: 0
+  _InteractableWith: 64
   OnInteractEnter:
     m_PersistentCalls:
       m_Calls: []
   OnInteractLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInteractSignal:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &9099057388436339060

@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using PahlBit;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +13,7 @@ public class InteractableCollider : MonoBehaviour
 
     public UnityEvent<Collider2D> OnInteractEnter;
     public UnityEvent<Collider2D> OnInteractLeave;
+    public UnityEvent<BaseObject, InteractMask> OnInteractSignal;
 
     private Collider2D mCollider = null;
 
@@ -90,6 +92,21 @@ public class InteractableCollider : MonoBehaviour
     {
         OnInteractLeave?.Invoke(other);
     }
+    public void InvokeInteractSignal(BaseObject invoker, InteractMask signal)
+    {
+        if (LockInteract)
+            return;
+
+        // 콜라이더 이벤트는 콜라이더가 붙어있는 객체에게만 이벤트가 전달 되도록 하기 위함
+        if (gameObject != mCollider.gameObject)
+            return;
+
+        InteractMask mask = _InteractableWith & signal;
+        if (mask != InteractMask.Nothing)
+        {
+            OnInteractSignal?.Invoke(invoker, signal);
+        }
+    }
 
 }
 
@@ -103,5 +120,6 @@ public enum InteractMask : uint
     Projectile = 1 << 3,
     Props = 1 << 4,
     Item = 1 << 5,
+    DetectSignal = 1 << 6,
     Everything = 0xffffffff
 }

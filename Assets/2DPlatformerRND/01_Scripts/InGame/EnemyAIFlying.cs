@@ -22,7 +22,7 @@ public class EnemyAIFlying : EnemyAI
     {
         // ===== ENTER =====
         Stop();
-        mPlayerTarget = null;
+        PlayerTarget = null;
 
         try
         {
@@ -33,13 +33,13 @@ public class EnemyAIFlying : EnemyAI
                 mIsFlying = false;
             }
 
-            mPlayerTarget = await DetectTarget(ctx);
-            if (mPlayerTarget != null)
+            PlayerTarget = await DetectTarget(ctx);
+            if (PlayerTarget != null)
             {
                 mIsFlying = true;
                 mBase.AnimHelper.PlayAnim(AnimStateNameHash.Fly);
                 mBase.Phy.AddForce(Vector2.up * 3);
-                TurnTo(mPlayerTarget.Body.Center);
+                TurnTo(PlayerTarget.Body.Center);
                 await UniTask.WaitForSeconds(2, cancellationToken: ctx);
                 mBase.Phy.Velocity = Vector2.zero;
 
@@ -135,11 +135,11 @@ public class EnemyAIFlying : EnemyAI
             await UniTask.Yield(cancellationToken: ct);
             Stop();
             mBase.AnimHelper.PlayAnim(AnimStateNameHash.Fly);
-            while (!ct.IsCancellationRequested && mPlayerTarget != null)
+            while (!ct.IsCancellationRequested && PlayerTarget != null)
             {
                 Rect destArea = new Rect();
                 destArea.size = new Vector2(8, 3);
-                destArea.center = mPlayerTarget.Body.Head + new Vector2(0, 5);
+                destArea.center = PlayerTarget.Body.Head + new Vector2(0, 5);
                 Vector2 destPos = MyUtils.Random(destArea);
                 Vector2 vel = (destPos - mBase.Body.Center).normalized * mSpec.MoveSpeed;
                 TurnTo(destPos);
@@ -159,14 +159,14 @@ public class EnemyAIFlying : EnemyAI
 
     protected override bool IsAttackable()
     {
-        if (mPlayerTarget == null)
+        if (PlayerTarget == null)
             return false;
 
         if (IsCooltime)
             return false;
 
         float range = mSpec.AttackRange;
-        float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - mPlayerTarget.Body.Center);
+        float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - PlayerTarget.Body.Center);
         if (distSqr > range * range)
             return false;
 

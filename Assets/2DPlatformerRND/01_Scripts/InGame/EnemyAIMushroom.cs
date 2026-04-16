@@ -16,7 +16,7 @@ public class EnemyAIMushroom : EnemyAI
     {
         // ===== ENTER =====
         Stop();
-        mPlayerTarget = null;
+        PlayerTarget = null;
 
         try
         {
@@ -28,8 +28,8 @@ public class EnemyAIMushroom : EnemyAI
                 await UniTask.WaitUntil(() => animEventState.IsEnd, cancellationToken: ctx);
             }
 
-            mPlayerTarget = await DetectTarget(ctx);
-            if (mPlayerTarget != null)
+            PlayerTarget = await DetectTarget(ctx);
+            if (PlayerTarget != null)
             {
                 animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.WakeUp);
                 await UniTask.WaitUntil(() => animEventState.IsEnd, cancellationToken: ctx);
@@ -77,7 +77,7 @@ public class EnemyAIMushroom : EnemyAI
         try
         {
             Stop();
-            TurnTo(mPlayerTarget.Body.Center);
+            TurnTo(PlayerTarget.Body.Center);
             mAttackTime = Time.time;
 
             AnimEventState animEventState = mBase.AnimHelper.PlayAnim(AnimStateNameHash.Attack);

@@ -24,7 +24,8 @@ public class EnemyAI : MonoBehaviour
 
     protected BaseObject mBase = null;
     protected SpecEnemy mSpec = null;
-    protected BaseObject mPlayerTarget = null;
+    protected BaseObject mSignaledTarget = null; // 주변 같은 적으로터 감지된 플레이어 정보가 전달됨
+    public BaseObject PlayerTarget { get; protected set; } = null;
 
     protected CancellationTokenSource mAI_CTS;
     protected CancellationTokenSource mStateCTS;
@@ -53,6 +54,8 @@ public class EnemyAI : MonoBehaviour
 
         mBase.Health.OnDamaged.AddListener(ChangeDamagedState);
         mBase.Health.OnDied.AddListener(ChangeDeathState);
+
+        mBase.Interactor.OnInteractSignal.AddListener(OnSignaledTarget);
     }
 
     void OnEnable()
@@ -153,13 +156,15 @@ public class EnemyAI : MonoBehaviour
     protected virtual async UniTask<EnemyState> IdleMode(CancellationToken ctx)
     {
         Stop();
-        mPlayerTarget = null;
+        PlayerTarget = null;
 
         try
         {
-            mPlayerTarget = await DetectTarget(ctx);
-            if (mPlayerTarget != null)
+            PlayerTarget = await DetectTarget(ctx);
+            if (PlayerTarget != null)
             {
+                DispatchDetectSignal();
+
                 if (IsAttackable())
                 {
                     return EnemyState.Attack;
@@ -181,14 +186,16 @@ public class EnemyAI : MonoBehaviour
     {
         // ===== ENTER =====
         Stop();
-        mPlayerTarget = null;
+        PlayerTarget = null;
 
         try
         {
             DoPatrolMoving(ctx).Forget();
-            mPlayerTarget = await DetectTarget(ctx);
-            if (mPlayerTarget != null)
+            PlayerTarget = await DetectTarget(ctx);
+            if (PlayerTarget != null)
             {
+                DispatchDetectSignal();
+
                 if (IsAttackable())
                 {
                     return EnemyState.Attack;
@@ -254,7 +261,7 @@ public class EnemyAI : MonoBehaviour
             float recoverTime = MyUtils.RandomFloat(0.1f, 0.5f);
             await UniTask.Delay(TimeSpan.FromSeconds(recoverTime), cancellationToken: ctx);
 
-            if (mPlayerTarget == null)
+            if (PlayerTarget == null)
                 return EnemyState.Patrol;
             else if (IsAttackable())
                 return EnemyState.Attack;
@@ -315,29 +322,38 @@ public class EnemyAI : MonoBehaviour
     {
         while (!ct.IsCancellationRequested)
         {
-            BaseObject target = DetectPlayerAround(mSpec.DetectRange);
-            if (target != null)
+            if (mSignaledTarget != null)
             {
+                BaseObject target = mSignaledTarget;
+                mSignaledTarget = null;
                 return target;
             }
             else
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(_ThinkInterval), cancellationToken: ct);
+                BaseObject target = DetectPlayerAround(mSpec.DetectRange);
+                if (target != null)
+                {
+                    return target;
+                }
+                else
+                {
+                    await UniTask.Delay(TimeSpan.FromSeconds(_ThinkInterval), cancellationToken: ct);
+                }
             }
         }
         return null;
     }
     protected bool IsTargetInRange(float range)
     {
-        if (mPlayerTarget == null)
+        if (PlayerTarget == null)
             return false;
 
-        float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - mPlayerTarget.Body.Center);
+        float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - PlayerTarget.Body.Center);
         return distSqr <= range * range;
     }
     protected virtual bool IsAttackable()
     {
-        if (mPlayerTarget == null || !mBase.Phy.IsGrounded)
+        if (PlayerTarget == null || !mBase.Phy.IsGrounded)
             return false;
 
         if (IsCooltime)
@@ -347,13 +363,13 @@ public class EnemyAI : MonoBehaviour
             return false;
 
         float range = mSpec.AttackRange;
-        float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - mPlayerTarget.Body.Center);
+        float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - PlayerTarget.Body.Center);
         if (distSqr > range * range)
             return false;
 
         if (_AttackDegree > 0)
         {
-            Vector2 dirToPlayer = mPlayerTarget.Body.Center - mBase.Body.Center;
+            Vector2 dirToPlayer = PlayerTarget.Body.Center - mBase.Body.Center;
             float dot = Vector2.Dot(mBase.transform.right, dirToPlayer.normalized);
             if (dot <= 0 || dot < Mathf.Cos(_AttackDegree * Mathf.Deg2Rad))
                 return false;
@@ -381,7 +397,7 @@ public class EnemyAI : MonoBehaviour
     {
         while (!ct.IsCancellationRequested)
         {
-            if (mPlayerTarget == null)
+            if (PlayerTarget == null)
             {
                 break;
             }
@@ -539,11 +555,11 @@ public class EnemyAI : MonoBehaviour
             await UniTask.Yield(cancellationToken: ct);
             Stop();
             int stayChanceOnSameNode = 50;
-            while (!ct.IsCancellationRequested && mPlayerTarget != null)
+            while (!ct.IsCancellationRequested && PlayerTarget != null)
             {
                 if (_FindMinPath && IsStandOnSameNode())
                 {
-                    int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
+                    int curDir = mBase.Body.Center.x < PlayerTarget.Body.Center.x ? 1 : -1;
                     Turn(curDir);
                     StartMoving(curDir * mSpec.MoveSpeed);
                     await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 3.5f)), cancellationToken: ct);
@@ -552,7 +568,7 @@ public class EnemyAI : MonoBehaviour
                 {
                     stayChanceOnSameNode = 50;
                     // int curDir = MyUtils.RandomInt(0, 2) == 0 ? 1 : -1;
-                    int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
+                    int curDir = mBase.Body.Center.x < PlayerTarget.Body.Center.x ? 1 : -1;
                     Turn(curDir);
                     StartMoving(curDir * mSpec.MoveSpeed);
                     await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 3.5f)), cancellationToken: ct);
@@ -582,7 +598,7 @@ public class EnemyAI : MonoBehaviour
         {
             await UniTask.Yield(cancellationToken: ct);
             Stop();
-            while (!ct.IsCancellationRequested && mPlayerTarget != null)
+            while (!ct.IsCancellationRequested && PlayerTarget != null)
             {
                 int curDir = MyUtils.RandomInt(0, 2) == 0 ? 1 : -1;
                 Turn(curDir);
@@ -598,7 +614,7 @@ public class EnemyAI : MonoBehaviour
 
     bool IsStandOnAroundNode()
     {
-        if (mPlayerTarget == null)
+        if (PlayerTarget == null)
             return false;
 
         // NodeNav playerNode = GetCurrentNodeNav(mPlayerTarget);
@@ -617,10 +633,10 @@ public class EnemyAI : MonoBehaviour
     }
     bool IsStandOnSameNode()
     {
-        if (mPlayerTarget == null)
+        if (PlayerTarget == null)
             return false;
 
-        NodeNav playerNode = GetCurrentNodeNav(mPlayerTarget);
+        NodeNav playerNode = GetCurrentNodeNav(PlayerTarget);
         if (playerNode == null)
             return false;
 
@@ -633,6 +649,13 @@ public class EnemyAI : MonoBehaviour
 
     BaseObject DetectPlayerAround(float range)
     {
+        Vector2Int nodePos = Vector2Int.RoundToInt(mBase.Body.Center);
+        PlayerDepthInfo playerDepthInfo = InGameEngine.Inst.DepthManager.GetPlayerDepthInfoAtPos(nodePos);
+        if (playerDepthInfo == null || playerDepthInfo.GetWeight() > range)
+        {
+            return null;
+        }
+
         List<BaseObject> rets = TemporaryList<BaseObject>.StaticTempList;
         rets.Clear();
         UtilitiesPhy2D.OverlapCircleAll(mBase.Body.Center, range, 1 << LayerID.Player, InteractMask.Unit, rets);
@@ -684,9 +707,9 @@ public class EnemyAI : MonoBehaviour
     }
     protected void TurnToPlayer()
     {
-        if (mPlayerTarget != null)
+        if (PlayerTarget != null)
         {
-            int curDir = mBase.Body.Center.x < mPlayerTarget.Body.Center.x ? 1 : -1;
+            int curDir = mBase.Body.Center.x < PlayerTarget.Body.Center.x ? 1 : -1;
             Turn(curDir);
         }
     }
@@ -862,7 +885,67 @@ public class EnemyAI : MonoBehaviour
     protected virtual void DoFireAttack()
     {
         mAttackTime = Time.time;
-        OnAttackFire?.Invoke(mPlayerTarget);
+        OnAttackFire?.Invoke(PlayerTarget);
+    }
+
+    void DispatchDetectSignal()
+    {
+        List<BaseObject> aroundEnemies = new List<BaseObject>();
+        aroundEnemies.Add(mBase);
+        int startIndex = 0;
+        int count = 1;
+        while (true)
+        {
+            int newAddedCount = SearchAroundEnemies(aroundEnemies, startIndex, count);
+            if (newAddedCount <= 0)
+                break;
+
+            startIndex += count;
+            count = newAddedCount;
+        }
+
+        foreach (BaseObject enemy in aroundEnemies)
+        {
+            if (enemy == mBase)
+                continue;
+
+            enemy.Interactor.InvokeInteractSignal(mBase, InteractMask.DetectSignal);
+        }
+    }
+    int SearchAroundEnemies(List<BaseObject> retEnemies, int startIndex, int count)
+    {
+        int newAddedCount = 0;
+        List<BaseObject> arEnemies = TemporaryList<BaseObject>.StaticTempList;
+        for (int i = startIndex; i < startIndex + count; i++)
+        {
+            arEnemies.Clear();
+            BaseObject enemy = retEnemies[i];
+            UtilitiesPhy2D.OverlapCircleAll(enemy.Body.Center, 5, 1 << LayerID.Enemy, InteractMask.Unit, arEnemies);
+            foreach (BaseObject arEnemy in arEnemies)
+            {
+                if (arEnemy == enemy)
+                    continue;
+
+                if (!retEnemies.Contains(arEnemy))
+                {
+                    newAddedCount++;
+                    retEnemies.Add(arEnemy);
+                }
+            }
+        }
+        return newAddedCount;
+    }
+    void OnSignaledTarget(BaseObject invoker, InteractMask signal)
+    {
+        // 적 한마리가 플레이어를 감지하면 그 신호를 주변 다른 적들도 받아서 플레이어를 타겟으로 삼게 함
+        if (signal.HasFlag(InteractMask.DetectSignal))
+        {
+            EnemyAI sender = invoker.GetComponentInChildren<EnemyAI>();
+            if (sender != null && sender.PlayerTarget != null)
+            {
+                mSignaledTarget = sender.PlayerTarget;
+            }
+        }
     }
 
 }
