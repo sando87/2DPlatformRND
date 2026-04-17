@@ -121,5 +121,6 @@ public enum InteractMask : uint
     Props = 1 << 4,
     Item = 1 << 5,
     DetectSignal = 1 << 6,
+    TriggerSignal = 1 << 7,
     Everything = 0xffffffff
 }

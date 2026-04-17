@@ -133,4 +133,8 @@ public class EnemyBase : MonoBehaviour
             }
         });
     }
+    public void SetTarget(BaseObject target)
+    {
+        mBase.GetComponentInChildren<EnemyAI>().SetTarget(target);
+    }
 }

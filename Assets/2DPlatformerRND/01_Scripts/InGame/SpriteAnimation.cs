@@ -12,6 +12,8 @@ public class SpriteAnimation : MonoBehaviour
     [SerializeField] bool _StartOnEnable = true;
     [SerializeField] UnityEvent _OnAnimEnd = null;
 
+    public UnityEvent EventEndAnim => _OnAnimEnd;
+
     int mIndex = 0;
 
     void OnEnable()
@@ -39,7 +41,13 @@ public class SpriteAnimation : MonoBehaviour
 
     void OnEndAnimation()
     {
-        _Renderer.sprite = null;
+        StopAnimation();
         _OnAnimEnd?.Invoke();
+    }
+
+    public void StopAnimation()
+    {
+        StopAllCoroutines();
+        _Renderer.sprite = null;
     }
 }

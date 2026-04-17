@@ -947,5 +947,9 @@ public class EnemyAI : MonoBehaviour
             }
         }
     }
+    public void SetTarget(BaseObject target)
+    {
+        mSignaledTarget = target;
+    }
 
 }
