@@ -104,6 +104,22 @@ public class EnemyBase : MonoBehaviour
             }
         });
     }
+    public void DoAttackShotForward(BaseObject target)
+    {
+        // 스킬 오브젝트 생성
+        Vector2 startPos = mBase.Body.Center + new Vector2(transform.right.x, 0);
+        ProjectileBase obj = ProjectileBase.Create(ProjPrefab, startPos, mBase.transform.rotation, mBase.gameObject.layer);
+        obj.OnHit.AddListener((col) =>
+        {
+            // 충돌 시 처리할 내용
+            Health health = col.ExGetBase().GetComponentInChildren<Health>();
+            if (health != null)
+            {
+                float damage = mBase.Spec.BaseAttack;
+                health.GetDamaged(damage);
+            }
+        });
+    }
     public void DoAttackThrowToPlayer(BaseObject target)
     {
         // 스킬 오브젝트 생성
