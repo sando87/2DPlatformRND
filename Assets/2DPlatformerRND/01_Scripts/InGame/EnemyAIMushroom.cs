@@ -59,7 +59,7 @@ public class EnemyAIMushroom : EnemyAI
     {
         try
         {
-            DoChaseMoving(ctx).Forget();
+            DoChaseMovingMinPath(ctx).Forget();
             int returnIdx = await UniTask.WhenAny(IsAttackableTarget(ctx), IsLostTarget(ctx));
             if (returnIdx == 0)
                 return EnemyState.Attack;

@@ -77,6 +77,7 @@ MonoBehaviour:
     type: 3}
   LifePotionPrefab: {fileID: 0}
   ManaPotionPrefab: {fileID: 0}
+  FirePoint: {fileID: 0}
   ProjPrefab: {fileID: 0}
   _ResourceID: Enemy03
 --- !u!114 &7996635295318006703
@@ -133,6 +134,8 @@ MonoBehaviour:
   _AttackDegree: 0
   _ThinkInterval: 2
   _AttackOnSameNode: 1
+  _MovementPattern: 2
+  _AroundNodeRange: 7
   OnAttackFire:
     m_PersistentCalls:
       m_Calls: []
@@ -1071,6 +1074,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnInteractLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInteractSignal:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &9099057388436339060

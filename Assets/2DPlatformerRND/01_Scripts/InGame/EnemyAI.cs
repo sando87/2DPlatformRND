@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using NaughtyAttributes;
 using PahlBit;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -21,6 +22,15 @@ public class EnemyAI : MonoBehaviour
         Damaged,
         Death,
     }
+    public enum MovementPattern
+    {
+        None,
+        DontMove, // 현재 위치 고정(움직이지 않음)
+        FindMinPath, // 플레이어가 있는 노드를 향해 최단경로로 움직이는 패턴
+        FindAroundPath, // 플레이어가 있는 노드를 중심으로 일정 범위 내에서 움직이는 패턴
+        KeepCurrentNode, // 현재 노드에서 벗어나지 않고 왔다갔다 하는 패턴
+        KeepDistance, // 플레이어가 오면 일정 거리 멀어지는 패턴(플레이어로부터 도망가는 패턴)
+    }
 
     protected BaseObject mBase = null;
     protected SpecEnemy mSpec = null;
@@ -38,9 +48,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float _AttackDegree = 0;
     [SerializeField] protected float _ThinkInterval = 0.5f;
     [SerializeField] bool _AttackOnSameNode = true;
-    [SerializeField] bool _IsMage = false;
-    [SerializeField] bool _FindMinPath = false;
+    [SerializeField] MovementPattern _MovementPattern = MovementPattern.KeepCurrentNode;
+    [ShowIf(nameof(ShowAroundNodeRange))] 
     [SerializeField] int _AroundNodeRange = 7;
+    bool ShowAroundNodeRange() { return _MovementPattern == MovementPattern.FindAroundPath; }
     [SerializeField] UnityEvent<BaseObject> OnAttackFire = null;
 
     void Awake()
@@ -218,10 +229,12 @@ public class EnemyAI : MonoBehaviour
     {
         try
         {
-            if (_IsMage)
-                DoChaseMovingForMage(ctx).Forget();
-            else
-                DoChaseMoving(ctx).Forget();
+            if (_MovementPattern == MovementPattern.KeepCurrentNode)
+                DoChaseMovingOnlyCurrentNode(ctx).Forget();
+            else if (_MovementPattern == MovementPattern.FindAroundPath)
+                DoChaseMovingAroundPath(ctx).Forget();
+            else if (_MovementPattern == MovementPattern.FindMinPath)
+                DoChaseMovingMinPath(ctx).Forget();
 
             int returnIdx = await UniTask.WhenAny(IsAttackableTarget(ctx), IsLostTarget(ctx));
             if (returnIdx == 0)
@@ -548,26 +561,16 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    protected async UniTask DoChaseMoving(CancellationToken ct)
+    protected async UniTask DoChaseMovingMinPath(CancellationToken ct)
     {
         try
         {
             await UniTask.Yield(cancellationToken: ct);
             Stop();
-            int stayChanceOnSameNode = 50;
             while (!ct.IsCancellationRequested && PlayerTarget != null)
             {
-                if (_FindMinPath && IsStandOnSameNode())
+                if (IsStandOnSameNode())
                 {
-                    int curDir = mBase.Body.Center.x < PlayerTarget.Body.Center.x ? 1 : -1;
-                    Turn(curDir);
-                    StartMoving(curDir * mSpec.MoveSpeed);
-                    await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 3.5f)), cancellationToken: ct);
-                }
-                else if (IsStandOnAroundNode() && MyUtils.IsPercentHit(stayChanceOnSameNode))
-                {
-                    stayChanceOnSameNode = 50;
-                    // int curDir = MyUtils.RandomInt(0, 2) == 0 ? 1 : -1;
                     int curDir = mBase.Body.Center.x < PlayerTarget.Body.Center.x ? 1 : -1;
                     Turn(curDir);
                     StartMoving(curDir * mSpec.MoveSpeed);
@@ -575,8 +578,7 @@ public class EnemyAI : MonoBehaviour
                 }
                 else
                 {
-                    stayChanceOnSameNode = 100;
-                    PathInfo path = _FindMinPath ? FindMinPath() : FindPathAround(_AroundNodeRange);
+                    PathInfo path = FindMinPath();
                     if (path != null)
                     {
                         await GotoPathDestPosition(path, ct);
@@ -592,7 +594,44 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    protected async UniTask DoChaseMovingForMage(CancellationToken ct)
+    protected async UniTask DoChaseMovingAroundPath(CancellationToken ct)
+    {
+        try
+        {
+            await UniTask.Yield(cancellationToken: ct);
+            Stop();
+            int stayChanceOnSameNode = 50;
+            while (!ct.IsCancellationRequested && PlayerTarget != null)
+            {
+                if (IsStandOnAroundNode() && MyUtils.IsPercentHit(stayChanceOnSameNode))
+                {
+                    stayChanceOnSameNode = 50;
+                    // int curDir = MyUtils.RandomInt(0, 2) == 0 ? 1 : -1;
+                    int curDir = mBase.Body.Center.x < PlayerTarget.Body.Center.x ? 1 : -1;
+                    Turn(curDir);
+                    StartMoving(curDir * mSpec.MoveSpeed);
+                    await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 3.5f)), cancellationToken: ct);
+                }
+                else
+                {
+                    stayChanceOnSameNode = 100;
+                    PathInfo path = FindPathAround(_AroundNodeRange);
+                    if (path != null)
+                    {
+                        await GotoPathDestPosition(path, ct);
+                    }
+
+                    await UniTask.Delay(TimeSpan.FromSeconds(0.02f), cancellationToken: ct);
+                }
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            // LOG.trace(ex.Message);
+        }
+    }
+
+    protected async UniTask DoChaseMovingOnlyCurrentNode(CancellationToken ct)
     {
         try
         {

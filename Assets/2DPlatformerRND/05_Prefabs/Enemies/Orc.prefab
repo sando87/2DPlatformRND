@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &124558976435658718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7710354338981929514}
+  m_Layer: 8
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7710354338981929514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124558976435658718}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.044, y: 1.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 377658868513282421}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &662150947426525976
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,6 +70,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7710354338981929514}
   - {fileID: 8281876496363671912}
   - {fileID: 3057969538914736423}
   - {fileID: 1046979458495897964}
@@ -77,6 +109,7 @@ MonoBehaviour:
     type: 3}
   LifePotionPrefab: {fileID: 0}
   ManaPotionPrefab: {fileID: 0}
+  FirePoint: {fileID: 7710354338981929514}
   ProjPrefab: {fileID: 3164944944171518125, guid: 905f6ef3a6d45b245a6b4685f0421b9e,
     type: 3}
   _ResourceID: Enemy07
@@ -134,6 +167,8 @@ MonoBehaviour:
   _AttackDegree: 0
   _ThinkInterval: 0.1
   _AttackOnSameNode: 0
+  _MovementPattern: 3
+  _AroundNodeRange: 7
   OnAttackFire:
     m_PersistentCalls:
       m_Calls:
@@ -1136,6 +1171,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnInteractLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInteractSignal:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &9099057388436339060

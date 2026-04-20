@@ -12,6 +12,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] Gold GoldPrefab = null;
     [SerializeField] Potion LifePotionPrefab = null;
     [SerializeField] Potion ManaPotionPrefab = null;
+    [SerializeField] Transform FirePoint = null;
     [SerializeField] ProjectileBase ProjPrefab;
 
     [SerializeField]
@@ -68,11 +69,10 @@ public class EnemyBase : MonoBehaviour
             Instantiate(ManaPotionPrefab, mBase.Body.Center, Quaternion.identity);
     }
 
-
     public void DoAttackMelee(BaseObject target)
     {
         // 스킬 오브젝트 생성
-        Vector2 startPos = mBase.Body.Center + new Vector2(transform.right.x, 0);
+        Vector2 startPos = FirePoint.position;
         ProjectileBase obj = ProjectileBase.Create(ProjPrefab, startPos, mBase.transform.rotation, mBase.gameObject.layer);
         obj.OnHit.AddListener((col) =>
         {
@@ -89,7 +89,7 @@ public class EnemyBase : MonoBehaviour
     public void DoAttackShotToPlayer(BaseObject target)
     {
         // 스킬 오브젝트 생성
-        Vector2 startPos = mBase.Body.Center + new Vector2(transform.right.x, 0);
+        Vector2 startPos = FirePoint.position;
         Vector2 dirToTarget = (target.Body.Center - startPos).normalized;
         ProjectileBase obj = ProjectileBase.Create(ProjPrefab, startPos, mBase.transform.rotation, mBase.gameObject.layer);
         obj.transform.right = dirToTarget;
@@ -107,7 +107,7 @@ public class EnemyBase : MonoBehaviour
     public void DoAttackShotForward(BaseObject target)
     {
         // 스킬 오브젝트 생성
-        Vector2 startPos = mBase.Body.Center + new Vector2(transform.right.x, 0);
+        Vector2 startPos = FirePoint.position;
         ProjectileBase obj = ProjectileBase.Create(ProjPrefab, startPos, mBase.transform.rotation, mBase.gameObject.layer);
         obj.OnHit.AddListener((col) =>
         {
@@ -123,7 +123,7 @@ public class EnemyBase : MonoBehaviour
     public void DoAttackThrowToPlayer(BaseObject target)
     {
         // 스킬 오브젝트 생성
-        Vector2 startPos = mBase.Body.Head;
+        Vector2 startPos = FirePoint.position;
         ProjectileBase obj = ProjectileBase.Create(ProjPrefab, startPos, mBase.transform.rotation, mBase.gameObject.layer);
 
         // 수류탄 투척시 대상 거리에 따른 초기 속도 조절(실험에 근거한 데이터 및 수식..) 

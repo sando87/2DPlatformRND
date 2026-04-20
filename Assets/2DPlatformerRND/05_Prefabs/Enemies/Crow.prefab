@@ -38,6 +38,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 943845652738533547}
   - {fileID: 8281876496363671912}
   - {fileID: 3057969538914736423}
   - {fileID: 1046979458495897964}
@@ -76,6 +77,7 @@ MonoBehaviour:
     type: 3}
   LifePotionPrefab: {fileID: 0}
   ManaPotionPrefab: {fileID: 0}
+  FirePoint: {fileID: 943845652738533547}
   ProjPrefab: {fileID: 4627083357526262411, guid: ba2f4a80b4b0b7b4dbaff244569860ed,
     type: 3}
   _ResourceID: Enemy04
@@ -133,6 +135,8 @@ MonoBehaviour:
   _AttackDegree: 0
   _ThinkInterval: 1
   _AttackOnSameNode: 1
+  _MovementPattern: 0
+  _AroundNodeRange: 7
   OnAttackFire:
     m_PersistentCalls:
       m_Calls:
@@ -255,6 +259,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.SpriteNumberEffect
   NumberPrefab: {fileID: 2756351633337986132, guid: 1bab2be6809e6924ead8917f1ab95a98,
     type: 3}
+--- !u!1 &1036062736027983074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 943845652738533547}
+  m_Layer: 8
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &943845652738533547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036062736027983074}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.63, y: 0.462, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 377658868513282421}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1093580374788808452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,6 +1117,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnInteractLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInteractSignal:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &9099057388436339060

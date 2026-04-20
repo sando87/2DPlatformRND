@@ -39,6 +39,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1988755097373811876}
   - {fileID: 8281876496363671912}
   - {fileID: 3057969538914736423}
   - {fileID: 1046979458495897964}
@@ -79,6 +80,7 @@ MonoBehaviour:
     type: 3}
   ManaPotionPrefab: {fileID: 8437516355266612991, guid: 5ab96b73a691cf74aa1835b3483ada82,
     type: 3}
+  FirePoint: {fileID: 1988755097373811876}
   ProjPrefab: {fileID: 3164944944171518125, guid: b3d3d3a7aa37f7a428626dda434cb69f,
     type: 3}
   _ResourceID: Enemy05
@@ -136,8 +138,7 @@ MonoBehaviour:
   _AttackDegree: 0
   _ThinkInterval: 0.1
   _AttackOnSameNode: 1
-  _IsMage: 0
-  _FindMinPath: 1
+  _MovementPattern: 4
   _AroundNodeRange: 7
   OnAttackFire:
     m_PersistentCalls:
@@ -440,6 +441,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1144757d4f13bf0428e9ae7575054a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.RenderBurn
+--- !u!1 &2704970495378726812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1988755097373811876}
+  m_Layer: 8
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1988755097373811876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2704970495378726812}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.94, y: 0.97, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 377658868513282421}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3744473320614122168
 GameObject:
   m_ObjectHideFlags: 0

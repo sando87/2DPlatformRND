@@ -39,6 +39,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4329415310796816167}
   - {fileID: 8281876496363671912}
   - {fileID: 3057969538914736423}
   - {fileID: 1046979458495897964}
@@ -77,6 +78,7 @@ MonoBehaviour:
     type: 3}
   LifePotionPrefab: {fileID: 0}
   ManaPotionPrefab: {fileID: 0}
+  FirePoint: {fileID: 4329415310796816167}
   ProjPrefab: {fileID: 4627083357526262411, guid: c6313280de354134ba377f2673be0b98,
     type: 3}
   _ResourceID: Enemy06
@@ -134,8 +136,7 @@ MonoBehaviour:
   _AttackDegree: 30
   _ThinkInterval: 0.1
   _AttackOnSameNode: 0
-  _IsMage: 1
-  _FindMinPath: 0
+  _MovementPattern: 4
   _AroundNodeRange: 7
   OnAttackFire:
     m_PersistentCalls:
@@ -1028,6 +1029,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c840ee072397246ae232190b401ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.SpriteFlashController
+--- !u!1 &8519157985590254854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4329415310796816167}
+  m_Layer: 8
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4329415310796816167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8519157985590254854}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.81, y: 1.32, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 377658868513282421}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8665637032548324498
 GameObject:
   m_ObjectHideFlags: 0
