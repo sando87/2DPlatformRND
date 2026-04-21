@@ -52,6 +52,8 @@ namespace PahlBit
             => _VirtualInput != null ? _VirtualInput.JustPressed(type) : GetInputAction(type).triggered;
         public bool IsPressing(PlayerUnitInputType type)
             => _VirtualInput != null ? _VirtualInput.IsPressed(type) : GetInputAction(type).IsPressed();
+        public bool JustReleased(PlayerUnitInputType type)
+            => _VirtualInput != null ? _VirtualInput.JustReleased(type) : GetInputAction(type).WasReleasedThisFrame();
 
         // public bool JustPressed(PlayerUnitInputType type) { return mInputStates[type].justPressed; }
         // public bool IsPressing(PlayerUnitInputType type) { return mInputStates[type].isPressed; }

@@ -45,6 +45,7 @@ namespace PahlBit
 
         public bool JustPressed(PlayerUnitInputType type) => mInputManager != null ? mInputManager.JustPressed(type) : false;
         public bool IsPressing(PlayerUnitInputType type) => mInputManager != null ? mInputManager.IsPressing(type) : false;
+        public bool JustReleased(PlayerUnitInputType type) => mInputManager != null ? mInputManager.JustReleased(type) : false;
 
         public float MoveX { get => mInputManager != null ? mInputManager.GetInputValue<Vector2>(PlayerUnitInputType.Move).x : 0f; }
         public float MoveY { get => mInputManager != null ? mInputManager.GetInputValue<Vector2>(PlayerUnitInputType.Move).y : 0f; }

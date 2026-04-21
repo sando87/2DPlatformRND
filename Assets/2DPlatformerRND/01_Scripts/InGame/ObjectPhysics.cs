@@ -83,6 +83,12 @@ namespace PahlBit
             VelocityY = 0;
             AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
+        public void StopJump()
+        {
+            // 수직 속도 초기화 후 점프력 적용
+            if (VelocityY > 5)
+                VelocityY = 5;
+        }
 
         private void UpdateGroundState()
         {

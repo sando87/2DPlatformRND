@@ -36,6 +36,7 @@ namespace PahlBit
         PlayerStateIdle mFsmIdle = null;
         PlayerStateWalk mFsmWalk = null;
         PlayerStateFloating mFsmFloat = null;
+        bool mIsSecondJump = false;
 
         private void Awake()
         {
@@ -90,9 +91,26 @@ namespace PahlBit
             if (mPlayerInput.JustPressed(PlayerUnitInputType.Jump)
             && mPlayerInput.MoveY >= 0)
             {
-                // SimulateJumpPoints();
-                mBaseObj.Phy.DoJump(_JumpForce);
-                mFSM.ForceChangeState(mFsmFloat);
+                if (IsGrounded)
+                {
+                    mIsSecondJump = false;
+                    // SimulateJumpPoints();
+                    mBaseObj.Phy.DoJump(_JumpForce);
+                    mFSM.ForceChangeState(mFsmFloat);
+                }
+                else
+                {
+                    if (!mIsSecondJump)
+                    {
+                        mIsSecondJump = true;
+                        mBaseObj.Phy.DoJump(_JumpForce);
+                        mFSM.ForceChangeState(mFsmFloat);
+                    }
+                }
+            }
+            else if (mPlayerInput.JustReleased(PlayerUnitInputType.Jump))
+            {
+                mBaseObj.Phy.StopJump();
             }
         }
         void DropDown()

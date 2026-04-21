@@ -9,6 +9,7 @@ namespace PahlBit
         {
             public bool isPressed;
             public bool isPressedJust;
+            public bool isReleasedJust;
             public float pressedTime;
             public Vector2 vector2Value;
             public float floatValue;
@@ -44,12 +45,14 @@ namespace PahlBit
         {
             var state = mStates[type];
             state.isPressed = false;
+            state.isReleasedJust = true;
             state.pressedTime = 0f;
             if (state.coroutine != null)
             {
                 StopCoroutine(state.coroutine);
                 state.coroutine = null;
             }
+            this.ExAfterFrameCoroutine(() => state.isReleasedJust = false);
         }
 
         public void Tap(PlayerUnitInputType type, float holdTime = 0.2f)
@@ -92,6 +95,11 @@ namespace PahlBit
         {
             var s = mStates[type];
             return s.isPressedJust;
+        }
+        public bool JustReleased(PlayerUnitInputType type)
+        {
+            var s = mStates[type];
+            return s.isReleasedJust;
         }
 
         public float HeldTime(PlayerUnitInputType type)
