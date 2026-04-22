@@ -64,6 +64,7 @@ namespace PahlBit
                 ItemInfo itemInfo = new ItemInfo();
                 itemInfo.InitItem("Item10");
                 Inven.AddItem(itemInfo);
+                Inven.RepairItem(itemInfo.InstanceID);
                 Inven.EquipItem(itemInfo.InstanceID);
 
                 SkillCtrl.LearnNewSkill("Skill05");

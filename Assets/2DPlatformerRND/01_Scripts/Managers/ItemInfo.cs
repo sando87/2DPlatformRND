@@ -26,6 +26,7 @@ public class ItemInfo
     public int Count { get => SaveData.Count; set => SaveData.Count = value; }
     public int PositionIndex { get => SaveData.PositionIndex; set { SaveData.PositionIndex = value; } }
     public int Level { get => SaveData.Level; set { SaveData.Level = value; UpdateOption(); } }
+    public bool IsRepaired { get => SaveData.IsRepaired; set => SaveData.IsRepaired = value; }
 
     public void InitRandomItem()
     {
@@ -44,6 +45,7 @@ public class ItemInfo
         SaveData.Level = 1;
         SaveData.Count = 1;
         SaveData.PositionIndex = -1;
+        SaveData.IsRepaired = false;
 
         UpdateOption();
     }

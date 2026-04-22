@@ -7,6 +7,8 @@ namespace PahlBit
 {
     public class PopupInven : PopupBase
     {
+        const int ItemRepairCost = 50;
+
         [SerializeField] Transform EquipSlotRoot;
         [SerializeField] Transform InvenSlotRoot;
         [SerializeField] Transform OptionContentRoot;
@@ -173,6 +175,19 @@ namespace PahlBit
                 ItemInven.UnEquipItem(itemInfo.InstanceID);
             }
         }
+        void RepairItem(UIPartsItemSlot slot)
+        {
+            int currnetGold = ItemInven.CurrentGold;
+            if (currnetGold < ItemRepairCost)
+            {
+                ToastManager.Instance.ShowMessage("Not enough gold.");
+            }
+            else
+            {
+                ItemInven.CurrentGold -= ItemRepairCost;
+                ItemInven.RepairItem(slot.ItemInfo.InstanceID);
+            }
+        }
         void DumpItem(UIPartsItemSlot slot)
         {
             ItemInfo itemInfo = slot.ItemInfo;
@@ -211,9 +226,14 @@ namespace PahlBit
             {
                 _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.UnEquip });
             }
-            else
+            else if (itemSlot.ItemInfo.IsRepaired)
             {
                 _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Equip });
+                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Dump });
+            }
+            else
+            {
+                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Repair, Gold = ItemRepairCost });
                 _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Dump });
             }
 
@@ -248,6 +268,10 @@ namespace PahlBit
             else if (type == UIActionType.UnEquip)
             {
                 UnEquipItem(itemSlot);
+            }
+            else if (type == UIActionType.Repair)
+            {
+                RepairItem(itemSlot);
             }
             else if (type == UIActionType.Dump)
             {

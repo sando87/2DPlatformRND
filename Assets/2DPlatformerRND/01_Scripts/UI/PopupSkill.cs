@@ -8,6 +8,8 @@ namespace PahlBit
 {
     public class PopupSkill : PopupBase
     {
+        const int EnforceCost = 100;
+
         [SerializeField] TextMeshProUGUI _RemainSkillPoint;
         [SerializeField] UIPartsActions _ActionSelector;
         [SerializeField] UIPartsViewer _Viewer;
@@ -17,10 +19,12 @@ namespace PahlBit
 
         private List<FieldData> mDisplayFields = new List<FieldData>();
         private SkillController mSkillCtrl = null;
+        private ItemInventory mInven = null;
 
         void Start()
         {
             mSkillCtrl = InGameEngine.Inst.Player.GetComponentInChildren<SkillController>();
+            mInven = InGameEngine.Inst.Player.GetComponentInChildren<ItemInventory>();
 
             UIPartsHandler[] parts = InputHandler.UIParts;
             foreach (var part in parts)
@@ -67,7 +71,7 @@ namespace PahlBit
                 _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Detail });
 
                 if (mSkillCtrl.RemainSkillPoint > 0)
-                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Learn });
+                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Learn, Gold = EnforceCost });
             }
             else
             {
@@ -75,7 +79,7 @@ namespace PahlBit
                 _ActionSelector.Actions.Add(new ActionInfo { Type = skill.IsEquipped ? UIActionType.UnEquip : UIActionType.Equip });
 
                 if (mSkillCtrl.RemainSkillPoint > 0)
-                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Enforce, Gold = 123 });
+                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Enforce, Gold = EnforceCost });
             }
 
             _ActionSelector.Show((type) =>
@@ -100,7 +104,16 @@ namespace PahlBit
 
             if (type == UIActionType.Learn)
             {
-                skill.Controller.LearnNewSkill(skill.ResourceID);
+                int currnetGold = mInven.CurrentGold;
+                if (currnetGold < EnforceCost)
+                {
+                    ToastManager.Instance.ShowMessage("Not enough gold.");
+                }
+                else
+                {
+                    mInven.CurrentGold -= EnforceCost;
+                    skill.Controller.LearnNewSkill(skill.ResourceID);
+                }
             }
             else if (type == UIActionType.Equip)
             {
@@ -116,7 +129,16 @@ namespace PahlBit
             }
             else if (type == UIActionType.Enforce)
             {
-                skill.Controller.LevelupSkill(skill.ResourceID);
+                int currnetGold = mInven.CurrentGold;
+                if (currnetGold < EnforceCost)
+                {
+                    ToastManager.Instance.ShowMessage("Not enough gold.");
+                }
+                else
+                {
+                    mInven.CurrentGold -= EnforceCost;
+                    skill.Controller.LevelupSkill(skill.ResourceID);
+                }
             }
             else if (type == UIActionType.Detail)
             {
