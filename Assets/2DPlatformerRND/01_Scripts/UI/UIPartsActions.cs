@@ -14,10 +14,13 @@ namespace PahlBit
     {
         public UIActionType Type;
         public bool isEnabled;
+        public int Gold;
     }
 
     public class UIPartsActions : MonoBehaviour
     {
+        const string GoldSpriteTextAsset = "<sprite=0>";
+
         public List<ActionInfo> Actions = new List<ActionInfo>();
 
         [SerializeField] UIPartsHandler[] _ActionButtons;
@@ -68,8 +71,14 @@ namespace PahlBit
             button.GetComponent<Image>().color = Color.white;
 
             TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
-            text.text = data.Type.ToString();
-            // text.color = data.isEnabled ? Color.white : Color.gray;
+            if (data.Gold > 0)
+            {
+                text.text = $"{data.Type}({GoldSpriteTextAsset}{data.Gold})";
+            }
+            else
+            {
+                text.text = data.Type.ToString();
+            }
         }
         void Select(UIPartsHandler button)
         {

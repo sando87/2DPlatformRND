@@ -75,7 +75,7 @@ namespace PahlBit
                 _ActionSelector.Actions.Add(new ActionInfo { Type = skill.IsEquipped ? UIActionType.UnEquip : UIActionType.Equip });
 
                 if (mSkillCtrl.RemainSkillPoint > 0)
-                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Enforce });
+                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Enforce, Gold = 123 });
             }
 
             _ActionSelector.Show((type) =>
