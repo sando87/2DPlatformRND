@@ -105,7 +105,7 @@ MonoBehaviour:
     FireAngle: 0
     AttackRange: 0
     SplashRange: 0
-    Duration: 1
+    Duration: 0.7
     Interval: 0
     StartDelay: 0
     RotateSpeed: 0
@@ -165,6 +165,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &174083890180654051
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -210,6 +211,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -6721367887672951865, guid: 080e6ea964a426647830af7ca0b7bb1b,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -220,7 +222,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6244233394859420000
 GameObject:
@@ -333,5 +334,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnInteractLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInteractSignal:
     m_PersistentCalls:
       m_Calls: []
