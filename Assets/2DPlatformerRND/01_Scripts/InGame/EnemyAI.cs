@@ -639,7 +639,8 @@ public class EnemyAI : MonoBehaviour
             Stop();
             while (!ct.IsCancellationRequested && PlayerTarget != null)
             {
-                int curDir = MyUtils.RandomInt(0, 2) == 0 ? 1 : -1;
+                int curDir = mBase.Body.FrontDirInt;
+                curDir = IsNoWayToMove() ? -curDir : ((MyUtils.RandomInt(0, 2) * 2) - 1);
                 Turn(curDir);
                 StartMoving(curDir * mSpec.MoveSpeed);
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 3.5f)), cancellationToken: ct);
