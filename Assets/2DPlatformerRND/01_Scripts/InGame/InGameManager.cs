@@ -15,7 +15,7 @@ namespace PahlBit
         protected override void Awake()
         {
             base.Awake();
-            Engine = FindFirstObjectByType<InGameEngine>();
+            Engine = FindAnyObjectByType<InGameEngine>();
         }
 
         public void StartScene(SceneType destScene, int destWarpID)
@@ -28,7 +28,7 @@ namespace PahlBit
             Engine = null;
             SceneSwtichManager.Instance.LoadSceneImmediately((int)destScene);
             yield return new WaitUntil(() => SceneSwtichManager.Instance.IsLoaded);
-            Engine = FindFirstObjectByType<InGameEngine>();
+            Engine = FindAnyObjectByType<InGameEngine>();
         }
     }
 }

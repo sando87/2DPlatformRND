@@ -9,9 +9,6 @@ public class EnemyBase : MonoBehaviour
 {
     [SerializeField] int GoldDropPercent = 30;
     [SerializeField] int PotionDropPercent = 30;
-    [SerializeField] Gold GoldPrefab = null;
-    [SerializeField] Potion LifePotionPrefab = null;
-    [SerializeField] Potion ManaPotionPrefab = null;
     [SerializeField] Transform FirePoint = null;
     [SerializeField] ProjectileBase ProjPrefab;
 
@@ -58,15 +55,15 @@ public class EnemyBase : MonoBehaviour
     }
     void DropGold()
     {
-        Gold itemObj = Instantiate(GoldPrefab, mBase.Body.Center, Quaternion.identity);
+        Gold itemObj = Instantiate(ResourceManager.Instance.GetPrefabGold(), mBase.Body.Center, Quaternion.identity);
         itemObj.GoldAmount = Spec.GoldOnDeath;
     }
     void DropPotion()
     {
         if (MyUtils.IsPercentHit(50))
-            Instantiate(LifePotionPrefab, mBase.Body.Center, Quaternion.identity);
+            Instantiate(ResourceManager.Instance.GetPrefabLifePotion(), mBase.Body.Center, Quaternion.identity);
         else
-            Instantiate(ManaPotionPrefab, mBase.Body.Center, Quaternion.identity);
+            Instantiate(ResourceManager.Instance.GetPrefabManaPotion(), mBase.Body.Center, Quaternion.identity);
     }
 
     public void DoAttackMelee(BaseObject target)
