@@ -11,9 +11,12 @@ namespace PahlBit
 
     public enum SceneType
     {
+        None = -1,
         Main = 0,
-        LevelDemo = 1,
-        Level1 = 2,
+        Level1 = 1,
+        Level2 = 2,
+        Level3 = 3,
+        Level4 = 4,
     }
 
     public partial struct AnimStateNameHash

@@ -8,7 +8,7 @@ namespace PahlBit
     {
         [SerializeField] GameObject _Indicator = null;
         [SerializeField] int _ThisWrapID = 0;
-        [SerializeField] SceneType _DestScene = SceneType.LevelDemo;
+        [SerializeField] SceneType _DestScene = SceneType.None;
         [SerializeField] int _DestWarpID = 0;
 
         public int ThisWrapID => _ThisWrapID;
@@ -17,12 +17,14 @@ namespace PahlBit
 
         public void ShowIndicator(Collider2D col)
         {
-            _Indicator.SetActive(true);
+            if (DestScene != SceneType.None)
+                _Indicator.SetActive(true);
         }
 
         public void HideIndicator(Collider2D col)
         {
-            _Indicator.SetActive(false);
+            if (DestScene != SceneType.None)
+                _Indicator.SetActive(false);
         }
     }
 }

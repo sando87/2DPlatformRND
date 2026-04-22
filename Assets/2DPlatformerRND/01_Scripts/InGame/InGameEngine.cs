@@ -131,7 +131,7 @@ namespace PahlBit
 
         Vector2 FindRespawnPosition(int destWarpID)
         {
-            WrapStation[] stations = FindObjectsByType<WrapStation>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            WrapStation[] stations = FindObjectsByType<WrapStation>(FindObjectsInactive.Exclude);
             if (stations == null || stations.Length == 0)
                 return Vector2.zero;
 

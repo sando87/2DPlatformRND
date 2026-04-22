@@ -9,11 +9,17 @@ EditorBuildSettings:
     path: Assets/2DPlatformerRND/00_Scenes/Main.unity
     guid: dad53cc96effe814dbc54e7653d6eb0c
   - enabled: 1
-    path: Assets/2DPlatformerRND/00_Scenes/LevelDemo.unity
-    guid: 6b84c5a50d554f54ebc2553fe51531ae
-  - enabled: 1
     path: Assets/2DPlatformerRND/00_Scenes/Level1.unity
     guid: 5deb98a2c81fb034bb841ddfd36539a2
+  - enabled: 1
+    path: Assets/2DPlatformerRND/00_Scenes/Level2.unity
+    guid: c7a74a36bb94a26498264292ac4fca73
+  - enabled: 1
+    path: Assets/2DPlatformerRND/00_Scenes/Level3.unity
+    guid: 79023ae5ae232df4db80b14d78b3855c
+  - enabled: 1
+    path: Assets/2DPlatformerRND/00_Scenes/Level4.unity
+    guid: abcfe2f797727b44fbdf0046ce5a2a18
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f,
       type: 2}

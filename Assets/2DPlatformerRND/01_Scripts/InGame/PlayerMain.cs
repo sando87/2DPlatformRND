@@ -128,7 +128,8 @@ namespace PahlBit
             {
                 if (mBaseObj.Input.MoveY < 0)
                 {
-                    InGameManager.Instance.Engine.DoWarpStation(mWrapStationAround.DestScene, mWrapStationAround.DestWarpID);
+                    if (mWrapStationAround.DestScene != SceneType.None)
+                        InGameManager.Instance.Engine.DoWarpStation(mWrapStationAround.DestScene, mWrapStationAround.DestWarpID);
                 }
             }
         }
