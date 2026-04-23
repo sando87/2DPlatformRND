@@ -53,14 +53,14 @@ namespace PahlBit
         {
             mBaseObj.Interactor.OnInteractEnter.AddListener(OnColliderEnter);
             mBaseObj.Interactor.OnInteractLeave.AddListener(OnColliderLeave);
-            
+
             // 캐릭터별 처음 생성시 주어지는 초기 시작 아이템 및 스킬 부여
             UserSaveData saveData = SaveFileManager<UserSaveData>.Load();
             CharacterSaveData playerData = saveData.Characters[CharacterID];
             if (playerData.IsFirstPlay)
             {
                 playerData.IsFirstPlay = false;
-                
+
                 ItemInfo itemInfo = new ItemInfo();
                 itemInfo.InitItem("Item10");
                 Inven.AddItem(itemInfo);
@@ -112,7 +112,8 @@ namespace PahlBit
                 if (Inven.CurrentLifePotionCount > 0)
                 {
                     Inven.CurrentLifePotionCount--;
-                    mBaseObj.Health.Heal(15);
+                    int healHP = mBaseObj.Health.MaxHealth / 2;
+                    mBaseObj.Health.Heal(healHP);
                 }
             }
 
@@ -121,7 +122,8 @@ namespace PahlBit
                 if (Inven.CurrentManaPotionCount > 0)
                 {
                     Inven.CurrentManaPotionCount--;
-                    mBaseObj.Health.RestoreMana(10);
+                    int healMana = mBaseObj.Health.MaxMana / 2;
+                    mBaseObj.Health.RestoreMana(healMana);
                 }
             }
 
