@@ -86,6 +86,8 @@ namespace PahlBit
                 mCurrentMana = mMaxCurrentMana;
                 mCurrentShield = mMaxCurrentShield;
             }
+
+            mIsDirty = true;
         }
 
         DamagedResultInfo CalcHitResult(DamageInfo damageInfo)

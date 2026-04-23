@@ -86,10 +86,12 @@ public class EnemyBase : MonoBehaviour
     public void DoAttackShotToPlayer(BaseObject target)
     {
         // 스킬 오브젝트 생성
+        Vector3 frontDir = mBase.Body.FrontDirVec2;
         Vector2 startPos = FirePoint.position;
-        Vector2 dirToTarget = (target.Body.Center - startPos).normalized;
+        Vector3 dirToTarget = (target.Body.Center - startPos).normalized;
+        Vector2 clampedDir = dirToTarget.ExClampRotate(frontDir, 60);
         ProjectileBase obj = ProjectileBase.Create(ProjPrefab, startPos, mBase.transform.rotation, mBase.gameObject.layer);
-        obj.transform.right = dirToTarget;
+        obj.transform.right = clampedDir;
         obj.OnHit.AddListener((col) =>
         {
             // 충돌 시 처리할 내용
