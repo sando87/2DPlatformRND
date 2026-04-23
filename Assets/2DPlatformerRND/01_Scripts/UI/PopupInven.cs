@@ -7,7 +7,7 @@ namespace PahlBit
 {
     public class PopupInven : PopupBase
     {
-        const int ItemRepairCost = 50;
+        const int ItemRepairCost = 15;
 
         [SerializeField] Transform EquipSlotRoot;
         [SerializeField] Transform InvenSlotRoot;

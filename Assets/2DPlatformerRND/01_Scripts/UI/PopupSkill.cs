@@ -8,8 +8,6 @@ namespace PahlBit
 {
     public class PopupSkill : PopupBase
     {
-        const int EnforceCost = 100;
-
         [SerializeField] TextMeshProUGUI _RemainSkillPoint;
         [SerializeField] UIPartsActions _ActionSelector;
         [SerializeField] UIPartsViewer _Viewer;
@@ -71,7 +69,7 @@ namespace PahlBit
                 _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Detail });
 
                 if (mSkillCtrl.RemainSkillPoint > 0)
-                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Learn, Gold = EnforceCost });
+                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Learn, Gold = skill.EnforceCost });
             }
             else
             {
@@ -79,7 +77,7 @@ namespace PahlBit
                 _ActionSelector.Actions.Add(new ActionInfo { Type = skill.IsEquipped ? UIActionType.UnEquip : UIActionType.Equip });
 
                 if (mSkillCtrl.RemainSkillPoint > 0)
-                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Enforce, Gold = EnforceCost });
+                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Enforce, Gold = skill.EnforceCost });
             }
 
             _ActionSelector.Show((type) =>
@@ -105,13 +103,13 @@ namespace PahlBit
             if (type == UIActionType.Learn)
             {
                 int currnetGold = mInven.CurrentGold;
-                if (currnetGold < EnforceCost)
+                if (currnetGold < skill.EnforceCost)
                 {
                     ToastManager.Instance.ShowMessage("Not enough gold.");
                 }
                 else
                 {
-                    mInven.CurrentGold -= EnforceCost;
+                    mInven.CurrentGold -= skill.EnforceCost;
                     skill.Controller.LearnNewSkill(skill.ResourceID);
                 }
             }
@@ -130,13 +128,13 @@ namespace PahlBit
             else if (type == UIActionType.Enforce)
             {
                 int currnetGold = mInven.CurrentGold;
-                if (currnetGold < EnforceCost)
+                if (currnetGold < skill.EnforceCost)
                 {
                     ToastManager.Instance.ShowMessage("Not enough gold.");
                 }
                 else
                 {
-                    mInven.CurrentGold -= EnforceCost;
+                    mInven.CurrentGold -= skill.EnforceCost;
                     skill.Controller.LevelupSkill(skill.ResourceID);
                 }
             }

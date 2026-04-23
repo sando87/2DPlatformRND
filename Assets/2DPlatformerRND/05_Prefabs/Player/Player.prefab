@@ -2315,7 +2315,7 @@ GameObject:
   - component: {fileID: 7709830787058077307}
   - component: {fileID: 2639148574028594699}
   m_Layer: 7
-  m_Name: Skill (4)
+  m_Name: SkillIceBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2546,7 +2546,7 @@ GameObject:
   - component: {fileID: 2411020953628636026}
   - component: {fileID: 5588735595078327464}
   m_Layer: 7
-  m_Name: Skill (2)
+  m_Name: SkillArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2588,7 +2588,7 @@ MonoBehaviour:
   EventLeave:
     m_PersistentCalls:
       m_Calls: []
-  StateNameHash: 334344550
+  StateNameHash: 435601722
   OnFireIndex:
     m_PersistentCalls:
       m_Calls: []
