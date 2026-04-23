@@ -18,6 +18,12 @@ namespace PahlBit
         {
             base.Start();
 
+            HPBarUIPlayer hpUIBar = mBaseObj.GetComponentInChildren<HPBarUIPlayer>();
+            if (hpUIBar != null)
+            {
+                hpUIBar.SetHealthStatus(this);
+            }
+
             mSpecPlayer = mSpec as SpecPlayer;
 
             this.ExRepeatCoroutine(1, DoRegenStats);

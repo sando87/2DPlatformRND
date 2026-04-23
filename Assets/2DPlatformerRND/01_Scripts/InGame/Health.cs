@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace PahlBit
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour, IHealth
     {
         public bool IsDead => mCurrentHP.ToInt() <= 0;
 
@@ -20,6 +20,8 @@ namespace PahlBit
         public int CurrentHP => mCurrentHP.ToInt();
         public int CurrentMana => mCurrentMana.ToInt();
         public int CurrentShield => mCurrentShield.ToInt();
+
+        public bool IsDirty { get => mIsDirty; set => mIsDirty = value; }
 
         // public float CurrentTemputure { get; set; } = 0;
 
@@ -36,6 +38,8 @@ namespace PahlBit
         protected float mCurrentMana = 0;
         [SerializeField, NaughtyAttributes.ReadOnly]
         protected float mCurrentShield = 0;
+
+        protected bool mIsDirty = false;
 
         public UnityEvent<DamagedResultInfo> OnDamaged = new UnityEvent<DamagedResultInfo>();
         public UnityEvent OnDied = new UnityEvent();
@@ -143,6 +147,7 @@ namespace PahlBit
                 mCurrentHP.ExSetMinimum(0);
 
                 damageRetInfo.AfterHealth = mCurrentHP.ToInt();
+                mIsDirty = true;
                 OnDamaged.Invoke(damageRetInfo);
 
                 if (IsDead)
@@ -158,6 +163,7 @@ namespace PahlBit
 
             // RemoveSlowEffect();
             mCurrentHP = 0;
+            mIsDirty = true;
             OnDied.Invoke();
         }
         public void Heal(float amount)
@@ -165,23 +171,27 @@ namespace PahlBit
             if (IsDead || amount <= 0) return;
             mCurrentHP += amount;
             mCurrentHP.ExSetMaximum(mMaxCurrentHP);
+            mIsDirty = true;
         }
         public void UseMana(float amount)
         {
             mCurrentMana -= amount.ToInt();
             mCurrentMana.ExSetMinimum(0);
+            mIsDirty = true;
         }
         public void RestoreMana(float amount)
         {
             if (IsDead || amount <= 0) return;
             mCurrentMana += amount;
             mCurrentMana.ExSetMaximum(mMaxCurrentMana);
+            mIsDirty = true;
         }
         public void RestoreShield(float amount)
         {
             if (IsDead || amount <= 0) return;
             mCurrentShield += amount;
             mCurrentShield.ExSetMaximum(mMaxCurrentShield);
+            mIsDirty = true;
         }
 
 
