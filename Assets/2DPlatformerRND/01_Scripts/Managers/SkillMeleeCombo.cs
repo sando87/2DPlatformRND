@@ -18,11 +18,11 @@ public class SkillMeleeCombo : SkillBase
         return base.IsCastable() && SkillMotion.Priority >= mBaseObj.StateMachine.GetCurrentState().Priority;
     }
 
-    public override void UpdateSkill()
+    public override void OnPressedInput()
     {
-        base.UpdateSkill();
+        base.OnPressedInput();
 
-        if (mInput.JustPressed(GetCurrentInputType()) && IsCastable())
+        if (IsCastable())
         {
             if (mBaseObj.StateMachine.GetCurrentState() == SkillMotion)
             {

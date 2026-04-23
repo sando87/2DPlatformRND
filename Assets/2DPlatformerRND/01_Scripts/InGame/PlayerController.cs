@@ -22,16 +22,18 @@ namespace PahlBit
         public bool LockMove { get; set; } = false;
         public bool LockJump { get; set; } = false;
         public bool LockDash { get; set; } = false;
+        public bool LockSkill { get; set; } = false;
         public bool LockAll
         {
-            get { return LockMove && LockJump && LockDash; }
-            set { LockMove = value; LockJump = value; LockDash = value; }
+            get { return LockMove && LockJump && LockDash && LockSkill; }
+            set { LockMove = value; LockJump = value; LockDash = value; LockSkill = value; }
         }
 
         BaseObject mBaseObj = null;
         SpecPlayer mSpec = null;
         PlayerUnitInput mPlayerInput = null;
         FiniteStateMachine mFSM = null;
+        SkillController mSkillCtrl = null;
 
         PlayerStateIdle mFsmIdle = null;
         PlayerStateWalk mFsmWalk = null;
@@ -43,6 +45,7 @@ namespace PahlBit
             mBaseObj = GetComponentInParent<BaseObject>();
             mSpec = mBaseObj.GetComponentInChildren<SpecPlayer>();
             mPlayerInput = mBaseObj.GetComponentInChildren<PlayerUnitInput>();
+            mSkillCtrl = mBaseObj.GetComponentInChildren<SkillController>();
 
             mFSM = mBaseObj.StateMachine;
             mFsmIdle = mFSM.FindState<PlayerStateIdle>();
@@ -58,6 +61,7 @@ namespace PahlBit
             Jump();
             DropDown();
             Dash();
+            SkillInput();
         }
 
         void DoMovement()
@@ -93,6 +97,7 @@ namespace PahlBit
             {
                 if (IsGrounded)
                 {
+                    mSkillCtrl.ReleaseAllSkillSlot();
                     mIsSecondJump = false;
                     // SimulateJumpPoints();
                     mBaseObj.Phy.DoJump(_JumpForce);
@@ -102,6 +107,7 @@ namespace PahlBit
                 {
                     if (!mIsSecondJump)
                     {
+                        mSkillCtrl.ReleaseAllSkillSlot();
                         mIsSecondJump = true;
                         mBaseObj.Phy.DoJump(_JumpForce);
                         mFSM.ForceChangeState(mFsmFloat);
@@ -122,6 +128,7 @@ namespace PahlBit
             && mPlayerInput.MoveY < 0
             && IsGrounded)
             {
+                mSkillCtrl.ReleaseAllSkillSlot();
                 mBaseObj.Body.LockThinPlatform = true;
                 this.ExDelayedCoroutine(0.2f, () => mBaseObj.Body.LockThinPlatform = false);
             }
@@ -133,8 +140,37 @@ namespace PahlBit
 
             if (mPlayerInput.JustPressed(PlayerUnitInputType.Dash))
             {
+                mSkillCtrl.ReleaseAllSkillSlot();
                 mFSM.TryChangeState<PlayerStateDash>();
             }
+        }
+        void SkillInput()
+        {
+            if (LockSkill)
+            {
+                mSkillCtrl.ReleaseAllSkillSlot();
+                return;
+            }
+
+            if (mPlayerInput.JustPressed(PlayerUnitInputType.SkillSlotA))
+                mSkillCtrl.JustPressedSkillSlot(0);
+            else if (mPlayerInput.JustReleased(PlayerUnitInputType.SkillSlotA))
+                mSkillCtrl.JustReleasedSkillSlot(0);
+
+            if (mPlayerInput.JustPressed(PlayerUnitInputType.SkillSlotB))
+                mSkillCtrl.JustPressedSkillSlot(1);
+            else if (mPlayerInput.JustReleased(PlayerUnitInputType.SkillSlotB))
+                mSkillCtrl.JustReleasedSkillSlot(1);
+
+            if (mPlayerInput.JustPressed(PlayerUnitInputType.SkillSlotC))
+                mSkillCtrl.JustPressedSkillSlot(2);
+            else if (mPlayerInput.JustReleased(PlayerUnitInputType.SkillSlotC))
+                mSkillCtrl.JustReleasedSkillSlot(2);
+
+            if (mPlayerInput.JustPressed(PlayerUnitInputType.SkillSlotD))
+                mSkillCtrl.JustPressedSkillSlot(3);
+            else if (mPlayerInput.JustReleased(PlayerUnitInputType.SkillSlotD))
+                mSkillCtrl.JustReleasedSkillSlot(3);
         }
 
         [Button("Simulate Jump Points")]

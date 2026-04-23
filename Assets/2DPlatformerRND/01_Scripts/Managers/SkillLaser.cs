@@ -14,11 +14,11 @@ public class SkillLaser : SkillBase
         return base.IsCastable() && SkillMotion.IsChangable() && mLaser == null;
     }
 
-    public override void UpdateSkill()
+    public override void OnPressedInput()
     {
-        base.UpdateSkill();
+        base.OnPressedInput();
 
-        if (mInput.JustPressed(GetCurrentInputType()) && IsCastable())
+        if (IsCastable())
         {
             mBaseObj.StateMachine.TryChangeState(SkillMotion, (Action)DoFire);
             DoCastSkill();

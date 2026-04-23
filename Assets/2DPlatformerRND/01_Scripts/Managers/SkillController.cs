@@ -20,6 +20,7 @@ namespace PahlBit
 
         BaseObject mBaseObj = null;
         CharSaveData mPlayerStateData = null;
+        SkillBase mCurrentInputSkill = null;
 
         public int RemainSkillPoint => mPlayerStateData.RemainSkillPoint;
         public int CurrentLevel => GameSystem.GetLevelFromAccExp(mPlayerStateData.CurrentExp);
@@ -55,10 +56,42 @@ namespace PahlBit
 
         public void Update()
         {
-            foreach (SkillBase skillObject in SkillSlots)
+            if (mCurrentInputSkill != null)
             {
-                if (skillObject != null)
-                    skillObject.UpdateSkill();
+                mCurrentInputSkill.OnPressingInput();
+            }
+        }
+
+        public void JustPressedSkillSlot(int slotIndex)
+        {
+            if (SkillSlots[slotIndex] == null)
+                return;
+
+            if (mCurrentInputSkill != null)
+            {
+                mCurrentInputSkill.OnReleasedInput();
+            }
+
+            mCurrentInputSkill = SkillSlots[slotIndex];
+            mCurrentInputSkill.OnPressedInput();
+        }
+        public void JustReleasedSkillSlot(int slotIndex)
+        {
+            if (SkillSlots[slotIndex] == null)
+                return;
+
+            if (mCurrentInputSkill == SkillSlots[slotIndex])
+            {
+                mCurrentInputSkill.OnReleasedInput();
+                mCurrentInputSkill = null;
+            }
+        }
+        public void ReleaseAllSkillSlot()
+        {
+            if (mCurrentInputSkill != null)
+            {
+                mCurrentInputSkill.OnReleasedInput();
+                mCurrentInputSkill = null;
             }
         }
 

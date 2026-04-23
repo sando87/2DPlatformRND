@@ -79,5 +79,28 @@ namespace PahlBit
             else
                 return 0;
         }
+
+        static public int ToSkillSlotIndex(this PlayerUnitInputType type)
+        {
+            switch (type)
+            {
+                case PlayerUnitInputType.SkillSlotA: return 0;
+                case PlayerUnitInputType.SkillSlotB: return 1;
+                case PlayerUnitInputType.SkillSlotC: return 2;
+                case PlayerUnitInputType.SkillSlotD: return 3;
+                default: return -1;
+            }
+        }
+        static public PlayerUnitInputType ToSkillSlotEnum(this int slotIndex)
+        {
+            switch (slotIndex)
+            {
+                case 0: return PlayerUnitInputType.SkillSlotA;
+                case 1: return PlayerUnitInputType.SkillSlotB;
+                case 2: return PlayerUnitInputType.SkillSlotC;
+                case 3: return PlayerUnitInputType.SkillSlotD;
+                default: return PlayerUnitInputType.None;
+            }
+        }
     }
 }

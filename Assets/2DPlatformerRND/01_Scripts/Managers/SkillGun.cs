@@ -19,11 +19,11 @@ public class SkillGun : SkillBase
         return base.IsCastable() && SkillMotion.IsChangable();
     }
 
-    public override void UpdateSkill()
+    public override void OnPressingInput()
     {
-        base.UpdateSkill();
+        base.OnPressingInput();
 
-        if (mInput.IsPressing(GetCurrentInputType()) && IsCastable())
+        if (IsCastable())
         {
             mBaseObj.StateMachine.TryChangeState(SkillMotion, (Action)DoFire);
         }

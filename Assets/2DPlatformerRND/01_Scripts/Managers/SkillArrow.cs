@@ -23,11 +23,11 @@ public class SkillArrow : SkillBase
         return base.IsCastable() && SkillMotion.IsChangable();
     }
 
-    public override void UpdateSkill()
+    public override void OnPressingInput()
     {
-        base.UpdateSkill();
+        base.OnPressingInput();
 
-        if (mInput.JustPressed(GetCurrentInputType()) && IsCastable())
+        if (IsCastable())
         {
             UpdateSpec();
             mBaseObj.StateMachine.TryChangeState(SkillMotion, (Action)DoFire);

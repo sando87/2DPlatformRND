@@ -106,7 +106,13 @@ public class SkillBase : MonoBehaviour
         mSkillSaveData.PositionIndex = slotIndex;
         GameSystem.DoSave_UserSaveData();
     }
-    public virtual void UpdateSkill()
+    public virtual void OnPressedInput()
+    {
+    }
+    public virtual void OnPressingInput()
+    {
+    }
+    public virtual void OnReleasedInput()
     {
     }
     public virtual void OnUnEquipedSkill()
