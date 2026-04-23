@@ -13,6 +13,7 @@ namespace PahlBit
         public readonly string ItemID;
         public readonly string DisplayName;
         public readonly string Desc;
+        public readonly int LevelLimit;
 
         public readonly string HealthUp;
         public readonly string HealthRegen;

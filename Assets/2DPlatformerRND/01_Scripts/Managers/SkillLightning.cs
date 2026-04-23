@@ -100,12 +100,12 @@ public class SkillLightning : SkillBase
         InteractMask interactMask = InteractMask.Unit;
         Percent chainDamageReduction = new Percent(remainChainCount == 2 ? 60 : (remainChainCount == 1 ? 30 : 0));
 
-        List<BaseObject> rets = TemporaryList<BaseObject>.StaticTempList;
-        rets.Clear();
+        List<BaseObject> rets = TemporaryList<BaseObject>.GetTempList();
         int retCount = UtilitiesPhy2D.OverlapCircleAll(startPos, radius, targetLayerMask, interactMask, rets);
         if (retCount > 0)
         {
             BaseObject target = FindNextTarget(rets, startPos, alreadyHitTargets);
+            rets.Clear();
             if (target == null)
                 return;
 

@@ -6,10 +6,10 @@ public class ItemObject : MonoBehaviour
 {
     public ItemInfo ItemInfo { get; private set; }
 
-    public static ItemObject Create(Vector3 position, Quaternion rotation)
+    public static ItemObject Create(Vector3 position, Quaternion rotation, int playerLevel)
     {
         ItemInfo itemInfo = new ItemInfo();
-        itemInfo.InitRandomItem();
+        itemInfo.InitRandomItem(playerLevel);
 
         ItemObject itemObj = Instantiate(itemInfo.ResourceData.AssetData.Prefab, position, rotation);
         itemObj.ItemInfo = itemInfo;

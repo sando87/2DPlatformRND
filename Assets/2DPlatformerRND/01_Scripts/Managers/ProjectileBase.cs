@@ -152,8 +152,7 @@ namespace PahlBit
         void HitEventEveryInterval()
         {
             // 현재 Hit된 콜라이더들을 interval마다 OnHit콜백 호출해줌
-            List<Collider2D> tmpList = TemporaryList<Collider2D>.StaticTempList;
-            tmpList.Clear();
+            List<Collider2D> tmpList = TemporaryList<Collider2D>.GetTempList();
             tmpList.AddRange(mHitColliders.Keys);
 
             double interval = Stats.Interval;
@@ -166,6 +165,7 @@ namespace PahlBit
                     OnHit?.Invoke(col);
                 }
             }
+            tmpList.Clear();
         }
 
         // public readonly struct HitColInfo

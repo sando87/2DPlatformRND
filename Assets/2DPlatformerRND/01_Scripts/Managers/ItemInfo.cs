@@ -28,9 +28,19 @@ public class ItemInfo
     public int Level { get => SaveData.Level; set { SaveData.Level = value; UpdateOption(); } }
     public bool IsRepaired { get => SaveData.IsRepaired; set => SaveData.IsRepaired = value; }
 
-    public void InitRandomItem()
+    public void InitRandomItem(int levelLimit)
     {
-        ItemResourceData resourceData = ItemResourceTable.Instance.GetRandomItem();
+        List<ItemResourceData> list = TemporaryList<ItemResourceData>.GetTempList();
+        foreach (var kvp in ItemResourceTable.Instance.Enums())
+        {
+            if (kvp.LevelLimit > levelLimit)
+                continue;
+
+            list.Add(kvp);
+        }
+
+        ItemResourceData resourceData = list.ExGetRandom();
+        list.Clear();
 
         InitItem(resourceData.ItemID);
     }

@@ -49,7 +49,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] protected float _ThinkInterval = 0.5f;
     [SerializeField] bool _AttackOnSameNode = true;
     [SerializeField] MovementPattern _MovementPattern = MovementPattern.KeepCurrentNode;
-    [ShowIf(nameof(ShowAroundNodeRange))] 
+    [ShowIf(nameof(ShowAroundNodeRange))]
     [SerializeField] int _AroundNodeRange = 7;
     bool ShowAroundNodeRange() { return _MovementPattern == MovementPattern.FindAroundPath; }
     [SerializeField] UnityEvent<BaseObject> OnAttackFire = null;
@@ -696,8 +696,7 @@ public class EnemyAI : MonoBehaviour
             return null;
         }
 
-        List<BaseObject> rets = TemporaryList<BaseObject>.StaticTempList;
-        rets.Clear();
+        List<BaseObject> rets = TemporaryList<BaseObject>.GetTempList();
         UtilitiesPhy2D.OverlapCircleAll(mBase.Body.Center, range, 1 << LayerID.Player, InteractMask.Unit, rets);
         float minDistSqr = float.PositiveInfinity;
         BaseObject closestPlayer = null;
@@ -710,6 +709,7 @@ public class EnemyAI : MonoBehaviour
                 closestPlayer = player;
             }
         }
+        rets.Clear();
         return closestPlayer;
     }
 
@@ -955,7 +955,7 @@ public class EnemyAI : MonoBehaviour
     int SearchAroundEnemies(List<BaseObject> retEnemies, int startIndex, int count)
     {
         int newAddedCount = 0;
-        List<BaseObject> arEnemies = TemporaryList<BaseObject>.StaticTempList;
+        List<BaseObject> arEnemies = TemporaryList<BaseObject>.GetTempList();
         for (int i = startIndex; i < startIndex + count; i++)
         {
             arEnemies.Clear();
@@ -973,6 +973,7 @@ public class EnemyAI : MonoBehaviour
                 }
             }
         }
+        arEnemies.Clear();
         return newAddedCount;
     }
     void OnSignaledTarget(BaseObject invoker, InteractMask signal)
