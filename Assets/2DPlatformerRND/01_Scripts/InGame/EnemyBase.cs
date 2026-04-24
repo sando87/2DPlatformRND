@@ -7,8 +7,6 @@ using UnityEngine.InputSystem;
 
 public class EnemyBase : MonoBehaviour
 {
-    [SerializeField] int GoldDropPercent = 30;
-    [SerializeField] int PotionDropPercent = 30;
     [SerializeField] Transform FirePoint = null;
     [SerializeField] ProjectileBase ProjPrefab;
 
@@ -42,15 +40,21 @@ public class EnemyBase : MonoBehaviour
         if (MyUtils.IsPercentHit((int)Spec.ItemDrop.PercentValue))
             DropItem();
 
-        if (MyUtils.IsPercentHit(GoldDropPercent))
+        if (MyUtils.IsPercentHit(30))
             DropGold();
 
-        if (MyUtils.IsPercentHit(PotionDropPercent))
+        if (MyUtils.IsPercentHit(15))
             DropPotion();
     }
 
+    static float mItemDropTime = 0;
     void DropItem()
     {
+        if (!MyUtils.IsCooltimeOver(mItemDropTime, 30))
+            return;
+
+        mItemDropTime = Time.time;
+
         int playerLevel = InGameManager.Instance.Engine.Player.GetComponentInChildren<Experience>().CurrentLevel;
         ItemObject.Create(mBase.Body.Center, Quaternion.identity, playerLevel);
     }
@@ -59,8 +63,14 @@ public class EnemyBase : MonoBehaviour
         Gold itemObj = Instantiate(ResourceManager.Instance.GetPrefabGold(), mBase.Body.Center, Quaternion.identity);
         itemObj.GoldAmount = Spec.GoldOnDeath;
     }
+    static float mPotionDropTime = 0;
     void DropPotion()
     {
+        if (!MyUtils.IsCooltimeOver(mPotionDropTime, 10))
+            return;
+
+        mPotionDropTime = Time.time;
+
         if (MyUtils.IsPercentHit(50))
             Instantiate(ResourceManager.Instance.GetPrefabLifePotion(), mBase.Body.Center, Quaternion.identity);
         else

@@ -13,14 +13,20 @@ public class Potion : MonoBehaviour
         {
             if (_IsHPPotion)
             {
-                inven.CurrentLifePotionCount++;
+                if (inven.CurrentLifePotionCount < 10)
+                {
+                    inven.CurrentLifePotionCount++;
+                    Destroy(gameObject);
+                }
             }
             else
             {
-                inven.CurrentManaPotionCount++;
+                if (inven.CurrentManaPotionCount < 10)
+                {
+                    inven.CurrentManaPotionCount++;
+                    Destroy(gameObject);
+                }
             }
         }
-
-        Destroy(gameObject);
     }
 }

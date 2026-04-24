@@ -112,7 +112,7 @@ namespace PahlBit
                 if (Inven.CurrentLifePotionCount > 0)
                 {
                     Inven.CurrentLifePotionCount--;
-                    int healHP = mBaseObj.Health.MaxHealth / 2;
+                    int healHP = (int)(mBaseObj.Health.MaxHealth * 0.7f);
                     mBaseObj.Health.Heal(healHP);
                 }
             }
@@ -122,7 +122,7 @@ namespace PahlBit
                 if (Inven.CurrentManaPotionCount > 0)
                 {
                     Inven.CurrentManaPotionCount--;
-                    int healMana = mBaseObj.Health.MaxMana / 2;
+                    int healMana = (int)(mBaseObj.Health.MaxMana * 0.7f);
                     mBaseObj.Health.RestoreMana(healMana);
                 }
             }

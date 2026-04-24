@@ -20,8 +20,16 @@ namespace PahlBit
         { get; private set; } = new SpecOption();
 
         public int CurrentGold { get { return mUserSaveData.Gold; } set { mUserSaveData.Gold = value; GameSystem.RequestSave(); } }
-        public int CurrentLifePotionCount { get { return mCharacterSaveData.LifePotionCount; } set { mCharacterSaveData.LifePotionCount = value; GameSystem.RequestSave(); } }
-        public int CurrentManaPotionCount { get { return mCharacterSaveData.ManaPotionCount; } set { mCharacterSaveData.ManaPotionCount = value; GameSystem.RequestSave(); } }
+        public int CurrentLifePotionCount
+        {
+            get { return mCharacterSaveData.LifePotionCount; }
+            set { mCharacterSaveData.LifePotionCount = value; GameSystem.RequestSave(); }
+        }
+        public int CurrentManaPotionCount
+        {
+            get { return mCharacterSaveData.ManaPotionCount; }
+            set { mCharacterSaveData.ManaPotionCount = value; GameSystem.RequestSave(); }
+        }
 
         [ShowIf(nameof(ShowInvenItems))]
         [Dropdown(nameof(ListInvenItems))]

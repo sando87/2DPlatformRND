@@ -33,7 +33,7 @@ public class SkillBase : MonoBehaviour
     public bool IsCooltime => Spec.Cooltime == 0 ? false : Time.time - mCooltime < Spec.Cooltime;
     public float CooltimeRate => IsCooltime ? (1f - ((Time.time - mCooltime) / Spec.Cooltime)) : 0f;
     public bool IsEnoughMana => Spec.ManaUse <= mBaseObj.Health.CurrentMana;
-    public int EnforceCost => IsLearned ? (20 + (mSkillSaveData.LevelIndex * 15) + ((CurrentSubStep + 1) * 5)) : 20;
+    public int EnforceCost => 0; // IsLearned ? (20 + (mSkillSaveData.LevelIndex * 15) + ((CurrentSubStep + 1) * 5)) : 20;
 
     protected BaseObject mBaseObj = null;
     protected PlayerUnitInput mInput = null;
