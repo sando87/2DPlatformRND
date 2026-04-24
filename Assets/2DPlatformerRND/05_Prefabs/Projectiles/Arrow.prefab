@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2727851830516482961}
   - component: {fileID: 6366504930240296974}
+  - component: {fileID: 1580981383333606232}
   m_Layer: 0
   m_Name: Renderer
   m_TagString: Untagged
@@ -34,6 +35,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6366504930240296974
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -79,7 +81,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: db5feb45383abd347b30dd964fca3c6b, type: 3}
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 2664034816732244463, guid: 564a09f36350b2a4199ae730b93ca918,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,8 +92,42 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1580981383333606232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4804462100776145455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e3bf1c5c5523f459667db230333f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimationEx
+  _Renderer: {fileID: 6366504930240296974}
+  _SpritesIntro: []
+  _IntervalIntro: 0.1
+  _OnEndIntro:
+    m_PersistentCalls:
+      m_Calls: []
+  _SpritesLoop:
+  - {fileID: 2664034816732244463, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: 1279018572601672484, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: -2629452178397611748, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: 988816738255452008, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: -1214280125648815233, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: 3151722276261932013, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  _IntervalLoop: 0.05
+  _SpritesOutro:
+  - {fileID: 3748984529419647200, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: -2293581906619314321, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: -6999293549885896216, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  - {fileID: -7049932291587765833, guid: 564a09f36350b2a4199ae730b93ca918, type: 3}
+  _IntervalOutro: 0.1
+  _OnEndOutro:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8023231229581014257
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +206,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.6, y: 0.1}
+  m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &5661865426065303790
 MonoBehaviour:
@@ -201,6 +239,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnInteractLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInteractSignal:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8246397898442698589
@@ -272,14 +313,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8246397898442698589}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -287,9 +328,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!114 &4627083357526262411
 MonoBehaviour:
@@ -305,26 +346,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.ProjectileBase
   <Stats>k__BackingField:
     MoveSpeed: 10
-    MaxDistance: 0
-    SkillRange: 0
+    FireAngle: 0
+    AttackRange: 0
     SplashRange: 0
     Duration: 1
     Interval: 0
+    StartDelay: 0
+    RotateSpeed: 0
+    AimToVelocity: 0
+  OnStart:
+    m_PersistentCalls:
+      m_Calls: []
   OnHit:
     m_PersistentCalls:
       m_Calls: []
   OnEnd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1200170532658568389}
-        m_TargetAssemblyTypeName: PahlBit.BaseObject, Assembly-CSharp
-        m_MethodName: DestroyObj
+      - m_Target: {fileID: 1580981383333606232}
+        m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
+        m_MethodName: PlayAnimOutro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1200170532658568389}
+        m_TargetAssemblyTypeName: PahlBit.BaseObject, Assembly-CSharp
+        m_MethodName: DestroyObj
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2

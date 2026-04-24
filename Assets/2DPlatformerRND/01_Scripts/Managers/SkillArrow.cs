@@ -12,11 +12,7 @@ public class SkillArrow : SkillBase
     [SerializeField] PlayerStateGeneral SkillMotion;
     [SerializeField] ProjectileBase ProjectilePrefab;
 
-    private float mMotionSpeed = 0;
-    private int mProjectileCount = 0;
-    private DamageInfo mDamageInfo = new DamageInfo();
-    private PercentUp mCriticalRate = new PercentUp();
-    private PercentUp mCriticalAttack = new PercentUp();
+    float mAimingDegreeOffset = 0;
 
     public override bool IsCastable()
     {
@@ -29,18 +25,9 @@ public class SkillArrow : SkillBase
 
         if (IsCastable())
         {
-            UpdateSpec();
+            mBaseObj.TurnToFloatX(mBaseObj.Input.MoveX);
             mBaseObj.StateMachine.TryChangeState(SkillMotion, (Action)DoFire);
         }
-    }
-
-    void UpdateSpec()
-    {
-        mMotionSpeed = mBaseObj.PlayerObj.Spec.Option.AttackSpeedUp.Multiplier;
-        mProjectileCount = (int)Spec.ProjectileCount;
-        mDamageInfo = Spec.CalcCurrentDamages();
-        mCriticalRate = mBaseObj.PlayerObj.Spec.Option.CriticalRate;
-        mCriticalAttack = mBaseObj.PlayerObj.Spec.Option.CriticalAttack;
     }
 
     public override void DoFire()
@@ -50,11 +37,18 @@ public class SkillArrow : SkillBase
         UseMana();
         StartCooltime();
 
+        Vector2 inputXY = mBaseObj.Input.MoveXY;
+        if (inputXY.magnitude > 0.1f)
+            mAimingDegreeOffset = Mathf.Atan2(inputXY.y, Mathf.Abs(inputXY.x)) * Mathf.Rad2Deg * 0.5f;
+        else
+            mAimingDegreeOffset = 0;
+
+        List<BaseObject> mTargets = new();
         Vector2 startPos = mBaseObj.Body.Center + new Vector2(transform.right.x, 0);
-        FireMultiShot(mProjectileCount, startPos, mBaseObj.transform.rotation, 90);
+        FireMultiShot((int)Spec.ProjectileCount, startPos, mBaseObj.transform.rotation, 90, mTargets);
     }
 
-    void FireMultiShot(int arrowCount, Vector2 startPos, Quaternion baseRotation, float maxSpreadAngle)
+    void FireMultiShot(int arrowCount, Vector2 startPos, Quaternion baseRotation, float maxSpreadAngle, List<BaseObject> targets)
     {
         if (arrowCount <= 0)
             return;
@@ -69,9 +63,9 @@ public class SkillArrow : SkillBase
         for (int i = 0; i < arrowCount; i++)
         {
             float offsetIndex = i - (arrowCount - 1) / 2f;
-            float angle = offsetIndex * stepAngle;
+            float degree = mAimingDegreeOffset + (offsetIndex * stepAngle);
 
-            Quaternion rot = baseRotation * Quaternion.Euler(0f, 0f, angle);
+            Quaternion rot = baseRotation * Quaternion.Euler(0f, 0f, degree);
 
             ProjectileBase proj = ProjectileBase.Create(
                 ProjectilePrefab,
@@ -82,19 +76,34 @@ public class SkillArrow : SkillBase
 
             ApplySkillStatsToProjectile(proj);
 
-            RegistOnHitEvent(proj);
+            RegistOnHitEvent(proj, targets);
         }
     }
 
-    void RegistOnHitEvent(ProjectileBase proj)
+    void RegistOnHitEvent(ProjectileBase proj, List<BaseObject> targets)
     {
         proj.OnHit.AddListener((col) =>
         {
-            // 충돌 시 처리할 내용
+            // 주변 지형과 충돌 시
+            if (col.gameObject.layer == PahlBit.LayerID.Terrain)
+            {
+                proj.DoEndProjectile();
+                return;
+            }
+
+            // 적과 충돌 시 처리할 내용
             Health health = col.ExGetCompInBase<Health>();
             if (health != null)
             {
-                health.GetDamaged(mDamageInfo);
+                // 충돌 시 처리할 내용
+                BaseObject target = col.ExGetBase();
+                if (targets.Contains(target))
+                    return;
+
+                targets.Add(target);
+
+                DamageInfo damageInfo = Spec.CalcCurrentDamages();
+                health.GetDamaged(damageInfo);
 
                 AttackResult result = new AttackResult()
                 {
@@ -103,8 +112,6 @@ public class SkillArrow : SkillBase
                 };
                 mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
             }
-
-            proj.DoEndProjectile();
         });
     }
 

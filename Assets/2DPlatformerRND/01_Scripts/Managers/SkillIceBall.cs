@@ -25,6 +25,7 @@ public class SkillIceBall : SkillBase
 
         if (IsCastable())
         {
+            mBaseObj.TurnToFloatX(mBaseObj.Input.MoveX);
             mBaseObj.StateMachine.TryChangeState(SkillMotion, (Action)DoFire);
         }
     }
@@ -38,7 +39,7 @@ public class SkillIceBall : SkillBase
 
         Vector2 inputXY = mBaseObj.Input.MoveXY;
         if (inputXY.magnitude > 0.1f)
-            mAimingDegreeOffset = Mathf.Atan2(inputXY.y, Mathf.Abs(inputXY.x)) * Mathf.Rad2Deg;
+            mAimingDegreeOffset = Mathf.Atan2(inputXY.y, Mathf.Abs(inputXY.x)) * Mathf.Rad2Deg * 0.5f;
         else
             mAimingDegreeOffset = 0;
 

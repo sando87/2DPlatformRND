@@ -50,7 +50,7 @@ namespace PahlBit
             }
             else if (SKill.IsEquipped)
             {
-                mIconBG.color = Color.green;
+                mIconBG.color = Color.blue;
                 mIcon.color = Color.white;
                 mText.SetText($"Lv.{SKill.Level} ({SKill.CurrentSubStep}/{SKill.MaxSubStep})");
             }
