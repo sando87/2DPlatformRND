@@ -72,12 +72,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a0d941d011ecd48be21b52cf7c269c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
-  GoldDropPercent: 30
-  PotionDropPercent: 30
-  GoldPrefab: {fileID: 5461417893251240980, guid: 5dd89691a4a14614aba050b3c09ae3bf,
-    type: 3}
-  LifePotionPrefab: {fileID: 0}
-  ManaPotionPrefab: {fileID: 0}
   FirePoint: {fileID: 7243481696488461453}
   ProjPrefab: {fileID: 3164944944171518125, guid: bc938af87f6258f498d65dd7c7a92c6b,
     type: 3}
@@ -133,10 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b47cc91083f5346bccf431011944b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  _AttackDegree: 30
+  _AttackDegree: 0
   _ThinkInterval: 0.1
   _AttackOnSameNode: 0
-  _MovementPattern: 4
+  _MovementPattern: 2
   _AroundNodeRange: 7
   OnAttackFire:
     m_PersistentCalls:

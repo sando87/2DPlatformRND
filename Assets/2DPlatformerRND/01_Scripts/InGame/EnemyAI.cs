@@ -571,9 +571,19 @@ public class EnemyAI : MonoBehaviour
             {
                 if (IsStandOnSameNode())
                 {
-                    int curDir = mBase.Body.Center.x < PlayerTarget.Body.Center.x ? 1 : -1;
-                    Turn(curDir);
-                    StartMoving(curDir * mSpec.MoveSpeed);
+                    if (!IsTargetInRange(mSpec.AttackRange))
+                    {
+                        int curDir = mBase.Body.Center.x < PlayerTarget.Body.Center.x ? 1 : -1;
+                        Turn(curDir);
+                        StartMoving(curDir * mSpec.MoveSpeed);
+                    }
+                    // else
+                    // {
+                    //     int curDir = mBase.Body.FrontDirInt;
+                    //     curDir = IsNoWayToMove() ? -curDir : ((MyUtils.RandomInt(0, 2) * 2) - 1);
+                    //     Turn(curDir);
+                    //     StartMoving(curDir * mSpec.MoveSpeed);
+                    // }
                     await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 3.5f)), cancellationToken: ct);
                 }
                 else
