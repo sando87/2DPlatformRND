@@ -18,6 +18,7 @@ MonoBehaviour:
   m_DefaultColliderType: 2
   m_MaskType: 1
   m_Random: 1
+  m_PhysicsShapeCheck: 0
   m_AutoTileDictionary:
     keyData: 180000003000000038000000
     valueData:
