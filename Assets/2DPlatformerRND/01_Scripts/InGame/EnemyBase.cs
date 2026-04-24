@@ -56,7 +56,7 @@ public class EnemyBase : MonoBehaviour
         mItemDropTime = Time.time;
 
         int playerLevel = InGameManager.Instance.Engine.Player.GetComponentInChildren<Experience>().CurrentLevel;
-        ItemObject.Create(mBase.Body.Center, Quaternion.identity, playerLevel);
+        ItemObject.TryCreateNewItem(mBase.Body.Center, Quaternion.identity, playerLevel);
     }
     void DropGold()
     {
