@@ -72,8 +72,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a0d941d011ecd48be21b52cf7c269c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
-  GoldDropPercent: 30
-  PotionDropPercent: 30
   FirePoint: {fileID: 1988755097373811876}
   ProjPrefab: {fileID: 3164944944171518125, guid: b3d3d3a7aa37f7a428626dda434cb69f,
     type: 3}
@@ -132,7 +130,7 @@ MonoBehaviour:
   _AttackDegree: 0
   _ThinkInterval: 0.1
   _AttackOnSameNode: 0
-  _MovementPattern: 2
+  _MovementPattern: 4
   _AroundNodeRange: 7
   OnAttackFire:
     m_PersistentCalls:
