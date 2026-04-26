@@ -114,8 +114,8 @@ public class InGamePanel : MonoBehaviour
             mLastMaxMP = maxMP;
         }
 
-        int curExp = mExperience.CurrentExp - mExperience.ExpAtLevelStart;
-        int maxExp = mExperience.ExpForNextLevel - mExperience.ExpAtLevelStart;
+        int curExp = (mExperience.CurrentExp - mExperience.ExpAtLevelStart).ToInt();
+        int maxExp = (mExperience.ExpForNextLevel - mExperience.ExpAtLevelStart).ToInt();
         if (mLastCurExp != curExp || mLastMaxExp != maxExp)
         {
             float expRate = (float)curExp / maxExp;

@@ -6,8 +6,8 @@ namespace PahlBit
 {
     public class Experience : MonoBehaviour
     {
-        private int mFromExp = 0;
-        private int mToExp = 0;
+        private float mFromExp = 0;
+        private float mToExp = 0;
         private CharSaveData mCharacterSaveData = null;
 
         public int CurrentLevel { get; private set; } = 0;
@@ -19,12 +19,12 @@ namespace PahlBit
         public int HealthPoint { get => mCharacterSaveData.HealthPoint; }
         public int ManaPoint { get => mCharacterSaveData.ManaPoint; }
 
-        public int ExpAtLevelStart => mFromExp;
-        public int ExpForNextLevel => mToExp;
-        public int ExpDeltaOfCurrentLevel => mToExp - mFromExp;
-        public int RemainExp { get { return mToExp - CurrentExp; } }
+        public float ExpAtLevelStart => mFromExp;
+        public float ExpForNextLevel => mToExp;
+        public float ExpDeltaOfCurrentLevel => mToExp - mFromExp;
+        public float RemainExp { get { return mToExp - CurrentExp; } }
         public float CurrentExpRate { get { return (CurrentExp - mFromExp) / (float)ExpDeltaOfCurrentLevel; } }
-        public int CurrentExp { get; private set; } = 0;
+        public float CurrentExp { get; private set; } = 0;
 
         public UnityEvent OnLevelUp = new UnityEvent();
         public UnityEvent OnStatPointChanged = new UnityEvent();
@@ -41,7 +41,7 @@ namespace PahlBit
                         EnemyBase enemy = result.Target.ExGetBase().EnemyObj;
                         if (enemy != null)
                         {
-                            int gainedExp = enemy.Spec.ExpOnDeath;
+                            float gainedExp = enemy.Spec.ExpOnDeath;
                             AddExp(gainedExp);
                         }
                     }
@@ -60,13 +60,13 @@ namespace PahlBit
             mToExp = GameSystem.GetAccExpForNextLevel(CurrentLevel);
         }
 
-        public void AddExp(int exp)
+        public void AddExp(float exp)
         {
             CurrentExp += exp;
             mCharacterSaveData.CurrentExp = CurrentExp;
             GameSystem.RequestSave();
 
-            while (CurrentExp >= mToExp)
+            while (CurrentExp.ToInt() >= mToExp.ToInt())
             {
                 LevelUp();
             }

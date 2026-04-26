@@ -14,7 +14,7 @@ namespace PahlBit
         public float AttackRange;
         public PercentUp ItemDrop;
         public int GoldOnDeath;
-        public int ExpOnDeath;
+        public float ExpOnDeath;
         public Percent HitChance;
 
         public static EnemyStats operator *(EnemyStats stat, SpecOption option)

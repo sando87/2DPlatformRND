@@ -27,7 +27,7 @@ namespace PahlBit
     [System.Serializable]
     public class CharSaveData
     {
-        public int CurrentExp;
+        public float CurrentExp;
         public int RemainPoint;
         public int RemainSkillPoint;
         public int HealthPoint;

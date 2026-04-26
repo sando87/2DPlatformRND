@@ -43,14 +43,14 @@ namespace PahlBit
         {
             if (curLevel <= 0)
                 return 0;
-                
+
             int levelDown = Mathf.Max(0, curLevel - 1);
             int levelDownDown = Mathf.Max(0, curLevel - 2);
-            return FirstExpAtLevelOne 
+            return FirstExpAtLevelOne
             + levelDown * FirstExpIncrease
             + levelDown * levelDownDown / 2 * IncreaseOfExpIncrease;
         }
-        static public int GetLevelFromAccExp(int accumulatedExp)
+        static public int GetLevelFromAccExp(float accumulatedExp)
         {
             if (accumulatedExp < FirstExpAtLevelOne)
                 return 1;

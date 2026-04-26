@@ -85,6 +85,13 @@ public class SkillIceBall : SkillBase
     {
         proj.OnHit.AddListener((col) =>
         {
+            // 주변 지형과 충돌 시
+            if (col.gameObject.layer == PahlBit.LayerID.Terrain)
+            {
+                proj.DoEndProjectile();
+                return;
+            }
+
             // 충돌 시 처리할 내용
             Health health = col.ExGetCompInBase<Health>();
             if (health != null)

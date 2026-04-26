@@ -111,6 +111,8 @@ public class SkillArrow : SkillBase
                     IsKilled = health.IsDead,
                 };
                 mBaseObj.GetComponentInChildren<BattleDispatcher>()?.DispatchAttackResult(result);
+
+                proj.DoEndProjectile();
             }
         });
     }

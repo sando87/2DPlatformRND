@@ -61,6 +61,9 @@ namespace PahlBit
             {
                 playerData.IsFirstPlay = false;
 
+                playerData.LifePotionCount = 3;
+                playerData.ManaPotionCount = 3;
+
                 ItemInfo itemInfo = new ItemInfo();
                 itemInfo.InitItem("Item10");
                 Inven.AddItem(itemInfo);

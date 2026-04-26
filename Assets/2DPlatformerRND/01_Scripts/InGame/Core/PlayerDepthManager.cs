@@ -28,7 +28,7 @@ namespace PahlBit
 
         [SerializeField] Tilemap _Tilemap = null;
 
-        GameObject mPlayer = null;
+        BaseObject mPlayer = null;
 
         // BFS용 큐
         Queue<Vector2Int> mQueue = new Queue<Vector2Int>();
@@ -38,7 +38,7 @@ namespace PahlBit
 
         Dictionary<Vector2Int, PlayerDepthInfo> mPlayerDepthInfo = new Dictionary<Vector2Int, PlayerDepthInfo>();
 
-        public void SetPlayer(GameObject player)
+        public void SetPlayer(BaseObject player)
         {
             FrameCounter = 0;
             mPlayer = player;
@@ -46,10 +46,10 @@ namespace PahlBit
 
         void Update()
         {
-            if (mPlayer != null)
+            if (mPlayer != null && mPlayer.Phy.IsGrounded)
             {
                 FrameCounter++;
-                UpdatePlayerDepth(mPlayer.GetComponent<BaseObject>().Body.Center);
+                UpdatePlayerDepth(mPlayer.Body.Center);
             }
         }
 
