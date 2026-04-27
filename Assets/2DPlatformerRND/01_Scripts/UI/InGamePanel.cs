@@ -40,15 +40,16 @@ public class InGamePanel : MonoBehaviour
     public void DoActivatePanel(BaseObject playerObject)
     {
         mPlayerObject = playerObject;
+        mExperience = mPlayerObject.GetComponentInChildren<Experience>();
+        mInven = mPlayerObject.GetComponentInChildren<ItemInventory>();
+        mSkillController = mPlayerObject.GetComponentInChildren<SkillController>();
+
         enabled = true;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        mExperience = mPlayerObject.GetComponentInChildren<Experience>();
-        mInven = mPlayerObject.GetComponentInChildren<ItemInventory>();
-        mSkillController = mPlayerObject.GetComponentInChildren<SkillController>();
     }
 
     // Update is called once per frame

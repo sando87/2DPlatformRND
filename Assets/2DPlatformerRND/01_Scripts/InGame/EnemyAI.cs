@@ -274,7 +274,7 @@ public class EnemyAI : MonoBehaviour
             float recoverTime = MyUtils.RandomFloat(0.1f, 0.5f);
             await UniTask.Delay(TimeSpan.FromSeconds(recoverTime), cancellationToken: ctx);
 
-            if (PlayerTarget == null)
+            if (!IsTargetValid())
                 return EnemyState.Patrol;
             else if (IsAttackable())
                 return EnemyState.Attack;
@@ -335,7 +335,7 @@ public class EnemyAI : MonoBehaviour
     {
         while (!ct.IsCancellationRequested)
         {
-            if (mSignaledTarget != null)
+            if (mSignaledTarget != null && !mSignaledTarget.Health.IsDead)
             {
                 BaseObject target = mSignaledTarget;
                 mSignaledTarget = null;
@@ -364,9 +364,16 @@ public class EnemyAI : MonoBehaviour
         float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - PlayerTarget.Body.Center);
         return distSqr <= range * range;
     }
+    protected bool IsTargetValid()
+    {
+        return PlayerTarget != null && !PlayerTarget.Health.IsDead;
+    }
     protected virtual bool IsAttackable()
     {
-        if (PlayerTarget == null || !mBase.Phy.IsGrounded)
+        if (!IsTargetValid())
+            return false;
+
+        if (!mBase.Phy.IsGrounded)
             return false;
 
         if (IsCooltime)
@@ -410,7 +417,7 @@ public class EnemyAI : MonoBehaviour
     {
         while (!ct.IsCancellationRequested)
         {
-            if (PlayerTarget == null)
+            if (!IsTargetValid())
             {
                 break;
             }
@@ -664,7 +671,7 @@ public class EnemyAI : MonoBehaviour
 
     bool IsStandOnAroundNode()
     {
-        if (PlayerTarget == null)
+        if (!IsTargetValid())
             return false;
 
         // NodeNav playerNode = GetCurrentNodeNav(mPlayerTarget);
@@ -683,7 +690,7 @@ public class EnemyAI : MonoBehaviour
     }
     bool IsStandOnSameNode()
     {
-        if (PlayerTarget == null)
+        if (!IsTargetValid())
             return false;
 
         NodeNav playerNode = GetCurrentNodeNav(PlayerTarget);
@@ -712,6 +719,11 @@ public class EnemyAI : MonoBehaviour
         BaseObject closestPlayer = null;
         foreach (BaseObject player in rets)
         {
+            if (player.Health == null || player.Health.IsDead)
+            {
+                continue;
+            }
+
             float distSqr = Vector2.SqrMagnitude(mBase.Body.Center - player.Body.Center);
             if (distSqr < minDistSqr)
             {

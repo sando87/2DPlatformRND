@@ -28,6 +28,8 @@ namespace PahlBit
         PopupInven mPopupInven;
         PopupSkill mPopupSkill;
 
+        Coroutine mRespawnSequence = null;
+
         IEnumerator Start()
         {
             SoundPlayManager.Instance.Init();
@@ -36,7 +38,7 @@ namespace PahlBit
             yield return newWaitForSeconds.Cache(0.1f);
 
             Vector2 destWarp = FindRespawnPosition(InGameManager.Instance.DestWarpID);
-            RespawnPlayer(destWarp);
+            InstantiatePlayer(destWarp);
             _InGamePanel.DoActivatePanel(Player);
             _CinemachineCamera.Follow = Player.transform;
             _CinemachineCamera.ForceCameraPosition(Player.transform.position, Quaternion.identity);
@@ -84,11 +86,30 @@ namespace PahlBit
                     SetInputHandler(Player.Input);
                 }
             }
+
+            if (Player != null && Player.Health.IsDead && mRespawnSequence == null)
+            {
+                mRespawnSequence = StartCoroutine(RespawnPlayerSequence());
+            }
         }
 
-        public void RespawnPlayer(Vector3 pos)
+        public void InstantiatePlayer(Vector3 pos)
         {
             Player = Instantiate(_PlayerPrefab, pos, Quaternion.identity);
+        }
+
+        IEnumerator RespawnPlayerSequence()
+        {
+            yield return newWaitForSeconds.Cache(2f);
+            Destroy(Player.gameObject);
+            Vector2 destWarp = FindRespawnPosition(InGameManager.Instance.DestWarpID);
+            InstantiatePlayer(destWarp);
+            _InGamePanel.DoActivatePanel(Player);
+            _CinemachineCamera.Follow = Player.transform;
+            _CinemachineCamera.ForceCameraPosition(Player.transform.position, Quaternion.identity);
+            _PlayerDepthManager.SetPlayer(Player);
+            SetInputHandler(Player.Input);
+            mRespawnSequence = null;
         }
 
         public void SetInputHandler(IInputHandler handler)

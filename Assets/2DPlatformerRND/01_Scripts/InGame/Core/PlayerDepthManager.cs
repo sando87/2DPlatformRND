@@ -46,7 +46,7 @@ namespace PahlBit
 
         void Update()
         {
-            if (mPlayer != null && mPlayer.Phy.IsGrounded)
+            if (mPlayer != null && !mPlayer.Health.IsDead && mPlayer.Phy.IsGrounded)
             {
                 FrameCounter++;
                 UpdatePlayerDepth(mPlayer.Body.Center);
