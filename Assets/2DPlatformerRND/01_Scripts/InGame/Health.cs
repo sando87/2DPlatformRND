@@ -177,7 +177,7 @@ namespace PahlBit
         }
         public void UseMana(float amount)
         {
-            mCurrentMana -= amount.ToInt();
+            mCurrentMana -= amount;
             mCurrentMana.ExSetMinimum(0);
             mIsDirty = true;
         }
