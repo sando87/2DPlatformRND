@@ -13,8 +13,11 @@ using UnityEngine.Tilemaps;
 
 public class EnemyAIBoss : EnemyAI
 {
+    [SerializeField] List<Transform> _JumpPositions;
+
     Health mHealth;
     EnemyBossBase mBoss;
+    bool mIsJumping = false;
 
     protected override void Start()
     {
@@ -119,7 +122,7 @@ public class EnemyAIBoss : EnemyAI
     {
         while (!ct.IsCancellationRequested)
         {
-            if (MyUtils.RandomInt(0, 10) == 0)
+            if (MyUtils.RandomInt(0, 5) == 0)
             {
                 break;
             }
@@ -128,6 +131,7 @@ public class EnemyAIBoss : EnemyAI
                 float thinkInterval = MyUtils.RandomFloat(_ThinkInterval - 0.5f, _ThinkInterval + 0.5f);
                 thinkInterval.ExSetMinimum(0.1f);
                 await UniTask.Delay(TimeSpan.FromSeconds(thinkInterval), cancellationToken: ct);
+                await UniTask.WaitUntil(() => !mIsJumping, cancellationToken: ct);
             }
         }
     }
@@ -136,7 +140,6 @@ public class EnemyAIBoss : EnemyAI
     {
         try
         {
-            Vector2 startPos = mBase.transform.position;
             await UniTask.Yield(cancellationToken: ct);
             Stop();
             while (!ct.IsCancellationRequested && PlayerTarget != null)
@@ -152,7 +155,8 @@ public class EnemyAIBoss : EnemyAI
                     mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
                     Stop();
                     await UniTask.Delay(TimeSpan.FromSeconds(1.5f), cancellationToken: ct);
-                    await JumpTo(startPos, 2f, ct);
+                    Vector2 destPos = _JumpPositions.ExGetRandom().position;
+                    await JumpTo(destPos, 1f, ct);
                 }
             }
         }
@@ -166,11 +170,12 @@ public class EnemyAIBoss : EnemyAI
     {
         try
         {
+            mIsJumping = true;
             float halfduration = duration * 0.5f;
             await UniTask.Yield(cancellationToken: ct);
             Stop();
             mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Jump);
-            int dir = mBase.Body.Center.x < worldPos.x ? 1 : -1;
+            int dir = mBase.Body.Center.x < PlayerTarget.transform.position.x ? 1 : -1;
             Turn(dir);
 
             mBase.transform.DOMoveX(worldPos.x, duration).SetEase(Ease.Linear);
@@ -187,6 +192,7 @@ public class EnemyAIBoss : EnemyAI
         }
         finally
         {
+            mIsJumping = false;
             mBase.transform.DOKill();
         }
     }
