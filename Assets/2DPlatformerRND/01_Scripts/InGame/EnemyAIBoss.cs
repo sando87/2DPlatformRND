@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using NaughtyAttributes;
 using PahlBit;
 using UnityEditor.Experimental.GraphView;
@@ -118,7 +119,7 @@ public class EnemyAIBoss : EnemyAI
     {
         while (!ct.IsCancellationRequested)
         {
-            if (MyUtils.RandomInt(0, 2) == 0)
+            if (MyUtils.RandomInt(0, 10) == 0)
             {
                 break;
             }
@@ -135,20 +136,58 @@ public class EnemyAIBoss : EnemyAI
     {
         try
         {
+            Vector2 startPos = mBase.transform.position;
             await UniTask.Yield(cancellationToken: ct);
             Stop();
             while (!ct.IsCancellationRequested && PlayerTarget != null)
             {
                 int curDir = mBase.Body.FrontDirInt;
-                curDir = (MyUtils.RandomInt(0, 2) * 2) - 1;
+                curDir = IsNoWayToMove() ? -curDir : ((MyUtils.RandomInt(0, 2) * 2) - 1);
                 Turn(curDir);
                 StartMoving(curDir * mSpec.MoveSpeed);
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 3.5f)), cancellationToken: ct);
+
+                if (MyUtils.RandomInt(0, 3) == 0)
+                {
+                    mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
+                    Stop();
+                    await UniTask.Delay(TimeSpan.FromSeconds(1.5f), cancellationToken: ct);
+                    await JumpTo(startPos, 2f, ct);
+                }
             }
         }
         catch (OperationCanceledException)
         {
             // LOG.trace(ex.Message);
+        }
+    }
+
+    protected async UniTask JumpTo(Vector3 worldPos, float duration, CancellationToken ct)
+    {
+        try
+        {
+            float halfduration = duration * 0.5f;
+            await UniTask.Yield(cancellationToken: ct);
+            Stop();
+            mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Jump);
+            int dir = mBase.Body.Center.x < worldPos.x ? 1 : -1;
+            Turn(dir);
+
+            mBase.transform.DOMoveX(worldPos.x, duration).SetEase(Ease.Linear);
+            mBase.transform.DOMoveY(worldPos.y + 5, halfduration).SetEase(Ease.OutQuad);
+            await UniTask.Delay(TimeSpan.FromSeconds(halfduration), cancellationToken: ct);
+            mBase.transform.DOMoveY(worldPos.y, halfduration).SetEase(Ease.InQuad);
+            await UniTask.Delay(TimeSpan.FromSeconds(halfduration), cancellationToken: ct);
+            mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: ct);
+        }
+        catch (OperationCanceledException)
+        {
+            // LOG.trace(ex.Message);
+        }
+        finally
+        {
+            mBase.transform.DOKill();
         }
     }
 

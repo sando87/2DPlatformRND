@@ -488,7 +488,7 @@ public class EnemyAI : MonoBehaviour
         return null;
     }
 
-    bool IsNoWayToMove()
+    protected bool IsNoWayToMove()
     {
         Vector2 pos = mBase.Body.FootFront + new Vector2(mBase.transform.right.x * 0.2f, 0);
         NodeNav frontNode = InGameEngine.Inst.Pathfinder.GetNode(pos);
