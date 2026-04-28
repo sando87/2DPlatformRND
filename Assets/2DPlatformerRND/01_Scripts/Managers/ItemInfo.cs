@@ -27,6 +27,7 @@ public class ItemInfo
     public int PositionIndex { get => SaveData.PositionIndex; set { SaveData.PositionIndex = value; } }
     public int Level { get => SaveData.Level; set { SaveData.Level = value; UpdateOption(); } }
     public bool IsRepaired { get => SaveData.IsRepaired; set => SaveData.IsRepaired = value; }
+    public bool IsEquipable { get => SaveData.IsEquipable; set => SaveData.IsEquipable = value; }
 
     static public string GetRandomItemID(int levelLimit)
     {

@@ -226,20 +226,21 @@ namespace PahlBit
             _ActionSelector.Actions.Clear();
             if (mEventSelectItem != null)
             {
-                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Insert });
+                if (!itemSlot.ItemInfo.IsEquipable)
+                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Insert });
             }
             else if (itemSlot.ItemInfo.IsEquipped)
             {
                 _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.UnEquip });
             }
-            else if (itemSlot.ItemInfo.IsRepaired)
+            else if (itemSlot.ItemInfo.IsEquipable)
             {
                 _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Equip });
                 _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Dump });
             }
             else
             {
-                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Repair, Gold = ItemRepairCost });
+                // _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Repair, Gold = ItemRepairCost });
                 _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Dump });
             }
 

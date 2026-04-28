@@ -22,17 +22,18 @@ public class EnemyBossBase : EnemyBase
     [SerializeField] ProjectileBase ProjectilePrefabB;
     [SerializeField] Transform FirePositionB = null;
 
-    public SpecOption Option { get; private set; } = null;
+    public SpecOption Option { get => mItem.Option; }
     public float ManaRegen { get => _ManaRegen; }
     public bool IsAwaked { get; set; } = false;
 
     Health mHealth;
     float mTime_AttackB = 0;
+    ItemInfo mItem = null;
 
     public void DoAwakeBossWithItem(ItemInfo item)
     {
         IsAwaked = true;
-        Option = item.Option;
+        mItem = item;
         mBase.Spec.LinkOption(Option);
 
         float attackSpeed = mBase.EnemyObj.Spec.Option.AttackSpeedUp.Multiplier;
@@ -49,6 +50,15 @@ public class EnemyBossBase : EnemyBase
         base.Start();
 
         mHealth = mBase.Health;
+    }
+
+    public override void OnDeath()
+    {
+        mBase.Body.LockBody = true;
+
+        mItem.IsEquipable = true;
+        GameSystem.DoSave_UserSaveData();
+        ItemObject.CreateNewItem(mBase.Body.Center, Quaternion.identity, mItem);
     }
 
     public bool IsAttackable_AttackA()

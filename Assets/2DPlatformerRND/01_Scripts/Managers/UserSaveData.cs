@@ -46,6 +46,7 @@ namespace PahlBit
         public int Count;
         public int PositionIndex;
         public bool IsRepaired;
+        public bool IsEquipable;
 
         public int RandomSeed { get => InstanceID.GetHashCode(); }
         public int LevelIndex { get => Level - 1; }

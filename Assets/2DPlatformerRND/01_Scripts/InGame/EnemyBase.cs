@@ -33,7 +33,7 @@ public class EnemyBase : MonoBehaviour
         mBase.Health.OnDied.AddListener(OnDeath);
     }
 
-    public void OnDeath()
+    public virtual void OnDeath()
     {
         mBase.Body.LockBody = true;
 

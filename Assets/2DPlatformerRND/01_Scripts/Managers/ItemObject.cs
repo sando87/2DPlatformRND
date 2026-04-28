@@ -19,6 +19,12 @@ public class ItemObject : MonoBehaviour
         itemObj.ItemInfo = itemInfo;
         return itemObj;
     }
+    public static ItemObject CreateNewItem(Vector3 position, Quaternion rotation, ItemInfo item)
+    {
+        ItemObject itemObj = Instantiate(item.ResourceData.AssetData.Prefab, position, rotation);
+        itemObj.ItemInfo = item;
+        return itemObj;
+    }
 
     // public void OnPickedUpBy(Collider2D col)
     // {

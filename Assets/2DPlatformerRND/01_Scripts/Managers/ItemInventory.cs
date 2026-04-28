@@ -139,6 +139,11 @@ namespace PahlBit
             GetItem(itemInstID).IsRepaired = true;
             GameSystem.DoSave_UserSaveData();
         }
+        public void SetEquipableItem(string itemInstID)
+        {
+            GetItem(itemInstID).IsEquipable = true;
+            GameSystem.DoSave_UserSaveData();
+        }
 
         public void MoveItem(string itemInstID, int newPositionIndex)
         {
