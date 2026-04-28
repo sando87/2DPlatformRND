@@ -34,6 +34,9 @@ namespace PahlBit
         public static readonly int Death = Animator.StringToHash("Death");
         public static readonly int Respawn = Animator.StringToHash("Respawn");
 
+        public static readonly int BossAttackA = Animator.StringToHash("BossAttackA");
+        public static readonly int BossAttackB = Animator.StringToHash("BossAttackB");
+
         public static readonly int Skill = Animator.StringToHash("Skill");
         public static readonly int Skill1 = Animator.StringToHash("Skill1");
         public static readonly int Skill2 = Animator.StringToHash("Skill2");

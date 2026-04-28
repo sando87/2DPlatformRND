@@ -12,6 +12,8 @@ namespace PahlBit
         public readonly string Desc;
 
         public readonly string Health;
+        public readonly string Mana;
+        public readonly string Shield;
         public readonly string Attack;
         public readonly string Defence;
         public readonly string MoveSpeed;
@@ -28,6 +30,8 @@ namespace PahlBit
         public long ID { get { return ICSVFormat.ToID(EnemyID); } } // 데이터 접근을 위한 id값
 
         public ParseValue _Health { get; private set; }
+        public ParseValue _Mana { get; private set; }
+        public ParseValue _Shield { get; private set; }
         public ParseValue _Attack { get; private set; }
         public ParseValue _Defence { get; private set; }
         public ParseValue _MoveSpeed { get; private set; }
@@ -43,6 +47,8 @@ namespace PahlBit
         void ICSVFormat.OnLoad()
         {
             _Health = ParseValue.Parse(Health);
+            _Mana = ParseValue.Parse(Mana);
+            _Shield = ParseValue.Parse(Shield);
             _Attack = ParseValue.Parse(Attack);
             _Defence = ParseValue.Parse(Defence);
             _MoveSpeed = ParseValue.Parse(MoveSpeed);

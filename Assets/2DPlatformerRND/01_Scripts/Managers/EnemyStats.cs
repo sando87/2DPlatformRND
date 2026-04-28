@@ -5,6 +5,8 @@ namespace PahlBit
     public class EnemyStats
     {
         public float Health;
+        public float Mana;
+        public float Shield;
         public float Attack;
         public float Defence;
         public float MoveSpeed;
@@ -21,6 +23,8 @@ namespace PahlBit
         {
             EnemyStats result = new EnemyStats();
             result.Health = stat.Health * option.HealthUp;
+            result.Mana = stat.Mana * option.ManaUp;
+            result.Shield = option.ShieldAdd;
             result.Attack = stat.Attack * option.PhyAttack;
             result.Defence = stat.Defence * option.DefenceUp;
             result.MoveSpeed = stat.MoveSpeed * option.MoveSpeedUp;

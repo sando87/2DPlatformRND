@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 12515916217043827}
   - component: {fileID: 1024992455204655525}
   - component: {fileID: 8536736938578584811}
-  - component: {fileID: 4959186170716446665}
+  - component: {fileID: 7967552824894812245}
   - component: {fileID: 6612556377838412465}
   - component: {fileID: 68407612288225575}
   - component: {fileID: 5377683571117300978}
@@ -46,6 +46,7 @@ Transform:
   - {fileID: 7433823683924333284}
   - {fileID: 3096942146395274747}
   - {fileID: 8885848797771994177}
+  - {fileID: 1731616886000559297}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8849159735124666502
@@ -76,6 +77,18 @@ MonoBehaviour:
   ProjPrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
     type: 3}
   _ResourceID: Enemy10
+  _ManaRegen: 2
+  _ManaUse: 3
+  _ProjectileCount: 5
+  _PhyAttackA: 3
+  ProjectilePrefabA: {fileID: 3164944944171518125, guid: b3d3d3a7aa37f7a428626dda434cb69f,
+    type: 3}
+  FirePositionA: {fileID: 8885848797771994177}
+  _Cooltime: 5
+  _PhyAttackB: 5
+  ProjectilePrefabB: {fileID: 3164944944171518125, guid: 4a85c315f92b04148a6e656db5f71ec8,
+    type: 3}
+  FirePositionB: {fileID: 1731616886000559297}
 --- !u!114 &7996635295318006703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,19 +147,7 @@ MonoBehaviour:
   _AroundNodeRange: 7
   OnAttackFire:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8447325360970241479}
-        m_TargetAssemblyTypeName: EnemyBossBase, Assembly-CSharp
-        m_MethodName: DoAttackMelee
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8536736938578584811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43459b6858ca0da4ea1c5155f638e474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.EnemyDataMono
---- !u!114 &4959186170716446665
+--- !u!114 &7967552824894812245
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,9 +169,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 662150947426525976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcc6104ce35a20a468ef2c8785639a5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5102b81ce3ef0bd419e0380ff829d3c2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.Health
+  m_EditorClassIdentifier: Assembly-CSharp::PahlBit.HealthBoss
   mCurrentHP: 10
   mCurrentMana: 0
   mCurrentShield: 0
@@ -201,6 +202,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5377683571117300978}
+        m_TargetAssemblyTypeName: PahlBit.SpriteNumberEffect, Assembly-CSharp
+        m_MethodName: ShowNumberEffect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 68407612288225575}
         m_TargetAssemblyTypeName: SoundFXPlayer, Assembly-CSharp
         m_MethodName: PlaySFX
@@ -209,18 +222,6 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 8300000, guid: a373612ef822c8d459aa845b52cf9d7e,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5377683571117300978}
-        m_TargetAssemblyTypeName: PahlBit.SpriteNumberEffect, Assembly-CSharp
-        m_MethodName: ShowNumberEffect
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -294,6 +295,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.SpriteNumberEffect
   NumberPrefab: {fileID: 2756351633337986132, guid: 1bab2be6809e6924ead8917f1ab95a98,
     type: 3}
+--- !u!1 &834761734479055045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1731616886000559297}
+  m_Layer: 8
+  m_Name: FirePointB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1731616886000559297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834761734479055045}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.7, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 377658868513282421}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1093580374788808452
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,7 +794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8885848797771994177}
   m_Layer: 8
-  m_Name: FirePoint
+  m_Name: FirePointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

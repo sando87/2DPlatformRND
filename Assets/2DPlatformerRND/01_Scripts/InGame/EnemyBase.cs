@@ -17,7 +17,7 @@ public class EnemyBase : MonoBehaviour
 
     public SpecEnemy Spec { get; private set; } = null;
 
-    BaseObject mBase = null;
+    protected BaseObject mBase = null;
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class EnemyBase : MonoBehaviour
         Spec.LinkOption(mBase.Buffs.TotalBuffOption);
     }
 
-    void Start()
+    protected virtual void Start()
     {
         mBase.Health.OnDied.AddListener(OnDeath);
     }

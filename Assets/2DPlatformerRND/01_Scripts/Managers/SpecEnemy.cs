@@ -10,6 +10,12 @@ namespace PahlBit
     public class SpecEnemy : SpecBase
     {
         public override float MaxHealth => BaseStats.Health * Option.HealthUp;
+        public override float MaxMana => BaseStats.Mana * Option.ManaUp;
+        public override float MaxShield => BaseStats.Shield;
+
+        public float HealthRegen => Option.HealthRegen;
+        public float ManaRegen => Option.ManaRegen;
+        public float ShieldRegen => Option.ShieldRegen;
 
         public override float BaseAttack => BaseStats.Attack + Option.BaseAttackAdd;
         public override float PhyDefence => BaseStats.Defence * Option.DefenceUp;
@@ -38,6 +44,8 @@ namespace PahlBit
             BaseStats = new EnemyStats();
 
             BaseStats.Health = ResourceData._Health.GetValue();
+            BaseStats.Mana = ResourceData._Mana.GetValue();
+            BaseStats.Shield = ResourceData._Shield.GetValue();
             BaseStats.Attack = ResourceData._Attack.GetValue();
             BaseStats.Defence = ResourceData._Defence.GetValue();
             BaseStats.MoveSpeed = ResourceData._MoveSpeed.GetValue();
