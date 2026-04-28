@@ -18,6 +18,7 @@ namespace PahlBit
         List<string> IDList { get => CharResourceTable.Instance.GetAllInfo().Select(info => info.CharacterID).ToList(); }
 
         private WrapStation mWrapStationAround = null;
+        private EnemyBossBase mSleepingBoss = null;
 
         public List<ItemObject> ItemsAround { get; private set; } = new List<ItemObject>();
 
@@ -92,6 +93,12 @@ namespace PahlBit
                 mWrapStationAround = wrapStation;
             }
 
+            EnemyBossBase boss = col.ExGetCompInBase<EnemyBossBase>();
+            if (boss != null && !boss.IsAwaked)
+            {
+                mSleepingBoss = boss;
+            }
+
         }
         void OnColliderLeave(Collider2D col)
         {
@@ -105,6 +112,12 @@ namespace PahlBit
             if (wrapStation != null)
             {
                 mWrapStationAround = null;
+            }
+
+            EnemyBossBase boss = col.ExGetCompInBase<EnemyBossBase>();
+            if (boss != null)
+            {
+                mSleepingBoss = null;
             }
         }
 
@@ -136,6 +149,18 @@ namespace PahlBit
                 {
                     if (mWrapStationAround.DestScene != SceneType.None)
                         InGameManager.Instance.Engine.DoWarpStation(mWrapStationAround.DestScene, mWrapStationAround.DestWarpID);
+                }
+            }
+
+            if (mSleepingBoss != null && mBaseObj.Input.JustPressed(PlayerUnitInputType.Move))
+            {
+                if (mBaseObj.Input.MoveY < 0)
+                {
+                    InGameEngine.Inst.ShowInventorySelectMode((selectedItem) =>
+                    {
+                        mSleepingBoss.DoAwakeBossWithItem(selectedItem);
+                        mSleepingBoss = null;
+                    });
                 }
             }
         }

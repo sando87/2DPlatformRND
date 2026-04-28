@@ -23,10 +23,37 @@ public class EnemyAIBoss : EnemyAI
         mBoss = mBase.GetComponent<EnemyBossBase>();
     }
 
-    // protected override UniTask<EnemyState> PatrolMode(CancellationToken ctx)
-    // {
-    //     return base.PatrolMode(ctx);
-    // }
+    protected async override UniTask<EnemyState> IdleMode(CancellationToken ctx)
+    {
+        Stop();
+        PlayerTarget = null;
+
+        try
+        {
+            mBase.AnimHelper.PlayAnim(AnimStateNameHash.Frozen);
+            await UniTask.WaitUntil(() => mBoss.IsAwaked, cancellationToken: ctx);
+            mBase.AnimHelper.PlayAnim(AnimStateNameHash.Idle);
+            await UniTask.Delay(TimeSpan.FromSeconds(2), cancellationToken: ctx);
+            PlayerTarget = await DetectTarget(ctx);
+            if (PlayerTarget != null)
+            {
+                if (IsAttackable())
+                {
+                    return EnemyState.Attack;
+                }
+                else
+                {
+                    return EnemyState.Chase;
+                }
+            }
+        }
+        finally
+        {
+            // ===== EXIT =====
+            Stop();
+        }
+        return EnemyState.Idle;
+    }
 
     protected async override UniTask<EnemyState> ChaseMode(CancellationToken ctx)
     {
@@ -36,9 +63,17 @@ public class EnemyAIBoss : EnemyAI
 
             int returnIdx = await UniTask.WhenAny(ThinkNextAttack(ctx), IsLostTarget(ctx));
             if (returnIdx == 0)
+            {
                 return EnemyState.Attack;
+            }
             else if (returnIdx == 1)
-                return EnemyState.Idle;
+            {
+                Stop();
+                PlayerTarget = null;
+                mBase.AnimHelper.PlayAnim(AnimStateNameHash.Idle);
+                await UniTask.Delay(TimeSpan.FromSeconds(2), cancellationToken: ctx);
+                PlayerTarget = await DetectTarget(ctx);
+            }
         }
         finally
         {

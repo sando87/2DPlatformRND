@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using PahlBit;
@@ -165,6 +166,23 @@ namespace PahlBit
             }
 
             return stations[0].transform.position;
+        }
+
+        public void ShowInventorySelectMode(Action<ItemInfo> eventSelectItem)
+        {
+            mPopupInven = PopupManager.Instance.Toggle<PopupInven>();
+            if (mPopupInven != null)
+            {
+                SetInputHandler(mPopupInven.InputHandler);
+                mPopupInven.ItemInven = Player.GetComponentInChildren<ItemInventory>();
+                mPopupInven.SetSelectMode((selectedItem) =>
+                {
+                    eventSelectItem.Invoke(selectedItem);
+                    PopupManager.Instance.Toggle<PopupInven>();
+                    mPopupInven = null;
+                    SetInputHandler(Player.Input);
+                });
+            }
         }
     }
 }

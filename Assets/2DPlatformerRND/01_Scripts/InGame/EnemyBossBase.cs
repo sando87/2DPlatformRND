@@ -24,14 +24,24 @@ public class EnemyBossBase : EnemyBase
 
     public SpecOption Option { get; private set; } = null;
     public float ManaRegen { get => _ManaRegen; }
+    public bool IsAwaked { get; set; } = false;
 
     Health mHealth;
     float mTime_AttackB = 0;
 
-    public void SetSpecOption(SpecOption option)
+    public void DoAwakeBossWithItem(ItemInfo item)
     {
-        Option = option;
+        IsAwaked = true;
+        Option = item.Option;
         mBase.Spec.LinkOption(Option);
+
+        float attackSpeed = mBase.EnemyObj.Spec.Option.AttackSpeedUp.Multiplier;
+        mBase.AnimHelper.SetParamFloat(AnimatorParams.AttackSpeed, attackSpeed);
+
+        float moveSpeed = mBase.EnemyObj.Spec.Option.MoveSpeedUp.Multiplier;
+        mBase.AnimHelper.SetParamFloat(AnimatorParams.MoveSpeed, moveSpeed);
+
+        mHealth.UpdateMaxStats(false);
     }
 
     protected override void Start()
@@ -39,12 +49,6 @@ public class EnemyBossBase : EnemyBase
         base.Start();
 
         mHealth = mBase.Health;
-
-        // float attackSpeed = mBase.EnemyObj.Spec.Option.AttackSpeedUp.Multiplier;
-        // mBase.AnimHelper.SetParamFloat(AnimatorParams.AttackSpeed, attackSpeed);
-
-        // float moveSpeed = mBase.EnemyObj.Spec.Option.MoveSpeedUp.Multiplier;
-        // mBase.AnimHelper.SetParamFloat(AnimatorParams.MoveSpeed, moveSpeed);
     }
 
     public bool IsAttackable_AttackA()
@@ -61,7 +65,7 @@ public class EnemyBossBase : EnemyBase
         mHealth.UseMana(_ManaUse);
 
         Vector2 startPos = FirePositionA.position;
-        int projCount = _ProjectileCount;  // (_ProjectileCount + Option.ProjectileCountUp).ToInt();
+        int projCount = (_ProjectileCount + Option.ProjectileCountUp).ToInt();
         FireMultiShot(projCount, startPos, mBase.transform.rotation, 90);
     }
 
@@ -78,13 +82,13 @@ public class EnemyBossBase : EnemyBase
             mBase.gameObject.layer
         );
 
-        // proj.Stats.MoveSpeed *= Option.ProjectileSpeedUp;
-        // proj.Stats.FireAngle = 0;
-        // proj.Stats.AttackRange *= Option.AttackRangeUp;
-        // proj.Stats.SplashRange *= Option.SplashRangeUp;
-        // proj.Stats.Duration *= Option.DurationUp;
+        proj.Stats.MoveSpeed *= Option.ProjectileSpeedUp;
+        proj.Stats.FireAngle = 0;
+        proj.Stats.AttackRange *= Option.AttackRangeUp;
+        proj.Stats.SplashRange *= Option.SplashRangeUp;
+        proj.Stats.Duration *= Option.DurationUp;
 
-        RegistOnHitEvent(proj);
+        RegistOnHitEvent(proj, _PhyAttackB);
     }
 
     void FireMultiShot(int arrowCount, Vector2 startPos, Quaternion baseRotation, float maxSpreadAngle)
@@ -113,17 +117,17 @@ public class EnemyBossBase : EnemyBase
                 mBase.gameObject.layer
             );
 
-            // proj.Stats.MoveSpeed *= Option.ProjectileSpeedUp;
-            // proj.Stats.FireAngle = 0;
-            // proj.Stats.AttackRange *= Option.AttackRangeUp;
-            // proj.Stats.SplashRange *= Option.SplashRangeUp;
-            // proj.Stats.Duration *= Option.DurationUp;
+            proj.Stats.MoveSpeed *= Option.ProjectileSpeedUp;
+            proj.Stats.FireAngle = 0;
+            proj.Stats.AttackRange *= Option.AttackRangeUp;
+            proj.Stats.SplashRange *= Option.SplashRangeUp;
+            proj.Stats.Duration *= Option.DurationUp;
 
-            RegistOnHitEvent(proj);
+            RegistOnHitEvent(proj, _PhyAttackA);
         }
     }
 
-    void RegistOnHitEvent(ProjectileBase proj)
+    void RegistOnHitEvent(ProjectileBase proj, float damage)
     {
         proj.OnHit.AddListener((col) =>
         {
@@ -142,7 +146,7 @@ public class EnemyBossBase : EnemyBase
                 BaseObject target = col.ExGetBase();
 
                 DamageInfo damageInfo = new DamageInfo();
-                damageInfo.PhyDamage = _PhyAttackA; // (_PhyAttackA + Option.BaseAttackAdd) * Option.PhyAttack;
+                damageInfo.PhyDamage = (damage + Option.BaseAttackAdd) * Option.PhyAttack;
                 health.GetDamaged(damageInfo);
 
                 proj.DoEndProjectile();

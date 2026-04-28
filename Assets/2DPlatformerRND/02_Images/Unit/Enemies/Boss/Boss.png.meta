@@ -1605,6 +1605,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Boss_frozen
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 320
+        width: 92
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5869565, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d63822ec63228e4489613aa3fef9fd8
+      internalID: -1506401108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -1680,6 +1702,7 @@ TextureImporter:
       Boss_7: -77334111701985629
       Boss_8_run: -2075714688798011193
       Boss_9: -6239074346997327397
+      Boss_frozen: -1506401108
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

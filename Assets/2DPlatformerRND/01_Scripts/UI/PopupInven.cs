@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace PahlBit
         private UIPartsItemSlot[] mInvenSlots = null;
         private UIPartsItemSlot[] mEquipSlots = null;
         private List<FieldData> mDisplayFields = new List<FieldData>();
+        private Action<ItemInfo> mEventSelectItem = null;
 
         void Start()
         {
@@ -222,7 +224,11 @@ namespace PahlBit
             InGameManager.Instance.Engine.SetInputHandler(_ActionSelector.InputHandler);
 
             _ActionSelector.Actions.Clear();
-            if (itemSlot.ItemInfo.IsEquipped)
+            if (mEventSelectItem != null)
+            {
+                _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Insert });
+            }
+            else if (itemSlot.ItemInfo.IsEquipped)
             {
                 _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.UnEquip });
             }
@@ -239,9 +245,9 @@ namespace PahlBit
 
             _ActionSelector.Show((type) =>
             {
-                DoAction(itemSlot, type);
                 InGameManager.Instance.Engine.SetInputHandler(this.InputHandler);
                 InputHandler.SelectUIPart(part);
+                DoAction(itemSlot, type);
                 UpdateDisplayInfo(null);
             });
 
@@ -277,8 +283,16 @@ namespace PahlBit
             {
                 DumpItem(itemSlot);
             }
+            else if (type == UIActionType.Insert)
+            {
+                mEventSelectItem?.Invoke(itemSlot.ItemInfo);
+            }
         }
 
+        public void SetSelectMode(Action<ItemInfo> eventSelectItem)
+        {
+            mEventSelectItem = eventSelectItem;
+        }
 
 
     }
