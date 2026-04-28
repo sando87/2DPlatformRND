@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 377658868513282421}
   - component: {fileID: 8849159735124666502}
-  - component: {fileID: 300443737900092221}
+  - component: {fileID: 8447325360970241479}
   - component: {fileID: 7996635295318006703}
   - component: {fileID: 12515916217043827}
-  - component: {fileID: 8391774183680255402}
   - component: {fileID: 1024992455204655525}
   - component: {fileID: 8536736938578584811}
   - component: {fileID: 4959186170716446665}
@@ -61,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c53a21043262a47b1eb17dceeca98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.BaseObject
---- !u!114 &300443737900092221
+--- !u!114 &8447325360970241479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,9 +69,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 662150947426525976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71a0d941d011ecd48be21b52cf7c269c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9374d3f19608c8b4588e2b6e355b47c1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBossBase
   FirePoint: {fileID: 8885848797771994177}
   ProjPrefab: {fileID: 3164944944171518125, guid: 20252fbc0d60a074382f77dd73d754f0,
     type: 3}
@@ -116,51 +115,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &8391774183680255402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662150947426525976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22b47cc91083f5346bccf431011944b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  _AttackDegree: 0
-  _ThinkInterval: 0.1
-  _AttackOnSameNode: 1
-  _MovementPattern: 2
-  _AroundNodeRange: 7
-  OnAttackFire:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 300443737900092221}
-        m_TargetAssemblyTypeName: EnemyBase, Assembly-CSharp
-        m_MethodName: DoAttackMelee
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 68407612288225575}
-        m_TargetAssemblyTypeName: SoundFXPlayer, Assembly-CSharp
-        m_MethodName: PlaySFX
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 8433a170cb2cb814481925dcc1baff78,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1024992455204655525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,8 +134,19 @@ MonoBehaviour:
   _AroundNodeRange: 7
   OnAttackFire:
     m_PersistentCalls:
-      m_Calls: []
-  _AttackArea: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 8447325360970241479}
+        m_TargetAssemblyTypeName: EnemyBossBase, Assembly-CSharp
+        m_MethodName: DoAttackMelee
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8536736938578584811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,8 +487,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.75}
-  m_Size: {x: 1, y: 1.5}
+  m_Offset: {x: 0, y: 2}
+  m_Size: {x: 2, y: 4}
   m_Direction: 0
 --- !u!1 &3928320718382374778
 GameObject:
@@ -551,7 +516,7 @@ Transform:
   m_GameObject: {fileID: 3928320718382374778}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.65, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -648,7 +613,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 0.2}
+  m_Size: {x: 2, y: 0.2}
   m_EdgeRadius: 0
 --- !u!1 &5289879915696240298
 GameObject:
@@ -721,7 +686,7 @@ Transform:
   m_GameObject: {fileID: 6545803503245172597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8, y: 0, z: 0}
+  m_LocalPosition: {x: -1.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -782,7 +747,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1.6, y: 0.3}
+  m_Size: {x: 2.4, y: 0.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -812,7 +777,7 @@ Transform:
   m_GameObject: {fileID: 7631719045126559463}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.16, y: 0.87, z: 0}
+  m_LocalPosition: {x: 2.7, y: 2.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -844,7 +809,7 @@ Transform:
   m_GameObject: {fileID: 7787800872159645293}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.75, y: 0, z: -0.1}
+  m_LocalPosition: {x: -1.15, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -906,7 +871,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1.5, y: 0.2}
+  m_Size: {x: 2.3, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -943,7 +908,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1010383554229839765}
@@ -1108,7 +1073,7 @@ Transform:
   m_GameObject: {fileID: 8665637032548324498}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1158,7 +1123,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1.5}
+  m_Size: {x: 2, y: 4}
   m_EdgeRadius: 0
 --- !u!114 &775721688083464361
 MonoBehaviour:
@@ -1283,7 +1248,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1.5, y: 0.2}
+  m_Size: {x: 2.3, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
