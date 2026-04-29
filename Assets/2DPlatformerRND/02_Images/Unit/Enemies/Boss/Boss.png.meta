@@ -1627,6 +1627,116 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Boss_proj_loop1
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 256
+        width: 92
+        height: 64
+      alignment: 9
+      pivot: {x: 0.50962234, y: 0.3340068}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99e1ecf36928bf94b9e935491bfe9478
+      internalID: 2127311629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_proj_loop2
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 256
+        width: 92
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5500382, y: 0.32017374}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a789870f2f961554fa2f411ba436657e
+      internalID: -693959575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_proj_end1
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 192
+        width: 92
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.34507298}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a18af51b3e5449949be247b37c306398
+      internalID: 1117846323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_proj_end2
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 192
+        width: 92
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5327168, y: 0.30910778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf3ff52edba24e84c8fd2425f9433145
+      internalID: 1410533346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_proj_end3
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 192
+        width: 92
+        height: 64
+      alignment: 9
+      pivot: {x: 0.56543434, y: 0.30634117}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1157947e49c77c34094994158f00b882
+      internalID: 684136345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -1703,6 +1813,11 @@ TextureImporter:
       Boss_8_run: -2075714688798011193
       Boss_9: -6239074346997327397
       Boss_frozen: -1506401108
+      Boss_proj_end1: 1117846323
+      Boss_proj_end2: 1410533346
+      Boss_proj_end3: 684136345
+      Boss_proj_loop1: 2127311629
+      Boss_proj_loop2: -693959575
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

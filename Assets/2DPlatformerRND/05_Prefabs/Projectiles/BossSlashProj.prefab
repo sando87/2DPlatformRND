@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 361394005657302071}
   - component: {fileID: 3164944944171518125}
   m_Layer: 0
-  m_Name: StoneAttack
+  m_Name: BossSlashProj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,11 +101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.ProjectileBase
   <Stats>k__BackingField:
-    MoveSpeed: 0
+    MoveSpeed: 10
     FireAngle: 0
     AttackRange: 0
     SplashRange: 0
-    Duration: 0.2
+    Duration: 0.7
     Interval: 0
     StartDelay: 0
     RotateSpeed: 0
@@ -119,6 +119,18 @@ MonoBehaviour:
   OnEnd:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 9014115006945709037}
+        m_TargetAssemblyTypeName: SpriteAnimationEx, Assembly-CSharp
+        m_MethodName: PlayAnimOutro
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7689548308577975244}
         m_TargetAssemblyTypeName: PahlBit.BaseObject, Assembly-CSharp
         m_MethodName: DestroyObj
@@ -127,7 +139,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0.5
+          m_FloatArgument: 1
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -140,8 +152,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4639692451695240737}
-  - component: {fileID: 4144681275702825614}
-  - component: {fileID: 2915332787129454500}
+  - component: {fileID: 174083890180654051}
+  - component: {fileID: 9014115006945709037}
   m_Layer: 0
   m_Name: Renderer
   m_TagString: Untagged
@@ -159,12 +171,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9057949517283315166}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4144681275702825614
+--- !u!212 &174083890180654051
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -213,18 +225,17 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5040152186869455958, guid: 7c2733c4c65f50c43ac62d86de1d3149,
-    type: 3}
+  m_Sprite: {fileID: 2127311629, guid: 8ce2c4c40533e17458a3eb7e7a397f74, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6.4375, y: 2}
+  m_Size: {x: 2, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2915332787129454500
+--- !u!114 &9014115006945709037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,24 +244,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 3670125875735035689}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b5894b9ffbe80d479167748c3171bb5, type: 3}
+  m_Script: {fileID: 11500000, guid: c8e3bf1c5c5523f459667db230333f8f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimation
-  _Renderer: {fileID: 4144681275702825614}
-  _Sprites:
-  - {fileID: 3718494619398316060, guid: 7c2733c4c65f50c43ac62d86de1d3149, type: 3}
-  - {fileID: 6126681612674448711, guid: 7c2733c4c65f50c43ac62d86de1d3149, type: 3}
-  - {fileID: -5040152186869455958, guid: 7c2733c4c65f50c43ac62d86de1d3149, type: 3}
-  - {fileID: 553166801232097943, guid: 7c2733c4c65f50c43ac62d86de1d3149, type: 3}
-  - {fileID: -6928291120408383625, guid: 7c2733c4c65f50c43ac62d86de1d3149, type: 3}
-  - {fileID: -7292797564914898942, guid: 7c2733c4c65f50c43ac62d86de1d3149, type: 3}
-  - {fileID: 6254513289186212406, guid: 7c2733c4c65f50c43ac62d86de1d3149, type: 3}
-  - {fileID: -8985974491945934760, guid: 7c2733c4c65f50c43ac62d86de1d3149, type: 3}
-  - {fileID: -2975679267439195113, guid: 7c2733c4c65f50c43ac62d86de1d3149, type: 3}
-  _Loop: 0
-  _Interval: 0.1
-  _StartOnEnable: 1
-  _OnAnimEnd:
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimationEx
+  _Renderer: {fileID: 174083890180654051}
+  _SpritesIntro: []
+  _IntervalIntro: 0.1
+  _OnEndIntro:
+    m_PersistentCalls:
+      m_Calls: []
+  _SpritesLoop:
+  - {fileID: 2127311629, guid: 8ce2c4c40533e17458a3eb7e7a397f74, type: 3}
+  - {fileID: -693959575, guid: 8ce2c4c40533e17458a3eb7e7a397f74, type: 3}
+  _IntervalLoop: 0.05
+  _SpritesOutro:
+  - {fileID: 1117846323, guid: 8ce2c4c40533e17458a3eb7e7a397f74, type: 3}
+  - {fileID: 1410533346, guid: 8ce2c4c40533e17458a3eb7e7a397f74, type: 3}
+  - {fileID: 684136345, guid: 8ce2c4c40533e17458a3eb7e7a397f74, type: 3}
+  _IntervalOutro: 0.1
+  _OnEndOutro:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &6244233394859420000
@@ -281,7 +293,7 @@ Transform:
   m_GameObject: {fileID: 6244233394859420000}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -331,7 +343,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 6, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7116590565929951786
 MonoBehaviour:

@@ -122,7 +122,7 @@ public class EnemyAIBoss : EnemyAI
     {
         while (!ct.IsCancellationRequested)
         {
-            if (MyUtils.RandomInt(0, 5) == 0)
+            if (MyUtils.RandomInt(0, 3) == 0)
             {
                 break;
             }

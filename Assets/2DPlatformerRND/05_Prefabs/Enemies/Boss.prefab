@@ -46,6 +46,7 @@ Transform:
   - {fileID: 7433823683924333284}
   - {fileID: 3096942146395274747}
   - {fileID: 8885848797771994177}
+  - {fileID: 3490245107546003937}
   - {fileID: 1731616886000559297}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,15 +79,18 @@ MonoBehaviour:
     type: 3}
   _ResourceID: Enemy10
   _ManaRegen: 2
+  MeleePrefab: {fileID: 3164944944171518125, guid: d155e0d2cb262ea4c8ba4f0cc544716d,
+    type: 3}
+  FirePositionMelee: {fileID: 3490245107546003937}
   _ManaUse: 3
   _ProjectileCount: 5
   _PhyAttackA: 3
-  ProjectilePrefabA: {fileID: 3164944944171518125, guid: b3d3d3a7aa37f7a428626dda434cb69f,
+  ProjectilePrefabA: {fileID: 3164944944171518125, guid: 765ef44919773af44bff05ec4438fd50,
     type: 3}
   FirePositionA: {fileID: 8885848797771994177}
   _Cooltime: 5
   _PhyAttackB: 5
-  ProjectilePrefabB: {fileID: 3164944944171518125, guid: 4a85c315f92b04148a6e656db5f71ec8,
+  ProjectilePrefabB: {fileID: 3164944944171518125, guid: af5e5cbd7dc01f54399008b6cda16618,
     type: 3}
   FirePositionB: {fileID: 1731616886000559297}
 --- !u!114 &7996635295318006703
@@ -141,13 +145,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAIBoss
   _AttackDegree: 0
-  _ThinkInterval: 2
+  _ThinkInterval: 1
   _AttackOnSameNode: 1
   _MovementPattern: 4
   _AroundNodeRange: 7
   OnAttackFire:
     m_PersistentCalls:
       m_Calls: []
+  _JumpPositions: []
 --- !u!114 &8536736938578584811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +458,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1144757d4f13bf0428e9ae7575054a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.RenderBurn
+--- !u!1 &3405839969455553036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3490245107546003937}
+  m_Layer: 8
+  m_Name: FirePointMelee
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3490245107546003937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3405839969455553036}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 2.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 377658868513282421}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3744473320614122168
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +845,7 @@ Transform:
   m_GameObject: {fileID: 7631719045126559463}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7, y: 2.51, z: 0}
+  m_LocalPosition: {x: 4, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

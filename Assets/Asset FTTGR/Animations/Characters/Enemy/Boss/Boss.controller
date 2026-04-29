@@ -80,7 +80,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 320, y: -200, z: 0}
   m_ExitPosition: {x: 600, y: 40, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 4132229869256558031}
+  m_DefaultState: {fileID: 4393957225233081821}
 --- !u!1102 &-5391024402209019537
 AnimatorState:
   serializedVersion: 6
@@ -115,7 +115,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BossAttackB
-  m_Speed: 1
+  m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 7068160552712082410}
@@ -352,7 +352,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BossAttackA
-  m_Speed: 1
+  m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4000254614476964613}

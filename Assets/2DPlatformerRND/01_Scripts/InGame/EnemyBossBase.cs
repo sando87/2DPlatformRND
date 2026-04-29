@@ -9,6 +9,10 @@ public class EnemyBossBase : EnemyBase
 {
     [SerializeField] float _ManaRegen = 0.2f;
 
+    [Header("AttackMelee")]
+    [SerializeField] ProjectileBase MeleePrefab;
+    [SerializeField] Transform FirePositionMelee = null;
+
     [Header("AttackA")]
     [SerializeField] float _ManaUse = 3;
     [SerializeField] int _ProjectileCount = 5;
@@ -77,6 +81,8 @@ public class EnemyBossBase : EnemyBase
         Vector2 startPos = FirePositionA.position;
         int projCount = (_ProjectileCount + Option.ProjectileCountUp).ToInt();
         FireMultiShot(projCount, startPos, mBase.transform.rotation, 90);
+
+        FireMelee(FirePositionMelee.position);
     }
 
     public void DoFire_AttackB()
@@ -92,13 +98,38 @@ public class EnemyBossBase : EnemyBase
             mBase.gameObject.layer
         );
 
-        proj.Stats.MoveSpeed *= Option.ProjectileSpeedUp;
-        proj.Stats.FireAngle = 0;
-        proj.Stats.AttackRange *= Option.AttackRangeUp;
-        proj.Stats.SplashRange *= Option.SplashRangeUp;
-        proj.Stats.Duration *= Option.DurationUp;
+        // proj.Stats.MoveSpeed *= Option.ProjectileSpeedUp;
+        // proj.Stats.FireAngle = 0;
+        // proj.Stats.AttackRange *= Option.AttackRangeUp;
+        // proj.Stats.SplashRange *= Option.SplashRangeUp;
+        // proj.Stats.Duration *= Option.DurationUp;
 
-        RegistOnHitEvent(proj, _PhyAttackB);
+        RegistOnHitEvent(proj, _PhyAttackB, false);
+    }
+
+    void FireMelee(Vector2 startPos)
+    {
+        ProjectileBase proj = ProjectileBase.Create(
+            MeleePrefab,
+            startPos,
+            mBase.transform.rotation,
+            mBase.gameObject.layer
+        );
+
+        proj.OnHit.AddListener((col) =>
+        {
+            // 적과 충돌 시 처리할 내용
+            Health health = col.ExGetCompInBase<Health>();
+            if (health != null)
+            {
+                // 충돌 시 처리할 내용
+                BaseObject target = col.ExGetBase();
+
+                DamageInfo damageInfo = new DamageInfo();
+                damageInfo.PhyDamage = _PhyAttackA + Option.BaseAttackAdd;
+                health.GetDamaged(damageInfo);
+            }
+        });
     }
 
     void FireMultiShot(int arrowCount, Vector2 startPos, Quaternion baseRotation, float maxSpreadAngle)
@@ -133,16 +164,16 @@ public class EnemyBossBase : EnemyBase
             proj.Stats.SplashRange *= Option.SplashRangeUp;
             proj.Stats.Duration *= Option.DurationUp;
 
-            RegistOnHitEvent(proj, _PhyAttackA);
+            RegistOnHitEvent(proj, _PhyAttackA, true);
         }
     }
 
-    void RegistOnHitEvent(ProjectileBase proj, float damage)
+    void RegistOnHitEvent(ProjectileBase proj, float damage, bool IsAttackA)
     {
         proj.OnHit.AddListener((col) =>
         {
             // 주변 지형과 충돌 시
-            if (col.gameObject.layer == PahlBit.LayerID.Terrain)
+            if (col.gameObject.layer == PahlBit.LayerID.Terrain && IsAttackA)
             {
                 proj.DoEndProjectile();
                 return;
@@ -156,10 +187,11 @@ public class EnemyBossBase : EnemyBase
                 BaseObject target = col.ExGetBase();
 
                 DamageInfo damageInfo = new DamageInfo();
-                damageInfo.PhyDamage = (damage + Option.BaseAttackAdd) * Option.PhyAttack;
+                damageInfo.PhyDamage = damage + Option.BaseAttackAdd;
                 health.GetDamaged(damageInfo);
 
-                proj.DoEndProjectile();
+                if (IsAttackA)
+                    proj.DoEndProjectile();
             }
         });
     }
