@@ -101,11 +101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PahlBit.ProjectileBase
   <Stats>k__BackingField:
-    MoveSpeed: 10
+    MoveSpeed: 12
     FireAngle: 0
-    AttackRange: 0
+    AttackRange: 20
     SplashRange: 0
-    Duration: 0.7
+    Duration: 0
     Interval: 0
     StartDelay: 0
     RotateSpeed: 0
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableCollider
   _MyProperty: 2
-  _InteractableWith: 25
+  _InteractableWith: 29
   OnInteractEnter:
     m_PersistentCalls:
       m_Calls: []

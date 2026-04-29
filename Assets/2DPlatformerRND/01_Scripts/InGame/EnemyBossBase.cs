@@ -137,7 +137,7 @@ public class EnemyBossBase : EnemyBase
         if (arrowCount <= 0)
             return;
 
-        float stepAngle = 10;
+        float stepAngle = 15;
         float totalAngle = stepAngle * (arrowCount - 1);
         if (totalAngle > maxSpreadAngle)
         {

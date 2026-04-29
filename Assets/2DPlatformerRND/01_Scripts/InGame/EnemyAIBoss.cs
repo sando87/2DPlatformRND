@@ -122,7 +122,7 @@ public class EnemyAIBoss : EnemyAI
     {
         while (!ct.IsCancellationRequested)
         {
-            if (MyUtils.RandomInt(0, 3) == 0)
+            if (MyUtils.RandomInt(0, 4) == 0)
             {
                 break;
             }
@@ -150,13 +150,14 @@ public class EnemyAIBoss : EnemyAI
                 StartMoving(curDir * mSpec.MoveSpeed);
                 await UniTask.Delay(TimeSpan.FromSeconds(MyUtils.RandomFloat(0.5f, 3.5f)), cancellationToken: ct);
 
-                if (MyUtils.RandomInt(0, 3) == 0)
+                if (MyUtils.RandomInt(0, 2) == 0)
                 {
                     mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
                     Stop();
                     await UniTask.Delay(TimeSpan.FromSeconds(1.5f), cancellationToken: ct);
-                    Vector2 destPos = _JumpPositions.ExGetRandom().position;
-                    await JumpTo(destPos, 1f, ct);
+
+                    Vector2 destPos = GetNextJumpDest();
+                    await JumpTo(destPos, 1.5f, ct);
                 }
             }
         }
@@ -165,8 +166,23 @@ public class EnemyAIBoss : EnemyAI
             // LOG.trace(ex.Message);
         }
     }
+    Vector2 GetNextJumpDest()
+    {
+        int ranIdx = MyUtils.RandomInt(0, _JumpPositions.Count);
+        for (int i = 0; i < _JumpPositions.Count; i++)
+        {
+            int idx = (ranIdx + i) % _JumpPositions.Count;
+            Vector2 destPos = _JumpPositions[idx].position;
+            float dist = Vector2.Distance(mBase.transform.position, destPos);
+            if (5 < dist && dist < 25f)
+            {
+                return destPos;
+            }
+        }
+        return _JumpPositions[ranIdx].position;
+    }
 
-    protected async UniTask JumpTo(Vector3 worldPos, float duration, CancellationToken ct)
+    protected async UniTask JumpTo(Vector3 destPos, float duration, CancellationToken ct)
     {
         try
         {
@@ -178,10 +194,11 @@ public class EnemyAIBoss : EnemyAI
             int dir = mBase.Body.Center.x < PlayerTarget.transform.position.x ? 1 : -1;
             Turn(dir);
 
-            mBase.transform.DOMoveX(worldPos.x, duration).SetEase(Ease.Linear);
-            mBase.transform.DOMoveY(worldPos.y + 5, halfduration).SetEase(Ease.OutQuad);
+            mBase.transform.DOMoveX(destPos.x, duration).SetEase(Ease.Linear);
+            float maxY = Mathf.Max(mBase.Body.Foot.y, destPos.y) + 7;
+            mBase.transform.DOMoveY(maxY, halfduration).SetEase(Ease.OutQuad);
             await UniTask.Delay(TimeSpan.FromSeconds(halfduration), cancellationToken: ct);
-            mBase.transform.DOMoveY(worldPos.y, halfduration).SetEase(Ease.InQuad);
+            mBase.transform.DOMoveY(destPos.y, halfduration).SetEase(Ease.InQuad);
             await UniTask.Delay(TimeSpan.FromSeconds(halfduration), cancellationToken: ct);
             mBase.AnimHelper.CrossFadeToState(AnimStateNameHash.Idle);
             await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: ct);
