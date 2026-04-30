@@ -37,8 +37,8 @@ namespace PahlBit
 
         // 다음 레벨업을 위해 필요한 경험치량이 증가하는 방식
         static int FirstExpAtLevelOne = 100;
-        static int FirstExpIncrease = 150;
-        static int IncreaseOfExpIncrease = 50;
+        static int FirstExpIncrease = 160;
+        static int IncreaseOfExpIncrease = 60;
         static public int GetAccExpForNextLevel(int curLevel)
         {
             if (curLevel <= 0)

@@ -9,6 +9,7 @@ namespace PahlBit
     public class PopupInven : PopupBase
     {
         const int ItemRepairCost = 15;
+        const int ItemInsertCost = 150;
 
         [SerializeField] Transform EquipSlotRoot;
         [SerializeField] Transform InvenSlotRoot;
@@ -197,6 +198,19 @@ namespace PahlBit
 
             ItemInven.RemoveItem(itemInfo.InstanceID);
         }
+        void InsertItem(UIPartsItemSlot slot)
+        {
+            int currnetGold = ItemInven.CurrentGold;
+            if (currnetGold < ItemInsertCost)
+            {
+                ToastManager.Instance.ShowMessage("Not enough gold.");
+            }
+            else
+            {
+                ItemInven.CurrentGold -= ItemInsertCost;
+                mEventSelectItem?.Invoke(slot.ItemInfo);
+            }
+        }
 
         UIPartsItemSlot FindEmptyEquipSlot()
         {
@@ -227,7 +241,7 @@ namespace PahlBit
             if (mEventSelectItem != null)
             {
                 if (!itemSlot.ItemInfo.IsEquipable)
-                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Insert });
+                    _ActionSelector.Actions.Add(new ActionInfo { Type = UIActionType.Insert, Gold = ItemInsertCost });
             }
             else if (itemSlot.ItemInfo.IsEquipped)
             {
@@ -286,7 +300,7 @@ namespace PahlBit
             }
             else if (type == UIActionType.Insert)
             {
-                mEventSelectItem?.Invoke(itemSlot.ItemInfo);
+                InsertItem(itemSlot);
             }
         }
 

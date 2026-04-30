@@ -160,6 +160,7 @@ namespace PahlBit
                     InGameEngine.Inst.ShowInventorySelectMode((selectedItem) =>
                     {
                         mSleepingBoss.DoAwakeBossWithItem(selectedItem);
+                        Inven.RemoveItem(selectedItem.InstanceID);
                         mSleepingBoss = null;
                     });
                 }

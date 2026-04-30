@@ -54,7 +54,7 @@ public class SkillIceBall : SkillBase
         if (arrowCount <= 0)
             return;
 
-        float stepAngle = 10;
+        float stepAngle = 20;
         float totalAngle = stepAngle * (arrowCount - 1);
         if (totalAngle > maxSpreadAngle)
         {
